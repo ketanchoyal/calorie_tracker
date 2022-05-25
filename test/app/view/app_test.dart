@@ -6,7 +6,8 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:calorie_tracker/app/app.dart';
-import 'package:calorie_tracker/counter/counter.dart';
+
+import 'package:calorie_tracker/ui/views/counter/counter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

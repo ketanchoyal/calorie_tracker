@@ -14,6 +14,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  firebase_core: ^1.17.0
+  openfoodfacts: ^1.17.0
+  json_theme: ^4.0.0
 
 dev_dependencies:
   bloc_test: ^9.0.3
@@ -25,3 +28,21 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/theme/theme_light.json
+    - assets/theme/theme_dark.json
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Italic.ttf
+          style: italic
