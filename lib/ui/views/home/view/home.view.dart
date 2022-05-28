@@ -2,26 +2,33 @@ import 'dart:math' as math;
 import 'package:calorie_tracker/ui/utils/shape_border.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).brightness == Brightness.light
+        ? Theme.of(context).primaryColor
+        : Theme.of(context).primaryColorDark;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Home'),
-      // ),
       extendBodyBehindAppBar: true,
       appBar: CalendarAppBar(
         onDateChanged: print,
-        accent: MediaQuery.of(context).platformBrightness == Brightness.light
-            ? Theme.of(context).primaryColor
-            : Theme.of(context).primaryColorDark,
+        accent: primaryColor,
         backButton: false,
         firstDate: DateTime.now().subtract(const Duration(days: 140)),
         lastDate: DateTime.now(),
         fullCalendar: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: primaryColor,
+        child: const Icon(
+          FontAwesomeIcons.qrcode,
+          color: Colors.white,
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(
@@ -29,19 +36,123 @@ class HomeView extends StatelessWidget {
         ),
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              CalorieWidget(
+                calories: '1563',
+                icon: FontAwesomeIcons.spoon,
+                iconColor: primaryColor,
+                subtitle: 'EATEN',
+              ),
               AnimatedRing(
-                remainigDays: '1563',
+                centerWidget: const CalorieWidget(
+                  calories: '1563',
+                  icon: FontAwesomeIcons.boltLightning,
+                  subtitle: 'KCAL LEFT',
+                ),
                 height: 150,
                 percent: 0.9,
-                strokeWidth: 15,
-                color: MediaQuery.of(context).platformBrightness ==
-                        Brightness.light
-                    ? Theme.of(context).primaryColor
-                    : Theme.of(context).primaryColorDark,
+                strokeWidth: 18,
+                color: primaryColor,
+              ),
+              CalorieWidget(
+                calories: '1563',
+                icon: FontAwesomeIcons.fireFlameCurved,
+                iconColor: primaryColor,
+                subtitle: 'BURNED',
               ),
             ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Row(
+              children: [
+                _buildSingleNutrition(
+                  context,
+                  amount: 160,
+                  color: Colors.purple,
+                  nutrition: 'Protein',
+                  isLeftAmount: false,
+                  percent: 0.5,
+                ),
+                _buildSingleNutrition(
+                  context,
+                  amount: 120,
+                  color: Colors.greenAccent,
+                  nutrition: 'Carbs',
+                  isLeftAmount: false,
+                  percent: 0.2,
+                ),
+                _buildSingleNutrition(
+                  context,
+                  amount: 80,
+                  color: Colors.blueAccent,
+                  nutrition: 'FAT',
+                  isLeftAmount: false,
+                  percent: 0.9,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Expanded _buildSingleNutrition(
+    BuildContext context, {
+    required double percent,
+    required Color color,
+    required String nutrition,
+    required double amount,
+
+    /// is amount provided is amount of left for this nutrition or not
+    required bool isLeftAmount,
+  }) {
+    return Expanded(
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: SizedBox(
+                height: 8,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return AnimatedLine(
+                      percent: percent,
+                      color: color,
+                      height: constraints.maxHeight,
+                      width: constraints.maxWidth,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            nutrition.toUpperCase(),
+            style: Theme.of(context).textTheme.caption?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0,
+                ),
+          ),
+          const SizedBox(
+            height: 3,
+          ),
+          Text(
+            '${amount}g ${isLeftAmount ? 'left' : ''}',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ],
       ),
@@ -49,16 +160,96 @@ class HomeView extends StatelessWidget {
   }
 }
 
+class AnimatedLine extends StatefulWidget {
+  const AnimatedLine({
+    super.key,
+    required this.percent,
+    required this.color,
+    required this.height,
+    required this.width,
+  });
+  final double percent;
+
+  final Color color;
+
+  final double height;
+  final double width;
+
+  @override
+  State createState() => _AnimatedLineState();
+}
+
+class _AnimatedLineState extends State<AnimatedLine>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    );
+
+    _controller
+      ..addListener(() {
+        setState(() {});
+      })
+      ..animateTo(widget.percent);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(AnimatedLine oldWidget) {
+    if (oldWidget.percent != widget.percent) {
+      _controller.animateTo(widget.percent);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Stack(
+          children: [
+            Container(
+              height: widget.height,
+              width: widget.width * _controller.value,
+              decoration: BoxDecoration(
+                color: widget.color,
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+            Container(
+              height: widget.height,
+              width: widget.width,
+              color: widget.color.withOpacity(0.2),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
 class AnimatedRing extends StatefulWidget {
   const AnimatedRing({
-    required this.remainigDays,
+    required this.centerWidget,
     this.percent,
     this.color = Colors.white,
     this.height = 50,
     this.strokeWidth = 5,
     super.key,
   });
-  final String remainigDays;
+  final Widget centerWidget;
+
   final double? percent;
   final Color color;
   final double height;
@@ -70,7 +261,7 @@ class AnimatedRing extends StatefulWidget {
 
 class _AnimatedRingState extends State<AnimatedRing>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
 
   @override
   void initState() {
@@ -135,24 +326,7 @@ class _AnimatedRingState extends State<AnimatedRing>
                     child: Card(
                       elevation: 30,
                       shape: kRoundedCardBorder(radius: widget.height),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            widget.remainigDays,
-                            style:
-                                Theme.of(context).textTheme.headline5?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.5,
-                                    ),
-                          ),
-                          Text(
-                            'KCAL Left',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                        ],
-                      ),
+                      child: widget.centerWidget,
                     ),
                   ),
                 ),
@@ -161,6 +335,50 @@ class _AnimatedRingState extends State<AnimatedRing>
           ),
         ),
       ),
+    );
+  }
+}
+
+class CalorieWidget extends StatelessWidget {
+  const CalorieWidget({
+    super.key,
+    required this.calories,
+    required this.icon,
+    this.iconColor,
+    required this.subtitle,
+  });
+
+  final String calories;
+  final IconData icon;
+  final String subtitle;
+  final Color? iconColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FaIcon(
+          icon,
+          color: iconColor,
+        ),
+        const SizedBox(height: 5),
+        Text(
+          calories,
+          style: Theme.of(context).textTheme.headline5?.copyWith(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              ),
+        ),
+        Text(
+          subtitle,
+          style: Theme.of(context).textTheme.caption?.copyWith(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0,
+              ),
+        ),
+      ],
     );
   }
 }

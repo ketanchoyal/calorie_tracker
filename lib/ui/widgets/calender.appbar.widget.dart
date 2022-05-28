@@ -94,7 +94,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
   late Color white;
 
   ///accent color of UI
-  late Color accent;
+  Color get accent => widget.accent ?? Theme.of(context).primaryColor;
 
   ///definiton of your specific shade of black
   late Color black;
@@ -116,7 +116,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
   void initState() {
     setState(() {
       ///initializing accent
-      accent = widget.accent ?? const Color(0xFF0039D9);
+      // accent = widget.accent ?? const Color(0xFF0039D9);
 
       ///initilizing first date
       firstDate = widget.firstDate ?? DateTime(1950);

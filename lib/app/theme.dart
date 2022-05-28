@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 class AppColors {
   // static Color get primary => const Color(0xFFF05E21);
   static Color get primary => _theme.primaryColor;
-  static Color get primaryDark => const Color(0xFFB30924);
+  static Color get primaryDark => _darkTheme.primaryColor;
 
   static late ThemeData _theme;
   static late ThemeData _darkTheme;
