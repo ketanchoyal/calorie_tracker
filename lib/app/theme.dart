@@ -68,6 +68,11 @@ class AppColors {
       (dynamic value) => 'Nunito',
       ifAbsent: () => 'Nunito',
     );
+    themeDarkJson.update(
+      'fontFamily',
+      (dynamic value) => 'Nunito',
+      ifAbsent: () => 'Nunito',
+    );
     _theme = ThemeDecoder.decodeThemeData(themeJson)!;
     _darkTheme = ThemeDecoder.decodeThemeData(themeDarkJson)!;
   }

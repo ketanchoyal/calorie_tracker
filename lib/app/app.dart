@@ -7,7 +7,7 @@
 
 import 'package:calorie_tracker/app/theme.dart';
 import 'package:calorie_tracker/l10n/l10n.dart';
-import 'package:calorie_tracker/ui/views/counter/counter.dart';
+import 'package:calorie_tracker/ui/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -35,7 +35,7 @@ class AppView extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const HomeView(),
     );
   }
 }

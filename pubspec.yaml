@@ -17,6 +17,7 @@ dependencies:
   firebase_core: ^1.17.0
   openfoodfacts: ^1.17.0
   json_theme: ^4.0.0
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   bloc_test: ^9.0.3
