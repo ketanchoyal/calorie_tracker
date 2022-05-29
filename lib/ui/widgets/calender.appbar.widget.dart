@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 library calendar_appbar;
 
 ///adding necesarry packages
@@ -220,7 +222,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
               if (offset > 0) {
                 //animated scroll
                 scrollController.animateTo(
-                  (offset / widthUnit).round() * (widthUnit),
+                  (offset / widthUnit).round() * widthUnit,
                   duration: const Duration(milliseconds: 100),
                   curve: Curves.easeInOut,
                 );
@@ -420,7 +422,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
       showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
-        backgroundColor: white,
+        backgroundColor: Theme.of(context).cardColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
@@ -479,8 +481,8 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
 
                   ///counting the difference between dates
                   positionDifference =
-                      -((referentialDate.difference(referenceDate).inHours / 24)
-                          .round());
+                      -(referentialDate.difference(referenceDate).inHours / 24)
+                          .round();
                 });
 
                 ///saving current offset
@@ -551,19 +553,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
             color: accent,
           ),
         ),
-        Positioned(
-          top: 0 + MediaQuery.of(context).viewPadding.top,
-          left: 12,
-          right: 0,
-          child: Text(
-            "Home",
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline6?.copyWith(
-                  color: white,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-        ),
+
         // Positioned(
         //   top: 59,
         //   child: Padding(
@@ -624,6 +614,24 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
 
           /// call calendarView function from above
           child: calendarView(),
+        ),
+        Positioned(
+          top: 0 + MediaQuery.of(context).viewPadding.top,
+          left: 12,
+          right: 0,
+          child: GestureDetector(
+            onTap: () {
+              showFullCalendar(_locale);
+            },
+            child: Text(
+              'Calorie Tracker',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: white,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ),
         ),
       ],
     );
@@ -831,10 +839,10 @@ class _FullCalendarState extends State<FullCalendar> {
       alignment: Alignment.center,
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w400,
-          color: widget.black!.withOpacity(0.8),
+          // color: widget.black!.withOpacity(0.8),
         ),
       ),
     );
@@ -872,14 +880,18 @@ class _FullCalendarState extends State<FullCalendar> {
                 child: Text(
                   DateFormat('dd').format(date),
                   style: TextStyle(
+                    fontWeight: isSelectedDate ? FontWeight.bold : null,
+
                     ///UI of full calendar shows also the dates that are out
                     ///of the range defined by first and last date, although
                     ///the UI is different for the dates out of range
                     color: outOfRange
-                        ? isSelectedDate
+                        ? isSelectedDate ||
+                                Theme.of(context).brightness == Brightness.dark
                             ? widget.white!.withOpacity(0.9)
                             : widget.black!.withOpacity(0.4)
-                        : isSelectedDate
+                        : isSelectedDate ||
+                                Theme.of(context).brightness == Brightness.dark
                             ? widget.white
                             : widget.black,
                   ),
@@ -926,9 +938,9 @@ class _FullCalendarState extends State<FullCalendar> {
           ///name of the month
           Text(
             DateFormat.MMMM(Locale(locale!).toString()).format(first),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
-              color: widget.black,
+              // color: widget.black,
               fontWeight: FontWeight.w400,
             ),
           ),

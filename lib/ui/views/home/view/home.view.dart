@@ -3,9 +3,30 @@ import 'package:calorie_tracker/ui/utils/shape_border.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:openfoodfacts/openfoodfacts.dart';
+import 'package:openfoodfacts/utils/CountryHelper.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+
+  Future<Product?> getProduct() async {
+    const barcode = '064420000774';
+
+    final configuration = ProductQueryConfiguration(
+      barcode,
+      language: OpenFoodFactsLanguage.ENGLISH,
+      country: OpenFoodFactsCountry.CANADA,
+      fields: [ProductField.ALL],
+    );
+    final result = await OpenFoodAPIClient.getProduct(configuration);
+
+    if (result.status == 1) {
+      print(result.product?.nutriments?.proteins);
+      return result.product;
+    } else {
+      throw Exception('product not found, please insert data for $barcode');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +44,7 @@ class HomeView extends StatelessWidget {
         fullCalendar: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: getProduct,
         backgroundColor: primaryColor,
         child: const Icon(
           FontAwesomeIcons.qrcode,
@@ -36,11 +57,11 @@ class HomeView extends StatelessWidget {
         ),
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CalorieWidget(
                 calories: '1563',
-                icon: FontAwesomeIcons.spoon,
+                icon: FontAwesomeIcons.bowlRice,
                 iconColor: primaryColor,
                 subtitle: 'EATEN',
               ),
@@ -48,15 +69,15 @@ class HomeView extends StatelessWidget {
                 centerWidget: const CalorieWidget(
                   calories: '1563',
                   icon: FontAwesomeIcons.boltLightning,
-                  subtitle: 'KCAL LEFT',
+                  subtitle: 'CAL LEFT',
                 ),
                 height: 150,
                 percent: 0.9,
-                strokeWidth: 18,
+                strokeWidth: 16,
                 color: primaryColor,
               ),
               CalorieWidget(
-                calories: '1563',
+                calories: '323',
                 icon: FontAwesomeIcons.fireFlameCurved,
                 iconColor: primaryColor,
                 subtitle: 'BURNED',
@@ -97,6 +118,79 @@ class HomeView extends StatelessWidget {
               ],
             ),
           ),
+          const Divider(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Breakfast',
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    const Icon(
+                      FontAwesomeIcons.upRightAndDownLeftFromCenter,
+                      size: 14,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                // height: 100,
+                width: double.infinity,
+                child: Card(
+                  elevation: 5,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Eggs',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                '1 Serving',
+                                style: Theme.of(context).textTheme.subtitle2,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Text(
+                          '100 Cal',
+                          // textAlign: TextAlign.right,
+                          style:
+                              Theme.of(context).textTheme.headline6?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
