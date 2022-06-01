@@ -5,6 +5,8 @@ library calendar_appbar;
 ///adding necesarry packages
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
@@ -456,84 +458,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
               events: datesWithEnteries,
               selectedDate: referenceDate,
               locale: locale,
-              onDateChange: (value) {
-                ///systematics of selecting specific date
-                //HapticFeedback.lightImpact();
-
-                ///hide modal bottom sheet
-                Navigator.pop(context);
-
-                ///define new variables
-                final referentialDate = DateTime.parse(
-                  "${value.toString().split(" ").first} 12:00:00.000",
-                );
-
-                ///definition of [oldPosition]
-                int? oldPosition;
-
-                ///definition of [positionDifference]
-                late int positionDifference;
-
-                ///calculate new position of scrollview
-                setState(() {
-                  ///setting current position to old position
-                  oldPosition = position;
-
-                  ///counting the difference between dates
-                  positionDifference =
-                      -(referentialDate.difference(referenceDate).inHours / 24)
-                          .round();
-                });
-
-                ///saving current offset
-                final offset = scrollController.offset;
-
-                ///counting card width (similar to above)
-                final widthUnit = MediaQuery.of(context).size.width / 5 - 4.0;
-
-                ///wait to modal bottom sheet to hide
-                Future.delayed(const Duration(milliseconds: 100), () {
-                  ///definition maximal offset based on maxScrollExtent
-                  final maxOffset = scrollController.position.maxScrollExtent;
-
-                  ///definition of minimal offset
-                  const minOffset = 0.0;
-
-                  ///counting current offset based of curren positon
-                  var newOffset = offset + (widthUnit * positionDifference);
-
-                  ///if current offset is out of bounderies set it to maximal or minimal offset
-                  if (newOffset > maxOffset) {
-                    newOffset = maxOffset;
-                  } else if (newOffset < minOffset) {
-                    newOffset = minOffset;
-                  }
-
-                  ///scroll the calendar scroller to the selected date
-                  scrollController.animateTo(
-                    newOffset,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-
-                  ///wait on animation to be finished
-                  Future.delayed(const Duration(milliseconds: 550), () {
-                    setState(() {
-                      ///set slected date to current value
-                      selectedDate = value;
-
-                      ///set refernece date to selected date
-                      referenceDate = selectedDate;
-
-                      ///change position to current position
-                      position = oldPosition! + positionDifference;
-                    });
-                  });
-                });
-
-                ///call function to return new selected date
-                widget.onDateChanged(value);
-              },
+              onDateChange: selectDateAndScroll,
             ),
           );
         },
@@ -617,24 +542,128 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
         ),
         Positioned(
           top: 0 + MediaQuery.of(context).viewPadding.top,
-          left: 12,
-          right: 0,
-          child: GestureDetector(
-            onTap: () {
-              showFullCalendar(_locale);
-            },
-            child: Text(
-              'Calorie Tracker',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline6?.copyWith(
-                    color: white,
-                    fontWeight: FontWeight.bold,
+          left: 15,
+          right: 20,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () => showFullCalendar(_locale),
+                radius: 10,
+                child: const Icon(
+                  FontAwesomeIcons.calendarDays,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    selectDateAndScroll(DateTime.now());
+                  },
+                  child: Text(
+                    'Calorie Tracker',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          color: white,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
-            ),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: const Icon(
+                  FontAwesomeIcons.gear,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              )
+            ],
           ),
         ),
       ],
     );
+  }
+
+  void selectDateAndScroll(DateTime value) {
+    ///systematics of selecting specific date
+    HapticFeedback.lightImpact();
+
+    ///hide modal bottom sheet
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    }
+
+    ///define new variables
+    final referentialDate = DateTime.parse(
+      "${value.toString().split(" ").first} 12:00:00.000",
+    );
+
+    ///definition of [oldPosition]
+    int? oldPosition;
+
+    ///definition of [positionDifference]
+    late int positionDifference;
+
+    ///calculate new position of scrollview
+    setState(() {
+      ///setting current position to old position
+      oldPosition = position;
+
+      ///counting the difference between dates
+      positionDifference =
+          -(referentialDate.difference(referenceDate).inHours / 24).round();
+    });
+
+    ///saving current offset
+    final offset = scrollController.offset;
+
+    ///counting card width (similar to above)
+    final widthUnit = MediaQuery.of(context).size.width / 5 - 4.0;
+
+    ///wait to modal bottom sheet to hide
+    Future.delayed(const Duration(milliseconds: 100), () {
+      ///definition maximal offset based on maxScrollExtent
+      final maxOffset = scrollController.position.maxScrollExtent;
+
+      ///definition of minimal offset
+      const minOffset = 0.0;
+
+      ///counting current offset based of curren positon
+      var newOffset = offset + (widthUnit * positionDifference);
+
+      ///if current offset is out of bounderies set it to maximal or minimal offset
+      if (newOffset > maxOffset) {
+        newOffset = maxOffset;
+      } else if (newOffset < minOffset) {
+        newOffset = minOffset;
+      }
+
+      ///scroll the calendar scroller to the selected date
+      scrollController.animateTo(
+        newOffset,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+
+      ///wait on animation to be finished
+      Future.delayed(const Duration(milliseconds: 550), () {
+        setState(() {
+          ///set slected date to current value
+          selectedDate = value;
+
+          ///set refernece date to selected date
+          referenceDate = selectedDate;
+
+          ///change position to current position
+          position = oldPosition! + positionDifference;
+        });
+      });
+    });
+
+    ///call function to return new selected date
+    widget.onDateChanged(value);
   }
 }
 
