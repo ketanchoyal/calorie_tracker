@@ -6,14 +6,12 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:calorie_tracker/app/app.dart';
-import 'package:calorie_tracker/app/theme.dart';
 import 'package:calorie_tracker/bootstrap.dart';
 import 'package:flutter/widgets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await AppColors.getTheme();
   await bootstrap(
     () => const App(),
   );

@@ -24,9 +24,10 @@ mixin _$Food {
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
-  double get servingSize => throw _privateConstructorUsedError;
-  double get caloriesPerServing => throw _privateConstructorUsedError;
+  double? get servingSize => throw _privateConstructorUsedError;
+  @protected
   Nutrition? get nutrition => throw _privateConstructorUsedError;
+  String? get barcode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,9 +43,9 @@ abstract class $FoodCopyWith<$Res> {
       String name,
       String? description,
       String? imageUrl,
-      double servingSize,
-      double caloriesPerServing,
-      Nutrition? nutrition});
+      double? servingSize,
+      @protected Nutrition? nutrition,
+      String? barcode});
 
   $NutritionCopyWith<$Res>? get nutrition;
 }
@@ -64,8 +65,8 @@ class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? servingSize = freezed,
-    Object? caloriesPerServing = freezed,
     Object? nutrition = freezed,
+    Object? barcode = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -87,15 +88,15 @@ class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
       servingSize: servingSize == freezed
           ? _value.servingSize
           : servingSize // ignore: cast_nullable_to_non_nullable
-              as double,
-      caloriesPerServing: caloriesPerServing == freezed
-          ? _value.caloriesPerServing
-          : caloriesPerServing // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       nutrition: nutrition == freezed
           ? _value.nutrition
           : nutrition // ignore: cast_nullable_to_non_nullable
               as Nutrition?,
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -121,9 +122,9 @@ abstract class _$$_FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
       String name,
       String? description,
       String? imageUrl,
-      double servingSize,
-      double caloriesPerServing,
-      Nutrition? nutrition});
+      double? servingSize,
+      @protected Nutrition? nutrition,
+      String? barcode});
 
   @override
   $NutritionCopyWith<$Res>? get nutrition;
@@ -145,8 +146,8 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res>
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? servingSize = freezed,
-    Object? caloriesPerServing = freezed,
     Object? nutrition = freezed,
+    Object? barcode = freezed,
   }) {
     return _then(_$_Food(
       id: id == freezed
@@ -168,30 +169,31 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res>
       servingSize: servingSize == freezed
           ? _value.servingSize
           : servingSize // ignore: cast_nullable_to_non_nullable
-              as double,
-      caloriesPerServing: caloriesPerServing == freezed
-          ? _value.caloriesPerServing
-          : caloriesPerServing // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       nutrition: nutrition == freezed
           ? _value.nutrition
           : nutrition // ignore: cast_nullable_to_non_nullable
               as Nutrition?,
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Food implements _Food {
+class _$_Food extends _Food {
   _$_Food(
-      {required this.id,
+      {this.id,
       required this.name,
-      required this.description,
-      required this.imageUrl,
-      required this.servingSize,
-      required this.caloriesPerServing,
-      required this.nutrition});
+      this.description,
+      this.imageUrl,
+      this.servingSize,
+      @protected this.nutrition,
+      this.barcode})
+      : super._();
 
   factory _$_Food.fromJson(Map<String, dynamic> json) => _$$_FoodFromJson(json);
 
@@ -204,15 +206,16 @@ class _$_Food implements _Food {
   @override
   final String? imageUrl;
   @override
-  final double servingSize;
+  final double? servingSize;
   @override
-  final double caloriesPerServing;
-  @override
+  @protected
   final Nutrition? nutrition;
+  @override
+  final String? barcode;
 
   @override
   String toString() {
-    return 'Food(id: $id, name: $name, description: $description, imageUrl: $imageUrl, servingSize: $servingSize, caloriesPerServing: $caloriesPerServing, nutrition: $nutrition)';
+    return 'Food(id: $id, name: $name, description: $description, imageUrl: $imageUrl, servingSize: $servingSize, nutrition: $nutrition, barcode: $barcode)';
   }
 
   @override
@@ -227,9 +230,8 @@ class _$_Food implements _Food {
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality()
                 .equals(other.servingSize, servingSize) &&
-            const DeepCollectionEquality()
-                .equals(other.caloriesPerServing, caloriesPerServing) &&
-            const DeepCollectionEquality().equals(other.nutrition, nutrition));
+            const DeepCollectionEquality().equals(other.nutrition, nutrition) &&
+            const DeepCollectionEquality().equals(other.barcode, barcode));
   }
 
   @JsonKey(ignore: true)
@@ -241,8 +243,8 @@ class _$_Food implements _Food {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(servingSize),
-      const DeepCollectionEquality().hash(caloriesPerServing),
-      const DeepCollectionEquality().hash(nutrition));
+      const DeepCollectionEquality().hash(nutrition),
+      const DeepCollectionEquality().hash(barcode));
 
   @JsonKey(ignore: true)
   @override
@@ -255,15 +257,16 @@ class _$_Food implements _Food {
   }
 }
 
-abstract class _Food implements Food {
+abstract class _Food extends Food {
   factory _Food(
-      {required final String? id,
+      {final String? id,
       required final String name,
-      required final String? description,
-      required final String? imageUrl,
-      required final double servingSize,
-      required final double caloriesPerServing,
-      required final Nutrition? nutrition}) = _$_Food;
+      final String? description,
+      final String? imageUrl,
+      final double? servingSize,
+      @protected final Nutrition? nutrition,
+      final String? barcode}) = _$_Food;
+  _Food._() : super._();
 
   factory _Food.fromJson(Map<String, dynamic> json) = _$_Food.fromJson;
 
@@ -276,11 +279,12 @@ abstract class _Food implements Food {
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
   @override
-  double get servingSize => throw _privateConstructorUsedError;
+  double? get servingSize => throw _privateConstructorUsedError;
   @override
-  double get caloriesPerServing => throw _privateConstructorUsedError;
-  @override
+  @protected
   Nutrition? get nutrition => throw _privateConstructorUsedError;
+  @override
+  String? get barcode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_FoodCopyWith<_$_Food> get copyWith => throw _privateConstructorUsedError;

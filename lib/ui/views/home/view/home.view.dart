@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'package:calorie_tracker/ui/utils/shape_border.dart';
+import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
@@ -44,7 +46,14 @@ class HomeView extends StatelessWidget {
         fullCalendar: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getProduct,
+        onPressed: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute<void>(
+              builder: (context) => const AddFoodView(),
+            ),
+          );
+        },
         backgroundColor: primaryColor,
         child: const Icon(
           FontAwesomeIcons.qrcode,
@@ -281,7 +290,7 @@ class _AnimatedLineState extends State<AnimatedLine>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2400),
+      duration: const Duration(milliseconds: 2000),
     );
 
     _controller
@@ -361,7 +370,7 @@ class _AnimatedRingState extends State<AnimatedRing>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2400),
+      duration: const Duration(milliseconds: 1500),
     );
 
     _controller

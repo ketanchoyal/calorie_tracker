@@ -28,8 +28,21 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // themeMode: ThemeMode.dark,
-      theme: AppColors.theme,
-      darkTheme: AppColors.darkTheme,
+      theme: AppColors.theme.copyWith(
+        appBarTheme: AppColors.theme.appBarTheme.copyWith(
+          iconTheme: IconThemeData(
+            color: Colors.white,
+            size: AppColors.theme.appBarTheme.iconTheme?.size,
+            opacity: AppColors.theme.appBarTheme.iconTheme?.opacity,
+            shadows: AppColors.theme.appBarTheme.iconTheme?.shadows,
+          ),
+        ),
+      ),
+      darkTheme: AppColors.darkTheme.copyWith(
+        appBarTheme: AppColors.darkTheme.appBarTheme.copyWith(
+          backgroundColor: AppColors.darkTheme.primaryColorDark,
+        ),
+      ),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
