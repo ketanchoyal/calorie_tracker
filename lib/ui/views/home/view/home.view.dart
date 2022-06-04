@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:calorie_tracker/ui/utils/shape_border.dart';
-import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
+import 'package:calorie_tracker/ui/views/add_calories/add_calories.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class HomeView extends StatelessWidget {
           Navigator.push(
             context,
             CupertinoPageRoute<void>(
-              builder: (context) => const AddFoodView(),
+              builder: (context) => const AddCaloriesView(),
             ),
           );
         },

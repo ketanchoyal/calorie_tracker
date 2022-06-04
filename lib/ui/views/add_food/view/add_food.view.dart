@@ -41,6 +41,14 @@ class _AddFoodBody extends StatelessWidget {
         appBar: AppBar(
           // iconTheme: const IconThemeData(color: Colors.white),
           title: const Text('Add Food'),
+          actions: [
+            IconButton(
+              icon: const Icon(FontAwesomeIcons.barcode),
+              tooltip: 'Scan Product Barcode',
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              onPressed: () {},
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 5,

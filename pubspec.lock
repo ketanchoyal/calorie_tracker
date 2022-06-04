@@ -190,6 +190,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1"
+  drop_down_list:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "6023b8202df6418fe6c8e5c67ae6082bdebbbd45"
+      url: "https://github.com/ketanchoyal/drop_down_list"
+    source: git
+    version: "0.0.2"
   equatable:
     dependency: transitive
     description:
