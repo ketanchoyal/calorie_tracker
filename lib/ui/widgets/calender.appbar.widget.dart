@@ -2,6 +2,9 @@
 
 library calendar_appbar;
 
+import 'package:calorie_tracker/ui/views/settings/settings.dart';
+import 'package:flutter/cupertino.dart';
+
 ///adding necesarry packages
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -572,7 +575,14 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute<void>(
+                      builder: (context) => const SettingsView(),
+                    ),
+                  );
+                },
                 child: const Icon(
                   FontAwesomeIcons.gear,
                   color: Colors.white,

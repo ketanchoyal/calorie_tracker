@@ -22,6 +22,7 @@ dependencies:
   flutter_form_bloc: ^0.30.1
   freezed_annotation: ^2.0.3
   json_annotation: ^4.5.0
+  flutter_settings_ui: ^2.0.1
 
 dev_dependencies:
   bloc_test: ^9.0.3
