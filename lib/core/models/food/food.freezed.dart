@@ -24,6 +24,7 @@ mixin _$Food {
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  @protected
   double? get servingSize => throw _privateConstructorUsedError;
   @protected
   Nutrition? get nutrition => throw _privateConstructorUsedError;
@@ -43,7 +44,7 @@ abstract class $FoodCopyWith<$Res> {
       String name,
       String? description,
       String? imageUrl,
-      double? servingSize,
+      @protected double? servingSize,
       @protected Nutrition? nutrition,
       String? barcode});
 
@@ -122,7 +123,7 @@ abstract class _$$_FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
       String name,
       String? description,
       String? imageUrl,
-      double? servingSize,
+      @protected double? servingSize,
       @protected Nutrition? nutrition,
       String? barcode});
 
@@ -190,7 +191,7 @@ class _$_Food extends _Food {
       required this.name,
       this.description,
       this.imageUrl,
-      this.servingSize,
+      @protected this.servingSize,
       @protected this.nutrition,
       this.barcode})
       : super._();
@@ -206,6 +207,7 @@ class _$_Food extends _Food {
   @override
   final String? imageUrl;
   @override
+  @protected
   final double? servingSize;
   @override
   @protected
@@ -263,7 +265,7 @@ abstract class _Food extends Food {
       required final String name,
       final String? description,
       final String? imageUrl,
-      final double? servingSize,
+      @protected final double? servingSize,
       @protected final Nutrition? nutrition,
       final String? barcode}) = _$_Food;
   _Food._() : super._();
@@ -279,6 +281,7 @@ abstract class _Food extends Food {
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
   @override
+  @protected
   double? get servingSize => throw _privateConstructorUsedError;
   @override
   @protected

@@ -3,7 +3,16 @@ import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 class AddFoodFormBloc extends FormBloc<String, String> {
-  AddFoodFormBloc() : super(autoValidate: true);
+  AddFoodFormBloc() : super(autoValidate: true) {
+    addFieldBlocs(
+      fieldBlocs: [
+        name,
+        description,
+        servingSize,
+        caloriesPerServing,
+      ],
+    );
+  }
 
   final name = TextFieldBloc<String>();
   final description = TextFieldBloc<String?>();
@@ -14,6 +23,30 @@ class AddFoodFormBloc extends FormBloc<String, String> {
   final fat = TextFieldBloc<double?>();
   final carbs = TextFieldBloc<double?>();
   final protein = TextFieldBloc<double?>();
+
+  bool get isAdvanced => state.contains(fat);
+
+  bool get isBasic => !isAdvanced;
+
+  void advanced() {
+    addFieldBlocs(
+      fieldBlocs: [
+        fat,
+        carbs,
+        protein,
+      ],
+    );
+  }
+
+  void basic() {
+    removeFieldBlocs(
+      fieldBlocs: [
+        fat,
+        carbs,
+        protein,
+      ],
+    );
+  }
 
   @override
   FutureOr<void> onSubmitting() {

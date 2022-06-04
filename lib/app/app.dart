@@ -37,6 +37,11 @@ class AppView extends StatelessWidget {
             shadows: AppColors.theme.appBarTheme.iconTheme?.shadows,
           ),
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shape: CircleBorder(),
+        ),
       ),
       darkTheme: AppColors.darkTheme.copyWith(
         appBarTheme: AppColors.darkTheme.appBarTheme.copyWith(
