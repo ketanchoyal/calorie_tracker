@@ -24,10 +24,8 @@ mixin _$Food {
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
-  @protected
-  double? get servingSize => throw _privateConstructorUsedError;
-  @protected
-  Nutrition? get nutrition => throw _privateConstructorUsedError;
+  double get servingSize => throw _privateConstructorUsedError;
+  Nutrition get nutrition => throw _privateConstructorUsedError;
   String? get barcode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,11 +42,11 @@ abstract class $FoodCopyWith<$Res> {
       String name,
       String? description,
       String? imageUrl,
-      @protected double? servingSize,
-      @protected Nutrition? nutrition,
+      double servingSize,
+      Nutrition nutrition,
       String? barcode});
 
-  $NutritionCopyWith<$Res>? get nutrition;
+  $NutritionCopyWith<$Res> get nutrition;
 }
 
 /// @nodoc
@@ -89,11 +87,11 @@ class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
       servingSize: servingSize == freezed
           ? _value.servingSize
           : servingSize // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       nutrition: nutrition == freezed
           ? _value.nutrition
           : nutrition // ignore: cast_nullable_to_non_nullable
-              as Nutrition?,
+              as Nutrition,
       barcode: barcode == freezed
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
@@ -102,12 +100,8 @@ class _$FoodCopyWithImpl<$Res> implements $FoodCopyWith<$Res> {
   }
 
   @override
-  $NutritionCopyWith<$Res>? get nutrition {
-    if (_value.nutrition == null) {
-      return null;
-    }
-
-    return $NutritionCopyWith<$Res>(_value.nutrition!, (value) {
+  $NutritionCopyWith<$Res> get nutrition {
+    return $NutritionCopyWith<$Res>(_value.nutrition, (value) {
       return _then(_value.copyWith(nutrition: value));
     });
   }
@@ -123,12 +117,12 @@ abstract class _$$_FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
       String name,
       String? description,
       String? imageUrl,
-      @protected double? servingSize,
-      @protected Nutrition? nutrition,
+      double servingSize,
+      Nutrition nutrition,
       String? barcode});
 
   @override
-  $NutritionCopyWith<$Res>? get nutrition;
+  $NutritionCopyWith<$Res> get nutrition;
 }
 
 /// @nodoc
@@ -170,11 +164,11 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res>
       servingSize: servingSize == freezed
           ? _value.servingSize
           : servingSize // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       nutrition: nutrition == freezed
           ? _value.nutrition
           : nutrition // ignore: cast_nullable_to_non_nullable
-              as Nutrition?,
+              as Nutrition,
       barcode: barcode == freezed
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
@@ -191,8 +185,8 @@ class _$_Food extends _Food {
       required this.name,
       this.description,
       this.imageUrl,
-      @protected this.servingSize,
-      @protected this.nutrition,
+      required this.servingSize,
+      required this.nutrition,
       this.barcode})
       : super._();
 
@@ -207,11 +201,9 @@ class _$_Food extends _Food {
   @override
   final String? imageUrl;
   @override
-  @protected
-  final double? servingSize;
+  final double servingSize;
   @override
-  @protected
-  final Nutrition? nutrition;
+  final Nutrition nutrition;
   @override
   final String? barcode;
 
@@ -265,8 +257,8 @@ abstract class _Food extends Food {
       required final String name,
       final String? description,
       final String? imageUrl,
-      @protected final double? servingSize,
-      @protected final Nutrition? nutrition,
+      required final double servingSize,
+      required final Nutrition nutrition,
       final String? barcode}) = _$_Food;
   _Food._() : super._();
 
@@ -281,11 +273,9 @@ abstract class _Food extends Food {
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
   @override
-  @protected
-  double? get servingSize => throw _privateConstructorUsedError;
+  double get servingSize => throw _privateConstructorUsedError;
   @override
-  @protected
-  Nutrition? get nutrition => throw _privateConstructorUsedError;
+  Nutrition get nutrition => throw _privateConstructorUsedError;
   @override
   String? get barcode => throw _privateConstructorUsedError;
   @override

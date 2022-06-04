@@ -1,31 +1,64 @@
+import 'package:calorie_tracker/core/models/food/food.dart';
+import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+part 'add_calories.form.dart';
 
 class AddCaloriesView extends StatelessWidget {
   const AddCaloriesView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Calories'),
-        actions: [
-          IconButton(
-            icon: const Icon(FontAwesomeIcons.barcode),
-            tooltip: 'Quick Add',
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            onPressed: () {},
-          ),
-        ],
+    return BlocProvider(
+      create: (context) => AddColoriesBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Add Calories'),
+          actions: [
+            IconButton(
+              icon: const Icon(FontAwesomeIcons.plus),
+              tooltip: 'Add New Food',
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(FontAwesomeIcons.plus),
+        ),
+        body: const _AddCaloriesBody(),
       ),
-      body: const _AddCaloriesEmptyStateBody(),
     );
   }
 }
 
-class _AddCaloriesEmptyStateBody extends StatelessWidget {
-  const _AddCaloriesEmptyStateBody({super.key});
+class _AddCaloriesBody extends StatelessWidget {
+  const _AddCaloriesBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddColoriesBloc, AddColoriesState>(
+      builder: (context, state) {
+        // state.
+        return state.maybeWhen(
+          orElse: () {
+            return const _AddCaloriesForm();
+          },
+          initial: () {
+            return const _EmptyStateBody();
+          },
+        );
+      },
+    );
+  }
+}
+
+class _EmptyStateBody extends StatelessWidget {
+  const _EmptyStateBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +125,22 @@ class _AddCaloriesEmptyStateBody extends StatelessWidget {
                 Text('Quick Add Food'),
               ],
             ),
-            onPressed: () {},
+            onPressed: () {
+              context.read<AddColoriesBloc>().add(
+                    AddColoriesEvent.quickAddFood(
+                      food: Food(
+                        name: 'Quick Add Food',
+                        servingSize: 1,
+                        nutrition: Nutrition(
+                          calories: 100,
+                          fat: 1,
+                          carbs: 1,
+                          protein: 1,
+                        ),
+                      ),
+                    ),
+                  );
+            },
           ),
         ],
       ),

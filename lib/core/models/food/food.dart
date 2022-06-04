@@ -10,8 +10,8 @@ class Food with _$Food {
     required String name,
     String? description,
     String? imageUrl,
-    @protected double? servingSize,
-    @protected Nutrition? nutrition,
+    required double servingSize,
+    required Nutrition nutrition,
     String? barcode,
   }) = _Food;
 
@@ -49,11 +49,11 @@ class Food with _$Food {
   /// if its false then we have all the details we need.
   factory Food.fromJson(Map<String, dynamic> json) => _$FoodFromJson(json);
 
-  bool get isOpenFoodProduct => barcode != null;
+  // bool get isOpenFoodProduct => barcode != null;
 
-  Nutrition get getNutrition => nutrition!;
+  // Nutrition get getNutrition => nutrition!;
 
-  double get getServingSize => servingSize!;
+  // double get getServingSize => servingSize!;
 }
 
 @freezed

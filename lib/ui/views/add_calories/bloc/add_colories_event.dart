@@ -1,0 +1,17 @@
+part of 'add_colories_bloc.dart';
+
+@freezed
+class AddColoriesEvent with _$AddColoriesEvent {
+  factory AddColoriesEvent.selectFood({required Food food}) = _SelectFoodEvent;
+
+  factory AddColoriesEvent.quickAddFood({required Food food}) =
+      _QuickAddFoodEvent;
+
+  factory AddColoriesEvent.submit({
+    required double servings,
+    double? caloriesPerServing,
+    double? fat,
+    double? carbs,
+    double? protein,
+  }) = _SubmitEvent;
+}

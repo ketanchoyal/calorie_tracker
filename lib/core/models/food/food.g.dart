@@ -11,10 +11,8 @@ _$_Food _$$_FoodFromJson(Map<String, dynamic> json) => _$_Food(
       name: json['name'] as String,
       description: json['description'] as String?,
       imageUrl: json['imageUrl'] as String?,
-      servingSize: (json['servingSize'] as num?)?.toDouble(),
-      nutrition: json['nutrition'] == null
-          ? null
-          : Nutrition.fromJson(json['nutrition'] as Map<String, dynamic>),
+      servingSize: (json['servingSize'] as num).toDouble(),
+      nutrition: Nutrition.fromJson(json['nutrition'] as Map<String, dynamic>),
       barcode: json['barcode'] as String?,
     );
 
