@@ -8,9 +8,17 @@ part 'add_colories_bloc.freezed.dart';
 
 class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
   AddColoriesBloc() : super(const AddColoriesState.initial()) {
+    on<_Reset>(_mapResetEvent);
     on<_QuickAddFoodEvent>(_mapQuickAddFoodEvent);
     on<_SelectFoodEvent>(_mapSelectFoodEvent);
     on<_SubmitEvent>(_mapSubmitEvent);
+  }
+
+  Future<void> _mapResetEvent(
+    _Reset event,
+    Emitter emit,
+  ) async {
+    emit(const AddColoriesState.initial());
   }
 
   Future<void> _mapQuickAddFoodEvent(

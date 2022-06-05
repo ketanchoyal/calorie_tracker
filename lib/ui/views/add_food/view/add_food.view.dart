@@ -2,6 +2,7 @@
 
 import 'package:calorie_tracker/ui/extensions/light_dark_color/theme.extension.dart';
 import 'package:calorie_tracker/ui/views/add_food/bloc/add_food_form_bloc.dart';
+import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -94,45 +95,45 @@ class _AddFoodForm extends StatelessWidget {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: <Widget>[
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.name,
                 label: 'Name',
                 prefixIcon: FontAwesomeIcons.signature,
               ),
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.description,
                 label: 'Description',
                 prefixIcon: Icons.description_rounded,
               ),
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.servingSize,
                 label: 'Serving Size',
                 prefixIcon: FontAwesomeIcons.bowlFood,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
               ),
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.caloriesPerServing,
                 label: 'Calories per Serving',
                 prefixIcon: FontAwesomeIcons.bowlRice,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
               ),
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.fat,
                 label: 'Fat',
                 prefixIcon: FontAwesomeIcons.burger,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
               ),
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.carbs,
                 label: 'Carbs',
                 prefixIcon: Icons.fastfood_rounded,
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
               ),
-              _TextField(
+              FormTextField(
                 fieldBloc: formBloc.protein,
                 label: 'Protein',
                 prefixIcon: FontAwesomeIcons.nutritionix,
@@ -153,9 +154,9 @@ class _AddFoodForm extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (formBloc.isAdvanced) {
-                          context.read<AddFoodFormBloc>().basic();
+                          formBloc.basic();
                         } else {
-                          context.read<AddFoodFormBloc>().advanced();
+                          formBloc.advanced();
                         }
                       },
                       child: context.watch<AddFoodFormBloc>().isAdvanced
@@ -166,39 +167,6 @@ class _AddFoodForm extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TextField extends StatelessWidget {
-  const _TextField({
-    super.key,
-    required this.fieldBloc,
-    required this.label,
-    required this.prefixIcon,
-    this.keyboardType,
-  });
-
-  final TextFieldBloc fieldBloc;
-  final String label;
-  final IconData prefixIcon;
-  final TextInputType? keyboardType;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFieldBlocBuilder(
-      textFieldBloc: fieldBloc,
-      keyboardType: keyboardType,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(prefixIcon),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(8),
           ),
         ),
       ),

@@ -26,8 +26,6 @@ class AddFoodFormBloc extends FormBloc<String, String> {
 
   bool get isAdvanced => state.contains(fat);
 
-  bool get isBasic => !isAdvanced;
-
   void advanced() {
     addFieldBlocs(
       fieldBlocs: [

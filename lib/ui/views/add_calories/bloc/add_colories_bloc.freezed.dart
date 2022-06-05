@@ -913,6 +913,7 @@ abstract class _SuccessState implements AddColoriesState {
 mixin _$AddColoriesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function(Food food) quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
@@ -922,6 +923,7 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -931,6 +933,7 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -941,6 +944,7 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_SelectFoodEvent value) selectFood,
     required TResult Function(_QuickAddFoodEvent value) quickAddFood,
     required TResult Function(_SubmitEvent value) submit,
@@ -948,6 +952,7 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -955,6 +960,7 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -978,6 +984,126 @@ class _$AddColoriesEventCopyWithImpl<$Res>
   final AddColoriesEvent _value;
   // ignore: unused_field
   final $Res Function(AddColoriesEvent) _then;
+}
+
+/// @nodoc
+abstract class _$$_ResetCopyWith<$Res> {
+  factory _$$_ResetCopyWith(_$_Reset value, $Res Function(_$_Reset) then) =
+      __$$_ResetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ResetCopyWithImpl<$Res> extends _$AddColoriesEventCopyWithImpl<$Res>
+    implements _$$_ResetCopyWith<$Res> {
+  __$$_ResetCopyWithImpl(_$_Reset _value, $Res Function(_$_Reset) _then)
+      : super(_value, (v) => _then(v as _$_Reset));
+
+  @override
+  _$_Reset get _value => super._value as _$_Reset;
+}
+
+/// @nodoc
+
+class _$_Reset implements _Reset {
+  _$_Reset();
+
+  @override
+  String toString() {
+    return 'AddColoriesEvent.reset()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Reset);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function(Food food) selectFood,
+    required TResult Function(Food food) quickAddFood,
+    required TResult Function(double servings, double? caloriesPerServing,
+            double? fat, double? carbs, double? protein)
+        submit,
+  }) {
+    return reset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(Food food)? selectFood,
+    TResult Function(Food food)? quickAddFood,
+    TResult Function(double servings, double? caloriesPerServing, double? fat,
+            double? carbs, double? protein)?
+        submit,
+  }) {
+    return reset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(Food food)? selectFood,
+    TResult Function(Food food)? quickAddFood,
+    TResult Function(double servings, double? caloriesPerServing, double? fat,
+            double? carbs, double? protein)?
+        submit,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_SelectFoodEvent value) selectFood,
+    required TResult Function(_QuickAddFoodEvent value) quickAddFood,
+    required TResult Function(_SubmitEvent value) submit,
+  }) {
+    return reset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_SelectFoodEvent value)? selectFood,
+    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult Function(_SubmitEvent value)? submit,
+  }) {
+    return reset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_SelectFoodEvent value)? selectFood,
+    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult Function(_SubmitEvent value)? submit,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reset implements AddColoriesEvent {
+  factory _Reset() = _$_Reset;
 }
 
 /// @nodoc
@@ -1054,6 +1180,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function(Food food) quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
@@ -1066,6 +1193,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -1078,6 +1206,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -1094,6 +1223,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_SelectFoodEvent value) selectFood,
     required TResult Function(_QuickAddFoodEvent value) quickAddFood,
     required TResult Function(_SubmitEvent value) submit,
@@ -1104,6 +1234,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -1114,6 +1245,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -1210,6 +1342,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function(Food food) quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
@@ -1222,6 +1355,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -1234,6 +1368,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -1250,6 +1385,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_SelectFoodEvent value) selectFood,
     required TResult Function(_QuickAddFoodEvent value) quickAddFood,
     required TResult Function(_SubmitEvent value) submit,
@@ -1260,6 +1396,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -1270,6 +1407,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -1404,6 +1542,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function(Food food) quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
@@ -1416,6 +1555,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -1428,6 +1568,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function(Food food)? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
@@ -1444,6 +1585,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_SelectFoodEvent value) selectFood,
     required TResult Function(_QuickAddFoodEvent value) quickAddFood,
     required TResult Function(_SubmitEvent value) submit,
@@ -1454,6 +1596,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,
@@ -1464,6 +1607,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_SelectFoodEvent value)? selectFood,
     TResult Function(_QuickAddFoodEvent value)? quickAddFood,
     TResult Function(_SubmitEvent value)? submit,

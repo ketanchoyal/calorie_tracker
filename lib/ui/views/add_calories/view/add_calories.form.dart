@@ -5,17 +5,90 @@ class _AddCaloriesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formBloc = BlocProvider.of<AddCaloriesFormBloc>(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: const [
-          _FoodDetails(),
-          SizedBox(height: 16),
-          _FoodServings(),
-        ],
+      child: ScrollableFormBlocManager(
+        formBloc: formBloc,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            const _FoodDetails(),
+            const SizedBox(height: 16),
+            FormTextField(
+              fieldBloc: formBloc.servingToAdd,
+              label: 'Servings',
+              prefixIcon: FontAwesomeIcons.bowlFood,
+            ),
+            AnimatedCrossFade(
+              firstChild: const SizedBox(),
+              secondChild: Column(
+                children: [
+                  const SizedBox(height: 5),
+                  const Divider(),
+                  Text(
+                    'This will modify values for just this instance',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  const SizedBox(height: 5),
+                ],
+              ),
+              crossFadeState: context.watch<AddCaloriesFormBloc>().isModifying
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 300),
+            ),
+            FormTextField(
+              fieldBloc: formBloc.caloriesPerServing,
+              label: 'Calories per Serving',
+              prefixIcon: FontAwesomeIcons.bowlRice,
+            ),
+            FormTextField(
+              fieldBloc: formBloc.fat,
+              label: 'Fat',
+              prefixIcon: FontAwesomeIcons.burger,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+            ),
+            FormTextField(
+              fieldBloc: formBloc.carbs,
+              label: 'Carbs',
+              prefixIcon: Icons.fastfood_rounded,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+            ),
+            FormTextField(
+              fieldBloc: formBloc.protein,
+              label: 'Protein',
+              prefixIcon: FontAwesomeIcons.nutritionix,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+            ),
+            const SizedBox(height: 16),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: context.color.when(
+                  light: () => Colors.black12,
+                  dark: () => Colors.white10,
+                ),
+                minimumSize: const Size(double.infinity, 55),
+              ),
+              onPressed: () {
+                if (formBloc.isModifying) {
+                  formBloc.unmodify();
+                } else {
+                  formBloc.modify();
+                }
+              },
+              child: context.watch<AddCaloriesFormBloc>().isModifying
+                  ? const Text('Unmodify Nutrition Values')
+                  : const Text('Modify Nutrition Values'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -29,11 +102,13 @@ class _FoodDetails extends StatelessWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: Text(
-                'Bread',
+                'Food Name',
+                maxLines: 2,
+                // overflow: TextOverflow.ellipsis,
+                semanticsLabel: 'Some very tasty food name',
                 style: Theme.of(context).textTheme.headline4?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -41,6 +116,7 @@ class _FoodDetails extends StatelessWidget {
             ),
             //Calories
             Flexible(
+              flex: 0,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -65,11 +141,17 @@ class _FoodDetails extends StatelessWidget {
           ],
         ),
         const Divider(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 0),
+        Text(
+          'Nutrition in very 1.4 Serving',
+          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // fat, carbs, protein
             Expanded(
               child: Column(
                 children: [
@@ -116,7 +198,6 @@ class _FoodDetails extends StatelessWidget {
                 ],
               ),
             ),
-
             Expanded(
               child: Column(
                 children: [

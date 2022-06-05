@@ -1,6 +1,11 @@
 import 'package:calorie_tracker/core/models/food/food.dart';
+import 'package:calorie_tracker/ui/extensions/light_dark_color/theme.extension.dart';
+import 'package:calorie_tracker/ui/views/add_calories/bloc/add_calories_form_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
+import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
+import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
 import 'package:drop_down_list/drop_down_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,25 +17,58 @@ class AddCaloriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddColoriesBloc(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Add Calories'),
-          actions: [
-            IconButton(
-              icon: const Icon(FontAwesomeIcons.plus),
-              tooltip: 'Add New Food',
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              onPressed: () {},
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AddColoriesBloc>(
+          create: (context) => AddColoriesBloc(),
+        ),
+        BlocProvider<AddCaloriesFormBloc>(
+          create: (context) => AddCaloriesFormBloc(),
+        ),
+      ],
+      child: BlocConsumer<AddColoriesBloc, AddColoriesState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Add Calories'),
+              actions: state.maybeWhen(
+                orElse: () => [
+                  IconButton(
+                    icon: const Icon(FontAwesomeIcons.rotateLeft),
+                    tooltip: 'Reset',
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    onPressed: () {
+                      context
+                          .read<AddColoriesBloc>()
+                          .add(AddColoriesEvent.reset());
+                    },
+                  ),
+                ],
+                initial: () => [
+                  IconButton(
+                    icon: const Icon(FontAwesomeIcons.plus),
+                    tooltip: 'Add New Food',
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute<void>(
+                          builder: (context) => const AddFoodView(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(FontAwesomeIcons.plus),
-        ),
-        body: const _AddCaloriesBody(),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(FontAwesomeIcons.plus),
+            ),
+            body: const _AddCaloriesBody(),
+          );
+        },
       ),
     );
   }
