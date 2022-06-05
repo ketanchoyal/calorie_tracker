@@ -1,6 +1,5 @@
 import 'package:calorie_tracker/core/models/food/food.dart';
 import 'package:calorie_tracker/ui/extensions/light_dark_color/theme.extension.dart';
-import 'package:calorie_tracker/ui/views/add_calories/bloc/add_calories_form_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
 import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 part 'add_calories.form.dart';
+part 'quick_add_calories.form.dart';
 
 class AddCaloriesView extends StatelessWidget {
   const AddCaloriesView({super.key});
@@ -25,13 +25,32 @@ class AddCaloriesView extends StatelessWidget {
         BlocProvider<AddCaloriesFormBloc>(
           create: (context) => AddCaloriesFormBloc(),
         ),
+        BlocProvider<QuickAddCaloriesFormBloc>(
+          create: (context) => QuickAddCaloriesFormBloc(),
+        ),
       ],
       child: BlocConsumer<AddColoriesBloc, AddColoriesState>(
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Add Calories'),
+              title: Text(
+                state.maybeWhen(
+                  orElse: () {
+                    return context
+                            .read<AddColoriesBloc>()
+                            .prevState
+                            ?.whenOrNull(
+                              quickAddFood: () => 'Quick Add Food',
+                              selectFood: () => 'Select Food',
+                            ) ??
+                        '';
+                  },
+                  initial: () {
+                    return 'Select';
+                  },
+                ),
+              ),
               actions: state.maybeWhen(
                 orElse: () => [
                   IconButton(
@@ -84,7 +103,15 @@ class _AddCaloriesBody extends StatelessWidget {
         // state.
         return state.maybeWhen(
           orElse: () {
-            return const _AddCaloriesForm();
+            return context.read<AddColoriesBloc>().prevState?.whenOrNull(
+                      quickAddFood: () => const _QuickAddCaloriesForm(),
+                      selectFood: () => const _AddCaloriesForm(),
+                    ) ??
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Colors.yellowAccent,
+                );
           },
           initial: () {
             return const _EmptyStateBody();
@@ -138,8 +165,22 @@ class _EmptyStateBody extends StatelessWidget {
                     SelectedListItem(false, 'name 3', '3'),
                     SelectedListItem(false, 'name 4', '4'),
                   ],
-                  selectedItems: (List<dynamic> selectedList) {},
-                  selectedItem: (String selected) {},
+                  selectedItem: (String selectedId) {
+                    context.read<AddColoriesBloc>().add(
+                          AddColoriesEvent.selectFood(
+                            food: Food(
+                              name: 'Quick Add Food',
+                              servingSize: 1,
+                              nutrition: Nutrition(
+                                calories: 100,
+                                fat: 1,
+                                carbs: 1,
+                                protein: 1,
+                              ),
+                            ),
+                          ),
+                        );
+                  },
                   enableMultipleSelection: false,
                   searchController: TextEditingController(),
                 ),
@@ -156,7 +197,7 @@ class _EmptyStateBody extends StatelessWidget {
             child: Column(
               children: const [
                 Icon(
-                  FontAwesomeIcons.barcode,
+                  FontAwesomeIcons.boltLightning,
                   size: 70,
                 ),
                 SizedBox(height: 10),
@@ -165,18 +206,7 @@ class _EmptyStateBody extends StatelessWidget {
             ),
             onPressed: () {
               context.read<AddColoriesBloc>().add(
-                    AddColoriesEvent.quickAddFood(
-                      food: Food(
-                        name: 'Quick Add Food',
-                        servingSize: 1,
-                        nutrition: Nutrition(
-                          calories: 100,
-                          fat: 1,
-                          carbs: 1,
-                          protein: 1,
-                        ),
-                      ),
-                    ),
+                    AddColoriesEvent.quickAddFood(),
                   );
             },
           ),

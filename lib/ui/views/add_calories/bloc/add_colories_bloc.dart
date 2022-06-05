@@ -1,10 +1,14 @@
-import 'package:bloc/bloc.dart';
+import 'dart:async';
+
 import 'package:calorie_tracker/core/models/food/food.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'add_colories_state.dart';
-part 'add_colories_event.dart';
+part 'add_calories_form_bloc.dart';
 part 'add_colories_bloc.freezed.dart';
+part 'add_colories_event.dart';
+part 'add_colories_state.dart';
+part 'quick_add_calories_form_bloc.dart';
 
 class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
   AddColoriesBloc() : super(const AddColoriesState.initial()) {
@@ -12,6 +16,19 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
     on<_QuickAddFoodEvent>(_mapQuickAddFoodEvent);
     on<_SelectFoodEvent>(_mapSelectFoodEvent);
     on<_SubmitEvent>(_mapSubmitEvent);
+  }
+
+  AddColoriesState? _prevState;
+  AddColoriesState? get prevState => _prevState;
+
+  @override
+  void onChange(Change<AddColoriesState> change) {
+    super.onChange(change);
+
+    if (change.nextState is _QuickAddFoodState ||
+        change.nextState is _SelectFoodState) {
+      _prevState = change.nextState;
+    }
   }
 
   Future<void> _mapResetEvent(
@@ -25,14 +42,14 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
     _QuickAddFoodEvent event,
     Emitter emit,
   ) async {
-    emit(AddColoriesState.addData(food: event.food));
+    emit(const _QuickAddFoodState());
   }
 
   Future<void> _mapSelectFoodEvent(
     _SelectFoodEvent event,
     Emitter emit,
   ) async {
-    emit(AddColoriesState.addData(food: event.food));
+    emit(const AddColoriesState.selectFood());
   }
 
   Future<void> _mapSubmitEvent(

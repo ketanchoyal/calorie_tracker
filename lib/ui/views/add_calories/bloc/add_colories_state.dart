@@ -10,8 +10,8 @@ class AddColoriesState with _$AddColoriesState {
   /// The user has selected quick add food.
   const factory AddColoriesState.quickAddFood() = _QuickAddFoodState;
 
-  /// The user is done selecting a food and ready to add calories and stuff.
-  const factory AddColoriesState.addData({required Food food}) = _AddDataState;
+  // /// The user is done selecting a food and ready to add calories and stuff.
+  // const factory AddColoriesState.addData({required Food food}) = _AddDataState;
   const factory AddColoriesState.adding() = _AddingState;
   const factory AddColoriesState.success() = _SuccessState;
 }

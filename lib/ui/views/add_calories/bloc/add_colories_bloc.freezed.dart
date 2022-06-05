@@ -21,7 +21,6 @@ mixin _$AddColoriesState {
     required TResult Function() initial,
     required TResult Function() selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
     required TResult Function() adding,
     required TResult Function() success,
   }) =>
@@ -31,7 +30,6 @@ mixin _$AddColoriesState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
   }) =>
@@ -41,7 +39,6 @@ mixin _$AddColoriesState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
     required TResult orElse(),
@@ -52,7 +49,6 @@ mixin _$AddColoriesState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_SelectFoodState value) selectFood,
     required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) =>
@@ -62,7 +58,6 @@ mixin _$AddColoriesState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) =>
@@ -72,7 +67,6 @@ mixin _$AddColoriesState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -141,7 +135,6 @@ class _$_InitialState implements _InitialState {
     required TResult Function() initial,
     required TResult Function() selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
     required TResult Function() adding,
     required TResult Function() success,
   }) {
@@ -154,7 +147,6 @@ class _$_InitialState implements _InitialState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
   }) {
@@ -167,7 +159,6 @@ class _$_InitialState implements _InitialState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
     required TResult orElse(),
@@ -184,7 +175,6 @@ class _$_InitialState implements _InitialState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_SelectFoodState value) selectFood,
     required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -197,7 +187,6 @@ class _$_InitialState implements _InitialState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -210,7 +199,6 @@ class _$_InitialState implements _InitialState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -270,7 +258,6 @@ class _$_SelectFoodState implements _SelectFoodState {
     required TResult Function() initial,
     required TResult Function() selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
     required TResult Function() adding,
     required TResult Function() success,
   }) {
@@ -283,7 +270,6 @@ class _$_SelectFoodState implements _SelectFoodState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
   }) {
@@ -296,7 +282,6 @@ class _$_SelectFoodState implements _SelectFoodState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
     required TResult orElse(),
@@ -313,7 +298,6 @@ class _$_SelectFoodState implements _SelectFoodState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_SelectFoodState value) selectFood,
     required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -326,7 +310,6 @@ class _$_SelectFoodState implements _SelectFoodState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -339,7 +322,6 @@ class _$_SelectFoodState implements _SelectFoodState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -399,7 +381,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
     required TResult Function() initial,
     required TResult Function() selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
     required TResult Function() adding,
     required TResult Function() success,
   }) {
@@ -412,7 +393,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
   }) {
@@ -425,7 +405,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
     required TResult orElse(),
@@ -442,7 +421,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_SelectFoodState value) selectFood,
     required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -455,7 +433,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -468,7 +445,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -482,173 +458,6 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
 
 abstract class _QuickAddFoodState implements AddColoriesState {
   const factory _QuickAddFoodState() = _$_QuickAddFoodState;
-}
-
-/// @nodoc
-abstract class _$$_AddDataStateCopyWith<$Res> {
-  factory _$$_AddDataStateCopyWith(
-          _$_AddDataState value, $Res Function(_$_AddDataState) then) =
-      __$$_AddDataStateCopyWithImpl<$Res>;
-  $Res call({Food food});
-
-  $FoodCopyWith<$Res> get food;
-}
-
-/// @nodoc
-class __$$_AddDataStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_AddDataStateCopyWith<$Res> {
-  __$$_AddDataStateCopyWithImpl(
-      _$_AddDataState _value, $Res Function(_$_AddDataState) _then)
-      : super(_value, (v) => _then(v as _$_AddDataState));
-
-  @override
-  _$_AddDataState get _value => super._value as _$_AddDataState;
-
-  @override
-  $Res call({
-    Object? food = freezed,
-  }) {
-    return _then(_$_AddDataState(
-      food: food == freezed
-          ? _value.food
-          : food // ignore: cast_nullable_to_non_nullable
-              as Food,
-    ));
-  }
-
-  @override
-  $FoodCopyWith<$Res> get food {
-    return $FoodCopyWith<$Res>(_value.food, (value) {
-      return _then(_value.copyWith(food: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_AddDataState implements _AddDataState {
-  const _$_AddDataState({required this.food});
-
-  @override
-  final Food food;
-
-  @override
-  String toString() {
-    return 'AddColoriesState.addData(food: $food)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AddDataState &&
-            const DeepCollectionEquality().equals(other.food, food));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(food));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_AddDataStateCopyWith<_$_AddDataState> get copyWith =>
-      __$$_AddDataStateCopyWithImpl<_$_AddDataState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) {
-    return addData(food);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) {
-    return addData?.call(food);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (addData != null) {
-      return addData(food);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) {
-    return addData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) {
-    return addData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) {
-    if (addData != null) {
-      return addData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddDataState implements AddColoriesState {
-  const factory _AddDataState({required final Food food}) = _$_AddDataState;
-
-  Food get food => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_AddDataStateCopyWith<_$_AddDataState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -695,7 +504,6 @@ class _$_AddingState implements _AddingState {
     required TResult Function() initial,
     required TResult Function() selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
     required TResult Function() adding,
     required TResult Function() success,
   }) {
@@ -708,7 +516,6 @@ class _$_AddingState implements _AddingState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
   }) {
@@ -721,7 +528,6 @@ class _$_AddingState implements _AddingState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
     required TResult orElse(),
@@ -738,7 +544,6 @@ class _$_AddingState implements _AddingState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_SelectFoodState value) selectFood,
     required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -751,7 +556,6 @@ class _$_AddingState implements _AddingState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -764,7 +568,6 @@ class _$_AddingState implements _AddingState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -824,7 +627,6 @@ class _$_SuccessState implements _SuccessState {
     required TResult Function() initial,
     required TResult Function() selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(Food food) addData,
     required TResult Function() adding,
     required TResult Function() success,
   }) {
@@ -837,7 +639,6 @@ class _$_SuccessState implements _SuccessState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
   }) {
@@ -850,7 +651,6 @@ class _$_SuccessState implements _SuccessState {
     TResult Function()? initial,
     TResult Function()? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(Food food)? addData,
     TResult Function()? adding,
     TResult Function()? success,
     required TResult orElse(),
@@ -867,7 +667,6 @@ class _$_SuccessState implements _SuccessState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_SelectFoodState value) selectFood,
     required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddDataState value) addData,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -880,7 +679,6 @@ class _$_SuccessState implements _SuccessState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -893,7 +691,6 @@ class _$_SuccessState implements _SuccessState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_SelectFoodState value)? selectFood,
     TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddDataState value)? addData,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -915,7 +712,7 @@ mixin _$AddColoriesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
-    required TResult Function(Food food) quickAddFood,
+    required TResult Function() quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
             double? fat, double? carbs, double? protein)
         submit,
@@ -925,7 +722,7 @@ mixin _$AddColoriesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -935,7 +732,7 @@ mixin _$AddColoriesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -1026,7 +823,7 @@ class _$_Reset implements _Reset {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
-    required TResult Function(Food food) quickAddFood,
+    required TResult Function() quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
             double? fat, double? carbs, double? protein)
         submit,
@@ -1039,7 +836,7 @@ class _$_Reset implements _Reset {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -1052,7 +849,7 @@ class _$_Reset implements _Reset {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -1182,7 +979,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
-    required TResult Function(Food food) quickAddFood,
+    required TResult Function() quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
             double? fat, double? carbs, double? protein)
         submit,
@@ -1195,7 +992,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -1208,7 +1005,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -1272,9 +1069,6 @@ abstract class _$$_QuickAddFoodEventCopyWith<$Res> {
   factory _$$_QuickAddFoodEventCopyWith(_$_QuickAddFoodEvent value,
           $Res Function(_$_QuickAddFoodEvent) then) =
       __$$_QuickAddFoodEventCopyWithImpl<$Res>;
-  $Res call({Food food});
-
-  $FoodCopyWith<$Res> get food;
 }
 
 /// @nodoc
@@ -1287,69 +1081,38 @@ class __$$_QuickAddFoodEventCopyWithImpl<$Res>
 
   @override
   _$_QuickAddFoodEvent get _value => super._value as _$_QuickAddFoodEvent;
-
-  @override
-  $Res call({
-    Object? food = freezed,
-  }) {
-    return _then(_$_QuickAddFoodEvent(
-      food: food == freezed
-          ? _value.food
-          : food // ignore: cast_nullable_to_non_nullable
-              as Food,
-    ));
-  }
-
-  @override
-  $FoodCopyWith<$Res> get food {
-    return $FoodCopyWith<$Res>(_value.food, (value) {
-      return _then(_value.copyWith(food: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
-  _$_QuickAddFoodEvent({required this.food});
-
-  @override
-  final Food food;
+  _$_QuickAddFoodEvent();
 
   @override
   String toString() {
-    return 'AddColoriesEvent.quickAddFood(food: $food)';
+    return 'AddColoriesEvent.quickAddFood()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_QuickAddFoodEvent &&
-            const DeepCollectionEquality().equals(other.food, food));
+        (other.runtimeType == runtimeType && other is _$_QuickAddFoodEvent);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(food));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_QuickAddFoodEventCopyWith<_$_QuickAddFoodEvent> get copyWith =>
-      __$$_QuickAddFoodEventCopyWithImpl<_$_QuickAddFoodEvent>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
-    required TResult Function(Food food) quickAddFood,
+    required TResult Function() quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
             double? fat, double? carbs, double? protein)
         submit,
   }) {
-    return quickAddFood(food);
+    return quickAddFood();
   }
 
   @override
@@ -1357,12 +1120,12 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
   }) {
-    return quickAddFood?.call(food);
+    return quickAddFood?.call();
   }
 
   @override
@@ -1370,14 +1133,14 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
     required TResult orElse(),
   }) {
     if (quickAddFood != null) {
-      return quickAddFood(food);
+      return quickAddFood();
     }
     return orElse();
   }
@@ -1421,12 +1184,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
 }
 
 abstract class _QuickAddFoodEvent implements AddColoriesEvent {
-  factory _QuickAddFoodEvent({required final Food food}) = _$_QuickAddFoodEvent;
-
-  Food get food => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_QuickAddFoodEventCopyWith<_$_QuickAddFoodEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  factory _QuickAddFoodEvent() = _$_QuickAddFoodEvent;
 }
 
 /// @nodoc
@@ -1544,7 +1302,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
-    required TResult Function(Food food) quickAddFood,
+    required TResult Function() quickAddFood,
     required TResult Function(double servings, double? caloriesPerServing,
             double? fat, double? carbs, double? protein)
         submit,
@@ -1557,7 +1315,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,
@@ -1570,7 +1328,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
-    TResult Function(Food food)? quickAddFood,
+    TResult Function()? quickAddFood,
     TResult Function(double servings, double? caloriesPerServing, double? fat,
             double? carbs, double? protein)?
         submit,

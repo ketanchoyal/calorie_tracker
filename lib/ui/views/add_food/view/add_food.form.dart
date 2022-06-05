@@ -21,6 +21,7 @@ class _AddFoodForm extends StatelessWidget {
           FormTextField(
             fieldBloc: formBloc.description,
             label: 'Description',
+            isOptional: true,
             prefixIcon: Icons.description_rounded,
           ),
           FormTextField(
@@ -38,18 +39,21 @@ class _AddFoodForm extends StatelessWidget {
           FormTextField(
             fieldBloc: formBloc.fat,
             label: 'Fat',
+            isOptional: true,
             prefixIcon: FontAwesomeIcons.burger,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
           ),
           FormTextField(
             fieldBloc: formBloc.carbs,
             label: 'Carbs',
+            isOptional: true,
             prefixIcon: Icons.fastfood_rounded,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
           ),
           FormTextField(
             fieldBloc: formBloc.protein,
             label: 'Protein',
+            isOptional: true,
             prefixIcon: FontAwesomeIcons.nutritionix,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
           ),

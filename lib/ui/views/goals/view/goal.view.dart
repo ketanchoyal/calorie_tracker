@@ -1,8 +1,6 @@
 import 'package:calorie_tracker/ui/views/goals/bloc/goal_form_bloc.dart';
-import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 part 'goal.form.dart';
 

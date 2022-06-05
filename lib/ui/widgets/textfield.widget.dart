@@ -7,6 +7,7 @@ class FormTextField extends StatelessWidget {
     required this.fieldBloc,
     required this.label,
     required this.prefixIcon,
+    this.isOptional = false,
     this.keyboardType,
   });
 
@@ -14,6 +15,7 @@ class FormTextField extends StatelessWidget {
   final String label;
   final IconData prefixIcon;
   final TextInputType? keyboardType;
+  final bool isOptional;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,19 @@ class FormTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(prefixIcon),
+        // suffixText: 'Optional',
+        suffixIconConstraints: isOptional
+            ? const BoxConstraints(
+                minWidth: 50,
+                minHeight: 20,
+              )
+            : null,
+        suffixIcon: isOptional
+            ? Text(
+                'Optional     ',
+                style: Theme.of(context).textTheme.caption,
+              )
+            : null,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(8),

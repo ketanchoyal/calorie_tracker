@@ -49,6 +49,7 @@ class _AddCaloriesForm extends StatelessWidget {
             FormTextField(
               fieldBloc: formBloc.fat,
               label: 'Fat',
+              isOptional: true,
               prefixIcon: FontAwesomeIcons.burger,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
@@ -56,6 +57,7 @@ class _AddCaloriesForm extends StatelessWidget {
             FormTextField(
               fieldBloc: formBloc.carbs,
               label: 'Carbs',
+              isOptional: true,
               prefixIcon: Icons.fastfood_rounded,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
@@ -63,6 +65,7 @@ class _AddCaloriesForm extends StatelessWidget {
             FormTextField(
               fieldBloc: formBloc.protein,
               label: 'Protein',
+              isOptional: true,
               prefixIcon: FontAwesomeIcons.nutritionix,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),

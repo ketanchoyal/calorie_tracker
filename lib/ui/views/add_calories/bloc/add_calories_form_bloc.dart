@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+part of 'add_colories_bloc.dart';
 
 class AddCaloriesFormBloc extends FormBloc<String, String> {
   AddCaloriesFormBloc() : super(autoValidate: true) {
