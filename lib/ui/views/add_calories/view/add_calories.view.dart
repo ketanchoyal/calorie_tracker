@@ -75,9 +75,18 @@ class AddCaloriesView extends StatelessWidget {
                 ],
               ),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(FontAwesomeIcons.plus),
+            floatingActionButton: state.maybeWhen(
+              orElse: () {
+                return context.read<AddColoriesBloc>().prevState.maybeWhen(
+                      orElse: () => FloatingActionButton(
+                        onPressed: () {},
+                        child: const Icon(FontAwesomeIcons.plus),
+                      ),
+                    );
+              },
+              initial: () {
+                return null;
+              },
             ),
             body: const _AddCaloriesBody(),
           );
