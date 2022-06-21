@@ -27,6 +27,15 @@ class AddCaloriesView extends StatelessWidget {
         ),
       ],
       child: BlocConsumer<AddColoriesBloc, AddColoriesState>(
+        buildWhen: (previous, current) {
+          if (current is InitialState ||
+              current is QuickAddFoodState ||
+              current is SelectFoodState) {
+            return true;
+          }
+
+          return false;
+        },
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
@@ -34,15 +43,14 @@ class AddCaloriesView extends StatelessWidget {
               title: Text(
                 state.maybeWhen(
                   orElse: () {
-                    return context.read<AddColoriesBloc>().prevState.whenOrNull(
-                              quickAddFood: () => 'Quick Add Food',
-                              selectFood: (_) => 'Select Food',
-                            ) ??
-                        '';
+                    assert(false, 'If you see this, something is wrong.');
+                    return '';
                   },
                   initial: () {
                     return 'Select';
                   },
+                  quickAddFood: () => 'Quick Add Food',
+                  selectFood: (_) => 'Select Food',
                 ),
               ),
               actions: state.maybeWhen(
@@ -76,17 +84,13 @@ class AddCaloriesView extends StatelessWidget {
               ),
             ),
             floatingActionButton: state.maybeWhen(
-              orElse: () {
-                return context.read<AddColoriesBloc>().prevState.maybeWhen(
-                      orElse: () => FloatingActionButton(
-                        onPressed: () {},
-                        child: const Icon(FontAwesomeIcons.plus),
-                      ),
-                    );
-              },
               initial: () {
                 return null;
               },
+              orElse: () => FloatingActionButton(
+                onPressed: () {},
+                child: const Icon(FontAwesomeIcons.plus),
+              ),
             ),
             body: const _AddCaloriesBody(),
           );
@@ -106,19 +110,18 @@ class _AddCaloriesBody extends StatelessWidget {
         // state.
         return state.maybeWhen(
           orElse: () {
-            return context.read<AddColoriesBloc>().prevState.whenOrNull(
-                      quickAddFood: () => const _QuickAddCaloriesForm(),
-                      selectFood: (food) => BlocProvider<AddCaloriesFormBloc>(
-                        create: (context) => AddCaloriesFormBloc(food),
-                        child: const _AddCaloriesForm(),
-                      ),
-                    ) ??
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  color: Colors.yellowAccent,
-                );
+            assert(false, 'If you see this, something is wrong.');
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: Colors.yellowAccent,
+            );
           },
+          quickAddFood: () => const _QuickAddCaloriesForm(),
+          selectFood: (food) => BlocProvider<AddCaloriesFormBloc>(
+            create: (context) => AddCaloriesFormBloc(food),
+            child: const _AddCaloriesForm(),
+          ),
           initial: () {
             return const _EmptyStateBody();
           },

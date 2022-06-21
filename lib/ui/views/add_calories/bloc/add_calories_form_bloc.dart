@@ -1,7 +1,6 @@
 part of 'add_colories_bloc.dart';
 
 class AddCaloriesFormBloc extends FormBloc<String, String> {
-  final Food _food;
   AddCaloriesFormBloc(this._food) : super(autoValidate: true) {
     addFieldBlocs(
       fieldBlocs: [
@@ -9,6 +8,7 @@ class AddCaloriesFormBloc extends FormBloc<String, String> {
       ],
     );
   }
+  final Food _food;
   late final servingToAdd = TextFieldBloc<double>(
     initialValue: _food.servingSize.toString(),
   );

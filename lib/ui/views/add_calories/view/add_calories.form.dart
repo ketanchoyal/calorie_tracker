@@ -5,7 +5,7 @@ class _AddCaloriesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<AddColoriesBloc>().prevState as SelectFoodState;
+    final state = context.read<AddColoriesBloc>().state as SelectFoodState;
     final food = state.food;
     final formBloc = BlocProvider.of<AddCaloriesFormBloc>(context);
     return GestureDetector(
@@ -104,7 +104,7 @@ class _FoodDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<AddColoriesBloc>().prevState as SelectFoodState;
+    final state = context.read<AddColoriesBloc>().state as SelectFoodState;
     final food = state.food;
     return Column(
       children: [

@@ -18,17 +18,9 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
     on<_SubmitEvent>(_mapSubmitEvent);
   }
 
-  late AddColoriesState _prevState;
-  AddColoriesState get prevState => _prevState;
-
   @override
   void onChange(Change<AddColoriesState> change) {
     super.onChange(change);
-
-    if (change.nextState is _QuickAddFoodState ||
-        change.nextState is SelectFoodState) {
-      _prevState = change.nextState;
-    }
   }
 
   Future<void> _mapResetEvent(
@@ -42,7 +34,7 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
     _QuickAddFoodEvent event,
     Emitter emit,
   ) async {
-    emit(const _QuickAddFoodState());
+    emit(const QuickAddFoodState());
   }
 
   Future<void> _mapSelectFoodEvent(

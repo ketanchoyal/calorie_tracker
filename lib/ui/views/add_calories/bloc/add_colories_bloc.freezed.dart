@@ -808,27 +808,27 @@ mixin _$AddColoriesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
+    required TResult Function(InitialState value) initial,
     required TResult Function(SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(QuickAddFoodState value) quickAddFood,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -854,28 +854,28 @@ class _$AddColoriesStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_InitialStateCopyWith<$Res> {
-  factory _$$_InitialStateCopyWith(
-          _$_InitialState value, $Res Function(_$_InitialState) then) =
-      __$$_InitialStateCopyWithImpl<$Res>;
+abstract class _$$InitialStateCopyWith<$Res> {
+  factory _$$InitialStateCopyWith(
+          _$InitialState value, $Res Function(_$InitialState) then) =
+      __$$InitialStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialStateCopyWithImpl<$Res>
+class __$$InitialStateCopyWithImpl<$Res>
     extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_InitialStateCopyWith<$Res> {
-  __$$_InitialStateCopyWithImpl(
-      _$_InitialState _value, $Res Function(_$_InitialState) _then)
-      : super(_value, (v) => _then(v as _$_InitialState));
+    implements _$$InitialStateCopyWith<$Res> {
+  __$$InitialStateCopyWithImpl(
+      _$InitialState _value, $Res Function(_$InitialState) _then)
+      : super(_value, (v) => _then(v as _$InitialState));
 
   @override
-  _$_InitialState get _value => super._value as _$_InitialState;
+  _$InitialState get _value => super._value as _$InitialState;
 }
 
 /// @nodoc
 
-class _$_InitialState implements _InitialState {
-  const _$_InitialState();
+class _$InitialState implements InitialState {
+  const _$InitialState();
 
   @override
   String toString() {
@@ -885,7 +885,7 @@ class _$_InitialState implements _InitialState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitialState);
+        (other.runtimeType == runtimeType && other is _$InitialState);
   }
 
   @override
@@ -934,9 +934,9 @@ class _$_InitialState implements _InitialState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
+    required TResult Function(InitialState value) initial,
     required TResult Function(SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(QuickAddFoodState value) quickAddFood,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -946,9 +946,9 @@ class _$_InitialState implements _InitialState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -958,9 +958,9 @@ class _$_InitialState implements _InitialState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -972,8 +972,8 @@ class _$_InitialState implements _InitialState {
   }
 }
 
-abstract class _InitialState implements AddColoriesState {
-  const factory _InitialState() = _$_InitialState;
+abstract class InitialState implements AddColoriesState {
+  const factory InitialState() = _$InitialState;
 }
 
 /// @nodoc
@@ -1090,9 +1090,9 @@ class _$SelectFoodState implements SelectFoodState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
+    required TResult Function(InitialState value) initial,
     required TResult Function(SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(QuickAddFoodState value) quickAddFood,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -1102,9 +1102,9 @@ class _$SelectFoodState implements SelectFoodState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -1114,9 +1114,9 @@ class _$SelectFoodState implements SelectFoodState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -1138,28 +1138,28 @@ abstract class SelectFoodState implements AddColoriesState {
 }
 
 /// @nodoc
-abstract class _$$_QuickAddFoodStateCopyWith<$Res> {
-  factory _$$_QuickAddFoodStateCopyWith(_$_QuickAddFoodState value,
-          $Res Function(_$_QuickAddFoodState) then) =
-      __$$_QuickAddFoodStateCopyWithImpl<$Res>;
+abstract class _$$QuickAddFoodStateCopyWith<$Res> {
+  factory _$$QuickAddFoodStateCopyWith(
+          _$QuickAddFoodState value, $Res Function(_$QuickAddFoodState) then) =
+      __$$QuickAddFoodStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_QuickAddFoodStateCopyWithImpl<$Res>
+class __$$QuickAddFoodStateCopyWithImpl<$Res>
     extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_QuickAddFoodStateCopyWith<$Res> {
-  __$$_QuickAddFoodStateCopyWithImpl(
-      _$_QuickAddFoodState _value, $Res Function(_$_QuickAddFoodState) _then)
-      : super(_value, (v) => _then(v as _$_QuickAddFoodState));
+    implements _$$QuickAddFoodStateCopyWith<$Res> {
+  __$$QuickAddFoodStateCopyWithImpl(
+      _$QuickAddFoodState _value, $Res Function(_$QuickAddFoodState) _then)
+      : super(_value, (v) => _then(v as _$QuickAddFoodState));
 
   @override
-  _$_QuickAddFoodState get _value => super._value as _$_QuickAddFoodState;
+  _$QuickAddFoodState get _value => super._value as _$QuickAddFoodState;
 }
 
 /// @nodoc
 
-class _$_QuickAddFoodState implements _QuickAddFoodState {
-  const _$_QuickAddFoodState();
+class _$QuickAddFoodState implements QuickAddFoodState {
+  const _$QuickAddFoodState();
 
   @override
   String toString() {
@@ -1169,7 +1169,7 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_QuickAddFoodState);
+        (other.runtimeType == runtimeType && other is _$QuickAddFoodState);
   }
 
   @override
@@ -1218,9 +1218,9 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
+    required TResult Function(InitialState value) initial,
     required TResult Function(SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(QuickAddFoodState value) quickAddFood,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -1230,9 +1230,9 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -1242,9 +1242,9 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -1256,8 +1256,8 @@ class _$_QuickAddFoodState implements _QuickAddFoodState {
   }
 }
 
-abstract class _QuickAddFoodState implements AddColoriesState {
-  const factory _QuickAddFoodState() = _$_QuickAddFoodState;
+abstract class QuickAddFoodState implements AddColoriesState {
+  const factory QuickAddFoodState() = _$QuickAddFoodState;
 }
 
 /// @nodoc
@@ -1341,9 +1341,9 @@ class _$_AddingState implements _AddingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
+    required TResult Function(InitialState value) initial,
     required TResult Function(SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(QuickAddFoodState value) quickAddFood,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -1353,9 +1353,9 @@ class _$_AddingState implements _AddingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -1365,9 +1365,9 @@ class _$_AddingState implements _AddingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
@@ -1464,9 +1464,9 @@ class _$_SuccessState implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
+    required TResult Function(InitialState value) initial,
     required TResult Function(SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(QuickAddFoodState value) quickAddFood,
     required TResult Function(_AddingState value) adding,
     required TResult Function(_SuccessState value) success,
   }) {
@@ -1476,9 +1476,9 @@ class _$_SuccessState implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
   }) {
@@ -1488,9 +1488,9 @@ class _$_SuccessState implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
+    TResult Function(InitialState value)? initial,
     TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(QuickAddFoodState value)? quickAddFood,
     TResult Function(_AddingState value)? adding,
     TResult Function(_SuccessState value)? success,
     required TResult orElse(),
