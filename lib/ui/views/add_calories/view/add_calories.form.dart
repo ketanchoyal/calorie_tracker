@@ -5,6 +5,8 @@ class _AddCaloriesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<AddColoriesBloc>().prevState as SelectFoodState;
+    final food = state.food;
     final formBloc = BlocProvider.of<AddCaloriesFormBloc>(context);
     return GestureDetector(
       onTap: () {
@@ -102,13 +104,15 @@ class _FoodDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<AddColoriesBloc>().prevState as SelectFoodState;
+    final food = state.food;
     return Column(
       children: [
         Row(
           children: [
             Expanded(
               child: Text(
-                'Food Name',
+                food.name,
                 maxLines: 2,
                 // overflow: TextOverflow.ellipsis,
                 semanticsLabel: 'Some very tasty food name',
@@ -125,7 +129,7 @@ class _FoodDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '400',
+                    food.nutrition.calories.toString(),
                     style: Theme.of(context).textTheme.headline5?.copyWith(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.5,
@@ -146,7 +150,7 @@ class _FoodDetails extends StatelessWidget {
         const Divider(),
         const SizedBox(height: 0),
         Text(
-          'Nutrition in very 1.4 Serving',
+          'Nutrition in every ${food.servingSize} Serving',
           style: Theme.of(context).textTheme.bodyText2?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -169,7 +173,7 @@ class _FoodDetails extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    '2g',
+                    '${food.nutrition.fat}g',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                           fontWeight: FontWeight.bold,
@@ -192,7 +196,7 @@ class _FoodDetails extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    '2g',
+                    '${food.nutrition.carbs}g',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                           fontWeight: FontWeight.bold,
@@ -215,7 +219,7 @@ class _FoodDetails extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    '2g',
+                    '${food.nutrition.protein}g',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                           fontWeight: FontWeight.bold,

@@ -15,706 +15,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AddColoriesState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AddColoriesStateCopyWith<$Res> {
-  factory $AddColoriesStateCopyWith(
-          AddColoriesState value, $Res Function(AddColoriesState) then) =
-      _$AddColoriesStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$AddColoriesStateCopyWithImpl<$Res>
-    implements $AddColoriesStateCopyWith<$Res> {
-  _$AddColoriesStateCopyWithImpl(this._value, this._then);
-
-  final AddColoriesState _value;
-  // ignore: unused_field
-  final $Res Function(AddColoriesState) _then;
-}
-
-/// @nodoc
-abstract class _$$_InitialStateCopyWith<$Res> {
-  factory _$$_InitialStateCopyWith(
-          _$_InitialState value, $Res Function(_$_InitialState) then) =
-      __$$_InitialStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_InitialStateCopyWith<$Res> {
-  __$$_InitialStateCopyWithImpl(
-      _$_InitialState _value, $Res Function(_$_InitialState) _then)
-      : super(_value, (v) => _then(v as _$_InitialState));
-
-  @override
-  _$_InitialState get _value => super._value as _$_InitialState;
-}
-
-/// @nodoc
-
-class _$_InitialState implements _InitialState {
-  const _$_InitialState();
-
-  @override
-  String toString() {
-    return 'AddColoriesState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitialState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InitialState implements AddColoriesState {
-  const factory _InitialState() = _$_InitialState;
-}
-
-/// @nodoc
-abstract class _$$_SelectFoodStateCopyWith<$Res> {
-  factory _$$_SelectFoodStateCopyWith(
-          _$_SelectFoodState value, $Res Function(_$_SelectFoodState) then) =
-      __$$_SelectFoodStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_SelectFoodStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_SelectFoodStateCopyWith<$Res> {
-  __$$_SelectFoodStateCopyWithImpl(
-      _$_SelectFoodState _value, $Res Function(_$_SelectFoodState) _then)
-      : super(_value, (v) => _then(v as _$_SelectFoodState));
-
-  @override
-  _$_SelectFoodState get _value => super._value as _$_SelectFoodState;
-}
-
-/// @nodoc
-
-class _$_SelectFoodState implements _SelectFoodState {
-  const _$_SelectFoodState();
-
-  @override
-  String toString() {
-    return 'AddColoriesState.selectFood()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SelectFoodState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) {
-    return selectFood();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) {
-    return selectFood?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (selectFood != null) {
-      return selectFood();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) {
-    return selectFood(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) {
-    return selectFood?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) {
-    if (selectFood != null) {
-      return selectFood(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectFoodState implements AddColoriesState {
-  const factory _SelectFoodState() = _$_SelectFoodState;
-}
-
-/// @nodoc
-abstract class _$$_QuickAddFoodStateCopyWith<$Res> {
-  factory _$$_QuickAddFoodStateCopyWith(_$_QuickAddFoodState value,
-          $Res Function(_$_QuickAddFoodState) then) =
-      __$$_QuickAddFoodStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_QuickAddFoodStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_QuickAddFoodStateCopyWith<$Res> {
-  __$$_QuickAddFoodStateCopyWithImpl(
-      _$_QuickAddFoodState _value, $Res Function(_$_QuickAddFoodState) _then)
-      : super(_value, (v) => _then(v as _$_QuickAddFoodState));
-
-  @override
-  _$_QuickAddFoodState get _value => super._value as _$_QuickAddFoodState;
-}
-
-/// @nodoc
-
-class _$_QuickAddFoodState implements _QuickAddFoodState {
-  const _$_QuickAddFoodState();
-
-  @override
-  String toString() {
-    return 'AddColoriesState.quickAddFood()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_QuickAddFoodState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) {
-    return quickAddFood();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) {
-    return quickAddFood?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (quickAddFood != null) {
-      return quickAddFood();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) {
-    return quickAddFood(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) {
-    return quickAddFood?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) {
-    if (quickAddFood != null) {
-      return quickAddFood(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _QuickAddFoodState implements AddColoriesState {
-  const factory _QuickAddFoodState() = _$_QuickAddFoodState;
-}
-
-/// @nodoc
-abstract class _$$_AddingStateCopyWith<$Res> {
-  factory _$$_AddingStateCopyWith(
-          _$_AddingState value, $Res Function(_$_AddingState) then) =
-      __$$_AddingStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_AddingStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_AddingStateCopyWith<$Res> {
-  __$$_AddingStateCopyWithImpl(
-      _$_AddingState _value, $Res Function(_$_AddingState) _then)
-      : super(_value, (v) => _then(v as _$_AddingState));
-
-  @override
-  _$_AddingState get _value => super._value as _$_AddingState;
-}
-
-/// @nodoc
-
-class _$_AddingState implements _AddingState {
-  const _$_AddingState();
-
-  @override
-  String toString() {
-    return 'AddColoriesState.adding()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AddingState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) {
-    return adding();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) {
-    return adding?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (adding != null) {
-      return adding();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) {
-    return adding(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) {
-    return adding?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) {
-    if (adding != null) {
-      return adding(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddingState implements AddColoriesState {
-  const factory _AddingState() = _$_AddingState;
-}
-
-/// @nodoc
-abstract class _$$_SuccessStateCopyWith<$Res> {
-  factory _$$_SuccessStateCopyWith(
-          _$_SuccessState value, $Res Function(_$_SuccessState) then) =
-      __$$_SuccessStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_SuccessStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
-    implements _$$_SuccessStateCopyWith<$Res> {
-  __$$_SuccessStateCopyWithImpl(
-      _$_SuccessState _value, $Res Function(_$_SuccessState) _then)
-      : super(_value, (v) => _then(v as _$_SuccessState));
-
-  @override
-  _$_SuccessState get _value => super._value as _$_SuccessState;
-}
-
-/// @nodoc
-
-class _$_SuccessState implements _SuccessState {
-  const _$_SuccessState();
-
-  @override
-  String toString() {
-    return 'AddColoriesState.success()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SuccessState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() selectFood,
-    required TResult Function() quickAddFood,
-    required TResult Function() adding,
-    required TResult Function() success,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_SelectFoodState value) selectFood,
-    required TResult Function(_QuickAddFoodState value) quickAddFood,
-    required TResult Function(_AddingState value) adding,
-    required TResult Function(_SuccessState value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_SelectFoodState value)? selectFood,
-    TResult Function(_QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SuccessState implements AddColoriesState {
-  const factory _SuccessState() = _$_SuccessState;
-}
-
-/// @nodoc
 mixin _$AddColoriesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(double servings, double? caloriesPerServing,
-            double? fat, double? carbs, double? protein)
+    required TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein)
         submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -723,8 +37,8 @@ mixin _$AddColoriesEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -733,8 +47,8 @@ mixin _$AddColoriesEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
     required TResult orElse(),
   }) =>
@@ -824,8 +138,14 @@ class _$_Reset implements _Reset {
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(double servings, double? caloriesPerServing,
-            double? fat, double? carbs, double? protein)
+    required TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein)
         submit,
   }) {
     return reset();
@@ -837,8 +157,8 @@ class _$_Reset implements _Reset {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
   }) {
     return reset?.call();
@@ -850,8 +170,8 @@ class _$_Reset implements _Reset {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
     required TResult orElse(),
   }) {
@@ -980,8 +300,14 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(double servings, double? caloriesPerServing,
-            double? fat, double? carbs, double? protein)
+    required TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein)
         submit,
   }) {
     return selectFood(food);
@@ -993,8 +319,8 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
   }) {
     return selectFood?.call(food);
@@ -1006,8 +332,8 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
     required TResult orElse(),
   }) {
@@ -1108,8 +434,14 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(double servings, double? caloriesPerServing,
-            double? fat, double? carbs, double? protein)
+    required TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein)
         submit,
   }) {
     return quickAddFood();
@@ -1121,8 +453,8 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
   }) {
     return quickAddFood?.call();
@@ -1134,8 +466,8 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
     required TResult orElse(),
   }) {
@@ -1194,10 +526,14 @@ abstract class _$$_SubmitEventCopyWith<$Res> {
       __$$_SubmitEventCopyWithImpl<$Res>;
   $Res call(
       {double servings,
-      double? caloriesPerServing,
+      double caloriesPerServing,
+      String? name,
+      Food? food,
       double? fat,
       double? carbs,
       double? protein});
+
+  $FoodCopyWith<$Res>? get food;
 }
 
 /// @nodoc
@@ -1215,6 +551,8 @@ class __$$_SubmitEventCopyWithImpl<$Res>
   $Res call({
     Object? servings = freezed,
     Object? caloriesPerServing = freezed,
+    Object? name = freezed,
+    Object? food = freezed,
     Object? fat = freezed,
     Object? carbs = freezed,
     Object? protein = freezed,
@@ -1227,7 +565,15 @@ class __$$_SubmitEventCopyWithImpl<$Res>
       caloriesPerServing: caloriesPerServing == freezed
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      food: food == freezed
+          ? _value.food
+          : food // ignore: cast_nullable_to_non_nullable
+              as Food?,
       fat: fat == freezed
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
@@ -1242,6 +588,17 @@ class __$$_SubmitEventCopyWithImpl<$Res>
               as double?,
     ));
   }
+
+  @override
+  $FoodCopyWith<$Res>? get food {
+    if (_value.food == null) {
+      return null;
+    }
+
+    return $FoodCopyWith<$Res>(_value.food!, (value) {
+      return _then(_value.copyWith(food: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -1249,7 +606,9 @@ class __$$_SubmitEventCopyWithImpl<$Res>
 class _$_SubmitEvent implements _SubmitEvent {
   _$_SubmitEvent(
       {required this.servings,
-      this.caloriesPerServing,
+      required this.caloriesPerServing,
+      this.name,
+      this.food,
       this.fat,
       this.carbs,
       this.protein});
@@ -1257,7 +616,11 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   final double servings;
   @override
-  final double? caloriesPerServing;
+  final double caloriesPerServing;
+  @override
+  final String? name;
+  @override
+  final Food? food;
   @override
   final double? fat;
   @override
@@ -1267,7 +630,7 @@ class _$_SubmitEvent implements _SubmitEvent {
 
   @override
   String toString() {
-    return 'AddColoriesEvent.submit(servings: $servings, caloriesPerServing: $caloriesPerServing, fat: $fat, carbs: $carbs, protein: $protein)';
+    return 'AddColoriesEvent.submit(servings: $servings, caloriesPerServing: $caloriesPerServing, name: $name, food: $food, fat: $fat, carbs: $carbs, protein: $protein)';
   }
 
   @override
@@ -1278,6 +641,8 @@ class _$_SubmitEvent implements _SubmitEvent {
             const DeepCollectionEquality().equals(other.servings, servings) &&
             const DeepCollectionEquality()
                 .equals(other.caloriesPerServing, caloriesPerServing) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.food, food) &&
             const DeepCollectionEquality().equals(other.fat, fat) &&
             const DeepCollectionEquality().equals(other.carbs, carbs) &&
             const DeepCollectionEquality().equals(other.protein, protein));
@@ -1288,6 +653,8 @@ class _$_SubmitEvent implements _SubmitEvent {
       runtimeType,
       const DeepCollectionEquality().hash(servings),
       const DeepCollectionEquality().hash(caloriesPerServing),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(food),
       const DeepCollectionEquality().hash(fat),
       const DeepCollectionEquality().hash(carbs),
       const DeepCollectionEquality().hash(protein));
@@ -1303,11 +670,18 @@ class _$_SubmitEvent implements _SubmitEvent {
     required TResult Function() reset,
     required TResult Function(Food food) selectFood,
     required TResult Function() quickAddFood,
-    required TResult Function(double servings, double? caloriesPerServing,
-            double? fat, double? carbs, double? protein)
+    required TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein)
         submit,
   }) {
-    return submit(servings, caloriesPerServing, fat, carbs, protein);
+    return submit(
+        servings, caloriesPerServing, name, food, fat, carbs, protein);
   }
 
   @override
@@ -1316,11 +690,12 @@ class _$_SubmitEvent implements _SubmitEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
   }) {
-    return submit?.call(servings, caloriesPerServing, fat, carbs, protein);
+    return submit?.call(
+        servings, caloriesPerServing, name, food, fat, carbs, protein);
   }
 
   @override
@@ -1329,13 +704,14 @@ class _$_SubmitEvent implements _SubmitEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double? caloriesPerServing, double? fat,
-            double? carbs, double? protein)?
+    TResult Function(double servings, double caloriesPerServing, String? name,
+            Food? food, double? fat, double? carbs, double? protein)?
         submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(servings, caloriesPerServing, fat, carbs, protein);
+      return submit(
+          servings, caloriesPerServing, name, food, fat, carbs, protein);
     }
     return orElse();
   }
@@ -1381,17 +757,751 @@ class _$_SubmitEvent implements _SubmitEvent {
 abstract class _SubmitEvent implements AddColoriesEvent {
   factory _SubmitEvent(
       {required final double servings,
-      final double? caloriesPerServing,
+      required final double caloriesPerServing,
+      final String? name,
+      final Food? food,
       final double? fat,
       final double? carbs,
       final double? protein}) = _$_SubmitEvent;
 
   double get servings => throw _privateConstructorUsedError;
-  double? get caloriesPerServing => throw _privateConstructorUsedError;
+  double get caloriesPerServing => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  Food? get food => throw _privateConstructorUsedError;
   double? get fat => throw _privateConstructorUsedError;
   double? get carbs => throw _privateConstructorUsedError;
   double? get protein => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_SubmitEventCopyWith<_$_SubmitEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AddColoriesState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Food food) selectFood,
+    required TResult Function() quickAddFood,
+    required TResult Function() adding,
+    required TResult Function() success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(SelectFoodState value) selectFood,
+    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(_AddingState value) adding,
+    required TResult Function(_SuccessState value) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddColoriesStateCopyWith<$Res> {
+  factory $AddColoriesStateCopyWith(
+          AddColoriesState value, $Res Function(AddColoriesState) then) =
+      _$AddColoriesStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AddColoriesStateCopyWithImpl<$Res>
+    implements $AddColoriesStateCopyWith<$Res> {
+  _$AddColoriesStateCopyWithImpl(this._value, this._then);
+
+  final AddColoriesState _value;
+  // ignore: unused_field
+  final $Res Function(AddColoriesState) _then;
+}
+
+/// @nodoc
+abstract class _$$_InitialStateCopyWith<$Res> {
+  factory _$$_InitialStateCopyWith(
+          _$_InitialState value, $Res Function(_$_InitialState) then) =
+      __$$_InitialStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitialStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res>
+    implements _$$_InitialStateCopyWith<$Res> {
+  __$$_InitialStateCopyWithImpl(
+      _$_InitialState _value, $Res Function(_$_InitialState) _then)
+      : super(_value, (v) => _then(v as _$_InitialState));
+
+  @override
+  _$_InitialState get _value => super._value as _$_InitialState;
+}
+
+/// @nodoc
+
+class _$_InitialState implements _InitialState {
+  const _$_InitialState();
+
+  @override
+  String toString() {
+    return 'AddColoriesState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_InitialState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Food food) selectFood,
+    required TResult Function() quickAddFood,
+    required TResult Function() adding,
+    required TResult Function() success,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(SelectFoodState value) selectFood,
+    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(_AddingState value) adding,
+    required TResult Function(_SuccessState value) success,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitialState implements AddColoriesState {
+  const factory _InitialState() = _$_InitialState;
+}
+
+/// @nodoc
+abstract class _$$SelectFoodStateCopyWith<$Res> {
+  factory _$$SelectFoodStateCopyWith(
+          _$SelectFoodState value, $Res Function(_$SelectFoodState) then) =
+      __$$SelectFoodStateCopyWithImpl<$Res>;
+  $Res call({Food food});
+
+  $FoodCopyWith<$Res> get food;
+}
+
+/// @nodoc
+class __$$SelectFoodStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res>
+    implements _$$SelectFoodStateCopyWith<$Res> {
+  __$$SelectFoodStateCopyWithImpl(
+      _$SelectFoodState _value, $Res Function(_$SelectFoodState) _then)
+      : super(_value, (v) => _then(v as _$SelectFoodState));
+
+  @override
+  _$SelectFoodState get _value => super._value as _$SelectFoodState;
+
+  @override
+  $Res call({
+    Object? food = freezed,
+  }) {
+    return _then(_$SelectFoodState(
+      food: food == freezed
+          ? _value.food
+          : food // ignore: cast_nullable_to_non_nullable
+              as Food,
+    ));
+  }
+
+  @override
+  $FoodCopyWith<$Res> get food {
+    return $FoodCopyWith<$Res>(_value.food, (value) {
+      return _then(_value.copyWith(food: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SelectFoodState implements SelectFoodState {
+  const _$SelectFoodState({required this.food});
+
+  @override
+  final Food food;
+
+  @override
+  String toString() {
+    return 'AddColoriesState.selectFood(food: $food)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectFoodState &&
+            const DeepCollectionEquality().equals(other.food, food));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(food));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SelectFoodStateCopyWith<_$SelectFoodState> get copyWith =>
+      __$$SelectFoodStateCopyWithImpl<_$SelectFoodState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Food food) selectFood,
+    required TResult Function() quickAddFood,
+    required TResult Function() adding,
+    required TResult Function() success,
+  }) {
+    return selectFood(food);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+  }) {
+    return selectFood?.call(food);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (selectFood != null) {
+      return selectFood(food);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(SelectFoodState value) selectFood,
+    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(_AddingState value) adding,
+    required TResult Function(_SuccessState value) success,
+  }) {
+    return selectFood(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+  }) {
+    return selectFood?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+    required TResult orElse(),
+  }) {
+    if (selectFood != null) {
+      return selectFood(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectFoodState implements AddColoriesState {
+  const factory SelectFoodState({required final Food food}) = _$SelectFoodState;
+
+  Food get food => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$SelectFoodStateCopyWith<_$SelectFoodState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_QuickAddFoodStateCopyWith<$Res> {
+  factory _$$_QuickAddFoodStateCopyWith(_$_QuickAddFoodState value,
+          $Res Function(_$_QuickAddFoodState) then) =
+      __$$_QuickAddFoodStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_QuickAddFoodStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res>
+    implements _$$_QuickAddFoodStateCopyWith<$Res> {
+  __$$_QuickAddFoodStateCopyWithImpl(
+      _$_QuickAddFoodState _value, $Res Function(_$_QuickAddFoodState) _then)
+      : super(_value, (v) => _then(v as _$_QuickAddFoodState));
+
+  @override
+  _$_QuickAddFoodState get _value => super._value as _$_QuickAddFoodState;
+}
+
+/// @nodoc
+
+class _$_QuickAddFoodState implements _QuickAddFoodState {
+  const _$_QuickAddFoodState();
+
+  @override
+  String toString() {
+    return 'AddColoriesState.quickAddFood()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_QuickAddFoodState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Food food) selectFood,
+    required TResult Function() quickAddFood,
+    required TResult Function() adding,
+    required TResult Function() success,
+  }) {
+    return quickAddFood();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+  }) {
+    return quickAddFood?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (quickAddFood != null) {
+      return quickAddFood();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(SelectFoodState value) selectFood,
+    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(_AddingState value) adding,
+    required TResult Function(_SuccessState value) success,
+  }) {
+    return quickAddFood(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+  }) {
+    return quickAddFood?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+    required TResult orElse(),
+  }) {
+    if (quickAddFood != null) {
+      return quickAddFood(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _QuickAddFoodState implements AddColoriesState {
+  const factory _QuickAddFoodState() = _$_QuickAddFoodState;
+}
+
+/// @nodoc
+abstract class _$$_AddingStateCopyWith<$Res> {
+  factory _$$_AddingStateCopyWith(
+          _$_AddingState value, $Res Function(_$_AddingState) then) =
+      __$$_AddingStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AddingStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res>
+    implements _$$_AddingStateCopyWith<$Res> {
+  __$$_AddingStateCopyWithImpl(
+      _$_AddingState _value, $Res Function(_$_AddingState) _then)
+      : super(_value, (v) => _then(v as _$_AddingState));
+
+  @override
+  _$_AddingState get _value => super._value as _$_AddingState;
+}
+
+/// @nodoc
+
+class _$_AddingState implements _AddingState {
+  const _$_AddingState();
+
+  @override
+  String toString() {
+    return 'AddColoriesState.adding()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AddingState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Food food) selectFood,
+    required TResult Function() quickAddFood,
+    required TResult Function() adding,
+    required TResult Function() success,
+  }) {
+    return adding();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+  }) {
+    return adding?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (adding != null) {
+      return adding();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(SelectFoodState value) selectFood,
+    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(_AddingState value) adding,
+    required TResult Function(_SuccessState value) success,
+  }) {
+    return adding(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+  }) {
+    return adding?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+    required TResult orElse(),
+  }) {
+    if (adding != null) {
+      return adding(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddingState implements AddColoriesState {
+  const factory _AddingState() = _$_AddingState;
+}
+
+/// @nodoc
+abstract class _$$_SuccessStateCopyWith<$Res> {
+  factory _$$_SuccessStateCopyWith(
+          _$_SuccessState value, $Res Function(_$_SuccessState) then) =
+      __$$_SuccessStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SuccessStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res>
+    implements _$$_SuccessStateCopyWith<$Res> {
+  __$$_SuccessStateCopyWithImpl(
+      _$_SuccessState _value, $Res Function(_$_SuccessState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessState));
+
+  @override
+  _$_SuccessState get _value => super._value as _$_SuccessState;
+}
+
+/// @nodoc
+
+class _$_SuccessState implements _SuccessState {
+  const _$_SuccessState();
+
+  @override
+  String toString() {
+    return 'AddColoriesState.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SuccessState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Food food) selectFood,
+    required TResult Function() quickAddFood,
+    required TResult Function() adding,
+    required TResult Function() success,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Food food)? selectFood,
+    TResult Function()? quickAddFood,
+    TResult Function()? adding,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(SelectFoodState value) selectFood,
+    required TResult Function(_QuickAddFoodState value) quickAddFood,
+    required TResult Function(_AddingState value) adding,
+    required TResult Function(_SuccessState value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(SelectFoodState value)? selectFood,
+    TResult Function(_QuickAddFoodState value)? quickAddFood,
+    TResult Function(_AddingState value)? adding,
+    TResult Function(_SuccessState value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessState implements AddColoriesState {
+  const factory _SuccessState() = _$_SuccessState;
 }

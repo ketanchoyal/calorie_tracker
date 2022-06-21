@@ -193,11 +193,9 @@ packages:
   drop_down_list:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "6023b8202df6418fe6c8e5c67ae6082bdebbbd45"
-      url: "https://github.com/ketanchoyal/drop_down_list"
-    source: git
+      path: "packages/drop_down_list"
+      relative: true
+    source: path
     version: "0.0.2"
   equatable:
     dependency: transitive

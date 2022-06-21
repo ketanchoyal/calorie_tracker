@@ -21,25 +21,25 @@ class _QuickAddCaloriesForm extends StatelessWidget {
               label: 'Title',
               prefixIcon: FontAwesomeIcons.bowlFood,
             ),
-            AnimatedCrossFade(
-              firstChild: const SizedBox(),
-              secondChild: Column(
-                children: [
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  Text(
-                    'This will modify values for just this instance',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  const SizedBox(height: 5),
-                ],
-              ),
-              crossFadeState: context.watch<AddCaloriesFormBloc>().isModifying
-                  ? CrossFadeState.showSecond
-                  : CrossFadeState.showFirst,
-              duration: const Duration(milliseconds: 300),
-            ),
+            // AnimatedCrossFade(
+            //   firstChild: const SizedBox(),
+            //   secondChild: Column(
+            //     children: [
+            //       const SizedBox(height: 5),
+            //       const Divider(),
+            //       Text(
+            //         'This will modify values for just this instance',
+            //         textAlign: TextAlign.center,
+            //         style: Theme.of(context).textTheme.caption,
+            //       ),
+            //       const SizedBox(height: 5),
+            //     ],
+            //   ),
+            //   crossFadeState: context.watch<QuickAddCaloriesFormBloc>().isModifying
+            //       ? CrossFadeState.showSecond
+            //       : CrossFadeState.showFirst,
+            //   duration: const Duration(milliseconds: 300),
+            // ),
             FormTextField(
               fieldBloc: formBloc.calories,
               label: 'Calories',

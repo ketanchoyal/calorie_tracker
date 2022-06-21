@@ -22,9 +22,6 @@ class AddCaloriesView extends StatelessWidget {
         BlocProvider<AddColoriesBloc>(
           create: (context) => AddColoriesBloc(),
         ),
-        BlocProvider<AddCaloriesFormBloc>(
-          create: (context) => AddCaloriesFormBloc(),
-        ),
         BlocProvider<QuickAddCaloriesFormBloc>(
           create: (context) => QuickAddCaloriesFormBloc(),
         ),
@@ -37,12 +34,9 @@ class AddCaloriesView extends StatelessWidget {
               title: Text(
                 state.maybeWhen(
                   orElse: () {
-                    return context
-                            .read<AddColoriesBloc>()
-                            .prevState
-                            ?.whenOrNull(
+                    return context.read<AddColoriesBloc>().prevState.whenOrNull(
                               quickAddFood: () => 'Quick Add Food',
-                              selectFood: () => 'Select Food',
+                              selectFood: (_) => 'Select Food',
                             ) ??
                         '';
                   },
@@ -103,9 +97,12 @@ class _AddCaloriesBody extends StatelessWidget {
         // state.
         return state.maybeWhen(
           orElse: () {
-            return context.read<AddColoriesBloc>().prevState?.whenOrNull(
+            return context.read<AddColoriesBloc>().prevState.whenOrNull(
                       quickAddFood: () => const _QuickAddCaloriesForm(),
-                      selectFood: () => const _AddCaloriesForm(),
+                      selectFood: (food) => BlocProvider<AddCaloriesFormBloc>(
+                        create: (context) => AddCaloriesFormBloc(food),
+                        child: const _AddCaloriesForm(),
+                      ),
                     ) ??
                 Container(
                   height: double.infinity,
@@ -151,7 +148,7 @@ class _EmptyStateBody extends StatelessWidget {
               ],
             ),
             onPressed: () {
-              DropDownState(
+              DropDownState<Food>(
                 DropDown(
                   submitButtonText: 'Done',
                   submitButtonColor: const Color.fromRGBO(70, 76, 222, 1),
@@ -159,25 +156,20 @@ class _EmptyStateBody extends StatelessWidget {
                   bottomSheetTitle: 'Your Food',
 
                   // searchBackgroundColor: Colors.black12,
-                  dataList: [
-                    SelectedListItem(false, 'name 1', '1'),
-                    SelectedListItem(false, 'name 2', '2'),
-                    SelectedListItem(false, 'name 3', '3'),
-                    SelectedListItem(false, 'name 4', '4'),
-                  ],
-                  selectedItem: (String selectedId) {
+                  dataList: foods
+                      .map(
+                        (e) => SelectedListItem(
+                          false,
+                          e.name,
+                          e.id ?? '',
+                          value: e,
+                        ),
+                      )
+                      .toList(),
+                  selectedItemValue: (Food selectedFood) {
                     context.read<AddColoriesBloc>().add(
                           AddColoriesEvent.selectFood(
-                            food: Food(
-                              name: 'Quick Add Food',
-                              servingSize: 1,
-                              nutrition: Nutrition(
-                                calories: 100,
-                                fat: 1,
-                                carbs: 1,
-                                protein: 1,
-                              ),
-                            ),
+                            food: selectedFood,
                           ),
                         );
                   },

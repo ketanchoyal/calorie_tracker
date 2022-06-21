@@ -24,7 +24,7 @@ dependencies:
   json_annotation: ^4.5.0
   flutter_settings_ui: ^2.0.1
   drop_down_list:
-    git: https://github.com/ketanchoyal/drop_down_list
+    path: packages/drop_down_list
 
 dev_dependencies:
   bloc_test: ^9.0.3

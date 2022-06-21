@@ -68,3 +68,36 @@ class Nutrition with _$Nutrition {
   factory Nutrition.fromJson(Map<String, dynamic> json) =>
       _$NutritionFromJson(json);
 }
+
+final foods = [
+  Food(
+    name: 'Food 1',
+    servingSize: 1,
+    nutrition: Nutrition(
+      calories: 200,
+      fat: 12,
+      carbs: 15,
+      protein: 61,
+    ),
+  ),
+  Food(
+    name: 'Food 2',
+    servingSize: 1,
+    nutrition: Nutrition(
+      calories: 500,
+      fat: 12,
+      carbs: 15,
+      protein: 61,
+    ),
+  ),
+  Food(
+    name: 'Food 3',
+    servingSize: 1,
+    nutrition: Nutrition(
+      calories: 300,
+      fat: 5,
+      carbs: 5,
+      protein: 50,
+    ),
+  ),
+];
