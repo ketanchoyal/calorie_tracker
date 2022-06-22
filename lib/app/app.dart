@@ -6,9 +6,14 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:calorie_tracker/app/theme.dart';
+import 'package:calorie_tracker/core/services/auth/firebase_auth_service.dart';
+import 'package:calorie_tracker/core/services/auth/firebase_auth_service.impl.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.impl.dart';
 import 'package:calorie_tracker/l10n/l10n.dart';
 import 'package:calorie_tracker/ui/views/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
@@ -16,8 +21,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppView();
-    // return MultiRepositoryProvider(providers: const [], child: const AppView());
+    // return const AppView();
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<FirebaseService>(
+          create: (context) => FirebaseServiceImpl(),
+        ),
+        RepositoryProvider<FirebaseAuthService>(
+          create: (context) => FirebaseAuthServiceImpl(),
+        ),
+      ],
+      child: const AppView(),
+    );
   }
 }
 

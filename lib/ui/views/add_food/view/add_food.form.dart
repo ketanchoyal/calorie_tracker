@@ -25,12 +25,6 @@ class _AddFoodForm extends StatelessWidget {
             prefixIcon: Icons.description_rounded,
           ),
           FormTextField(
-            fieldBloc: formBloc.servingSize,
-            label: 'Serving Size',
-            prefixIcon: FontAwesomeIcons.bowlFood,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          ),
-          FormTextField(
             fieldBloc: formBloc.caloriesPerServing,
             label: 'Calories per Serving',
             prefixIcon: FontAwesomeIcons.bowlRice,
@@ -56,6 +50,14 @@ class _AddFoodForm extends StatelessWidget {
             isOptional: true,
             prefixIcon: FontAwesomeIcons.nutritionix,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          ),
+          //Notes like what does per serving means?
+          FormTextField(
+            fieldBloc: formBloc.notes,
+            label: 'Notes',
+            hint: 'Notes like what does per serving means?',
+            isOptional: true,
+            prefixIcon: Icons.description_rounded,
           ),
           const SizedBox(height: 10),
           Row(

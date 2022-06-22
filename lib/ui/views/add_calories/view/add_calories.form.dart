@@ -150,7 +150,7 @@ class _FoodDetails extends StatelessWidget {
         const Divider(),
         const SizedBox(height: 0),
         Text(
-          'Nutrition in every ${food.servingSize} Serving',
+          'Nutrition in every Serving',
           style: Theme.of(context).textTheme.bodyText2?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

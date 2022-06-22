@@ -10,7 +10,7 @@ class AddCaloriesFormBloc extends FormBloc<String, String> {
   }
   final Food _food;
   late final servingToAdd = TextFieldBloc<double>(
-    initialValue: _food.servingSize.toString(),
+    initialValue: '1.0',
   );
 
   late final caloriesPerServing = TextFieldBloc<double>(

@@ -8,14 +8,16 @@ class FoodLog with _$FoodLog {
   factory FoodLog({
     required String id,
     required String name,
-    required double calories,
-    required double protein,
-    required double carbs,
+    required double caloriesPerServing,
+    double? protein,
+    double? carbs,
+    double? fat,
     required DateTime date,
-    required dynamic foodReference,
+    String? foodReference,
+    //will be the actual serving size eaten,
     required double servingEaten,
-    required double servingSize,
-    required String barcode,
+    // Serving size will always be 1 so removing it from everywhere else
+    // required double servingSize,
   }) = _FoodLog;
 
   factory FoodLog.fromJson(Map<String, dynamic> json) =>

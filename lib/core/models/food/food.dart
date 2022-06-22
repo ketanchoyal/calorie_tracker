@@ -3,16 +3,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'food.freezed.dart';
 part 'food.g.dart';
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  explicitToJson: true,
+)
+@Freezed(
+  fromJson: false,
+  toJson: false,
+)
 class Food with _$Food {
   factory Food({
     String? id,
     required String name,
     String? description,
     String? imageUrl,
-    required double servingSize,
     required Nutrition nutrition,
     String? barcode,
+    String? notes,
+    DateTime? dateTime,
   }) = _Food;
 
   Food._();
@@ -22,12 +30,12 @@ class Food with _$Food {
     required String name,
     required String? description,
     required String? imageUrl,
-    required double servingSize,
     required double calories,
     required double? fat,
     required double? carbs,
     required double? protein,
     required String barcode,
+    required String? notes,
   }) =>
       Food(
         id: id,
@@ -35,19 +43,23 @@ class Food with _$Food {
         barcode: barcode,
         description: description,
         imageUrl: imageUrl,
-        servingSize: servingSize,
+        notes: notes,
         nutrition: Nutrition(
           calories: calories,
           fat: fat,
           carbs: carbs,
           protein: protein,
         ),
+        dateTime: DateTime.now(),
       );
 
   /// Check [isOpenFoodProduct] to see if the product is an Open Food Product.
   /// if its true then make an API request to get the product details.
   /// if its false then we have all the details we need.
   factory Food.fromJson(Map<String, dynamic> json) => _$FoodFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$FoodToJson(this);
 
   // bool get isOpenFoodProduct => barcode != null;
 
@@ -56,7 +68,14 @@ class Food with _$Food {
   // double get getServingSize => servingSize!;
 }
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  explicitToJson: true,
+)
+@Freezed(
+  fromJson: false,
+  toJson: false,
+)
 class Nutrition with _$Nutrition {
   factory Nutrition({
     required double calories,
@@ -65,14 +84,18 @@ class Nutrition with _$Nutrition {
     required double? protein,
   }) = _Nutrition;
 
+  Nutrition._();
+
   factory Nutrition.fromJson(Map<String, dynamic> json) =>
       _$NutritionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NutritionToJson(this);
 }
 
 final foods = [
   Food(
     name: 'Food 1',
-    servingSize: 1,
     nutrition: Nutrition(
       calories: 200,
       fat: 12,
@@ -82,7 +105,6 @@ final foods = [
   ),
   Food(
     name: 'Food 2',
-    servingSize: 1,
     nutrition: Nutrition(
       calories: 500,
       fat: 12,
@@ -92,7 +114,6 @@ final foods = [
   ),
   Food(
     name: 'Food 3',
-    servingSize: 1,
     nutrition: Nutrition(
       calories: 300,
       fat: 5,

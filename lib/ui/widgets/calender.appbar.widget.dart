@@ -51,6 +51,8 @@ class CalendarAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///definiton of the calendar language
   final String? locale;
 
+  final void Function()? onSettingsTap;
+
   ///initialization of [CalendarAppBar]
   CalendarAppBar({
     super.key,
@@ -66,6 +68,7 @@ class CalendarAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.fullCalendar,
     this.backButton,
     this.locale,
+    this.onSettingsTap,
   }) {
     firstDate ?? DateTime(1950);
   }
@@ -575,14 +578,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
                 ),
               ),
               InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute<void>(
-                      builder: (context) => const SettingsView(),
-                    ),
-                  );
-                },
+                onTap: widget.onSettingsTap,
                 child: const Icon(
                   FontAwesomeIcons.gear,
                   color: Colors.white,

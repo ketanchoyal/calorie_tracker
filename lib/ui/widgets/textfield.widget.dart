@@ -9,6 +9,7 @@ class FormTextField extends StatelessWidget {
     required this.prefixIcon,
     this.isOptional = false,
     this.keyboardType,
+    this.hint,
   });
 
   final TextFieldBloc fieldBloc;
@@ -16,6 +17,7 @@ class FormTextField extends StatelessWidget {
   final IconData prefixIcon;
   final TextInputType? keyboardType;
   final bool isOptional;
+  final String? hint;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class FormTextField extends StatelessWidget {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         labelText: label,
+        hintText: hint,
         prefixIcon: Icon(prefixIcon),
         // suffixText: 'Optional',
         suffixIconConstraints: isOptional

@@ -22,14 +22,14 @@ FoodLog _$FoodLogFromJson(Map<String, dynamic> json) {
 mixin _$FoodLog {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  double get calories => throw _privateConstructorUsedError;
-  double get protein => throw _privateConstructorUsedError;
-  double get carbs => throw _privateConstructorUsedError;
+  double get caloriesPerServing => throw _privateConstructorUsedError;
+  double? get protein => throw _privateConstructorUsedError;
+  double? get carbs => throw _privateConstructorUsedError;
+  double? get fat => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
-  dynamic get foodReference => throw _privateConstructorUsedError;
+  String? get foodReference =>
+      throw _privateConstructorUsedError; //will be the actual serving size eaten,
   double get servingEaten => throw _privateConstructorUsedError;
-  double get servingSize => throw _privateConstructorUsedError;
-  String get barcode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,14 +43,13 @@ abstract class $FoodLogCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      double calories,
-      double protein,
-      double carbs,
+      double caloriesPerServing,
+      double? protein,
+      double? carbs,
+      double? fat,
       DateTime date,
-      dynamic foodReference,
-      double servingEaten,
-      double servingSize,
-      String barcode});
+      String? foodReference,
+      double servingEaten});
 }
 
 /// @nodoc
@@ -65,14 +64,13 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? calories = freezed,
+    Object? caloriesPerServing = freezed,
     Object? protein = freezed,
     Object? carbs = freezed,
+    Object? fat = freezed,
     Object? date = freezed,
     Object? foodReference = freezed,
     Object? servingEaten = freezed,
-    Object? servingSize = freezed,
-    Object? barcode = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -83,18 +81,22 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      calories: calories == freezed
-          ? _value.calories
-          : calories // ignore: cast_nullable_to_non_nullable
+      caloriesPerServing: caloriesPerServing == freezed
+          ? _value.caloriesPerServing
+          : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
       protein: protein == freezed
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       carbs: carbs == freezed
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
+      fat: fat == freezed
+          ? _value.fat
+          : fat // ignore: cast_nullable_to_non_nullable
+              as double?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -102,19 +104,11 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
       foodReference: foodReference == freezed
           ? _value.foodReference
           : foodReference // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       servingEaten: servingEaten == freezed
           ? _value.servingEaten
           : servingEaten // ignore: cast_nullable_to_non_nullable
               as double,
-      servingSize: servingSize == freezed
-          ? _value.servingSize
-          : servingSize // ignore: cast_nullable_to_non_nullable
-              as double,
-      barcode: barcode == freezed
-          ? _value.barcode
-          : barcode // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -128,14 +122,13 @@ abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      double calories,
-      double protein,
-      double carbs,
+      double caloriesPerServing,
+      double? protein,
+      double? carbs,
+      double? fat,
       DateTime date,
-      dynamic foodReference,
-      double servingEaten,
-      double servingSize,
-      String barcode});
+      String? foodReference,
+      double servingEaten});
 }
 
 /// @nodoc
@@ -151,14 +144,13 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? calories = freezed,
+    Object? caloriesPerServing = freezed,
     Object? protein = freezed,
     Object? carbs = freezed,
+    Object? fat = freezed,
     Object? date = freezed,
     Object? foodReference = freezed,
     Object? servingEaten = freezed,
-    Object? servingSize = freezed,
-    Object? barcode = freezed,
   }) {
     return _then(_$_FoodLog(
       id: id == freezed
@@ -169,18 +161,22 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      calories: calories == freezed
-          ? _value.calories
-          : calories // ignore: cast_nullable_to_non_nullable
+      caloriesPerServing: caloriesPerServing == freezed
+          ? _value.caloriesPerServing
+          : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
       protein: protein == freezed
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       carbs: carbs == freezed
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
+      fat: fat == freezed
+          ? _value.fat
+          : fat // ignore: cast_nullable_to_non_nullable
+              as double?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -188,19 +184,11 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
       foodReference: foodReference == freezed
           ? _value.foodReference
           : foodReference // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       servingEaten: servingEaten == freezed
           ? _value.servingEaten
           : servingEaten // ignore: cast_nullable_to_non_nullable
               as double,
-      servingSize: servingSize == freezed
-          ? _value.servingSize
-          : servingSize // ignore: cast_nullable_to_non_nullable
-              as double,
-      barcode: barcode == freezed
-          ? _value.barcode
-          : barcode // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -211,14 +199,13 @@ class _$_FoodLog implements _FoodLog {
   _$_FoodLog(
       {required this.id,
       required this.name,
-      required this.calories,
-      required this.protein,
-      required this.carbs,
+      required this.caloriesPerServing,
+      this.protein,
+      this.carbs,
+      this.fat,
       required this.date,
-      required this.foodReference,
-      required this.servingEaten,
-      required this.servingSize,
-      required this.barcode});
+      this.foodReference,
+      required this.servingEaten});
 
   factory _$_FoodLog.fromJson(Map<String, dynamic> json) =>
       _$$_FoodLogFromJson(json);
@@ -228,25 +215,24 @@ class _$_FoodLog implements _FoodLog {
   @override
   final String name;
   @override
-  final double calories;
+  final double caloriesPerServing;
   @override
-  final double protein;
+  final double? protein;
   @override
-  final double carbs;
+  final double? carbs;
+  @override
+  final double? fat;
   @override
   final DateTime date;
   @override
-  final dynamic foodReference;
+  final String? foodReference;
+//will be the actual serving size eaten,
   @override
   final double servingEaten;
-  @override
-  final double servingSize;
-  @override
-  final String barcode;
 
   @override
   String toString() {
-    return 'FoodLog(id: $id, name: $name, calories: $calories, protein: $protein, carbs: $carbs, date: $date, foodReference: $foodReference, servingEaten: $servingEaten, servingSize: $servingSize, barcode: $barcode)';
+    return 'FoodLog(id: $id, name: $name, caloriesPerServing: $caloriesPerServing, protein: $protein, carbs: $carbs, fat: $fat, date: $date, foodReference: $foodReference, servingEaten: $servingEaten)';
   }
 
   @override
@@ -256,17 +242,16 @@ class _$_FoodLog implements _FoodLog {
             other is _$_FoodLog &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.calories, calories) &&
+            const DeepCollectionEquality()
+                .equals(other.caloriesPerServing, caloriesPerServing) &&
             const DeepCollectionEquality().equals(other.protein, protein) &&
             const DeepCollectionEquality().equals(other.carbs, carbs) &&
+            const DeepCollectionEquality().equals(other.fat, fat) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality()
                 .equals(other.foodReference, foodReference) &&
             const DeepCollectionEquality()
-                .equals(other.servingEaten, servingEaten) &&
-            const DeepCollectionEquality()
-                .equals(other.servingSize, servingSize) &&
-            const DeepCollectionEquality().equals(other.barcode, barcode));
+                .equals(other.servingEaten, servingEaten));
   }
 
   @JsonKey(ignore: true)
@@ -275,14 +260,13 @@ class _$_FoodLog implements _FoodLog {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(calories),
+      const DeepCollectionEquality().hash(caloriesPerServing),
       const DeepCollectionEquality().hash(protein),
       const DeepCollectionEquality().hash(carbs),
+      const DeepCollectionEquality().hash(fat),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(foodReference),
-      const DeepCollectionEquality().hash(servingEaten),
-      const DeepCollectionEquality().hash(servingSize),
-      const DeepCollectionEquality().hash(barcode));
+      const DeepCollectionEquality().hash(servingEaten));
 
   @JsonKey(ignore: true)
   @override
@@ -299,14 +283,13 @@ abstract class _FoodLog implements FoodLog {
   factory _FoodLog(
       {required final String id,
       required final String name,
-      required final double calories,
-      required final double protein,
-      required final double carbs,
+      required final double caloriesPerServing,
+      final double? protein,
+      final double? carbs,
+      final double? fat,
       required final DateTime date,
-      required final dynamic foodReference,
-      required final double servingEaten,
-      required final double servingSize,
-      required final String barcode}) = _$_FoodLog;
+      final String? foodReference,
+      required final double servingEaten}) = _$_FoodLog;
 
   factory _FoodLog.fromJson(Map<String, dynamic> json) = _$_FoodLog.fromJson;
 
@@ -315,21 +298,19 @@ abstract class _FoodLog implements FoodLog {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  double get calories => throw _privateConstructorUsedError;
+  double get caloriesPerServing => throw _privateConstructorUsedError;
   @override
-  double get protein => throw _privateConstructorUsedError;
+  double? get protein => throw _privateConstructorUsedError;
   @override
-  double get carbs => throw _privateConstructorUsedError;
+  double? get carbs => throw _privateConstructorUsedError;
+  @override
+  double? get fat => throw _privateConstructorUsedError;
   @override
   DateTime get date => throw _privateConstructorUsedError;
   @override
-  dynamic get foodReference => throw _privateConstructorUsedError;
-  @override
+  String? get foodReference => throw _privateConstructorUsedError;
+  @override //will be the actual serving size eaten,
   double get servingEaten => throw _privateConstructorUsedError;
-  @override
-  double get servingSize => throw _privateConstructorUsedError;
-  @override
-  String get barcode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_FoodLogCopyWith<_$_FoodLog> get copyWith =>

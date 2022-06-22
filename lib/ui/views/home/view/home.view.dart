@@ -1,9 +1,13 @@
 import 'dart:math' as math;
+
+import 'package:calorie_tracker/core/services/auth/firebase_auth_service.dart';
 import 'package:calorie_tracker/ui/utils/shape_border.dart';
 import 'package:calorie_tracker/ui/views/add_calories/add_calories.dart';
+import 'package:calorie_tracker/ui/views/settings/view/settings.view.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
 import 'package:openfoodfacts/utils/CountryHelper.dart';
@@ -43,6 +47,20 @@ class HomeView extends StatelessWidget {
         backButton: false,
         firstDate: DateTime.now().subtract(const Duration(days: 140)),
         lastDate: DateTime.now(),
+        onSettingsTap: () async {
+          try {
+            await context.read<FirebaseAuthService>().loginAnonmously();
+            print('Login Successful');
+          } catch (e) {
+            print(e);
+          }
+          // Navigator.push(
+          //   context,
+          //   CupertinoPageRoute<void>(
+          //     builder: (context) => const SettingsView(),
+          //   ),
+          // );
+        },
         fullCalendar: true,
       ),
       floatingActionButton: FloatingActionButton(

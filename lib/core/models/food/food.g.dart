@@ -6,35 +6,38 @@ part of 'food.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Food _$$_FoodFromJson(Map<String, dynamic> json) => _$_Food(
+Food _$FoodFromJson(Map<String, dynamic> json) => Food(
       id: json['id'] as String?,
       name: json['name'] as String,
       description: json['description'] as String?,
       imageUrl: json['imageUrl'] as String?,
-      servingSize: (json['servingSize'] as num).toDouble(),
       nutrition: Nutrition.fromJson(json['nutrition'] as Map<String, dynamic>),
       barcode: json['barcode'] as String?,
+      notes: json['notes'] as String?,
+      dateTime: json['dateTime'] == null
+          ? null
+          : DateTime.parse(json['dateTime'] as String),
     );
 
-Map<String, dynamic> _$$_FoodToJson(_$_Food instance) => <String, dynamic>{
+Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'imageUrl': instance.imageUrl,
-      'servingSize': instance.servingSize,
-      'nutrition': instance.nutrition,
+      'nutrition': instance.nutrition.toJson(),
       'barcode': instance.barcode,
+      'notes': instance.notes,
+      'dateTime': instance.dateTime?.toIso8601String(),
     };
 
-_$_Nutrition _$$_NutritionFromJson(Map<String, dynamic> json) => _$_Nutrition(
+Nutrition _$NutritionFromJson(Map<String, dynamic> json) => Nutrition(
       calories: (json['calories'] as num).toDouble(),
       fat: (json['fat'] as num?)?.toDouble(),
       carbs: (json['carbs'] as num?)?.toDouble(),
       protein: (json['protein'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$_NutritionToJson(_$_Nutrition instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$NutritionToJson(Nutrition instance) => <String, dynamic>{
       'calories': instance.calories,
       'fat': instance.fat,
       'carbs': instance.carbs,
