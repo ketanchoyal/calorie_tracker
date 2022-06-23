@@ -12,8 +12,12 @@ class FirebaseServiceImpl implements FirebaseService {
       .collection('users')
       .doc(_firebaseAuth.currentUser!.uid);
 
-  CollectionReference get _foodCollectionRef =>
-      _currentUserRef.collection('foods');
+  CollectionReference<Food> get _foodCollectionRef =>
+      _currentUserRef.collection('foods').withConverter<Food>(
+            fromFirestore: (snapshot, _) =>
+                Food.fromFirestore(snapshot.data()!, snapshot.id),
+            toFirestore: (food, _) => food.toJson(),
+          );
 
   @override
   void addCalories({
@@ -25,16 +29,20 @@ class FirebaseServiceImpl implements FirebaseService {
   @override
   void addFood(Food food) {
     _foodCollectionRef
-        .add(
-          food.toJson(),
-        )
+        .add(food)
         .whenComplete(() => print('${food.name} Added'));
   }
 
   @override
-  Stream<Food> getFoods() {
-    // TODO: implement getFoods
-    throw UnimplementedError();
+  Stream<List<Food>> getFoods() {
+    final foodList = _foodCollectionRef.snapshots().map(
+          (event) => event.docs
+              .map(
+                (e) => e.data(),
+              )
+              .toList(),
+        );
+    return foodList;
   }
 
   @override

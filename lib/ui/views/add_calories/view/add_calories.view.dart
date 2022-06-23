@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:calorie_tracker/core/models/food/food.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/ui/extensions/light_dark_color/theme.extension.dart';
 import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
@@ -159,7 +162,20 @@ class _EmptyStateBody extends StatelessWidget {
                 Text('Select Food'),
               ],
             ),
-            onPressed: () {
+            onPressed: () async {
+              // final list = await context.read<FirebaseService>().getFoodsList();
+              final list = context.read<FirebaseService>().getFoods().map(
+                    (e) => e
+                        .map(
+                          (e) => SelectedListItem(
+                            false,
+                            e.name,
+                            e.id ?? '',
+                            value: e,
+                          ),
+                        )
+                        .toList(),
+                  );
               DropDownState<Food>(
                 DropDown(
                   submitButtonText: 'Done',
@@ -168,16 +184,8 @@ class _EmptyStateBody extends StatelessWidget {
                   bottomSheetTitle: 'Your Food',
 
                   // searchBackgroundColor: Colors.black12,
-                  dataList: foods
-                      .map(
-                        (e) => SelectedListItem(
-                          false,
-                          e.name,
-                          e.id ?? '',
-                          value: e,
-                        ),
-                      )
-                      .toList(),
+                  stream: list,
+                  listItemBuildListener: (context, index) {},
                   selectedItemValue: (Food selectedFood) {
                     context.read<AddColoriesBloc>().add(
                           AddColoriesEvent.selectFood(

@@ -58,7 +58,17 @@ class Food with _$Food {
   /// if its false then we have all the details we need.
   factory Food.fromJson(Map<String, dynamic> json) => _$FoodFromJson(json);
 
-  @override
+  factory Food.fromFirestore(
+    Map<String, dynamic> json,
+    String id,
+  ) =>
+      _$FoodFromJson(
+        json
+          ..addAll(
+            <String, dynamic>{'id': id},
+          ),
+      );
+
   Map<String, dynamic> toJson() => _$FoodToJson(this);
 
   // bool get isOpenFoodProduct => barcode != null;
@@ -89,7 +99,6 @@ class Nutrition with _$Nutrition {
   factory Nutrition.fromJson(Map<String, dynamic> json) =>
       _$NutritionFromJson(json);
 
-  @override
   Map<String, dynamic> toJson() => _$NutritionToJson(this);
 }
 

@@ -9,5 +9,5 @@ abstract class FirebaseService {
 
   Future<List<FoodLog>> getTodaysFoodLog();
 
-  Stream<Food> getFoods();
+  Stream<List<Food>> getFoods();
 }
