@@ -23,10 +23,15 @@ class AddCaloriesView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AddColoriesBloc>(
-          create: (context) => AddColoriesBloc(),
+          create: (context) => AddColoriesBloc(
+            firebaseService: context.read<FirebaseService>(),
+          ),
         ),
         BlocProvider<QuickAddCaloriesFormBloc>(
           create: (context) => QuickAddCaloriesFormBloc(),
+        ),
+        BlocProvider<AddCaloriesFormBloc>(
+          create: (context) => AddCaloriesFormBloc(),
         ),
       ],
       child: BlocConsumer<AddColoriesBloc, AddColoriesState>(
@@ -39,7 +44,27 @@ class AddCaloriesView extends StatelessWidget {
 
           return false;
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.whenOrNull(
+            adding: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Adding...'),
+                ),
+              );
+            },
+            success: () {
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Added'),
+                ),
+              );
+
+              Navigator.pop(context);
+            },
+          );
+        },
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -91,7 +116,64 @@ class AddCaloriesView extends StatelessWidget {
                 return null;
               },
               orElse: () => FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  state.whenOrNull(
+                    quickAddFood: () {
+                      context.read<AddColoriesBloc>().add(
+                            AddColoriesEvent.submit(
+                              servings: 1,
+                              caloriesPerServing: context
+                                  .read<QuickAddCaloriesFormBloc>()
+                                  .calories
+                                  .valueToDouble!,
+                              protein: context
+                                  .read<QuickAddCaloriesFormBloc>()
+                                  .protein
+                                  .valueToDouble,
+                              fat: context
+                                  .read<QuickAddCaloriesFormBloc>()
+                                  .fat
+                                  .valueToDouble,
+                              name: context
+                                  .read<QuickAddCaloriesFormBloc>()
+                                  .title
+                                  .value,
+                              carbs: context
+                                  .read<QuickAddCaloriesFormBloc>()
+                                  .carbs
+                                  .valueToDouble,
+                            ),
+                          );
+                    },
+                    selectFood: (food) {
+                      context.read<AddColoriesBloc>().add(
+                            AddColoriesEvent.submit(
+                              servings: context
+                                  .read<AddCaloriesFormBloc>()
+                                  .servingToAdd
+                                  .valueToDouble!,
+                              caloriesPerServing: context
+                                  .read<AddCaloriesFormBloc>()
+                                  .caloriesPerServing
+                                  .valueToDouble!,
+                              protein: context
+                                  .read<AddCaloriesFormBloc>()
+                                  .protein
+                                  .valueToDouble,
+                              fat: context
+                                  .read<AddCaloriesFormBloc>()
+                                  .fat
+                                  .valueToDouble,
+                              carbs: context
+                                  .read<AddCaloriesFormBloc>()
+                                  .carbs
+                                  .valueToDouble,
+                              food: food,
+                            ),
+                          );
+                    },
+                  );
+                },
                 child: const Icon(FontAwesomeIcons.plus),
               ),
             ),
@@ -121,10 +203,10 @@ class _AddCaloriesBody extends StatelessWidget {
             );
           },
           quickAddFood: () => const _QuickAddCaloriesForm(),
-          selectFood: (food) => BlocProvider<AddCaloriesFormBloc>(
-            create: (context) => AddCaloriesFormBloc(food),
-            child: const _AddCaloriesForm(),
-          ),
+          selectFood: (food) {
+            context.read<AddCaloriesFormBloc>().autoFillWith(food);
+            return const _AddCaloriesForm();
+          },
           initial: () {
             return const _EmptyStateBody();
           },

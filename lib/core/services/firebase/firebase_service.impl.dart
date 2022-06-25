@@ -18,12 +18,23 @@ class FirebaseServiceImpl implements FirebaseService {
                 Food.fromFirestore(snapshot.data()!, snapshot.id),
             toFirestore: (food, _) => food.toJson(),
           );
+  CollectionReference<FoodLog> get _todayFoodLogCollectionRef => _currentUserRef
+      .collection('foodLog')
+      .doc(DateTime.now().toString().split(' ').first.trim())
+      .collection(DateTime.now().day.toString())
+      .withConverter<FoodLog>(
+        fromFirestore: (snapshot, _) =>
+            FoodLog.fromFirestore(snapshot.data()!, snapshot.id),
+        toFirestore: (foodLog, _) => foodLog.toJson(),
+      );
 
   @override
-  void addCalories({
+  Future<void> addCalories({
     required FoodLog foodLog,
-  }) {
-    // TODO: implement addCalories
+  }) async {
+    await _todayFoodLogCollectionRef
+        .add(foodLog)
+        .whenComplete(() => print('${foodLog.name} Added'));
   }
 
   @override
@@ -46,8 +57,14 @@ class FirebaseServiceImpl implements FirebaseService {
   }
 
   @override
-  Future<List<FoodLog>> getTodaysFoodLog() {
-    // TODO: implement getTodaysFoodLog
-    throw UnimplementedError();
+  Stream<List<FoodLog>> getTodaysFoodLog() {
+    final foodLogList = _todayFoodLogCollectionRef.snapshots().map(
+          (event) => event.docs
+              .map(
+                (e) => e.data(),
+              )
+              .toList(),
+        );
+    return foodLogList;
   }
 }

@@ -3,10 +3,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'food_log.freezed.dart';
 part 'food_log.g.dart';
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  explicitToJson: true,
+)
+@Freezed(
+  fromJson: false,
+  toJson: false,
+)
 class FoodLog with _$FoodLog {
   factory FoodLog({
-    required String id,
+    String? id,
     required String name,
     required double caloriesPerServing,
     double? protein,
@@ -20,6 +27,21 @@ class FoodLog with _$FoodLog {
     // required double servingSize,
   }) = _FoodLog;
 
+  FoodLog._();
+
   factory FoodLog.fromJson(Map<String, dynamic> json) =>
       _$FoodLogFromJson(json);
+
+  factory FoodLog.fromFirestore(
+    Map<String, dynamic> json,
+    String id,
+  ) =>
+      _$FoodLogFromJson(
+        json
+          ..addAll(
+            <String, dynamic>{'id': id},
+          ),
+      );
+
+  Map<String, dynamic> toJson() => _$FoodLogToJson(this);
 }

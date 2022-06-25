@@ -1,14 +1,14 @@
 part of 'add_colories_bloc.dart';
 
 class AddCaloriesFormBloc extends FormBloc<String, String> {
-  AddCaloriesFormBloc(this._food) : super(autoValidate: true) {
+  AddCaloriesFormBloc() : super(autoValidate: true) {
     addFieldBlocs(
       fieldBlocs: [
         servingToAdd,
       ],
     );
   }
-  final Food _food;
+  late Food _food;
   late final servingToAdd = TextFieldBloc<double>(
     initialValue: '1.0',
   );
@@ -28,12 +28,13 @@ class AddCaloriesFormBloc extends FormBloc<String, String> {
 
   bool get isModifying => state.contains(caloriesPerServing);
 
-  // void autoFillWith(Food food) {
-  //   fat.updateValue(food.nutrition.fat.toString());
-  //   carbs.updateValue(food.nutrition.carbs.toString());
-  //   protein.updateValue(food.nutrition.protein.toString());
-  //   caloriesPerServing.updateValue(food.nutrition.calories.toString());
-  // }
+  void autoFillWith(Food food) {
+    _food = food;
+    fat.updateValue(food.nutrition.fat.toString());
+    carbs.updateValue(food.nutrition.carbs.toString());
+    protein.updateValue(food.nutrition.protein.toString());
+    caloriesPerServing.updateValue(food.nutrition.calories.toString());
+  }
 
   void modify() {
     addFieldBlocs(

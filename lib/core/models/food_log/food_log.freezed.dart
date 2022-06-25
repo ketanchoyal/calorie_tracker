@@ -14,13 +14,9 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-FoodLog _$FoodLogFromJson(Map<String, dynamic> json) {
-  return _FoodLog.fromJson(json);
-}
-
 /// @nodoc
 mixin _$FoodLog {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get caloriesPerServing => throw _privateConstructorUsedError;
   double? get protein => throw _privateConstructorUsedError;
@@ -31,7 +27,6 @@ mixin _$FoodLog {
       throw _privateConstructorUsedError; //will be the actual serving size eaten,
   double get servingEaten => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FoodLogCopyWith<FoodLog> get copyWith => throw _privateConstructorUsedError;
 }
@@ -41,7 +36,7 @@ abstract class $FoodLogCopyWith<$Res> {
   factory $FoodLogCopyWith(FoodLog value, $Res Function(FoodLog) then) =
       _$FoodLogCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {String? id,
       String name,
       double caloriesPerServing,
       double? protein,
@@ -76,7 +71,7 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -120,7 +115,7 @@ abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
       __$$_FoodLogCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {String? id,
       String name,
       double caloriesPerServing,
       double? protein,
@@ -156,7 +151,7 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -194,10 +189,10 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_FoodLog implements _FoodLog {
+
+class _$_FoodLog extends _FoodLog {
   _$_FoodLog(
-      {required this.id,
+      {this.id,
       required this.name,
       required this.caloriesPerServing,
       this.protein,
@@ -205,13 +200,11 @@ class _$_FoodLog implements _FoodLog {
       this.fat,
       required this.date,
       this.foodReference,
-      required this.servingEaten});
-
-  factory _$_FoodLog.fromJson(Map<String, dynamic> json) =>
-      _$$_FoodLogFromJson(json);
+      required this.servingEaten})
+      : super._();
 
   @override
-  final String id;
+  final String? id;
   @override
   final String name;
   @override
@@ -254,7 +247,6 @@ class _$_FoodLog implements _FoodLog {
                 .equals(other.servingEaten, servingEaten));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -272,16 +264,11 @@ class _$_FoodLog implements _FoodLog {
   @override
   _$$_FoodLogCopyWith<_$_FoodLog> get copyWith =>
       __$$_FoodLogCopyWithImpl<_$_FoodLog>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_FoodLogToJson(this);
-  }
 }
 
-abstract class _FoodLog implements FoodLog {
+abstract class _FoodLog extends FoodLog {
   factory _FoodLog(
-      {required final String id,
+      {final String? id,
       required final String name,
       required final double caloriesPerServing,
       final double? protein,
@@ -290,11 +277,10 @@ abstract class _FoodLog implements FoodLog {
       required final DateTime date,
       final String? foodReference,
       required final double servingEaten}) = _$_FoodLog;
-
-  factory _FoodLog.fromJson(Map<String, dynamic> json) = _$_FoodLog.fromJson;
+  _FoodLog._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

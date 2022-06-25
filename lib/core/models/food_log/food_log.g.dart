@@ -6,8 +6,8 @@ part of 'food_log.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FoodLog _$$_FoodLogFromJson(Map<String, dynamic> json) => _$_FoodLog(
-      id: json['id'] as String,
+FoodLog _$FoodLogFromJson(Map<String, dynamic> json) => FoodLog(
+      id: json['id'] as String?,
       name: json['name'] as String,
       caloriesPerServing: (json['caloriesPerServing'] as num).toDouble(),
       protein: (json['protein'] as num?)?.toDouble(),
@@ -18,8 +18,7 @@ _$_FoodLog _$$_FoodLogFromJson(Map<String, dynamic> json) => _$_FoodLog(
       servingEaten: (json['servingEaten'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_FoodLogToJson(_$_FoodLog instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$FoodLogToJson(FoodLog instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'caloriesPerServing': instance.caloriesPerServing,
