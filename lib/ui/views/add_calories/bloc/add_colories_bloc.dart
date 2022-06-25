@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:calorie_tracker/core/enums/food_type.enum.dart';
 import 'package:calorie_tracker/core/models/food/food.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
@@ -63,8 +64,9 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
         date: DateTime.now(),
         servingEaten: event.servings,
         carbs: event.carbs ?? event.food?.nutrition.carbs,
-        fat: event.carbs ?? event.food?.nutrition.fat,
+        fat: event.fat ?? event.food?.nutrition.fat,
         protein: event.protein ?? event.food?.nutrition.protein,
+        foodType: event.foodType,
         foodReference: event.food != null ? 'food/${event.food!.id}' : null,
       ),
     );

@@ -15,5 +15,6 @@ class AddColoriesEvent with _$AddColoriesEvent {
     double? fat,
     double? carbs,
     double? protein,
+    required FoodType foodType,
   }) = _SubmitEvent;
 }

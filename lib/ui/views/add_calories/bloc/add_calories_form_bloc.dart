@@ -8,6 +8,7 @@ class AddCaloriesFormBloc extends FormBloc<String, String> {
       ],
     );
   }
+  FoodType foodType = FoodType.other;
   late Food _food;
   late final servingToAdd = TextFieldBloc<double>(
     initialValue: '1.0',

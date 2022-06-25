@@ -24,6 +24,10 @@ class _AddCaloriesForm extends StatelessWidget {
               label: 'Servings',
               prefixIcon: FontAwesomeIcons.bowlFood,
             ),
+            const SizedBox(height: 8),
+            FoodTypeSelector(
+              radioButtonValue: (foodType) => formBloc.foodType = foodType,
+            ),
             AnimatedCrossFade(
               firstChild: const SizedBox(),
               secondChild: Column(
@@ -31,7 +35,7 @@ class _AddCaloriesForm extends StatelessWidget {
                   const SizedBox(height: 5),
                   const Divider(),
                   Text(
-                    'This will modify values for just this instance',
+                    'This will modify values for just this instance \n Nutrition per Serving',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.caption,
                   ),

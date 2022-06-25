@@ -1,6 +1,9 @@
 import 'dart:math' as math;
+import 'dart:math';
 
-import 'package:calorie_tracker/core/services/auth/firebase_auth_service.dart';
+import 'package:calorie_tracker/core/enums/food_type.enum.dart';
+import 'package:calorie_tracker/core/models/food_log/food_log.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/ui/utils/shape_border.dart';
 import 'package:calorie_tracker/ui/views/add_calories/add_calories.dart';
 import 'package:calorie_tracker/ui/views/settings/view/settings.view.dart';
@@ -48,18 +51,18 @@ class HomeView extends StatelessWidget {
         firstDate: DateTime.now().subtract(const Duration(days: 140)),
         lastDate: DateTime.now(),
         onSettingsTap: () async {
-          try {
-            await context.read<FirebaseAuthService>().loginAnonmously();
-            print('Login Successful');
-          } catch (e) {
-            print(e);
-          }
-          // Navigator.push(
-          //   context,
-          //   CupertinoPageRoute<void>(
-          //     builder: (context) => const SettingsView(),
-          //   ),
-          // );
+          // try {
+          //   await context.read<FirebaseAuthService>().loginAnonmously();
+          //   print('Login Successful');
+          // } catch (e) {
+          //   print(e);
+          // }
+          await Navigator.push(
+            context,
+            CupertinoPageRoute<void>(
+              builder: (context) => const SettingsView(),
+            ),
+          );
         },
         fullCalendar: true,
       ),
@@ -83,145 +86,127 @@ class HomeView extends StatelessWidget {
           vertical: 130 + MediaQuery.of(context).viewPadding.top,
         ),
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CalorieWidget(
-                calories: '1563',
-                icon: FontAwesomeIcons.bowlRice,
-                iconColor: primaryColor,
-                subtitle: 'EATEN',
-              ),
-              AnimatedRing(
-                centerWidget: const CalorieWidget(
-                  calories: '1563',
-                  icon: FontAwesomeIcons.boltLightning,
-                  subtitle: 'CAL LEFT',
-                ),
-                height: 150,
-                percent: 0.9,
-                strokeWidth: 16,
-                color: primaryColor,
-              ),
-              CalorieWidget(
-                calories: '323',
-                icon: FontAwesomeIcons.fireFlameCurved,
-                iconColor: primaryColor,
-                subtitle: 'BURNED',
-              ),
-            ],
+          StreamBuilder<List<FoodLog>>(
+            stream: context.watch<FirebaseService>().getTodaysFoodLog(),
+            builder: (context, snapshot) {
+              const caloriesGoal = 2300.0;
+              final logList = (snapshot.data ?? []).toSet().toList();
+              var caloriesEaten = 0.0;
+              if (logList.isNotEmpty) {
+                caloriesEaten = logList
+                    .map(
+                      (e) => e.totalCaloriesEaten,
+                    )
+                    .reduce((value, element) => value + element);
+              }
+              final caloriesLeft = caloriesGoal - caloriesEaten;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CalorieWidget(
+                    calories: '$caloriesEaten',
+                    icon: FontAwesomeIcons.bowlRice,
+                    iconColor: primaryColor,
+                    subtitle: 'EATEN',
+                  ),
+                  AnimatedRing(
+                    centerWidget: CalorieWidget(
+                      calories: '$caloriesLeft',
+                      icon: FontAwesomeIcons.boltLightning,
+                      subtitle: 'CAL LEFT',
+                    ),
+                    height: 150,
+                    percent: 0.9,
+                    strokeWidth: 16,
+                    color: primaryColor,
+                  ),
+                  CalorieWidget(
+                    calories: '....',
+                    icon: FontAwesomeIcons.fireFlameCurved,
+                    iconColor: primaryColor,
+                    subtitle: 'BURNED',
+                  ),
+                ],
+              );
+            },
           ),
           const SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              children: [
-                _buildSingleNutrition(
-                  context,
-                  amount: 160,
-                  color: Colors.purple,
-                  nutrition: 'Protein',
-                  isLeftAmount: false,
-                  percent: 0.5,
+          StreamBuilder<List<FoodLog>>(
+            stream: context.watch<FirebaseService>().getTodaysFoodLog(),
+            builder: (context, snapshot) {
+              const proteinGoal = 173.0;
+              const carbsGoal = 265.0;
+              const fatGoals = 77.0;
+              final logList = (snapshot.data ?? []).toSet().toList();
+              var proteinEaten = 0.0;
+              var carbsEaten = 0.0;
+              var fatEaten = 0.0;
+              if (logList.isNotEmpty) {
+                proteinEaten = logList
+                    .map(
+                      (e) => e.totalProtein ?? 0.0,
+                    )
+                    .reduce(
+                      (value, element) => value + element,
+                    );
+                carbsEaten = logList
+                    .map(
+                      (e) => e.totalCarbs ?? 0.0,
+                    )
+                    .reduce(
+                      (value, element) => value + element,
+                    );
+                fatEaten = logList
+                    .map(
+                      (e) => e.totalFat ?? 0.0,
+                    )
+                    .reduce(
+                      (value, element) => value + element,
+                    );
+              }
+              final hadExtraCarbs = carbsEaten > carbsGoal;
+              final hadExtraFat = fatEaten > fatGoals;
+              final hadExtraProtein = proteinEaten > proteinGoal;
+              return Padding(
+                padding: const EdgeInsets.all(15),
+                child: Row(
+                  children: [
+                    _buildSingleNutrition(
+                      context,
+                      amount: proteinEaten,
+                      color: Colors.purple,
+                      nutrition: 'Protein',
+                      isLeftAmount: false,
+                      hadExtra: hadExtraProtein,
+                      percent: min<double>(1, proteinEaten / proteinGoal),
+                    ),
+                    _buildSingleNutrition(
+                      context,
+                      amount: carbsEaten,
+                      color: Colors.greenAccent,
+                      nutrition: 'Carbs',
+                      isLeftAmount: false,
+                      hadExtra: hadExtraCarbs,
+                      percent: min<double>(1, carbsEaten / carbsGoal),
+                    ),
+                    _buildSingleNutrition(
+                      context,
+                      amount: fatEaten,
+                      color: Colors.blueAccent,
+                      nutrition: 'FAT',
+                      hadExtra: hadExtraFat,
+                      isLeftAmount: false,
+                      percent: min<double>(1, fatEaten / fatGoals),
+                    ),
+                  ],
                 ),
-                _buildSingleNutrition(
-                  context,
-                  amount: 120,
-                  color: Colors.greenAccent,
-                  nutrition: 'Carbs',
-                  isLeftAmount: false,
-                  percent: 0.2,
-                ),
-                _buildSingleNutrition(
-                  context,
-                  amount: 80,
-                  color: Colors.blueAccent,
-                  nutrition: 'FAT',
-                  isLeftAmount: false,
-                  percent: 0.9,
-                ),
-              ],
-            ),
+              );
+            },
           ),
           const Divider(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Breakfast',
-                      style: Theme.of(context).textTheme.headline6?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    Text(
-                      '100 Cal',
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).dividerColor,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                // height: 100,
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Eggs',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              '1 Serving',
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: Text(
-                        '100 Cal',
-                        // textAlign: TextAlign.right,
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+          const _DailyFoodLog()
         ],
       ),
     );
@@ -233,6 +218,7 @@ class HomeView extends StatelessWidget {
     required Color color,
     required String nutrition,
     required double amount,
+    required bool hadExtra,
 
     /// is amount provided is amount of left for this nutrition or not
     required bool isLeftAmount,
@@ -277,7 +263,154 @@ class HomeView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: hadExtra ? Theme.of(context).primaryColor : null,
                 ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DailyFoodLog extends StatelessWidget {
+  const _DailyFoodLog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<FoodLog>>(
+      stream: context.watch<FirebaseService>().getTodaysFoodLog(),
+      builder: (context, snapshot) {
+        final logList = snapshot.data ?? [];
+        final foodTypes = logList.map((e) => e.foodType).toSet();
+        return Column(
+          children: foodTypes
+              .map(
+                (e) => _FoodLogView(
+                  foodType: e,
+                  foodLogList: logList,
+                ),
+              )
+              .toList()
+            ..sort((a, b) => a.foodType.sortValue),
+        );
+      },
+    );
+  }
+}
+
+class _FoodLogView extends StatelessWidget {
+  _FoodLogView({
+    super.key,
+    required this.foodType,
+    required List<FoodLog> foodLogList,
+  }) : foodLogList = foodLogList
+            .where((element) => element.foodType == foodType)
+            .toList();
+  final FoodType foodType;
+  final List<FoodLog> foodLogList;
+
+  @override
+  Widget build(BuildContext context) {
+    final totalCalories = foodLogList
+        .map((e) => e.totalCaloriesEaten)
+        .toList()
+        .reduce((value, element) => value + element);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                foodType.displayName,
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              Text(
+                '$totalCalories Cal',
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
+        ),
+        Column(
+          children:
+              foodLogList.map((e) => _SingleFoodLogItem(foodLog: e)).toList(),
+        ),
+      ],
+    );
+  }
+}
+
+class _SingleFoodLogItem extends StatelessWidget {
+  const _SingleFoodLogItem({
+    super.key,
+    required this.foodLog,
+  });
+  final FoodLog foodLog;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Theme.of(context).dividerColor,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      // height: 100,
+      width: double.infinity,
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    foodLog.name,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    '${foodLog.servingEaten} Serving',
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Row(
+              children: [
+                Text(
+                  '${foodLog.caloriesPerServing} Cal/',
+                  // textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                Text(
+                  'Serving',
+                  // textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                        fontWeight: FontWeight.w100,
+                      ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

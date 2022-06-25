@@ -19,6 +19,10 @@ class QuickAddCaloriesFormBloc extends FormBloc<String, String> {
   final carbs = TextFieldBloc<double?>();
   final protein = TextFieldBloc<double?>();
 
+  FoodType _foodType = FoodType.other;
+  FoodType get foodType => _foodType;
+  set foodType(FoodType value) => _foodType = value;
+
   @override
   FutureOr<void> onSubmitting() {}
 }

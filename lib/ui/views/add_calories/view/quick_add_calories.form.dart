@@ -69,6 +69,11 @@ class _QuickAddCaloriesForm extends StatelessWidget {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
             ),
+            const SizedBox(height: 8),
+            FoodTypeSelector(
+              radioButtonValue: (foodType) => formBloc.foodType = foodType,
+            ),
+            const SizedBox(height: 10),
           ],
         ),
       ),

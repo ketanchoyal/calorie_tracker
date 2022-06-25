@@ -1,3 +1,4 @@
+import 'package:calorie_tracker/core/enums/food_type.enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'food_log.freezed.dart';
@@ -16,6 +17,7 @@ class FoodLog with _$FoodLog {
     String? id,
     required String name,
     required double caloriesPerServing,
+    @JsonEnum() @Default(FoodType.other) FoodType foodType,
     double? protein,
     double? carbs,
     double? fat,
@@ -44,4 +46,20 @@ class FoodLog with _$FoodLog {
       );
 
   Map<String, dynamic> toJson() => _$FoodLogToJson(this);
+
+  double get totalCaloriesEaten {
+    return caloriesPerServing * servingEaten;
+  }
+
+  double? get totalProtein {
+    return protein != null ? protein! * servingEaten : null;
+  }
+
+  double? get totalCarbs {
+    return carbs != null ? carbs! * servingEaten : null;
+  }
+
+  double? get totalFat {
+    return fat != null ? fat! * servingEaten : null;
+  }
 }

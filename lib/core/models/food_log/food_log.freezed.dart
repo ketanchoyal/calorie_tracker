@@ -19,6 +19,8 @@ mixin _$FoodLog {
   String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get caloriesPerServing => throw _privateConstructorUsedError;
+  @JsonEnum()
+  FoodType get foodType => throw _privateConstructorUsedError;
   double? get protein => throw _privateConstructorUsedError;
   double? get carbs => throw _privateConstructorUsedError;
   double? get fat => throw _privateConstructorUsedError;
@@ -39,6 +41,7 @@ abstract class $FoodLogCopyWith<$Res> {
       {String? id,
       String name,
       double caloriesPerServing,
+      @JsonEnum() FoodType foodType,
       double? protein,
       double? carbs,
       double? fat,
@@ -60,6 +63,7 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? caloriesPerServing = freezed,
+    Object? foodType = freezed,
     Object? protein = freezed,
     Object? carbs = freezed,
     Object? fat = freezed,
@@ -80,6 +84,10 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
+      foodType: foodType == freezed
+          ? _value.foodType
+          : foodType // ignore: cast_nullable_to_non_nullable
+              as FoodType,
       protein: protein == freezed
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
@@ -118,6 +126,7 @@ abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
       {String? id,
       String name,
       double caloriesPerServing,
+      @JsonEnum() FoodType foodType,
       double? protein,
       double? carbs,
       double? fat,
@@ -140,6 +149,7 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? caloriesPerServing = freezed,
+    Object? foodType = freezed,
     Object? protein = freezed,
     Object? carbs = freezed,
     Object? fat = freezed,
@@ -160,6 +170,10 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
+      foodType: foodType == freezed
+          ? _value.foodType
+          : foodType // ignore: cast_nullable_to_non_nullable
+              as FoodType,
       protein: protein == freezed
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
@@ -195,6 +209,7 @@ class _$_FoodLog extends _FoodLog {
       {this.id,
       required this.name,
       required this.caloriesPerServing,
+      @JsonEnum() this.foodType = FoodType.other,
       this.protein,
       this.carbs,
       this.fat,
@@ -209,6 +224,10 @@ class _$_FoodLog extends _FoodLog {
   final String name;
   @override
   final double caloriesPerServing;
+  @override
+  @JsonKey()
+  @JsonEnum()
+  final FoodType foodType;
   @override
   final double? protein;
   @override
@@ -225,7 +244,7 @@ class _$_FoodLog extends _FoodLog {
 
   @override
   String toString() {
-    return 'FoodLog(id: $id, name: $name, caloriesPerServing: $caloriesPerServing, protein: $protein, carbs: $carbs, fat: $fat, date: $date, foodReference: $foodReference, servingEaten: $servingEaten)';
+    return 'FoodLog(id: $id, name: $name, caloriesPerServing: $caloriesPerServing, foodType: $foodType, protein: $protein, carbs: $carbs, fat: $fat, date: $date, foodReference: $foodReference, servingEaten: $servingEaten)';
   }
 
   @override
@@ -237,6 +256,7 @@ class _$_FoodLog extends _FoodLog {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.caloriesPerServing, caloriesPerServing) &&
+            const DeepCollectionEquality().equals(other.foodType, foodType) &&
             const DeepCollectionEquality().equals(other.protein, protein) &&
             const DeepCollectionEquality().equals(other.carbs, carbs) &&
             const DeepCollectionEquality().equals(other.fat, fat) &&
@@ -253,6 +273,7 @@ class _$_FoodLog extends _FoodLog {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(caloriesPerServing),
+      const DeepCollectionEquality().hash(foodType),
       const DeepCollectionEquality().hash(protein),
       const DeepCollectionEquality().hash(carbs),
       const DeepCollectionEquality().hash(fat),
@@ -271,6 +292,7 @@ abstract class _FoodLog extends FoodLog {
       {final String? id,
       required final String name,
       required final double caloriesPerServing,
+      @JsonEnum() final FoodType foodType,
       final double? protein,
       final double? carbs,
       final double? fat,
@@ -285,6 +307,9 @@ abstract class _FoodLog extends FoodLog {
   String get name => throw _privateConstructorUsedError;
   @override
   double get caloriesPerServing => throw _privateConstructorUsedError;
+  @override
+  @JsonEnum()
+  FoodType get foodType => throw _privateConstructorUsedError;
   @override
   double? get protein => throw _privateConstructorUsedError;
   @override

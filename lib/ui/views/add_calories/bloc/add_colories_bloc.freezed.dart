@@ -28,7 +28,8 @@ mixin _$AddColoriesEvent {
             Food? food,
             double? fat,
             double? carbs,
-            double? protein)
+            double? protein,
+            FoodType foodType)
         submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,8 +38,15 @@ mixin _$AddColoriesEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -47,8 +55,15 @@ mixin _$AddColoriesEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
     required TResult orElse(),
   }) =>
@@ -145,7 +160,8 @@ class _$_Reset implements _Reset {
             Food? food,
             double? fat,
             double? carbs,
-            double? protein)
+            double? protein,
+            FoodType foodType)
         submit,
   }) {
     return reset();
@@ -157,8 +173,15 @@ class _$_Reset implements _Reset {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
   }) {
     return reset?.call();
@@ -170,8 +193,15 @@ class _$_Reset implements _Reset {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
     required TResult orElse(),
   }) {
@@ -307,7 +337,8 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
             Food? food,
             double? fat,
             double? carbs,
-            double? protein)
+            double? protein,
+            FoodType foodType)
         submit,
   }) {
     return selectFood(food);
@@ -319,8 +350,15 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
   }) {
     return selectFood?.call(food);
@@ -332,8 +370,15 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
     required TResult orElse(),
   }) {
@@ -441,7 +486,8 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
             Food? food,
             double? fat,
             double? carbs,
-            double? protein)
+            double? protein,
+            FoodType foodType)
         submit,
   }) {
     return quickAddFood();
@@ -453,8 +499,15 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
   }) {
     return quickAddFood?.call();
@@ -466,8 +519,15 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
     required TResult orElse(),
   }) {
@@ -531,7 +591,8 @@ abstract class _$$_SubmitEventCopyWith<$Res> {
       Food? food,
       double? fat,
       double? carbs,
-      double? protein});
+      double? protein,
+      FoodType foodType});
 
   $FoodCopyWith<$Res>? get food;
 }
@@ -556,6 +617,7 @@ class __$$_SubmitEventCopyWithImpl<$Res>
     Object? fat = freezed,
     Object? carbs = freezed,
     Object? protein = freezed,
+    Object? foodType = freezed,
   }) {
     return _then(_$_SubmitEvent(
       servings: servings == freezed
@@ -586,6 +648,10 @@ class __$$_SubmitEventCopyWithImpl<$Res>
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as double?,
+      foodType: foodType == freezed
+          ? _value.foodType
+          : foodType // ignore: cast_nullable_to_non_nullable
+              as FoodType,
     ));
   }
 
@@ -611,7 +677,8 @@ class _$_SubmitEvent implements _SubmitEvent {
       this.food,
       this.fat,
       this.carbs,
-      this.protein});
+      this.protein,
+      required this.foodType});
 
   @override
   final double servings;
@@ -627,10 +694,12 @@ class _$_SubmitEvent implements _SubmitEvent {
   final double? carbs;
   @override
   final double? protein;
+  @override
+  final FoodType foodType;
 
   @override
   String toString() {
-    return 'AddColoriesEvent.submit(servings: $servings, caloriesPerServing: $caloriesPerServing, name: $name, food: $food, fat: $fat, carbs: $carbs, protein: $protein)';
+    return 'AddColoriesEvent.submit(servings: $servings, caloriesPerServing: $caloriesPerServing, name: $name, food: $food, fat: $fat, carbs: $carbs, protein: $protein, foodType: $foodType)';
   }
 
   @override
@@ -645,7 +714,8 @@ class _$_SubmitEvent implements _SubmitEvent {
             const DeepCollectionEquality().equals(other.food, food) &&
             const DeepCollectionEquality().equals(other.fat, fat) &&
             const DeepCollectionEquality().equals(other.carbs, carbs) &&
-            const DeepCollectionEquality().equals(other.protein, protein));
+            const DeepCollectionEquality().equals(other.protein, protein) &&
+            const DeepCollectionEquality().equals(other.foodType, foodType));
   }
 
   @override
@@ -657,7 +727,8 @@ class _$_SubmitEvent implements _SubmitEvent {
       const DeepCollectionEquality().hash(food),
       const DeepCollectionEquality().hash(fat),
       const DeepCollectionEquality().hash(carbs),
-      const DeepCollectionEquality().hash(protein));
+      const DeepCollectionEquality().hash(protein),
+      const DeepCollectionEquality().hash(foodType));
 
   @JsonKey(ignore: true)
   @override
@@ -677,11 +748,12 @@ class _$_SubmitEvent implements _SubmitEvent {
             Food? food,
             double? fat,
             double? carbs,
-            double? protein)
+            double? protein,
+            FoodType foodType)
         submit,
   }) {
-    return submit(
-        servings, caloriesPerServing, name, food, fat, carbs, protein);
+    return submit(servings, caloriesPerServing, name, food, fat, carbs, protein,
+        foodType);
   }
 
   @override
@@ -690,12 +762,19 @@ class _$_SubmitEvent implements _SubmitEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
   }) {
-    return submit?.call(
-        servings, caloriesPerServing, name, food, fat, carbs, protein);
+    return submit?.call(servings, caloriesPerServing, name, food, fat, carbs,
+        protein, foodType);
   }
 
   @override
@@ -704,14 +783,21 @@ class _$_SubmitEvent implements _SubmitEvent {
     TResult Function()? reset,
     TResult Function(Food food)? selectFood,
     TResult Function()? quickAddFood,
-    TResult Function(double servings, double caloriesPerServing, String? name,
-            Food? food, double? fat, double? carbs, double? protein)?
+    TResult Function(
+            double servings,
+            double caloriesPerServing,
+            String? name,
+            Food? food,
+            double? fat,
+            double? carbs,
+            double? protein,
+            FoodType foodType)?
         submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(
-          servings, caloriesPerServing, name, food, fat, carbs, protein);
+      return submit(servings, caloriesPerServing, name, food, fat, carbs,
+          protein, foodType);
     }
     return orElse();
   }
@@ -762,7 +848,8 @@ abstract class _SubmitEvent implements AddColoriesEvent {
       final Food? food,
       final double? fat,
       final double? carbs,
-      final double? protein}) = _$_SubmitEvent;
+      final double? protein,
+      required final FoodType foodType}) = _$_SubmitEvent;
 
   double get servings => throw _privateConstructorUsedError;
   double get caloriesPerServing => throw _privateConstructorUsedError;
@@ -771,6 +858,7 @@ abstract class _SubmitEvent implements AddColoriesEvent {
   double? get fat => throw _privateConstructorUsedError;
   double? get carbs => throw _privateConstructorUsedError;
   double? get protein => throw _privateConstructorUsedError;
+  FoodType get foodType => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_SubmitEventCopyWith<_$_SubmitEvent> get copyWith =>
       throw _privateConstructorUsedError;

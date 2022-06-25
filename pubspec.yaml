@@ -25,6 +25,7 @@ dependencies:
   freezed_annotation: ^2.0.3
   json_annotation: ^4.5.0
   flutter_settings_ui: ^2.0.1
+  custom_radio_grouped_button: ^2.1.2+2
   drop_down_list:
     path: packages/drop_down_list
 
