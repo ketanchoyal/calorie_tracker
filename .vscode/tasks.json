@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"${workspaceFolder}/.vscode/flutter_web_deploy.sh",
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"label": "flutter firebase Deploy web",
+			"detail": ""
+		}
+	]
+}
