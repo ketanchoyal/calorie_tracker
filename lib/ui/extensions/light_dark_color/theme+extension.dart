@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show Brightness, BuildContext, Theme;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'theme.extension.freezed.dart';
+part 'theme+extension.freezed.dart';
 
 @freezed
 class _ThemeColor with _$_ThemeColor {

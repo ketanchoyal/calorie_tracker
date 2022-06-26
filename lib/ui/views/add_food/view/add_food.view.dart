@@ -1,7 +1,7 @@
 // ignore_for_file: unused_element
 
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
-import 'package:calorie_tracker/ui/extensions/light_dark_color/theme.extension.dart';
+import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.dart';
 import 'package:calorie_tracker/ui/views/add_food/bloc/add_food_form_bloc.dart';
 import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
 import 'package:flutter/material.dart';

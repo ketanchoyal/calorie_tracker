@@ -2,7 +2,7 @@
 
 import 'package:calorie_tracker/core/models/food/food.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
-import 'package:calorie_tracker/ui/extensions/light_dark_color/theme.extension.dart';
+import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.dart';
 import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
 import 'package:calorie_tracker/ui/widgets/foodTypeSelector.widget.dart';

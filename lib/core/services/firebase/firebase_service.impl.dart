@@ -18,21 +18,20 @@ class FirebaseServiceImpl implements FirebaseService {
                 Food.fromFirestore(snapshot.data()!, snapshot.id),
             toFirestore: (food, _) => food.toJson(),
           );
-  CollectionReference<FoodLog> get _todayFoodLogCollectionRef => _currentUserRef
-      .collection('foodLog')
-      .doc(DateTime.now().toString().split(' ').first.trim())
-      .collection(DateTime.now().day.toString())
-      .withConverter<FoodLog>(
-        fromFirestore: (snapshot, _) =>
-            FoodLog.fromFirestore(snapshot.data()!, snapshot.id),
-        toFirestore: (foodLog, _) => foodLog.toJson(),
-      );
+  CollectionReference<FoodLog> _foodLogCollectionRef(DateTime date) =>
+      _currentUserRef
+          .collection('foodLog')
+          .doc(date.toString().split(' ').first.trim())
+          .collection(DateTime.now().day.toString())
+          .withConverter<FoodLog>(
+            fromFirestore: (snapshot, _) =>
+                FoodLog.fromFirestore(snapshot.data()!, snapshot.id),
+            toFirestore: (foodLog, _) => foodLog.toJson(),
+          );
 
   @override
-  Future<void> addCalories({
-    required FoodLog foodLog,
-  }) async {
-    await _todayFoodLogCollectionRef
+  Future<void> addCalories({required FoodLog foodLog, DateTime? date}) async {
+    await _foodLogCollectionRef(date ?? DateTime.now())
         .add(foodLog)
         .whenComplete(() => print('${foodLog.name} Added'));
   }
@@ -57,8 +56,8 @@ class FirebaseServiceImpl implements FirebaseService {
   }
 
   @override
-  Stream<List<FoodLog>> getTodaysFoodLog() {
-    final foodLogList = _todayFoodLogCollectionRef.snapshots().map(
+  Stream<List<FoodLog>> getFoodLog(DateTime date) {
+    final foodLogList = _foodLogCollectionRef(date).snapshots().map(
           (event) => event.docs
               .map(
                 (e) => e.data(),

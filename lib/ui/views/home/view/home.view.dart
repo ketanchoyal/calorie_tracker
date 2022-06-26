@@ -5,8 +5,10 @@ import 'package:calorie_tracker/core/enums/food_type.enum.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/ui/extensions/double+extension.dart';
+import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.dart';
 import 'package:calorie_tracker/ui/utils/shape_border.dart';
 import 'package:calorie_tracker/ui/views/add_calories/add_calories.dart';
+import 'package:calorie_tracker/ui/views/home/bloc/home_bloc.dart';
 import 'package:calorie_tracker/ui/views/settings/view/settings.view.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,181 +42,196 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).brightness == Brightness.light
-        ? Theme.of(context).primaryColor
-        : Theme.of(context).primaryColorDark;
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: CalendarAppBar(
-        onDateChanged: print,
-        accent: primaryColor,
-        backButton: false,
-        firstDate: DateTime.now().subtract(const Duration(days: 140)),
-        lastDate: DateTime.now(),
-        onSettingsTap: () async {
-          // try {
-          //   await context.read<FirebaseAuthService>().loginAnonmously();
-          //   print('Login Successful');
-          // } catch (e) {
-          //   print(e);
-          // }
-          await Navigator.push(
-            context,
-            CupertinoPageRoute<void>(
-              builder: (context) => const SettingsView(),
+    final primaryColor = context.color.when(
+      light: () => Theme.of(context).primaryColor,
+      dark: () => Theme.of(context).primaryColorDark,
+    );
+
+    return BlocProvider<HomeBloc>(
+      create: (context) => HomeBloc(),
+      child: BlocBuilder<HomeBloc, DateTime>(
+        builder: (context, state) {
+          return Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: CalendarAppBar(
+              onDateChanged: (date) {
+                context.read<HomeBloc>().emit(date);
+              },
+              accent: primaryColor,
+              backButton: false,
+              firstDate: DateTime.now().subtract(const Duration(days: 140)),
+              lastDate: DateTime.now(),
+              onSettingsTap: () async {
+                // try {
+                //   await context.read<FirebaseAuthService>().loginAnonmously();
+                //   print('Login Successful');
+                // } catch (e) {
+                //   print(e);
+                // }
+                await Navigator.push(
+                  context,
+                  CupertinoPageRoute<void>(
+                    builder: (context) => const SettingsView(),
+                  ),
+                );
+              },
+              fullCalendar: true,
             ),
-          );
-        },
-        fullCalendar: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            CupertinoPageRoute<void>(
-              builder: (context) => const AddCaloriesView(),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute<void>(
+                    builder: (context) => const AddCaloriesView(),
+                  ),
+                );
+              },
+              backgroundColor: primaryColor,
+              child: const Icon(
+                FontAwesomeIcons.qrcode,
+                color: Colors.white,
+              ),
             ),
-          );
-        },
-        backgroundColor: primaryColor,
-        child: const Icon(
-          FontAwesomeIcons.qrcode,
-          color: Colors.white,
-        ),
-      ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-          vertical: 130 + MediaQuery.of(context).viewPadding.top,
-        ),
-        children: [
-          StreamBuilder<List<FoodLog>>(
-            stream: context.watch<FirebaseService>().getTodaysFoodLog(),
-            builder: (context, snapshot) {
-              const caloriesGoal = 2300.0;
-              final logList = (snapshot.data ?? []).toSet().toList();
-              var caloriesEaten = 0.0;
-              if (logList.isNotEmpty) {
-                caloriesEaten = logList
-                    .map(
-                      (e) => e.totalCaloriesEaten,
-                    )
-                    .reduce((value, element) => value + element);
-              }
-              final caloriesLeft = caloriesGoal - caloriesEaten;
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CalorieWidget(
-                    calories: '$caloriesEaten',
-                    icon: FontAwesomeIcons.bowlRice,
-                    iconColor: primaryColor,
-                    subtitle: 'EATEN',
-                  ),
-                  AnimatedRing(
-                    centerWidget: CalorieWidget(
-                      calories: '$caloriesLeft',
-                      icon: FontAwesomeIcons.boltLightning,
-                      subtitle: 'CAL LEFT',
-                    ),
-                    height: 150,
-                    percent: min<double>(
-                      1,
-                      (caloriesLeft / caloriesGoal).toDoubleAsFixed(2),
-                    ),
-                    strokeWidth: 16,
-                    color: primaryColor,
-                  ),
-                  CalorieWidget(
-                    calories: '....',
-                    icon: FontAwesomeIcons.fireFlameCurved,
-                    iconColor: primaryColor,
-                    subtitle: 'BURNED',
-                  ),
-                ],
-              );
-            },
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          StreamBuilder<List<FoodLog>>(
-            stream: context.watch<FirebaseService>().getTodaysFoodLog(),
-            builder: (context, snapshot) {
-              const proteinGoal = 173.0;
-              const carbsGoal = 265.0;
-              const fatGoals = 77.0;
-              final logList = (snapshot.data ?? []).toSet().toList();
-              var proteinEaten = 0.0;
-              var carbsEaten = 0.0;
-              var fatEaten = 0.0;
-              if (logList.isNotEmpty) {
-                proteinEaten = logList
-                    .map(
-                      (e) => e.totalProtein ?? 0.0,
-                    )
-                    .reduce(
-                      (value, element) => value + element,
+            body: ListView(
+              padding: EdgeInsets.symmetric(
+                vertical: 130 + MediaQuery.of(context).viewPadding.top,
+              ),
+              children: [
+                StreamBuilder<List<FoodLog>>(
+                  stream: context.watch<FirebaseService>().getFoodLog(state),
+                  builder: (context, snapshot) {
+                    const caloriesGoal = 2300.0;
+                    final logList = (snapshot.data ?? []).toSet().toList();
+                    var caloriesEaten = 0.0;
+                    if (logList.isNotEmpty) {
+                      caloriesEaten = logList
+                          .map(
+                            (e) => e.totalCaloriesEaten,
+                          )
+                          .reduce((value, element) => value + element);
+                    }
+                    final caloriesLeft = caloriesGoal - caloriesEaten;
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: CalorieWidget(
+                            calories: '${caloriesEaten.toDoubleAsFixed(2)}',
+                            icon: FontAwesomeIcons.bowlRice,
+                            iconColor: primaryColor,
+                            subtitle: 'EATEN',
+                          ),
+                        ),
+                        AnimatedRing(
+                          centerWidget: CalorieWidget(
+                            calories: '${caloriesLeft.toDoubleAsFixed(2)}',
+                            icon: FontAwesomeIcons.boltLightning,
+                            subtitle: 'CAL LEFT',
+                          ),
+                          height: 150,
+                          percent: min<double>(
+                            1,
+                            (caloriesLeft / caloriesGoal).toDoubleAsFixed(2),
+                          ),
+                          strokeWidth: 16,
+                          color: primaryColor,
+                        ),
+                        Expanded(
+                          child: CalorieWidget(
+                            calories: '....',
+                            icon: FontAwesomeIcons.fireFlameCurved,
+                            iconColor: primaryColor,
+                            subtitle: 'BURNED',
+                          ),
+                        ),
+                      ],
                     );
-                carbsEaten = logList
-                    .map(
-                      (e) => e.totalCarbs ?? 0.0,
-                    )
-                    .reduce(
-                      (value, element) => value + element,
-                    );
-                fatEaten = logList
-                    .map(
-                      (e) => e.totalFat ?? 0.0,
-                    )
-                    .reduce(
-                      (value, element) => value + element,
-                    );
-              }
-              final hadExtraCarbs = carbsEaten > carbsGoal;
-              final hadExtraFat = fatEaten > fatGoals;
-              final hadExtraProtein = proteinEaten > proteinGoal;
-              return Padding(
-                padding: const EdgeInsets.all(15),
-                child: Row(
-                  children: [
-                    _buildSingleNutrition(
-                      context,
-                      amount: proteinEaten,
-                      color: Colors.purple,
-                      nutrition: 'Protein',
-                      isLeftAmount: false,
-                      hadExtra: hadExtraProtein,
-                      percent: min<double>(1, proteinEaten / proteinGoal)
-                          .toDoubleAsFixed(2),
-                    ),
-                    _buildSingleNutrition(
-                      context,
-                      amount: carbsEaten,
-                      color: Colors.greenAccent,
-                      nutrition: 'Carbs',
-                      isLeftAmount: false,
-                      hadExtra: hadExtraCarbs,
-                      percent: min<double>(1, carbsEaten / carbsGoal)
-                          .toDoubleAsFixed(2),
-                    ),
-                    _buildSingleNutrition(
-                      context,
-                      amount: fatEaten,
-                      color: Colors.blueAccent,
-                      nutrition: 'FAT',
-                      hadExtra: hadExtraFat,
-                      isLeftAmount: false,
-                      percent: min<double>(1, fatEaten / fatGoals)
-                          .toDoubleAsFixed(2),
-                    ),
-                  ],
+                  },
                 ),
-              );
-            },
-          ),
-          const Divider(),
-          const _DailyFoodLog()
-        ],
+                const SizedBox(
+                  height: 10,
+                ),
+                StreamBuilder<List<FoodLog>>(
+                  stream: context.watch<FirebaseService>().getFoodLog(state),
+                  builder: (context, snapshot) {
+                    const proteinGoal = 173.0;
+                    const carbsGoal = 265.0;
+                    const fatGoals = 77.0;
+                    final logList = (snapshot.data ?? []).toSet().toList();
+                    var proteinEaten = 0.0;
+                    var carbsEaten = 0.0;
+                    var fatEaten = 0.0;
+                    if (logList.isNotEmpty) {
+                      proteinEaten = logList
+                          .map(
+                            (e) => e.totalProtein ?? 0.0,
+                          )
+                          .reduce(
+                            (value, element) => value + element,
+                          );
+                      carbsEaten = logList
+                          .map(
+                            (e) => e.totalCarbs ?? 0.0,
+                          )
+                          .reduce(
+                            (value, element) => value + element,
+                          );
+                      fatEaten = logList
+                          .map(
+                            (e) => e.totalFat ?? 0.0,
+                          )
+                          .reduce(
+                            (value, element) => value + element,
+                          );
+                    }
+                    final hadExtraCarbs = carbsEaten > carbsGoal;
+                    final hadExtraFat = fatEaten > fatGoals;
+                    final hadExtraProtein = proteinEaten > proteinGoal;
+                    return Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Row(
+                        children: [
+                          _buildSingleNutrition(
+                            context,
+                            amount: proteinEaten,
+                            color: Colors.purple,
+                            nutrition: 'Protein',
+                            isLeftAmount: false,
+                            hadExtra: hadExtraProtein,
+                            percent: min<double>(1, proteinEaten / proteinGoal)
+                                .toDoubleAsFixed(2),
+                          ),
+                          _buildSingleNutrition(
+                            context,
+                            amount: carbsEaten,
+                            color: Colors.greenAccent,
+                            nutrition: 'Carbs',
+                            isLeftAmount: false,
+                            hadExtra: hadExtraCarbs,
+                            percent: min<double>(1, carbsEaten / carbsGoal)
+                                .toDoubleAsFixed(2),
+                          ),
+                          _buildSingleNutrition(
+                            context,
+                            amount: fatEaten,
+                            color: Colors.blueAccent,
+                            nutrition: 'FAT',
+                            hadExtra: hadExtraFat,
+                            isLeftAmount: false,
+                            percent: min<double>(1, fatEaten / fatGoals)
+                                .toDoubleAsFixed(2),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                const Divider(),
+                const _DailyFoodLog()
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -284,8 +301,9 @@ class _DailyFoodLog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final date = context.watch<HomeBloc>().state;
     return StreamBuilder<List<FoodLog>>(
-      stream: context.watch<FirebaseService>().getTodaysFoodLog(),
+      stream: context.watch<FirebaseService>().getFoodLog(date),
       builder: (context, snapshot) {
         final logList = snapshot.data ?? [];
         final foodTypes = logList.map((e) => e.foodType).toSet();
