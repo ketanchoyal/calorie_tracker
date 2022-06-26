@@ -49,6 +49,8 @@ class AddFoodFormBloc extends FormBloc<String, String> {
       Food(
         name: name.value,
         dateTime: DateTime.now(),
+        notes: notes.value,
+        description: description.value,
         nutrition: Nutrition(
           calories: caloriesPerServing.valueToDouble!,
           carbs: carbs.valueToDouble,

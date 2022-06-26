@@ -193,7 +193,7 @@ class HomeView extends StatelessWidget {
                         children: [
                           _buildSingleNutrition(
                             context,
-                            amount: proteinEaten,
+                            amount: proteinEaten.toDoubleAsFixed(2),
                             color: Colors.purple,
                             nutrition: 'Protein',
                             isLeftAmount: false,
@@ -203,7 +203,7 @@ class HomeView extends StatelessWidget {
                           ),
                           _buildSingleNutrition(
                             context,
-                            amount: carbsEaten,
+                            amount: carbsEaten.toDoubleAsFixed(2),
                             color: Colors.greenAccent,
                             nutrition: 'Carbs',
                             isLeftAmount: false,
@@ -213,7 +213,7 @@ class HomeView extends StatelessWidget {
                           ),
                           _buildSingleNutrition(
                             context,
-                            amount: fatEaten,
+                            amount: fatEaten.toDoubleAsFixed(2),
                             color: Colors.blueAccent,
                             nutrition: 'FAT',
                             hadExtra: hadExtraFat,
@@ -355,7 +355,7 @@ class _FoodLogView extends StatelessWidget {
                     ),
               ),
               Text(
-                '$totalCalories Cal',
+                '${totalCalories.toDoubleAsFixed(2)} Cal',
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
