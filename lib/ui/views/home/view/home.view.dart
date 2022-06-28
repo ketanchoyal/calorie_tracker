@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:calorie_tracker/core/enums/food_type.enum.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
 import 'package:openfoodfacts/utils/CountryHelper.dart';
+import 'package:swipeable_tile/swipeable_tile.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -48,7 +50,9 @@ class HomeView extends StatelessWidget {
     );
 
     return BlocProvider<HomeBloc>(
-      create: (context) => HomeBloc(),
+      create: (context) => HomeBloc(
+        firebaseService: context.read<FirebaseService>(),
+      ),
       child: BlocBuilder<HomeBloc, DateTime>(
         builder: (context, state) {
           return Scaffold(
@@ -193,7 +197,7 @@ class HomeView extends StatelessWidget {
                         children: [
                           _buildSingleNutrition(
                             context,
-                            amount: proteinEaten.toDoubleAsFixed(2),
+                            amount: proteinEaten.toStringAsFixed(2),
                             color: Colors.purple,
                             nutrition: 'Protein',
                             isLeftAmount: false,
@@ -203,7 +207,7 @@ class HomeView extends StatelessWidget {
                           ),
                           _buildSingleNutrition(
                             context,
-                            amount: carbsEaten.toDoubleAsFixed(2),
+                            amount: carbsEaten.toStringAsFixed(2),
                             color: Colors.greenAccent,
                             nutrition: 'Carbs',
                             isLeftAmount: false,
@@ -213,7 +217,7 @@ class HomeView extends StatelessWidget {
                           ),
                           _buildSingleNutrition(
                             context,
-                            amount: fatEaten.toDoubleAsFixed(2),
+                            amount: fatEaten.toStringAsFixed(2),
                             color: Colors.blueAccent,
                             nutrition: 'FAT',
                             hadExtra: hadExtraFat,
@@ -241,7 +245,7 @@ class HomeView extends StatelessWidget {
     required double percent,
     required Color color,
     required String nutrition,
-    required double amount,
+    required String amount,
     required bool hadExtra,
 
     /// is amount provided is amount of left for this nutrition or not
@@ -382,42 +386,108 @@ class _SingleFoodLogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isExpanded = false;
-    return StatefulBuilder(
-      builder: (BuildContext context, setState) {
-        return Container(
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Theme.of(context).dividerColor,
+    return SwipeableTile.card(
+      swipeThreshold: 0.2,
+      borderRadius: 10,
+      shadow: BoxShadow(
+        color: Colors.black.withOpacity(0.1),
+      ),
+      horizontalPadding: 8,
+      verticalPadding: 8,
+      color: Theme.of(context).canvasColor,
+      direction: SwipeDirection.horizontal,
+      confirmSwipe: (direction) async {
+        if (direction == SwipeDirection.endToStart) {
+          return showConfirmationDialog<bool>(
+            context: context,
+            title: 'Are you sure you want to delete this food log?',
+            okLabel: 'Delete',
+            actions: [const AlertDialogAction(key: true, label: 'Delete')],
+          );
+        }
+        return null;
+      },
+      onSwiped: (direction) {
+        if (direction == SwipeDirection.endToStart) {
+          //Delete Here
+          context.read<HomeBloc>().deleteLog(foodLog.id!);
+        }
+      },
+      backgroundBuilder: (context, direction, progress) {
+        if (direction == SwipeDirection.endToStart) {
+          return Row(
+            children: const [
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.delete_forever_rounded,
+                  color: Colors.red,
+                  size: 30,
+                ),
+              ),
+            ],
+          );
+        } else if (direction == SwipeDirection.startToEnd) {
+          // return your widget
+        }
+        return Container();
+      },
+      key: UniqueKey(),
+      child: StatefulBuilder(
+        builder: (BuildContext context, setState) {
+          return Container(
+            // margin: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Theme.of(context).dividerColor,
+              ),
+              borderRadius: BorderRadius.circular(10),
             ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          // height: 100,
-          width: double.infinity,
-          child: InkWell(
-            radius: 10,
-            borderRadius: BorderRadius.circular(10),
-            onTap: () {
-              setState(() {
-                isExpanded = !isExpanded;
-              });
-            },
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: 12,
-                          left: 12,
-                          bottom: isExpanded ? 8 : 12,
+            width: double.infinity,
+            child: InkWell(
+              radius: 10,
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 300),
+                          padding: EdgeInsets.only(
+                            top: 12,
+                            left: 12,
+                            bottom: isExpanded ? 8 : 12,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                foodLog.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Row(
                           children: [
                             Text(
-                              foodLog.name,
+                              '${foodLog.caloriesPerServing} Cal',
+                              // textAlign: TextAlign.right,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6
@@ -425,140 +495,139 @@ class _SingleFoodLogItem extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
+                            Text(
+                              ' x ${foodLog.servingEaten}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle2
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: Row(
+                    ],
+                  ),
+                  AnimatedCrossFade(
+                    duration: const Duration(milliseconds: 300),
+                    crossFadeState: isExpanded
+                        ? CrossFadeState.showSecond
+                        : CrossFadeState.showFirst,
+                    firstChild: Container(),
+                    secondChild: Padding(
+                      padding: const EdgeInsets.only(left: 12, bottom: 10),
+                      child: Column(
                         children: [
-                          Text(
-                            '${foodLog.caloriesPerServing} Cal',
-                            // textAlign: TextAlign.right,
-                            style:
-                                Theme.of(context).textTheme.headline6?.copyWith(
+                          Row(
+                            children: [
+                              Text(
+                                'Protein : '.toUpperCase(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
+                              ),
+                              Text(
+                                '${foodLog.protein} g',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                ' x ${foodLog.servingEaten}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            ' x ${foodLog.servingEaten}',
-                            style:
-                                Theme.of(context).textTheme.subtitle2?.copyWith(
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Carbs : '.toUpperCase(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
+                              ),
+                              Text(
+                                '${foodLog.carbs} g',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                ' x ${foodLog.servingEaten}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Fat : '.toUpperCase(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                '${foodLog.fat} g',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                ' x ${foodLog.servingEaten}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-                if (isExpanded)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12, bottom: 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              'Protein : '.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              '${foodLog.protein} g',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              ' x ${foodLog.servingEaten}',
-                              style:
-                                  Theme.of(context).textTheme.caption?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Carbs : '.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              '${foodLog.carbs} g',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              ' x ${foodLog.servingEaten}',
-                              style:
-                                  Theme.of(context).textTheme.caption?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Fat : '.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              '${foodLog.fat} g',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              ' x ${foodLog.servingEaten}',
-                              style:
-                                  Theme.of(context).textTheme.caption?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
                   ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

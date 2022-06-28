@@ -13,4 +13,6 @@ abstract class FirebaseService {
   Stream<List<FoodLog>> getFoodLog(DateTime date);
 
   Stream<List<Food>> getFoods();
+
+  Future<void> deleteFoodLog({required String id, required DateTime date});
 }
