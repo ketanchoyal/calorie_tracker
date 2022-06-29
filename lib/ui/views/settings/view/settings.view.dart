@@ -1,6 +1,8 @@
+import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:calorie_tracker/ui/views/add_food/view/add_food.view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 
 class SettingsView extends StatelessWidget {
@@ -55,6 +57,15 @@ class _SettingsBody extends StatelessWidget {
           title: 'General',
           titleTextStyle: Theme.of(context).textTheme.subtitle1,
           tiles: [
+            SettingsTile(
+              title: 'Request HealthKit Access',
+              iosChevron: const Icon(Icons.chevron_right),
+              leading: const Icon(Icons.health_and_safety_rounded),
+              onPressed: (context) {
+                RepositoryProvider.of<HealthService>(context)
+                    .requestAuthorization();
+              },
+            ),
             SettingsTile.switchTile(
               title: 'Theme',
               subtitle: Theme.of(context).brightness == Brightness.light

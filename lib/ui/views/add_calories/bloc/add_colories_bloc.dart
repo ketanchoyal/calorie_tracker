@@ -62,6 +62,11 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
         name: event.name ?? event.food!.name,
         caloriesPerServing: event.caloriesPerServing,
         date: DateTime.now(),
+        foodLogDate: DateTime(
+          event.foodLogDate.year,
+          event.foodLogDate.month,
+          event.foodLogDate.day,
+        ),
         servingEaten: event.servings,
         carbs: event.carbs ?? event.food?.nutrition.carbs,
         fat: event.fat ?? event.food?.nutrition.fat,
@@ -69,6 +74,7 @@ class AddColoriesBloc extends Bloc<AddColoriesEvent, AddColoriesState> {
         foodType: event.foodType,
         foodReference: event.food != null ? 'food/${event.food!.id}' : null,
       ),
+      foodLogDate: event.foodLogDate,
     );
     emit(const AddColoriesState.success());
   }

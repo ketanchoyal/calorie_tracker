@@ -17,7 +17,8 @@ part 'add_calories.form.dart';
 part 'quick_add_calories.form.dart';
 
 class AddCaloriesView extends StatelessWidget {
-  const AddCaloriesView({super.key});
+  const AddCaloriesView({super.key, required this.date});
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +126,7 @@ class AddCaloriesView extends StatelessWidget {
                       context.read<AddColoriesBloc>().add(
                             AddColoriesEvent.submit(
                               servings: 1,
+                              foodLogDate: date,
                               foodType: bloc.foodType,
                               caloriesPerServing: bloc.calories.valueToDouble!,
                               protein: bloc.protein.valueToDouble,
@@ -139,6 +141,7 @@ class AddCaloriesView extends StatelessWidget {
                       context.read<AddColoriesBloc>().add(
                             AddColoriesEvent.submit(
                               foodType: bloc.foodType,
+                              foodLogDate: date,
                               servings: bloc.servingToAdd.valueToDouble!,
                               caloriesPerServing:
                                   bloc.caloriesPerServing.valueToDouble!,

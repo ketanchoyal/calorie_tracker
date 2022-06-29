@@ -52,5 +52,9 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>We neeed it to read data broo</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We need it add your data broo</string>
 </dict>
 </plist>

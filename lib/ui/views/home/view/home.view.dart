@@ -1,27 +1,7 @@
-import 'dart:math' as math;
-import 'dart:math';
+part of 'home.page.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:calorie_tracker/core/enums/food_type.enum.dart';
-import 'package:calorie_tracker/core/models/food_log/food_log.dart';
-import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
-import 'package:calorie_tracker/ui/extensions/double+extension.dart';
-import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.dart';
-import 'package:calorie_tracker/ui/utils/shape_border.dart';
-import 'package:calorie_tracker/ui/views/add_calories/add_calories.dart';
-import 'package:calorie_tracker/ui/views/home/bloc/home_bloc.dart';
-import 'package:calorie_tracker/ui/views/settings/view/settings.view.dart';
-import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:openfoodfacts/openfoodfacts.dart';
-import 'package:openfoodfacts/utils/CountryHelper.dart';
-import 'package:swipeable_tile/swipeable_tile.dart';
-
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class _HomeView extends StatelessWidget {
+  const _HomeView({super.key});
 
   Future<Product?> getProduct() async {
     const barcode = '064420000774';
@@ -49,193 +29,168 @@ class HomeView extends StatelessWidget {
       dark: () => Theme.of(context).primaryColorDark,
     );
 
-    return BlocProvider<HomeBloc>(
-      create: (context) => HomeBloc(
-        firebaseService: context.read<FirebaseService>(),
-      ),
-      child: BlocBuilder<HomeBloc, DateTime>(
-        builder: (context, state) {
-          return Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: CalendarAppBar(
-              onDateChanged: (date) {
-                context.read<HomeBloc>().emit(date);
-              },
-              accent: primaryColor,
-              backButton: false,
-              firstDate: DateTime.now().subtract(const Duration(days: 140)),
-              lastDate: DateTime.now(),
-              onSettingsTap: () async {
-                // try {
-                //   await context.read<FirebaseAuthService>().loginAnonmously();
-                //   print('Login Successful');
-                // } catch (e) {
-                //   print(e);
-                // }
-                await Navigator.push(
-                  context,
-                  CupertinoPageRoute<void>(
-                    builder: (context) => const SettingsView(),
-                  ),
-                );
-              },
-              fullCalendar: true,
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute<void>(
-                    builder: (context) => const AddCaloriesView(),
-                  ),
-                );
-              },
-              backgroundColor: primaryColor,
-              child: const Icon(
-                FontAwesomeIcons.qrcode,
-                color: Colors.white,
-              ),
-            ),
-            body: ListView(
-              padding: EdgeInsets.symmetric(
-                vertical: 130 + MediaQuery.of(context).viewPadding.top,
-              ),
-              children: [
-                StreamBuilder<List<FoodLog>>(
-                  stream: context.watch<FirebaseService>().getFoodLog(state),
-                  builder: (context, snapshot) {
-                    const caloriesGoal = 2300.0;
-                    final logList = (snapshot.data ?? []).toSet().toList();
-                    var caloriesEaten = 0.0;
-                    if (logList.isNotEmpty) {
-                      caloriesEaten = logList
-                          .map(
-                            (e) => e.totalCaloriesEaten,
-                          )
-                          .reduce((value, element) => value + element);
-                    }
-                    final caloriesLeft = caloriesGoal - caloriesEaten;
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: CalorieWidget(
-                            calories: '${caloriesEaten.toDoubleAsFixed(2)}',
-                            icon: FontAwesomeIcons.bowlRice,
-                            iconColor: primaryColor,
-                            subtitle: 'EATEN',
-                          ),
-                        ),
-                        AnimatedRing(
-                          centerWidget: CalorieWidget(
-                            calories: '${caloriesLeft.toDoubleAsFixed(2)}',
-                            icon: FontAwesomeIcons.boltLightning,
-                            subtitle: 'CAL LEFT',
-                          ),
-                          height: 150,
-                          percent: min<double>(
-                            1,
-                            (caloriesLeft / caloriesGoal).toDoubleAsFixed(2),
-                          ),
-                          strokeWidth: 16,
-                          color: primaryColor,
-                        ),
-                        Expanded(
-                          child: CalorieWidget(
-                            calories: '....',
-                            icon: FontAwesomeIcons.fireFlameCurved,
-                            iconColor: primaryColor,
-                            subtitle: 'BURNED',
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                StreamBuilder<List<FoodLog>>(
-                  stream: context.watch<FirebaseService>().getFoodLog(state),
-                  builder: (context, snapshot) {
-                    const proteinGoal = 173.0;
-                    const carbsGoal = 265.0;
-                    const fatGoals = 77.0;
-                    final logList = (snapshot.data ?? []).toSet().toList();
-                    var proteinEaten = 0.0;
-                    var carbsEaten = 0.0;
-                    var fatEaten = 0.0;
-                    if (logList.isNotEmpty) {
-                      proteinEaten = logList
-                          .map(
-                            (e) => e.totalProtein ?? 0.0,
-                          )
-                          .reduce(
-                            (value, element) => value + element,
-                          );
-                      carbsEaten = logList
-                          .map(
-                            (e) => e.totalCarbs ?? 0.0,
-                          )
-                          .reduce(
-                            (value, element) => value + element,
-                          );
-                      fatEaten = logList
-                          .map(
-                            (e) => e.totalFat ?? 0.0,
-                          )
-                          .reduce(
-                            (value, element) => value + element,
-                          );
-                    }
-                    final hadExtraCarbs = carbsEaten > carbsGoal;
-                    final hadExtraFat = fatEaten > fatGoals;
-                    final hadExtraProtein = proteinEaten > proteinGoal;
-                    return Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
-                        children: [
-                          _buildSingleNutrition(
-                            context,
-                            amount: proteinEaten.toStringAsFixed(2),
-                            color: Colors.purple,
-                            nutrition: 'Protein',
-                            isLeftAmount: false,
-                            hadExtra: hadExtraProtein,
-                            percent: min<double>(1, proteinEaten / proteinGoal)
-                                .toDoubleAsFixed(2),
-                          ),
-                          _buildSingleNutrition(
-                            context,
-                            amount: carbsEaten.toStringAsFixed(2),
-                            color: Colors.greenAccent,
-                            nutrition: 'Carbs',
-                            isLeftAmount: false,
-                            hadExtra: hadExtraCarbs,
-                            percent: min<double>(1, carbsEaten / carbsGoal)
-                                .toDoubleAsFixed(2),
-                          ),
-                          _buildSingleNutrition(
-                            context,
-                            amount: fatEaten.toStringAsFixed(2),
-                            color: Colors.blueAccent,
-                            nutrition: 'FAT',
-                            hadExtra: hadExtraFat,
-                            isLeftAmount: false,
-                            percent: min<double>(1, fatEaten / fatGoals)
-                                .toDoubleAsFixed(2),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                const Divider(),
-                const _DailyFoodLog()
-              ],
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: CalendarAppBar(
+        onDateChanged: (date) {
+          context.read<HomeBloc>().add(
+                SomeOtherDateHomeEvent(date),
+              );
+        },
+        accent: primaryColor,
+        backButton: false,
+        firstDate: DateTime.now().subtract(const Duration(days: 140)),
+        lastDate: DateTime.now(),
+        onSettingsTap: () async {
+          // try {
+          //   await context.read<FirebaseAuthService>().loginAnonmously();
+          //   print('Login Successful');
+          // } catch (e) {
+          //   print(e);
+          // }
+          await Navigator.push(
+            context,
+            CupertinoPageRoute<void>(
+              builder: (context) => const SettingsView(),
             ),
           );
         },
+        fullCalendar: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute<void>(
+              builder: (_) =>
+                  AddCaloriesView(date: context.read<HomeBloc>().state.date),
+            ),
+          );
+        },
+        backgroundColor: primaryColor,
+        child: const Icon(
+          FontAwesomeIcons.qrcode,
+          color: Colors.white,
+        ),
+      ),
+      body: ListView(
+        padding: EdgeInsets.symmetric(
+          vertical: 130 + MediaQuery.of(context).viewPadding.top,
+        ),
+        children: [
+          Builder(
+            builder: (context) {
+              final state = context.watch<HomeBloc>().state;
+              final goals = context.watch<GoalsBloc>().state;
+
+              final totalCalories = state.totalCalories;
+              final caloriesGoal = goals.caloriesGoal;
+              final caloriesLeft = caloriesGoal - totalCalories;
+              final caloriesLeftPercent = caloriesLeft / caloriesGoal;
+
+              final totalProtein = state.totalProtein;
+              final proteinGoal = goals.proteinGoal;
+              final proteinEatenPercent = totalProtein / proteinGoal;
+
+              final totalCarbs = state.totalCarbs;
+              final carbsGoal = goals.carbsGoal;
+              final carbsEatenPercent = totalCarbs / carbsGoal;
+
+              final totalFat = state.totalFat;
+              final fatGoal = goals.fatGoals;
+              final fatEatenPercent = totalFat / fatGoal;
+
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: CalorieWidget(
+                          calories: '${totalCalories.toDoubleAsFixed(2)}',
+                          icon: FontAwesomeIcons.bowlRice,
+                          iconColor: primaryColor,
+                          subtitle: 'EATEN',
+                        ),
+                      ),
+                      AnimatedRing(
+                        centerWidget: CalorieWidget(
+                          calories: '${caloriesLeft.toDoubleAsFixed(2)}',
+                          icon: FontAwesomeIcons.boltLightning,
+                          subtitle: 'CAL LEFT',
+                        ),
+                        height: 150,
+                        percent: min<double>(
+                          1,
+                          caloriesLeftPercent.convertToUseableDouble
+                              .toDoubleAsFixed(2),
+                        ),
+                        strokeWidth: 16,
+                        color: primaryColor,
+                      ),
+                      Expanded(
+                        child: CalorieWidget(
+                          calories: '....',
+                          icon: FontAwesomeIcons.fireFlameCurved,
+                          iconColor: primaryColor,
+                          subtitle: 'BURNED',
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      children: [
+                        _buildSingleNutrition(
+                          context,
+                          amount: state.totalProtein.toStringAsFixed(2),
+                          color: Colors.purple,
+                          nutrition: 'Protein',
+                          isLeftAmount: false,
+                          hadExtra: state.hadExtraProtein,
+                          percent: min<double>(
+                            1,
+                            proteinEatenPercent.convertToUseableDouble,
+                          ).toDoubleAsFixed(2),
+                        ),
+                        _buildSingleNutrition(
+                          context,
+                          amount: state.totalCarbs.toStringAsFixed(2),
+                          color: Colors.greenAccent,
+                          nutrition: 'Carbs',
+                          isLeftAmount: false,
+                          hadExtra: state.hadExtraCarbs,
+                          percent: min<double>(
+                            1,
+                            carbsEatenPercent.convertToUseableDouble,
+                          ).toDoubleAsFixed(2),
+                        ),
+                        _buildSingleNutrition(
+                          context,
+                          amount: state.totalFat.toStringAsFixed(2),
+                          color: Colors.blueAccent,
+                          nutrition: 'FAT',
+                          hadExtra: state.hadExtraFat,
+                          isLeftAmount: false,
+                          percent: min<double>(
+                            1,
+                            fatEatenPercent.convertToUseableDouble,
+                          ).toDoubleAsFixed(2),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+          const Divider(),
+          const _DailyFoodLog()
+        ],
       ),
     );
   }
@@ -305,9 +260,8 @@ class _DailyFoodLog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = context.watch<HomeBloc>().state;
     return StreamBuilder<List<FoodLog>>(
-      stream: context.watch<FirebaseService>().getFoodLog(date),
+      stream: context.watch<HomeBloc>().foodLogStream,
       builder: (context, snapshot) {
         final logList = snapshot.data ?? [];
         final foodTypes = logList.map((e) => e.foodType).toSet();
@@ -445,31 +399,51 @@ class _SingleFoodLogItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            child: InkWell(
-              radius: 10,
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {
-                setState(() {
-                  isExpanded = !isExpanded;
-                });
-              },
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 300),
-                          padding: EdgeInsets.only(
-                            top: 12,
-                            left: 12,
-                            bottom: isExpanded ? 8 : 12,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                radius: 10,
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  setState(() {
+                    isExpanded = !isExpanded;
+                  });
+                },
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AnimatedPadding(
+                            duration: const Duration(milliseconds: 300),
+                            padding: EdgeInsets.only(
+                              top: 12,
+                              left: 12,
+                              bottom: isExpanded ? 8 : 12,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  foodLog.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: Row(
                             children: [
                               Text(
-                                foodLog.name,
+                                '${foodLog.caloriesPerServing} Cal',
+                                // textAlign: TextAlign.right,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline6
@@ -477,152 +451,171 @@ class _SingleFoodLogItem extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
+                              Text(
+                                ' x ${foodLog.servingEaten}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                             ],
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
+                      ],
+                    ),
+                    AnimatedCrossFade(
+                      duration: const Duration(milliseconds: 300),
+                      crossFadeState: isExpanded
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
+                      firstChild: Container(),
+                      secondChild: Padding(
+                        padding: const EdgeInsets.only(left: 12, bottom: 10),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              '${foodLog.caloriesPerServing} Cal',
-                              // textAlign: TextAlign.right,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Protein : '.toUpperCase(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      '${foodLog.protein} g',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      ' x ${foodLog.servingEaten}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Carbs : '.toUpperCase(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      '${foodLog.carbs} g',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      ' x ${foodLog.servingEaten}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Fat : '.toUpperCase(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      '${foodLog.fat} g',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      ' x ${foodLog.servingEaten}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Text(
-                              ' x ${foodLog.servingEaten}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle2
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
+                            if (!foodLog.allAdded && !kIsWeb)
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: InkWell(
+                                  radius: 10,
+                                  borderRadius: BorderRadius.circular(10),
+                                  onTap: () async {
+                                    await context
+                                        .read<HomeBloc>()
+                                        .addDataToHealthKit(foodLog);
+                                    // ignore: use_build_context_synchronously
+                                    ScaffoldMessenger.of(context)
+                                        .clearSnackBars();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        duration: Duration(milliseconds: 300),
+                                        content: Text('Added To HealthKit'),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.add_box_outlined,
+                                      color: Colors.red,
+                                      size: 30,
+                                    ),
                                   ),
-                            ),
+                                ),
+                              ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  AnimatedCrossFade(
-                    duration: const Duration(milliseconds: 300),
-                    crossFadeState: isExpanded
-                        ? CrossFadeState.showSecond
-                        : CrossFadeState.showFirst,
-                    firstChild: Container(),
-                    secondChild: Padding(
-                      padding: const EdgeInsets.only(left: 12, bottom: 10),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'Protein : '.toUpperCase(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                '${foodLog.protein} g',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                ' x ${foodLog.servingEaten}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Carbs : '.toUpperCase(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                '${foodLog.carbs} g',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                ' x ${foodLog.servingEaten}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Fat : '.toUpperCase(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                '${foodLog.fat} g',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                ' x ${foodLog.servingEaten}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
@@ -781,7 +774,7 @@ class _AnimatedRingState extends State<AnimatedRing>
           padding: const EdgeInsets.all(6),
           child: Transform(
             alignment: Alignment.center,
-            transform: Matrix4.rotationY(math.pi),
+            transform: Matrix4.rotationY(pi),
             child: CustomPaint(
               painter: _RingPanter(
                 _controller.value,
@@ -790,7 +783,7 @@ class _AnimatedRingState extends State<AnimatedRing>
               ),
               child: Transform(
                 alignment: Alignment.center,
-                transform: Matrix4.rotationY(math.pi),
+                transform: Matrix4.rotationY(pi),
                 child: Center(
                   child: SizedBox(
                     width: widget.height - widget.strokeWidth - 1,
@@ -876,15 +869,15 @@ class _RingPanter extends CustomPainter {
     canvas.drawArc(
       Rect.fromLTWH(0, 0, size.width, size.height),
       0,
-      math.pi * 2,
+      pi * 2,
       false,
       paint,
     );
     paint.color = color;
     canvas.drawArc(
       Rect.fromLTWH(0, 0, size.width, size.height),
-      -math.pi / 2,
-      -2 * math.pi * percent,
+      -pi / 2,
+      -2 * pi * percent,
       false,
       paint,
     );

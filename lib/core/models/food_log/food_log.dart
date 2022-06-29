@@ -21,7 +21,24 @@ class FoodLog with _$FoodLog {
     double? protein,
     double? carbs,
     double? fat,
+
+    ///The date the food was added to the log.
     required DateTime date,
+
+    /// This is the date when this food was eaten. It's not the date the foodLog was added.
+    required DateTime foodLogDate,
+    @JsonKey(defaultValue: false, nullable: false)
+    @Default(false)
+        bool isCarbsAddedToHealthKit,
+    @JsonKey(defaultValue: false, nullable: false)
+    @Default(false)
+        bool isFatAddedToHealthKit,
+    @JsonKey(defaultValue: false, nullable: false)
+    @Default(false)
+        bool isProteinAddedToHealthKit,
+    @JsonKey(defaultValue: false, nullable: false)
+    @Default(false)
+        bool isCaloriesAddedToHealthKit,
     String? foodReference,
     //will be the actual serving size eaten,
     required double servingEaten,
@@ -37,11 +54,15 @@ class FoodLog with _$FoodLog {
   factory FoodLog.fromFirestore(
     Map<String, dynamic> json,
     String id,
+    DateTime date,
   ) =>
       _$FoodLogFromJson(
         json
           ..addAll(
-            <String, dynamic>{'id': id},
+            <String, dynamic>{
+              'id': id,
+              'foodLogDate': json['foodLogDate'] ?? date.toIso8601String(),
+            },
           ),
       );
 
@@ -61,5 +82,12 @@ class FoodLog with _$FoodLog {
 
   double? get totalFat {
     return fat != null ? fat! * servingEaten : null;
+  }
+
+  bool get allAdded {
+    return isCarbsAddedToHealthKit &&
+        isFatAddedToHealthKit &&
+        isProteinAddedToHealthKit &&
+        isCaloriesAddedToHealthKit;
   }
 }

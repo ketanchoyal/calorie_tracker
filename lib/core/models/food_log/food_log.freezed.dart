@@ -24,7 +24,20 @@ mixin _$FoodLog {
   double? get protein => throw _privateConstructorUsedError;
   double? get carbs => throw _privateConstructorUsedError;
   double? get fat => throw _privateConstructorUsedError;
+
+  ///The date the food was added to the log.
   DateTime get date => throw _privateConstructorUsedError;
+
+  /// This is the date when this food was eaten. It's not the date the foodLog was added.
+  DateTime get foodLogDate => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isCarbsAddedToHealthKit => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isFatAddedToHealthKit => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isProteinAddedToHealthKit => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isCaloriesAddedToHealthKit => throw _privateConstructorUsedError;
   String? get foodReference =>
       throw _privateConstructorUsedError; //will be the actual serving size eaten,
   double get servingEaten => throw _privateConstructorUsedError;
@@ -41,11 +54,21 @@ abstract class $FoodLogCopyWith<$Res> {
       {String? id,
       String name,
       double caloriesPerServing,
-      @JsonEnum() FoodType foodType,
+      @JsonEnum()
+          FoodType foodType,
       double? protein,
       double? carbs,
       double? fat,
       DateTime date,
+      DateTime foodLogDate,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isCarbsAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isFatAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isProteinAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isCaloriesAddedToHealthKit,
       String? foodReference,
       double servingEaten});
 }
@@ -68,6 +91,11 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
     Object? carbs = freezed,
     Object? fat = freezed,
     Object? date = freezed,
+    Object? foodLogDate = freezed,
+    Object? isCarbsAddedToHealthKit = freezed,
+    Object? isFatAddedToHealthKit = freezed,
+    Object? isProteinAddedToHealthKit = freezed,
+    Object? isCaloriesAddedToHealthKit = freezed,
     Object? foodReference = freezed,
     Object? servingEaten = freezed,
   }) {
@@ -104,6 +132,26 @@ class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      foodLogDate: foodLogDate == freezed
+          ? _value.foodLogDate
+          : foodLogDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isCarbsAddedToHealthKit: isCarbsAddedToHealthKit == freezed
+          ? _value.isCarbsAddedToHealthKit
+          : isCarbsAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFatAddedToHealthKit: isFatAddedToHealthKit == freezed
+          ? _value.isFatAddedToHealthKit
+          : isFatAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isProteinAddedToHealthKit: isProteinAddedToHealthKit == freezed
+          ? _value.isProteinAddedToHealthKit
+          : isProteinAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCaloriesAddedToHealthKit: isCaloriesAddedToHealthKit == freezed
+          ? _value.isCaloriesAddedToHealthKit
+          : isCaloriesAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
       foodReference: foodReference == freezed
           ? _value.foodReference
           : foodReference // ignore: cast_nullable_to_non_nullable
@@ -126,11 +174,21 @@ abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
       {String? id,
       String name,
       double caloriesPerServing,
-      @JsonEnum() FoodType foodType,
+      @JsonEnum()
+          FoodType foodType,
       double? protein,
       double? carbs,
       double? fat,
       DateTime date,
+      DateTime foodLogDate,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isCarbsAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isFatAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isProteinAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          bool isCaloriesAddedToHealthKit,
       String? foodReference,
       double servingEaten});
 }
@@ -154,6 +212,11 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
     Object? carbs = freezed,
     Object? fat = freezed,
     Object? date = freezed,
+    Object? foodLogDate = freezed,
+    Object? isCarbsAddedToHealthKit = freezed,
+    Object? isFatAddedToHealthKit = freezed,
+    Object? isProteinAddedToHealthKit = freezed,
+    Object? isCaloriesAddedToHealthKit = freezed,
     Object? foodReference = freezed,
     Object? servingEaten = freezed,
   }) {
@@ -190,6 +253,26 @@ class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      foodLogDate: foodLogDate == freezed
+          ? _value.foodLogDate
+          : foodLogDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isCarbsAddedToHealthKit: isCarbsAddedToHealthKit == freezed
+          ? _value.isCarbsAddedToHealthKit
+          : isCarbsAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFatAddedToHealthKit: isFatAddedToHealthKit == freezed
+          ? _value.isFatAddedToHealthKit
+          : isFatAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isProteinAddedToHealthKit: isProteinAddedToHealthKit == freezed
+          ? _value.isProteinAddedToHealthKit
+          : isProteinAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCaloriesAddedToHealthKit: isCaloriesAddedToHealthKit == freezed
+          ? _value.isCaloriesAddedToHealthKit
+          : isCaloriesAddedToHealthKit // ignore: cast_nullable_to_non_nullable
+              as bool,
       foodReference: foodReference == freezed
           ? _value.foodReference
           : foodReference // ignore: cast_nullable_to_non_nullable
@@ -209,11 +292,21 @@ class _$_FoodLog extends _FoodLog {
       {this.id,
       required this.name,
       required this.caloriesPerServing,
-      @JsonEnum() this.foodType = FoodType.other,
+      @JsonEnum()
+          this.foodType = FoodType.other,
       this.protein,
       this.carbs,
       this.fat,
       required this.date,
+      required this.foodLogDate,
+      @JsonKey(defaultValue: false, nullable: false)
+          this.isCarbsAddedToHealthKit = false,
+      @JsonKey(defaultValue: false, nullable: false)
+          this.isFatAddedToHealthKit = false,
+      @JsonKey(defaultValue: false, nullable: false)
+          this.isProteinAddedToHealthKit = false,
+      @JsonKey(defaultValue: false, nullable: false)
+          this.isCaloriesAddedToHealthKit = false,
       this.foodReference,
       required this.servingEaten})
       : super._();
@@ -234,8 +327,26 @@ class _$_FoodLog extends _FoodLog {
   final double? carbs;
   @override
   final double? fat;
+
+  ///The date the food was added to the log.
   @override
   final DateTime date;
+
+  /// This is the date when this food was eaten. It's not the date the foodLog was added.
+  @override
+  final DateTime foodLogDate;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  final bool isCarbsAddedToHealthKit;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  final bool isFatAddedToHealthKit;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  final bool isProteinAddedToHealthKit;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  final bool isCaloriesAddedToHealthKit;
   @override
   final String? foodReference;
 //will be the actual serving size eaten,
@@ -244,7 +355,7 @@ class _$_FoodLog extends _FoodLog {
 
   @override
   String toString() {
-    return 'FoodLog(id: $id, name: $name, caloriesPerServing: $caloriesPerServing, foodType: $foodType, protein: $protein, carbs: $carbs, fat: $fat, date: $date, foodReference: $foodReference, servingEaten: $servingEaten)';
+    return 'FoodLog(id: $id, name: $name, caloriesPerServing: $caloriesPerServing, foodType: $foodType, protein: $protein, carbs: $carbs, fat: $fat, date: $date, foodLogDate: $foodLogDate, isCarbsAddedToHealthKit: $isCarbsAddedToHealthKit, isFatAddedToHealthKit: $isFatAddedToHealthKit, isProteinAddedToHealthKit: $isProteinAddedToHealthKit, isCaloriesAddedToHealthKit: $isCaloriesAddedToHealthKit, foodReference: $foodReference, servingEaten: $servingEaten)';
   }
 
   @override
@@ -262,6 +373,16 @@ class _$_FoodLog extends _FoodLog {
             const DeepCollectionEquality().equals(other.fat, fat) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality()
+                .equals(other.foodLogDate, foodLogDate) &&
+            const DeepCollectionEquality().equals(
+                other.isCarbsAddedToHealthKit, isCarbsAddedToHealthKit) &&
+            const DeepCollectionEquality()
+                .equals(other.isFatAddedToHealthKit, isFatAddedToHealthKit) &&
+            const DeepCollectionEquality().equals(
+                other.isProteinAddedToHealthKit, isProteinAddedToHealthKit) &&
+            const DeepCollectionEquality().equals(
+                other.isCaloriesAddedToHealthKit, isCaloriesAddedToHealthKit) &&
+            const DeepCollectionEquality()
                 .equals(other.foodReference, foodReference) &&
             const DeepCollectionEquality()
                 .equals(other.servingEaten, servingEaten));
@@ -278,6 +399,11 @@ class _$_FoodLog extends _FoodLog {
       const DeepCollectionEquality().hash(carbs),
       const DeepCollectionEquality().hash(fat),
       const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(foodLogDate),
+      const DeepCollectionEquality().hash(isCarbsAddedToHealthKit),
+      const DeepCollectionEquality().hash(isFatAddedToHealthKit),
+      const DeepCollectionEquality().hash(isProteinAddedToHealthKit),
+      const DeepCollectionEquality().hash(isCaloriesAddedToHealthKit),
       const DeepCollectionEquality().hash(foodReference),
       const DeepCollectionEquality().hash(servingEaten));
 
@@ -292,11 +418,21 @@ abstract class _FoodLog extends FoodLog {
       {final String? id,
       required final String name,
       required final double caloriesPerServing,
-      @JsonEnum() final FoodType foodType,
+      @JsonEnum()
+          final FoodType foodType,
       final double? protein,
       final double? carbs,
       final double? fat,
       required final DateTime date,
+      required final DateTime foodLogDate,
+      @JsonKey(defaultValue: false, nullable: false)
+          final bool isCarbsAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          final bool isFatAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          final bool isProteinAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false)
+          final bool isCaloriesAddedToHealthKit,
       final String? foodReference,
       required final double servingEaten}) = _$_FoodLog;
   _FoodLog._() : super._();
@@ -317,7 +453,25 @@ abstract class _FoodLog extends FoodLog {
   @override
   double? get fat => throw _privateConstructorUsedError;
   @override
+
+  ///The date the food was added to the log.
   DateTime get date => throw _privateConstructorUsedError;
+  @override
+
+  /// This is the date when this food was eaten. It's not the date the foodLog was added.
+  DateTime get foodLogDate => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isCarbsAddedToHealthKit => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isFatAddedToHealthKit => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isProteinAddedToHealthKit => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(defaultValue: false, nullable: false)
+  bool get isCaloriesAddedToHealthKit => throw _privateConstructorUsedError;
   @override
   String? get foodReference => throw _privateConstructorUsedError;
   @override //will be the actual serving size eaten,

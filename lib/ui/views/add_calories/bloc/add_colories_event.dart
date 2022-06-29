@@ -10,6 +10,7 @@ class AddColoriesEvent with _$AddColoriesEvent {
   factory AddColoriesEvent.submit({
     required double servings,
     required double caloriesPerServing,
+    required DateTime foodLogDate,
     String? name,
     Food? food,
     double? fat,

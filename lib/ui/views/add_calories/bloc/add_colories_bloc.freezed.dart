@@ -24,6 +24,7 @@ mixin _$AddColoriesEvent {
     required TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -41,6 +42,7 @@ mixin _$AddColoriesEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -58,6 +60,7 @@ mixin _$AddColoriesEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -156,6 +159,7 @@ class _$_Reset implements _Reset {
     required TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -176,6 +180,7 @@ class _$_Reset implements _Reset {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -196,6 +201,7 @@ class _$_Reset implements _Reset {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -333,6 +339,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     required TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -353,6 +360,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -373,6 +381,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -482,6 +491,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     required TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -502,6 +512,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -522,6 +533,7 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -587,6 +599,7 @@ abstract class _$$_SubmitEventCopyWith<$Res> {
   $Res call(
       {double servings,
       double caloriesPerServing,
+      DateTime foodLogDate,
       String? name,
       Food? food,
       double? fat,
@@ -612,6 +625,7 @@ class __$$_SubmitEventCopyWithImpl<$Res>
   $Res call({
     Object? servings = freezed,
     Object? caloriesPerServing = freezed,
+    Object? foodLogDate = freezed,
     Object? name = freezed,
     Object? food = freezed,
     Object? fat = freezed,
@@ -628,6 +642,10 @@ class __$$_SubmitEventCopyWithImpl<$Res>
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
+      foodLogDate: foodLogDate == freezed
+          ? _value.foodLogDate
+          : foodLogDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -673,6 +691,7 @@ class _$_SubmitEvent implements _SubmitEvent {
   _$_SubmitEvent(
       {required this.servings,
       required this.caloriesPerServing,
+      required this.foodLogDate,
       this.name,
       this.food,
       this.fat,
@@ -684,6 +703,8 @@ class _$_SubmitEvent implements _SubmitEvent {
   final double servings;
   @override
   final double caloriesPerServing;
+  @override
+  final DateTime foodLogDate;
   @override
   final String? name;
   @override
@@ -699,7 +720,7 @@ class _$_SubmitEvent implements _SubmitEvent {
 
   @override
   String toString() {
-    return 'AddColoriesEvent.submit(servings: $servings, caloriesPerServing: $caloriesPerServing, name: $name, food: $food, fat: $fat, carbs: $carbs, protein: $protein, foodType: $foodType)';
+    return 'AddColoriesEvent.submit(servings: $servings, caloriesPerServing: $caloriesPerServing, foodLogDate: $foodLogDate, name: $name, food: $food, fat: $fat, carbs: $carbs, protein: $protein, foodType: $foodType)';
   }
 
   @override
@@ -710,6 +731,8 @@ class _$_SubmitEvent implements _SubmitEvent {
             const DeepCollectionEquality().equals(other.servings, servings) &&
             const DeepCollectionEquality()
                 .equals(other.caloriesPerServing, caloriesPerServing) &&
+            const DeepCollectionEquality()
+                .equals(other.foodLogDate, foodLogDate) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.food, food) &&
             const DeepCollectionEquality().equals(other.fat, fat) &&
@@ -723,6 +746,7 @@ class _$_SubmitEvent implements _SubmitEvent {
       runtimeType,
       const DeepCollectionEquality().hash(servings),
       const DeepCollectionEquality().hash(caloriesPerServing),
+      const DeepCollectionEquality().hash(foodLogDate),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(food),
       const DeepCollectionEquality().hash(fat),
@@ -744,6 +768,7 @@ class _$_SubmitEvent implements _SubmitEvent {
     required TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -752,8 +777,8 @@ class _$_SubmitEvent implements _SubmitEvent {
             FoodType foodType)
         submit,
   }) {
-    return submit(servings, caloriesPerServing, name, food, fat, carbs, protein,
-        foodType);
+    return submit(servings, caloriesPerServing, foodLogDate, name, food, fat,
+        carbs, protein, foodType);
   }
 
   @override
@@ -765,6 +790,7 @@ class _$_SubmitEvent implements _SubmitEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -773,8 +799,8 @@ class _$_SubmitEvent implements _SubmitEvent {
             FoodType foodType)?
         submit,
   }) {
-    return submit?.call(servings, caloriesPerServing, name, food, fat, carbs,
-        protein, foodType);
+    return submit?.call(servings, caloriesPerServing, foodLogDate, name, food,
+        fat, carbs, protein, foodType);
   }
 
   @override
@@ -786,6 +812,7 @@ class _$_SubmitEvent implements _SubmitEvent {
     TResult Function(
             double servings,
             double caloriesPerServing,
+            DateTime foodLogDate,
             String? name,
             Food? food,
             double? fat,
@@ -796,8 +823,8 @@ class _$_SubmitEvent implements _SubmitEvent {
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(servings, caloriesPerServing, name, food, fat, carbs,
-          protein, foodType);
+      return submit(servings, caloriesPerServing, foodLogDate, name, food, fat,
+          carbs, protein, foodType);
     }
     return orElse();
   }
@@ -844,6 +871,7 @@ abstract class _SubmitEvent implements AddColoriesEvent {
   factory _SubmitEvent(
       {required final double servings,
       required final double caloriesPerServing,
+      required final DateTime foodLogDate,
       final String? name,
       final Food? food,
       final double? fat,
@@ -853,6 +881,7 @@ abstract class _SubmitEvent implements AddColoriesEvent {
 
   double get servings => throw _privateConstructorUsedError;
   double get caloriesPerServing => throw _privateConstructorUsedError;
+  DateTime get foodLogDate => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   Food? get food => throw _privateConstructorUsedError;
   double? get fat => throw _privateConstructorUsedError;

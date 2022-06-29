@@ -10,6 +10,8 @@ import 'package:calorie_tracker/core/services/auth/firebase_auth_service.dart';
 import 'package:calorie_tracker/core/services/auth/firebase_auth_service.impl.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.impl.dart';
+import 'package:calorie_tracker/core/services/health/health_service.dart';
+import 'package:calorie_tracker/core/services/health/health_service.impl.dart';
 import 'package:calorie_tracker/l10n/l10n.dart';
 import 'package:calorie_tracker/ui/views/home/home.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +24,24 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return const AppView();
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<FirebaseService>(
-          create: (context) => FirebaseServiceImpl(),
-        ),
-        RepositoryProvider<FirebaseAuthService>(
-          create: (context) => FirebaseAuthServiceImpl(),
-        ),
-      ],
-      child: const AppView(),
+    return RepositoryProvider<FirebaseService>(
+      create: (context) => FirebaseServiceImpl(),
+      child: MultiRepositoryProvider(
+        providers: [
+          // RepositoryProvider<FirebaseService>(
+          //   create: (context) => FirebaseServiceImpl(),
+          // ),
+          RepositoryProvider<FirebaseAuthService>(
+            create: (context) => FirebaseAuthServiceImpl(),
+          ),
+          RepositoryProvider<HealthService>(
+            create: (context) => HealthServiceImpl(
+              RepositoryProvider.of<FirebaseService>(context),
+            )..requestAuthorization(),
+          ),
+        ],
+        child: const AppView(),
+      ),
     );
   }
 }
@@ -68,7 +78,7 @@ class AppView extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomeView(),
+      home: const HomePage(),
     );
   }
 }
