@@ -78,7 +78,7 @@ class _AddFoodForm extends StatelessWidget {
                       formBloc.advanced();
                     }
                   },
-                  child: context.watch<AddFoodFormBloc>().isAdvanced
+                  child: !context.watch<AddFoodFormBloc>().isAdvanced
                       ? const Text('Advanced')
                       : const Text('Basic'),
                 ),

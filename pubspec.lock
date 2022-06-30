@@ -231,7 +231,7 @@ packages:
       name: device_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "4.0.0"
   device_info_plus_linux:
     dependency: transitive
     description:
@@ -391,6 +391,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.30.1"
+  flutter_hooks:
+    dependency: "direct main"
+    description:
+      name: flutter_hooks
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.5+1"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -496,7 +503,7 @@ packages:
       name: health
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.1.0"
   http:
     dependency: transitive
     description:

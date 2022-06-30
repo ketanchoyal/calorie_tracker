@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:calorie_tracker/ui/views/add_food/view/add_food.view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
@@ -74,6 +75,18 @@ class _SettingsBody extends StatelessWidget {
               switchValue: Theme.of(context).brightness == Brightness.light,
               leading: const Icon(Icons.wb_sunny),
               onToggle: (value) {},
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: 'Developer Section',
+          titleTextStyle: Theme.of(context).textTheme.subtitle1,
+          tiles: [
+            SettingsTile(
+              title: 'App Mode',
+              iosChevron: null,
+              leading: const Icon(Icons.logo_dev_rounded),
+              subtitle: kReleaseMode ? 'Release' : 'Debug',
             ),
           ],
         ),

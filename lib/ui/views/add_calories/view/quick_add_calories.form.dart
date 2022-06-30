@@ -44,6 +44,8 @@ class _QuickAddCaloriesForm extends StatelessWidget {
               fieldBloc: formBloc.calories,
               label: 'Calories',
               prefixIcon: FontAwesomeIcons.bowlRice,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
             ),
             FormTextField(
               fieldBloc: formBloc.fat,

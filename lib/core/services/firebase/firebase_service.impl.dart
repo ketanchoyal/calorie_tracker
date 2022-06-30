@@ -47,7 +47,7 @@ class FirebaseServiceImpl implements FirebaseService {
     required FoodLog foodLog,
     required DateTime foodLogDate,
   }) async {
-    _throwThisIfNotUsingTestAccont();
+    throwThisIfNotUsingTestAccont();
     await _foodLogCollectionRef(foodLogDate)
         .add(foodLog)
         .whenComplete(() => print('${foodLog.name} Added'));
@@ -55,7 +55,7 @@ class FirebaseServiceImpl implements FirebaseService {
 
   @override
   void addFood(Food food) {
-    _throwThisIfNotUsingTestAccont();
+    throwThisIfNotUsingTestAccont();
     _foodCollectionRef
         .add(food)
         .whenComplete(() => print('${food.name} Added'));
@@ -101,7 +101,7 @@ class FirebaseServiceImpl implements FirebaseService {
     required AddDataResult addDataResult,
     required DateTime foodLogDate,
   }) async {
-    _throwThisIfNotUsingTestAccont();
+    throwThisIfNotUsingTestAccont();
     if (addDataResult.anyTrue) {
       await _foodLogCollectionRef(foodLogDate).doc(id).update({
         'isCarbsAddedToHealthKit': addDataResult.carbsAdded,
@@ -115,7 +115,7 @@ class FirebaseServiceImpl implements FirebaseService {
     }
   }
 
-  void _throwThisIfNotUsingTestAccont() {
+  void throwThisIfNotUsingTestAccont() {
     if (_currentUserRef.id == 'ketanchoyal@gmail.com' && !kReleaseMode) {
       throw 'You are using the real account. Please use a test account.';
     }

@@ -188,6 +188,38 @@ class _HomeView extends StatelessWidget {
               );
             },
           ),
+          if (!kIsWeb &&
+              context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
+            const Divider(),
+          if (!kIsWeb &&
+              context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
+            Container(
+              height: 50,
+              margin: const EdgeInsets.all(8),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.transparent,
+                ),
+                borderRadius: BorderRadius.circular(10),
+                color: Theme.of(context).cardColor,
+              ),
+              child: InkWell(
+                radius: 20,
+                borderRadius: BorderRadius.circular(10),
+                overlayColor: MaterialStateProperty.all(
+                    Theme.of(context).primaryColor.withOpacity(0.5)),
+                onTap: () {},
+                child: Center(
+                  child: Text(
+                    'Sync with HealthKit',
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+              ),
+            ),
           const Divider(),
           const _DailyFoodLog()
         ],
@@ -322,15 +354,20 @@ class _FoodLogView extends StatelessWidget {
           ),
         ),
         Column(
-          children:
-              foodLogList.map((e) => _SingleFoodLogItem(foodLog: e)).toList(),
+          children: foodLogList
+              .map(
+                (e) => _SingleFoodLogItem(
+                  foodLog: e,
+                ),
+              )
+              .toList(),
         ),
       ],
     );
   }
 }
 
-class _SingleFoodLogItem extends StatelessWidget {
+class _SingleFoodLogItem extends HookWidget {
   const _SingleFoodLogItem({
     super.key,
     required this.foodLog,
@@ -339,7 +376,7 @@ class _SingleFoodLogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isExpanded = false;
+    final isExpanded = useState(false);
     return SwipeableTile.card(
       swipeThreshold: 0.2,
       borderRadius: 10,
@@ -354,7 +391,8 @@ class _SingleFoodLogItem extends StatelessWidget {
         if (direction == SwipeDirection.endToStart) {
           return showConfirmationDialog<bool>(
             context: context,
-            title: 'Are you sure you want to delete this food log?',
+            title:
+                'Are you sure you want to delete ${foodLog.name} from food log?',
             okLabel: 'Delete',
             actions: [const AlertDialogAction(key: true, label: 'Delete')],
           );
@@ -387,14 +425,16 @@ class _SingleFoodLogItem extends StatelessWidget {
         }
         return Container();
       },
-      key: UniqueKey(),
+      key: Key(foodLog.id!),
       child: StatefulBuilder(
         builder: (BuildContext context, setState) {
           return Container(
             // margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Theme.of(context).dividerColor,
+                color: foodLog.allAdded
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).dividerColor,
               ),
               borderRadius: BorderRadius.circular(10),
             ),
@@ -405,9 +445,7 @@ class _SingleFoodLogItem extends StatelessWidget {
                 radius: 10,
                 borderRadius: BorderRadius.circular(10),
                 onTap: () {
-                  setState(() {
-                    isExpanded = !isExpanded;
-                  });
+                  isExpanded.value = !isExpanded.value;
                 },
                 child: Column(
                   children: [
@@ -419,7 +457,7 @@ class _SingleFoodLogItem extends StatelessWidget {
                             padding: EdgeInsets.only(
                               top: 12,
                               left: 12,
-                              bottom: isExpanded ? 8 : 12,
+                              bottom: isExpanded.value ? 8 : 12,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -467,7 +505,7 @@ class _SingleFoodLogItem extends StatelessWidget {
                     ),
                     AnimatedCrossFade(
                       duration: const Duration(milliseconds: 300),
-                      crossFadeState: isExpanded
+                      crossFadeState: isExpanded.value
                           ? CrossFadeState.showSecond
                           : CrossFadeState.showFirst,
                       firstChild: Container(),
@@ -602,7 +640,7 @@ class _SingleFoodLogItem extends StatelessWidget {
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(10),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.add_box_outlined,
                                       color: Colors.red,
                                       size: 30,

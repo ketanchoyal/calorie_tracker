@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/core/models/add_health_data_result.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.impl.dart';
 import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:health/health.dart';
@@ -13,6 +14,7 @@ class HealthServiceImpl implements HealthService {
   @override
   Future<AddDataResult> addNutritionData(FoodLog foodLog) async {
     if (kIsWeb) return AddDataResult.web();
+    _throwThisIfNotUsingTestAccont();
     var carbsAdded = foodLog.isCarbsAddedToHealthKit;
     var fatAdded = foodLog.isFatAddedToHealthKit;
     var proteinAdded = foodLog.isProteinAddedToHealthKit;
@@ -86,4 +88,7 @@ class HealthServiceImpl implements HealthService {
       ],
     );
   }
+
+  void _throwThisIfNotUsingTestAccont() =>
+      (_firebaseService as FirebaseServiceImpl).throwThisIfNotUsingTestAccont();
 }

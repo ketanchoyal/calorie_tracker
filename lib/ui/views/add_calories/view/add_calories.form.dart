@@ -23,6 +23,8 @@ class _AddCaloriesForm extends StatelessWidget {
               fieldBloc: formBloc.servingToAdd,
               label: 'Servings',
               prefixIcon: FontAwesomeIcons.bowlFood,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
             ),
             const SizedBox(height: 8),
             FoodTypeSelector(
@@ -51,6 +53,8 @@ class _AddCaloriesForm extends StatelessWidget {
               fieldBloc: formBloc.caloriesPerServing,
               label: 'Calories per Serving',
               prefixIcon: FontAwesomeIcons.bowlRice,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
             ),
             FormTextField(
               fieldBloc: formBloc.fat,
