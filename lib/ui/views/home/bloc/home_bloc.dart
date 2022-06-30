@@ -73,6 +73,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await _firebaseService.deleteFoodLog(id: id, date: state.date);
   }
 
+  ///Change Date
+  void changeDate(DateTime date) {
+    if (date.isBefore(DateTime.now())) {
+      add(SomeOtherDateHomeEvent(date));
+    }
+  }
+
   void _streamListener(List<FoodLog> event) {
     final logList = event.toSet().toList();
     if (logList.isEmpty) {

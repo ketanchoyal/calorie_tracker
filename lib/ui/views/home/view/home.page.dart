@@ -13,6 +13,7 @@ import 'package:calorie_tracker/ui/views/add_calories/add_calories.dart';
 import 'package:calorie_tracker/ui/views/home/bloc/home_bloc.dart';
 import 'package:calorie_tracker/ui/views/settings/view/settings.view.dart';
 import 'package:calorie_tracker/ui/widgets/calender.appbar.widget.dart';
+import 'package:calorie_tracker/ui/widgets/swipedetector.widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

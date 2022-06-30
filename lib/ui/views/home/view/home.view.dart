@@ -73,156 +73,177 @@ class _HomeView extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-          vertical: 130 + MediaQuery.of(context).viewPadding.top,
-        ),
-        children: [
-          Builder(
-            builder: (context) {
-              final state = context.watch<HomeBloc>().state;
-              final goals = context.watch<GoalsBloc>().state;
-
-              final totalCalories = state.totalCalories;
-              final caloriesGoal = goals.caloriesGoal;
-              final caloriesLeft = caloriesGoal - totalCalories;
-              final caloriesLeftPercent = caloriesLeft / caloriesGoal;
-
-              final totalProtein = state.totalProtein;
-              final proteinGoal = goals.proteinGoal;
-              final proteinEatenPercent = totalProtein / proteinGoal;
-
-              final totalCarbs = state.totalCarbs;
-              final carbsGoal = goals.carbsGoal;
-              final carbsEatenPercent = totalCarbs / carbsGoal;
-
-              final totalFat = state.totalFat;
-              final fatGoal = goals.fatGoals;
-              final fatEatenPercent = totalFat / fatGoal;
-
-              return Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: CalorieWidget(
-                          calories: '${totalCalories.toDoubleAsFixed(2)}',
-                          icon: FontAwesomeIcons.bowlRice,
-                          iconColor: primaryColor,
-                          subtitle: 'EATEN',
-                        ),
+      body: SwipeDetector(
+        onSwipeRight: () {
+          context.read<HomeBloc>().changeDate(
+                context.read<HomeBloc>().state.date.subtract(
+                      const Duration(
+                        days: 1,
                       ),
-                      AnimatedRing(
-                        centerWidget: CalorieWidget(
-                          calories: '${caloriesLeft.toDoubleAsFixed(2)}',
-                          icon: FontAwesomeIcons.boltLightning,
-                          subtitle: 'CAL LEFT',
-                        ),
-                        height: 150,
-                        percent: min<double>(
-                          1,
-                          caloriesLeftPercent.convertToUseableDouble
-                              .toDoubleAsFixed(2),
-                        ),
-                        strokeWidth: 16,
-                        color: primaryColor,
+                    ),
+              );
+        },
+        onSwipeLeft: () {
+          context.read<HomeBloc>().changeDate(
+                context.read<HomeBloc>().state.date.add(
+                      const Duration(
+                        days: 1,
                       ),
-                      Expanded(
-                        child: CalorieWidget(
-                          calories: '....',
-                          icon: FontAwesomeIcons.fireFlameCurved,
-                          iconColor: primaryColor,
-                          subtitle: 'BURNED',
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Row(
+                    ),
+              );
+        },
+        child: ListView(
+          padding: EdgeInsets.symmetric(
+            vertical: 130 + MediaQuery.of(context).viewPadding.top,
+          ),
+          children: [
+            Builder(
+              builder: (context) {
+                final state = context.watch<HomeBloc>().state;
+                final goals = context.watch<GoalsBloc>().state;
+
+                final totalCalories = state.totalCalories;
+                final caloriesGoal = goals.caloriesGoal;
+                final caloriesLeft = caloriesGoal - totalCalories;
+                final caloriesLeftPercent = caloriesLeft / caloriesGoal;
+
+                final totalProtein = state.totalProtein;
+                final proteinGoal = goals.proteinGoal;
+                final proteinEatenPercent = totalProtein / proteinGoal;
+
+                final totalCarbs = state.totalCarbs;
+                final carbsGoal = goals.carbsGoal;
+                final carbsEatenPercent = totalCarbs / carbsGoal;
+
+                final totalFat = state.totalFat;
+                final fatGoal = goals.fatGoals;
+                final fatEatenPercent = totalFat / fatGoal;
+
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildSingleNutrition(
-                          context,
-                          amount: state.totalProtein.toStringAsFixed(2),
-                          color: Colors.purple,
-                          nutrition: 'Protein',
-                          isLeftAmount: false,
-                          hadExtra: state.hadExtraProtein,
-                          percent: min<double>(
-                            1,
-                            proteinEatenPercent.convertToUseableDouble,
-                          ).toDoubleAsFixed(2),
+                        Expanded(
+                          child: CalorieWidget(
+                            calories: '${totalCalories.toDoubleAsFixed(2)}',
+                            icon: FontAwesomeIcons.bowlRice,
+                            iconColor: primaryColor,
+                            subtitle: 'EATEN',
+                          ),
                         ),
-                        _buildSingleNutrition(
-                          context,
-                          amount: state.totalCarbs.toStringAsFixed(2),
-                          color: Colors.greenAccent,
-                          nutrition: 'Carbs',
-                          isLeftAmount: false,
-                          hadExtra: state.hadExtraCarbs,
+                        AnimatedRing(
+                          centerWidget: CalorieWidget(
+                            calories: '${caloriesLeft.toDoubleAsFixed(2)}',
+                            icon: FontAwesomeIcons.boltLightning,
+                            subtitle: 'CAL LEFT',
+                          ),
+                          height: 150,
                           percent: min<double>(
                             1,
-                            carbsEatenPercent.convertToUseableDouble,
-                          ).toDoubleAsFixed(2),
+                            caloriesLeftPercent.convertToUseableDouble
+                                .toDoubleAsFixed(2),
+                          ),
+                          strokeWidth: 16,
+                          color: primaryColor,
                         ),
-                        _buildSingleNutrition(
-                          context,
-                          amount: state.totalFat.toStringAsFixed(2),
-                          color: Colors.blueAccent,
-                          nutrition: 'FAT',
-                          hadExtra: state.hadExtraFat,
-                          isLeftAmount: false,
-                          percent: min<double>(
-                            1,
-                            fatEatenPercent.convertToUseableDouble,
-                          ).toDoubleAsFixed(2),
+                        Expanded(
+                          child: CalorieWidget(
+                            calories: '....',
+                            icon: FontAwesomeIcons.fireFlameCurved,
+                            iconColor: primaryColor,
+                            subtitle: 'BURNED',
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
-          if (!kIsWeb &&
-              context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
-            const Divider(),
-          if (!kIsWeb &&
-              context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
-            Container(
-              height: 50,
-              margin: const EdgeInsets.all(8),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.transparent,
-                ),
-                borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).cardColor,
-              ),
-              child: InkWell(
-                radius: 20,
-                borderRadius: BorderRadius.circular(10),
-                overlayColor: MaterialStateProperty.all(
-                    Theme.of(context).primaryColor.withOpacity(0.5)),
-                onTap: () {},
-                child: Center(
-                  child: Text(
-                    'Sync with HealthKit',
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
-              ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Row(
+                        children: [
+                          _buildSingleNutrition(
+                            context,
+                            amount: state.totalProtein.toStringAsFixed(2),
+                            color: Colors.purple,
+                            nutrition: 'Protein',
+                            isLeftAmount: false,
+                            hadExtra: state.hadExtraProtein,
+                            percent: min<double>(
+                              1,
+                              proteinEatenPercent.convertToUseableDouble,
+                            ).toDoubleAsFixed(2),
+                          ),
+                          _buildSingleNutrition(
+                            context,
+                            amount: state.totalCarbs.toStringAsFixed(2),
+                            color: Colors.greenAccent,
+                            nutrition: 'Carbs',
+                            isLeftAmount: false,
+                            hadExtra: state.hadExtraCarbs,
+                            percent: min<double>(
+                              1,
+                              carbsEatenPercent.convertToUseableDouble,
+                            ).toDoubleAsFixed(2),
+                          ),
+                          _buildSingleNutrition(
+                            context,
+                            amount: state.totalFat.toStringAsFixed(2),
+                            color: Colors.blueAccent,
+                            nutrition: 'FAT',
+                            hadExtra: state.hadExtraFat,
+                            isLeftAmount: false,
+                            percent: min<double>(
+                              1,
+                              fatEatenPercent.convertToUseableDouble,
+                            ).toDoubleAsFixed(2),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
-          const Divider(),
-          const _DailyFoodLog()
-        ],
+            // if (!kIsWeb &&
+            //     context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
+            //   const Divider(),
+            // if (!kIsWeb &&
+            //     context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
+            //   Container(
+            //     height: 50,
+            //     margin: const EdgeInsets.all(8),
+            //     width: double.infinity,
+            //     decoration: BoxDecoration(
+            //       border: Border.all(
+            //         color: Colors.transparent,
+            //       ),
+            //       borderRadius: BorderRadius.circular(10),
+            //       color: Theme.of(context).cardColor,
+            //     ),
+            //     child: InkWell(
+            //       radius: 20,
+            //       borderRadius: BorderRadius.circular(10),
+            //       overlayColor: MaterialStateProperty.all(
+            //         Theme.of(context).primaryColor.withOpacity(0.5),
+            //       ),
+            //       onTap: () {},
+            //       child: Center(
+            //         child: Text(
+            //           'Sync with HealthKit',
+            //           style: Theme.of(context).textTheme.bodyText1?.copyWith(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            const Divider(),
+            const _DailyFoodLog()
+          ],
+        ),
       ),
     );
   }
