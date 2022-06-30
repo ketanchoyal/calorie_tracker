@@ -69,8 +69,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  Future<void> deleteLog(String id) async {
-    await _firebaseService.deleteFoodLog(id: id, date: state.date);
+  Future<void> deleteLog(FoodLog foodLog) async {
+    await _healthService.deleteNutritionData(foodLog);
   }
 
   ///Change Date

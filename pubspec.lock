@@ -500,9 +500,9 @@ packages:
   health:
     dependency: "direct main"
     description:
-      name: health
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "packages/health"
+      relative: true
+    source: path
     version: "4.1.0"
   http:
     dependency: transitive

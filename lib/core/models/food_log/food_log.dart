@@ -90,4 +90,11 @@ class FoodLog with _$FoodLog {
         (totalProtein == null || isProteinAddedToHealthKit) &&
         isCaloriesAddedToHealthKit;
   }
+
+  bool get anyThingAdded {
+    return (totalCarbs != null || isCarbsAddedToHealthKit) ||
+        (totalFat != null || isFatAddedToHealthKit) ||
+        (totalProtein != null || isProteinAddedToHealthKit) ||
+        isCaloriesAddedToHealthKit;
+  }
 }

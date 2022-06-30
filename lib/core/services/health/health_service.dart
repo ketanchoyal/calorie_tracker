@@ -5,4 +5,6 @@ abstract class HealthService {
   Future<bool> requestAuthorization();
 
   Future<AddDataResult> addNutritionData(FoodLog foodLog);
+
+  Future<bool> deleteNutritionData(FoodLog foodLog);
 }

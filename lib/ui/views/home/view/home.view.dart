@@ -423,7 +423,7 @@ class _SingleFoodLogItem extends HookWidget {
       onSwiped: (direction) {
         if (direction == SwipeDirection.endToStart) {
           //Delete Here
-          context.read<HomeBloc>().deleteLog(foodLog.id!);
+          context.read<HomeBloc>().deleteLog(foodLog);
         }
       },
       backgroundBuilder: (context, direction, progress) {

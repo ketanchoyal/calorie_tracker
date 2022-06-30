@@ -10,11 +10,11 @@ class FirebaseServiceImpl implements FirebaseService {
   final _firebaseFirestore = FirebaseFirestore.instance;
   final _firebaseAuth = FirebaseAuth.instance;
 
-  DocumentReference get _currentUserRef =>
-      _firebaseFirestore.collection('users').doc('ketanchoyal@gmail.com');
-  // DocumentReference get _currentUserRef => _firebaseFirestore
-  //     .collection('users')
-  //     .doc(_firebaseAuth.currentUser!.uid);
+  // DocumentReference get _currentUserRef =>
+  //     _firebaseFirestore.collection('users').doc('ketanchoyal@gmail.com');
+  DocumentReference get _currentUserRef => _firebaseFirestore
+      .collection('users')
+      .doc(_firebaseAuth.currentUser!.uid);
 
   CollectionReference<Food> get _foodCollectionRef =>
       _currentUserRef.collection('foods').withConverter<Food>(

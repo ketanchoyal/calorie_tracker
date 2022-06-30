@@ -28,7 +28,8 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   swipeable_tile: ^2.0.0+1
   adaptive_dialog: ^1.6.4+1
-  health: ^4.1.0
+  health:
+    path: packages/health
   custom_radio_grouped_button: ^2.1.2+2
   drop_down_list:
     path: packages/drop_down_list

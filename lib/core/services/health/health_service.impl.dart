@@ -27,6 +27,7 @@ class HealthServiceImpl implements HealthService {
         foodLog.foodLogDate,
         foodLog.foodLogDate,
         unit: HealthDataUnit.LARGE_CALORIE,
+        metaDataKeySyncIdentifier: foodLog.id,
       );
     }
     if (foodLog.carbs != null && !carbsAdded) {
@@ -35,6 +36,7 @@ class HealthServiceImpl implements HealthService {
         HealthDataType.DIETARY_CARBS_CONSUMED,
         foodLog.foodLogDate,
         foodLog.foodLogDate,
+        metaDataKeySyncIdentifier: foodLog.id,
       );
     }
     if (foodLog.fat != null && !fatAdded) {
@@ -43,6 +45,7 @@ class HealthServiceImpl implements HealthService {
         HealthDataType.DIETARY_FATS_CONSUMED,
         foodLog.foodLogDate,
         foodLog.foodLogDate,
+        metaDataKeySyncIdentifier: foodLog.id,
       );
     }
     if (foodLog.protein != null && !proteinAdded) {
@@ -51,6 +54,7 @@ class HealthServiceImpl implements HealthService {
         HealthDataType.DIETARY_PROTEIN_CONSUMED,
         foodLog.foodLogDate,
         foodLog.foodLogDate,
+        metaDataKeySyncIdentifier: foodLog.id,
       );
     }
 
@@ -68,6 +72,50 @@ class HealthServiceImpl implements HealthService {
     );
 
     return result;
+  }
+
+  @override
+  Future<bool> deleteNutritionData(FoodLog foodLog) async {
+    var carbsAdded = foodLog.isCarbsAddedToHealthKit;
+    var fatAdded = foodLog.isFatAddedToHealthKit;
+    var proteinAdded = foodLog.isProteinAddedToHealthKit;
+    var caloriesAdded = foodLog.isCaloriesAddedToHealthKit;
+
+    if (kIsWeb && foodLog.anyThingAdded) {
+      return false;
+    }
+
+    if (!kIsWeb) {
+      if (caloriesAdded) {
+        caloriesAdded = await _healthFactory.deleteHealthData(
+          HealthDataType.DIETARY_ENERGY_CONSUMED,
+          foodLog.id!,
+        );
+      }
+      if (foodLog.carbs != null && carbsAdded) {
+        carbsAdded = await _healthFactory.deleteHealthData(
+          HealthDataType.DIETARY_CARBS_CONSUMED,
+          foodLog.id!,
+        );
+      }
+      if (foodLog.fat != null && fatAdded) {
+        fatAdded = await _healthFactory.deleteHealthData(
+          HealthDataType.DIETARY_FATS_CONSUMED,
+          foodLog.id!,
+        );
+      }
+      if (foodLog.protein != null && proteinAdded) {
+        proteinAdded = await _healthFactory.deleteHealthData(
+          HealthDataType.DIETARY_PROTEIN_CONSUMED,
+          foodLog.id!,
+        );
+      }
+    }
+    await _firebaseService.deleteFoodLog(
+      id: foodLog.id!,
+      date: foodLog.foodLogDate,
+    );
+    return true;
   }
 
   @override
