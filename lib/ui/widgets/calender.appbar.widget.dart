@@ -84,9 +84,6 @@ class CalendarAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   ///creating a getter for [preferredSize]
   Size get preferredSize => const Size.fromHeight(120);
-
-  static _CalendarAppBarState? of(BuildContext context) =>
-      context.findAncestorStateOfType<_CalendarAppBarState>();
 }
 
 class _CalendarAppBarState extends State<CalendarAppBar> {
@@ -482,7 +479,8 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
               events: datesWithEnteries,
               selectedDate: referenceDate,
               locale: locale,
-              onDateChange: selectDateAndScroll,
+              onDateChange: (date) =>
+                  selectDateAndScroll(date, fromCalender: true),
             ),
           );
         },
@@ -617,12 +615,12 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
     );
   }
 
-  void selectDateAndScroll(DateTime value) {
+  void selectDateAndScroll(DateTime value, {bool fromCalender = false}) {
     ///systematics of selecting specific date
     HapticFeedback.lightImpact();
 
     ///hide modal bottom sheet
-    if (Navigator.canPop(context)) {
+    if (Navigator.canPop(context) && fromCalender) {
       Navigator.pop(context);
     }
 
