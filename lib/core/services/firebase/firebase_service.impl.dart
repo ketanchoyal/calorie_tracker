@@ -14,7 +14,7 @@ class FirebaseServiceImpl implements FirebaseService {
   //     _firebaseFirestore.collection('users').doc('ketanchoyal@gmail.com');
   DocumentReference get _currentUserRef => _firebaseFirestore
       .collection('users')
-      .doc(_firebaseAuth.currentUser!.uid);
+      .doc(_firebaseAuth.currentUser!.email ?? _firebaseAuth.currentUser!.uid);
 
   CollectionReference<Food> get _foodCollectionRef =>
       _currentUserRef.collection('foods').withConverter<Food>(
@@ -48,6 +48,9 @@ class FirebaseServiceImpl implements FirebaseService {
     required DateTime foodLogDate,
   }) async {
     throwThisIfNotUsingTestAccont();
+    if (_firebaseAuth.currentUser == null) {
+      return;
+    }
     await _foodLogCollectionRef(foodLogDate)
         .add(foodLog)
         .whenComplete(() => print('${foodLog.name} Added'));
@@ -56,6 +59,9 @@ class FirebaseServiceImpl implements FirebaseService {
   @override
   void addFood(Food food) {
     throwThisIfNotUsingTestAccont();
+    if (_firebaseAuth.currentUser == null) {
+      return;
+    }
     _foodCollectionRef
         .add(food)
         .whenComplete(() => print('${food.name} Added'));
@@ -63,6 +69,9 @@ class FirebaseServiceImpl implements FirebaseService {
 
   @override
   Stream<List<Food>> getFoods() {
+    if (_firebaseAuth.currentUser == null) {
+      return Stream.value([]);
+    }
     // _throwThisIfNotUsingTestAccont();
     final foodList = _foodCollectionRef.snapshots().map(
           (event) => event.docs
@@ -76,6 +85,9 @@ class FirebaseServiceImpl implements FirebaseService {
 
   @override
   Stream<List<FoodLog>> getFoodLog(DateTime date) {
+    if (_firebaseAuth.currentUser == null) {
+      return Stream.value([]);
+    }
     // _throwThisIfNotUsingTestAccont();
     final foodLogList = _foodLogCollectionRef(date).snapshots().map(
           (event) => event.docs

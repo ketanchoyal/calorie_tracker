@@ -56,5 +56,20 @@
 	<string>We neeed it to read data broo</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>We need it add your data broo</string>
+	<!-- Google Sign-in Section -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- TODO Replace this value: -->
+				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+				<string>com.googleusercontent.apps.674486446705-uu1agq83m8i67s1m5nr51o5n3f9qgurm</string>
+			</array>
+		</dict>
+	</array>
+	<!-- End of the Google Sign-in Section -->
 </dict>
 </plist>
