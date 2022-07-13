@@ -37,8 +37,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(const LoadingAuthState());
-    await _firebaseAuthService.googleSignIn();
-    emit(const LogedInAuthState());
+    final result = await _firebaseAuthService.googleSignIn();
+    if (result) {
+      emit(const LogedInAuthState());
+    } else {
+      emit(const LogedOutAuthState());
+    }
   }
 
   FutureOr<void> _mapLogOutEvent(

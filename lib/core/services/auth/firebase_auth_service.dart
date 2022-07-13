@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 abstract class FirebaseAuthService {
   Future<void> loginAnonmously();
 
-  Future<void> googleSignIn();
+  Future<bool> googleSignIn();
 
   User? get user;
 

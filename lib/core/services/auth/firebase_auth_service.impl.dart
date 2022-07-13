@@ -16,19 +16,25 @@ class FirebaseAuthServiceImpl implements FirebaseAuthService {
   Stream<User?> get userStream => _firebaseAuth.userChanges();
 
   @override
-  Future<void> googleSignIn() async {
-    final googleSignIn = GoogleSignIn();
-    final googleAccount = await googleSignIn.signIn();
-    if (googleAccount == null) {
-      return;
-    }
-    final googleAuth = await googleAccount.authentication;
+  Future<bool> googleSignIn() async {
+    try {
+      final googleSignIn = GoogleSignIn();
+      final googleAccount = await googleSignIn.signIn();
+      if (googleAccount == null) {
+        return false;
+      }
+      final googleAuth = await googleAccount.authentication;
 
-    final authCredential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    await _firebaseAuth.signInWithCredential(authCredential);
+      final authCredential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await _firebaseAuth.signInWithCredential(authCredential);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 
   @override
