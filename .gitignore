@@ -129,3 +129,4 @@ app.*.map.json
 google-services.json
 firebase_options.dart
 firebase_app_id_file.json
+GoogleService-Info.plist
