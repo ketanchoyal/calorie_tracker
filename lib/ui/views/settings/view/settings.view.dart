@@ -52,11 +52,11 @@ class _SettingsBody extends StatelessWidget {
                 state.maybeWhen(
                   orElse: () => SettingsTile(
                     title:
-                        !kReleaseMode ? 'Google Sign In' : 'Log In Anonymously',
+                        kReleaseMode ? 'Google Sign In' : 'Log In Anonymously',
                     iosChevron: const Icon(Icons.chevron_right),
                     leading: const Icon(Icons.exit_to_app),
                     onPressed: (context) {
-                      if (!kReleaseMode) {
+                      if (kReleaseMode) {
                         context
                             .read<AuthBloc>()
                             .add(const AuthEvent.logInWithGoogle());
