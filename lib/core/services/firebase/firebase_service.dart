@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/core/models/add_health_data_result.dart';
 import 'package:calorie_tracker/core/models/food/food.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
+import 'package:calorie_tracker/core/models/profile/profile.dart';
 
 abstract class FirebaseService {
   void addFood(Food food);
@@ -22,4 +23,8 @@ abstract class FirebaseService {
     required AddDataResult addDataResult,
     required DateTime foodLogDate,
   });
+
+  Future<void> setProfile({required Profile profile});
+
+  Future<Profile?> getProfileData();
 }

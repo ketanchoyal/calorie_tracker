@@ -19,25 +19,25 @@ mixin _$GoalsState {
   double get caloriesGoal => throw _privateConstructorUsedError;
   double get proteinGoal => throw _privateConstructorUsedError;
   double get carbsGoal => throw _privateConstructorUsedError;
-  double get fatGoals => throw _privateConstructorUsedError;
+  double get fatGoal => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double caloriesGoal, double proteinGoal,
-            double carbsGoal, double fatGoals)
+            double carbsGoal, double fatGoal)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
+            double fatGoal)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
+            double fatGoal)?
         initial,
     required TResult orElse(),
   }) =>
@@ -73,7 +73,7 @@ abstract class $GoalsStateCopyWith<$Res> {
       {double caloriesGoal,
       double proteinGoal,
       double carbsGoal,
-      double fatGoals});
+      double fatGoal});
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class _$GoalsStateCopyWithImpl<$Res> implements $GoalsStateCopyWith<$Res> {
     Object? caloriesGoal = freezed,
     Object? proteinGoal = freezed,
     Object? carbsGoal = freezed,
-    Object? fatGoals = freezed,
+    Object? fatGoal = freezed,
   }) {
     return _then(_value.copyWith(
       caloriesGoal: caloriesGoal == freezed
@@ -104,9 +104,9 @@ class _$GoalsStateCopyWithImpl<$Res> implements $GoalsStateCopyWith<$Res> {
           ? _value.carbsGoal
           : carbsGoal // ignore: cast_nullable_to_non_nullable
               as double,
-      fatGoals: fatGoals == freezed
-          ? _value.fatGoals
-          : fatGoals // ignore: cast_nullable_to_non_nullable
+      fatGoal: fatGoal == freezed
+          ? _value.fatGoal
+          : fatGoal // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -122,7 +122,7 @@ abstract class _$$_InitialCopyWith<$Res> implements $GoalsStateCopyWith<$Res> {
       {double caloriesGoal,
       double proteinGoal,
       double carbsGoal,
-      double fatGoals});
+      double fatGoal});
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$_InitialCopyWithImpl<$Res> extends _$GoalsStateCopyWithImpl<$Res>
     Object? caloriesGoal = freezed,
     Object? proteinGoal = freezed,
     Object? carbsGoal = freezed,
-    Object? fatGoals = freezed,
+    Object? fatGoal = freezed,
   }) {
     return _then(_$_Initial(
       caloriesGoal: caloriesGoal == freezed
@@ -154,9 +154,9 @@ class __$$_InitialCopyWithImpl<$Res> extends _$GoalsStateCopyWithImpl<$Res>
           ? _value.carbsGoal
           : carbsGoal // ignore: cast_nullable_to_non_nullable
               as double,
-      fatGoals: fatGoals == freezed
-          ? _value.fatGoals
-          : fatGoals // ignore: cast_nullable_to_non_nullable
+      fatGoal: fatGoal == freezed
+          ? _value.fatGoal
+          : fatGoal // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -169,7 +169,7 @@ class _$_Initial implements _Initial {
       {this.caloriesGoal = 0,
       this.proteinGoal = 0,
       this.carbsGoal = 0,
-      this.fatGoals = 0});
+      this.fatGoal = 0});
 
   @override
   @JsonKey()
@@ -182,11 +182,11 @@ class _$_Initial implements _Initial {
   final double carbsGoal;
   @override
   @JsonKey()
-  final double fatGoals;
+  final double fatGoal;
 
   @override
   String toString() {
-    return 'GoalsState.initial(caloriesGoal: $caloriesGoal, proteinGoal: $proteinGoal, carbsGoal: $carbsGoal, fatGoals: $fatGoals)';
+    return 'GoalsState.initial(caloriesGoal: $caloriesGoal, proteinGoal: $proteinGoal, carbsGoal: $carbsGoal, fatGoal: $fatGoal)';
   }
 
   @override
@@ -199,7 +199,7 @@ class _$_Initial implements _Initial {
             const DeepCollectionEquality()
                 .equals(other.proteinGoal, proteinGoal) &&
             const DeepCollectionEquality().equals(other.carbsGoal, carbsGoal) &&
-            const DeepCollectionEquality().equals(other.fatGoals, fatGoals));
+            const DeepCollectionEquality().equals(other.fatGoal, fatGoal));
   }
 
   @override
@@ -208,7 +208,7 @@ class _$_Initial implements _Initial {
       const DeepCollectionEquality().hash(caloriesGoal),
       const DeepCollectionEquality().hash(proteinGoal),
       const DeepCollectionEquality().hash(carbsGoal),
-      const DeepCollectionEquality().hash(fatGoals));
+      const DeepCollectionEquality().hash(fatGoal));
 
   @JsonKey(ignore: true)
   @override
@@ -219,32 +219,32 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double caloriesGoal, double proteinGoal,
-            double carbsGoal, double fatGoals)
+            double carbsGoal, double fatGoal)
         initial,
   }) {
-    return initial(caloriesGoal, proteinGoal, carbsGoal, fatGoals);
+    return initial(caloriesGoal, proteinGoal, carbsGoal, fatGoal);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
+            double fatGoal)?
         initial,
   }) {
-    return initial?.call(caloriesGoal, proteinGoal, carbsGoal, fatGoals);
+    return initial?.call(caloriesGoal, proteinGoal, carbsGoal, fatGoal);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
+            double fatGoal)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(caloriesGoal, proteinGoal, carbsGoal, fatGoals);
+      return initial(caloriesGoal, proteinGoal, carbsGoal, fatGoal);
     }
     return orElse();
   }
@@ -283,7 +283,7 @@ abstract class _Initial implements GoalsState {
       {final double caloriesGoal,
       final double proteinGoal,
       final double carbsGoal,
-      final double fatGoals}) = _$_Initial;
+      final double fatGoal}) = _$_Initial;
 
   @override
   double get caloriesGoal => throw _privateConstructorUsedError;
@@ -292,7 +292,7 @@ abstract class _Initial implements GoalsState {
   @override
   double get carbsGoal => throw _privateConstructorUsedError;
   @override
-  double get fatGoals => throw _privateConstructorUsedError;
+  double get fatGoal => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
@@ -301,29 +301,20 @@ abstract class _Initial implements GoalsState {
 
 /// @nodoc
 mixin _$GoalsEvent {
-  double get caloriesGoal => throw _privateConstructorUsedError;
-  double get proteinGoal => throw _privateConstructorUsedError;
-  double get carbsGoal => throw _privateConstructorUsedError;
-  double get fatGoals => throw _privateConstructorUsedError;
+  Goals get goals => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double caloriesGoal, double proteinGoal,
-            double carbsGoal, double fatGoals)
-        update,
+    required TResult Function(Goals goals) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
-        update,
+    TResult Function(Goals goals)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
-        update,
+    TResult Function(Goals goals)? update,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -354,11 +345,9 @@ abstract class $GoalsEventCopyWith<$Res> {
   factory $GoalsEventCopyWith(
           GoalsEvent value, $Res Function(GoalsEvent) then) =
       _$GoalsEventCopyWithImpl<$Res>;
-  $Res call(
-      {double caloriesGoal,
-      double proteinGoal,
-      double carbsGoal,
-      double fatGoals});
+  $Res call({Goals goals});
+
+  $GoalsCopyWith<$Res> get goals;
 }
 
 /// @nodoc
@@ -371,29 +360,21 @@ class _$GoalsEventCopyWithImpl<$Res> implements $GoalsEventCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? caloriesGoal = freezed,
-    Object? proteinGoal = freezed,
-    Object? carbsGoal = freezed,
-    Object? fatGoals = freezed,
+    Object? goals = freezed,
   }) {
     return _then(_value.copyWith(
-      caloriesGoal: caloriesGoal == freezed
-          ? _value.caloriesGoal
-          : caloriesGoal // ignore: cast_nullable_to_non_nullable
-              as double,
-      proteinGoal: proteinGoal == freezed
-          ? _value.proteinGoal
-          : proteinGoal // ignore: cast_nullable_to_non_nullable
-              as double,
-      carbsGoal: carbsGoal == freezed
-          ? _value.carbsGoal
-          : carbsGoal // ignore: cast_nullable_to_non_nullable
-              as double,
-      fatGoals: fatGoals == freezed
-          ? _value.fatGoals
-          : fatGoals // ignore: cast_nullable_to_non_nullable
-              as double,
+      goals: goals == freezed
+          ? _value.goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as Goals,
     ));
+  }
+
+  @override
+  $GoalsCopyWith<$Res> get goals {
+    return $GoalsCopyWith<$Res>(_value.goals, (value) {
+      return _then(_value.copyWith(goals: value));
+    });
   }
 }
 
@@ -404,11 +385,10 @@ abstract class _$$UpdateGoalsEventCopyWith<$Res>
           _$UpdateGoalsEvent value, $Res Function(_$UpdateGoalsEvent) then) =
       __$$UpdateGoalsEventCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {double caloriesGoal,
-      double proteinGoal,
-      double carbsGoal,
-      double fatGoals});
+  $Res call({Goals goals});
+
+  @override
+  $GoalsCopyWith<$Res> get goals;
 }
 
 /// @nodoc
@@ -424,28 +404,13 @@ class __$$UpdateGoalsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? caloriesGoal = freezed,
-    Object? proteinGoal = freezed,
-    Object? carbsGoal = freezed,
-    Object? fatGoals = freezed,
+    Object? goals = freezed,
   }) {
     return _then(_$UpdateGoalsEvent(
-      caloriesGoal: caloriesGoal == freezed
-          ? _value.caloriesGoal
-          : caloriesGoal // ignore: cast_nullable_to_non_nullable
-              as double,
-      proteinGoal: proteinGoal == freezed
-          ? _value.proteinGoal
-          : proteinGoal // ignore: cast_nullable_to_non_nullable
-              as double,
-      carbsGoal: carbsGoal == freezed
-          ? _value.carbsGoal
-          : carbsGoal // ignore: cast_nullable_to_non_nullable
-              as double,
-      fatGoals: fatGoals == freezed
-          ? _value.fatGoals
-          : fatGoals // ignore: cast_nullable_to_non_nullable
-              as double,
+      goals: goals == freezed
+          ? _value.goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as Goals,
     ));
   }
 }
@@ -453,25 +418,14 @@ class __$$UpdateGoalsEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateGoalsEvent extends UpdateGoalsEvent {
-  const _$UpdateGoalsEvent(
-      {required this.caloriesGoal,
-      required this.proteinGoal,
-      required this.carbsGoal,
-      required this.fatGoals})
-      : super._();
+  const _$UpdateGoalsEvent({required this.goals}) : super._();
 
   @override
-  final double caloriesGoal;
-  @override
-  final double proteinGoal;
-  @override
-  final double carbsGoal;
-  @override
-  final double fatGoals;
+  final Goals goals;
 
   @override
   String toString() {
-    return 'GoalsEvent.update(caloriesGoal: $caloriesGoal, proteinGoal: $proteinGoal, carbsGoal: $carbsGoal, fatGoals: $fatGoals)';
+    return 'GoalsEvent.update(goals: $goals)';
   }
 
   @override
@@ -479,21 +433,12 @@ class _$UpdateGoalsEvent extends UpdateGoalsEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateGoalsEvent &&
-            const DeepCollectionEquality()
-                .equals(other.caloriesGoal, caloriesGoal) &&
-            const DeepCollectionEquality()
-                .equals(other.proteinGoal, proteinGoal) &&
-            const DeepCollectionEquality().equals(other.carbsGoal, carbsGoal) &&
-            const DeepCollectionEquality().equals(other.fatGoals, fatGoals));
+            const DeepCollectionEquality().equals(other.goals, goals));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(caloriesGoal),
-      const DeepCollectionEquality().hash(proteinGoal),
-      const DeepCollectionEquality().hash(carbsGoal),
-      const DeepCollectionEquality().hash(fatGoals));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(goals));
 
   @JsonKey(ignore: true)
   @override
@@ -503,33 +448,27 @@ class _$UpdateGoalsEvent extends UpdateGoalsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double caloriesGoal, double proteinGoal,
-            double carbsGoal, double fatGoals)
-        update,
+    required TResult Function(Goals goals) update,
   }) {
-    return update(caloriesGoal, proteinGoal, carbsGoal, fatGoals);
+    return update(goals);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
-        update,
+    TResult Function(Goals goals)? update,
   }) {
-    return update?.call(caloriesGoal, proteinGoal, carbsGoal, fatGoals);
+    return update?.call(goals);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double caloriesGoal, double proteinGoal, double carbsGoal,
-            double fatGoals)?
-        update,
+    TResult Function(Goals goals)? update,
     required TResult orElse(),
   }) {
     if (update != null) {
-      return update(caloriesGoal, proteinGoal, carbsGoal, fatGoals);
+      return update(goals);
     }
     return orElse();
   }
@@ -564,21 +503,12 @@ class _$UpdateGoalsEvent extends UpdateGoalsEvent {
 }
 
 abstract class UpdateGoalsEvent extends GoalsEvent {
-  const factory UpdateGoalsEvent(
-      {required final double caloriesGoal,
-      required final double proteinGoal,
-      required final double carbsGoal,
-      required final double fatGoals}) = _$UpdateGoalsEvent;
+  const factory UpdateGoalsEvent({required final Goals goals}) =
+      _$UpdateGoalsEvent;
   const UpdateGoalsEvent._() : super._();
 
   @override
-  double get caloriesGoal => throw _privateConstructorUsedError;
-  @override
-  double get proteinGoal => throw _privateConstructorUsedError;
-  @override
-  double get carbsGoal => throw _privateConstructorUsedError;
-  @override
-  double get fatGoals => throw _privateConstructorUsedError;
+  Goals get goals => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$UpdateGoalsEventCopyWith<_$UpdateGoalsEvent> get copyWith =>

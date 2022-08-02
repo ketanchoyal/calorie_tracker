@@ -14,6 +14,7 @@ import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:calorie_tracker/core/services/health/health_service.impl.dart';
 import 'package:calorie_tracker/l10n/l10n.dart';
 import 'package:calorie_tracker/ui/blocs/auth/auth_bloc.dart';
+import 'package:calorie_tracker/ui/blocs/goals/goals_bloc.dart';
 import 'package:calorie_tracker/ui/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,10 +39,20 @@ class App extends StatelessWidget {
             )..requestAuthorization(),
           ),
         ],
-        child: BlocProvider(
-          create: (context) => AuthBloc(
-            RepositoryProvider.of<FirebaseAuthService>(context),
-          ),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => AuthBloc(
+                RepositoryProvider.of<FirebaseAuthService>(context),
+              ),
+            ),
+            BlocProvider<GoalsBloc>(
+              create: (context) => GoalsBloc(
+                firebaseService:
+                    RepositoryProvider.of<FirebaseService>(context),
+              )..getGoals(),
+            ),
+          ],
           child: const AppView(),
         ),
       ),

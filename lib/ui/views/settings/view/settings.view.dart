@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:calorie_tracker/ui/blocs/auth/auth_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_food/view/add_food.view.dart';
+import 'package:calorie_tracker/ui/views/goals/view/goal.view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,19 @@ class _SettingsBody extends StatelessWidget {
                       context.read<AuthBloc>().add(const AuthEvent.logOut());
                     },
                   ),
+                ),
+                SettingsTile(
+                  title: 'Add Goals',
+                  leading: const Icon(Icons.add_task_rounded),
+                  iosChevron: const Icon(Icons.chevron_right),
+                  onPressed: (context) {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute<void>(
+                        builder: (context) => const GoalView(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

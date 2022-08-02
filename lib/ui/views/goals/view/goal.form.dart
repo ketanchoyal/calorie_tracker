@@ -28,6 +28,9 @@ class _GoalForm extends StatelessWidget {
                   children: [
                     TextFieldBlocBuilder(
                       textFieldBloc: formBloc.calories,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       textAlign: TextAlign.center,
                       textInputAction: TextInputAction.next,
                       textAlignVertical: TextAlignVertical.center,
@@ -50,6 +53,9 @@ class _GoalForm extends StatelessWidget {
                     TextFieldBlocBuilder(
                       textFieldBloc: formBloc.protein,
                       textAlign: TextAlign.center,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       textInputAction: TextInputAction.next,
                       textStyle: Theme.of(context).textTheme.headline4,
                       decoration: InputDecoration(
@@ -70,6 +76,9 @@ class _GoalForm extends StatelessWidget {
                     TextFieldBlocBuilder(
                       textFieldBloc: formBloc.carbs,
                       textAlign: TextAlign.center,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       textInputAction: TextInputAction.next,
                       textStyle: Theme.of(context).textTheme.headline4,
                       decoration: InputDecoration(
@@ -90,6 +99,9 @@ class _GoalForm extends StatelessWidget {
                     TextFieldBlocBuilder(
                       textFieldBloc: formBloc.fat,
                       textAlign: TextAlign.center,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       textInputAction: TextInputAction.next,
                       textStyle: Theme.of(context).textTheme.headline4,
                       decoration: InputDecoration(

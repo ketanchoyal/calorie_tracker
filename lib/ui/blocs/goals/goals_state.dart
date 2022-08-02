@@ -6,6 +6,6 @@ class GoalsState with _$GoalsState {
     @Default(0) double caloriesGoal,
     @Default(0) double proteinGoal,
     @Default(0) double carbsGoal,
-    @Default(0) double fatGoals,
+    @Default(0) double fatGoal,
   }) = _Initial;
 }

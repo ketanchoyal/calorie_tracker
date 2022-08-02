@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/core/models/add_health_data_result.dart';
 import 'package:calorie_tracker/core/models/food/food.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
+import 'package:calorie_tracker/core/models/profile/profile.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,9 +13,17 @@ class FirebaseServiceImpl implements FirebaseService {
 
   // DocumentReference get _currentUserRef =>
   //     _firebaseFirestore.collection('users').doc('ketanchoyal@gmail.com');
-  DocumentReference get _currentUserRef => _firebaseFirestore
+  DocumentReference<Profile?> get _currentUserRef => _firebaseFirestore
       .collection('users')
-      .doc(_firebaseAuth.currentUser!.email ?? _firebaseAuth.currentUser!.uid);
+      .doc(_firebaseAuth.currentUser!.email ?? _firebaseAuth.currentUser!.uid)
+      .withConverter<Profile?>(
+        fromFirestore: (snapshot, _) {
+          return snapshot.data() == null
+              ? null
+              : Profile.fromJson(snapshot.data()!);
+        },
+        toFirestore: (profile, _) => profile?.toJson() ?? {},
+      );
 
   CollectionReference<Food> get _foodCollectionRef =>
       _currentUserRef.collection('foods').withConverter<Food>(
@@ -40,6 +49,25 @@ class FirebaseServiceImpl implements FirebaseService {
           ),
           toFirestore: (foodLog, _) => foodLog.toJson(),
         );
+  }
+
+  @override
+  Future<void> setProfile({required Profile profile}) async {
+    if (_firebaseAuth.currentUser == null) {
+      return;
+    }
+    await _currentUserRef.set(
+      profile,
+      SetOptions(merge: true),
+    );
+  }
+
+  @override
+  Future<Profile?> getProfileData() async {
+    if (_firebaseAuth.currentUser == null) {
+      return null;
+    }
+    return _currentUserRef.get().then((value) => value.data());
   }
 
   @override

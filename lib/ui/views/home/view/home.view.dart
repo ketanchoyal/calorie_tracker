@@ -42,12 +42,6 @@ class _HomeView extends StatelessWidget {
         firstDate: DateTime.now().subtract(const Duration(days: 140)),
         lastDate: DateTime.now(),
         onSettingsTap: () async {
-          // try {
-          //   await context.read<FirebaseAuthService>().loginAnonmously();
-          //   print('Login Successful');
-          // } catch (e) {
-          //   print(e);
-          // }
           await Navigator.push(
             context,
             CupertinoPageRoute<void>(
@@ -116,7 +110,7 @@ class _HomeView extends StatelessWidget {
                 final carbsEatenPercent = totalCarbs / carbsGoal;
 
                 final totalFat = state.totalFat;
-                final fatGoal = goals.fatGoals;
+                final fatGoal = goals.fatGoal;
                 final fatEatenPercent = totalFat / fatGoal;
 
                 return Column(

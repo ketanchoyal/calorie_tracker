@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:calorie_tracker/core/models/profile/profile.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'goals_state.dart';
@@ -8,21 +10,24 @@ part 'goals_event.dart';
 part 'goals_bloc.freezed.dart';
 
 class GoalsBloc extends Bloc<GoalsEvent, GoalsState> {
-  GoalsBloc() : super(const GoalsState.initial()) {
+  GoalsBloc({
+    required this.firebaseService,
+  }) : super(const GoalsState.initial()) {
     on<UpdateGoalsEvent>(_mapUpdateGoalsEvent);
     getGoals();
   }
 
+  final FirebaseService firebaseService;
+
   Future<void> getGoals() async {
-    await Future<void>.delayed(const Duration(milliseconds: 300));
-    add(
-      const UpdateGoalsEvent(
-        caloriesGoal: 2300,
-        proteinGoal: 173,
-        carbsGoal: 265,
-        fatGoals: 77,
-      ),
-    );
+    final profile = await firebaseService.getProfileData();
+    if (profile != null && profile.goals != null) {
+      add(
+        UpdateGoalsEvent(
+          goals: profile.goals!,
+        ),
+      );
+    } else {}
   }
 
   FutureOr<void> _mapUpdateGoalsEvent(
@@ -31,10 +36,10 @@ class GoalsBloc extends Bloc<GoalsEvent, GoalsState> {
   ) {
     emit(
       state.copyWith(
-        caloriesGoal: event.caloriesGoal,
-        proteinGoal: event.proteinGoal,
-        carbsGoal: event.carbsGoal,
-        fatGoals: event.fatGoals,
+        caloriesGoal: event.goals.calories,
+        proteinGoal: event.goals.protein,
+        carbsGoal: event.goals.carbs,
+        fatGoal: event.goals.fat,
       ),
     );
   }

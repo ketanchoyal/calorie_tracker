@@ -34,13 +34,13 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
-          create: (context) => HomeBloc(
-            firebaseService: context.read<FirebaseService>(),
-            healthService: context.read<HealthService>(),
-          ),
-        ),
-        BlocProvider<GoalsBloc>(
-          create: (context) => GoalsBloc(),
+          create: (context) {
+            context.read<GoalsBloc>().getGoals();
+            return HomeBloc(
+              firebaseService: context.read<FirebaseService>(),
+              healthService: context.read<HealthService>(),
+            );
+          },
         ),
       ],
       child: const _HomeView(),
