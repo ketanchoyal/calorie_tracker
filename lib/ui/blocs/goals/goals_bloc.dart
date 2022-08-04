@@ -30,6 +30,14 @@ class GoalsBloc extends Bloc<GoalsEvent, GoalsState> {
     } else {}
   }
 
+  void resetGoals() {
+    add(
+      UpdateGoalsEvent(
+        goals: Goals(calories: 0, protein: 0, fat: 0, carbs: 0),
+      ),
+    );
+  }
+
   FutureOr<void> _mapUpdateGoalsEvent(
     UpdateGoalsEvent event,
     Emitter<GoalsState> emit,

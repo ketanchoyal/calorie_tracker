@@ -5,6 +5,7 @@ import 'package:calorie_tracker/core/enums/food_type.enum.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/core/services/health/health_service.dart';
+import 'package:calorie_tracker/ui/blocs/auth/auth_bloc.dart';
 import 'package:calorie_tracker/ui/blocs/goals/goals_bloc.dart';
 import 'package:calorie_tracker/ui/extensions/double+extension.dart';
 import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.dart';
@@ -31,19 +32,31 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HomeBloc>(
-          create: (context) {
-            context.read<GoalsBloc>().getGoals();
-            return HomeBloc(
-              firebaseService: context.read<FirebaseService>(),
-              healthService: context.read<HealthService>(),
-            );
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        state.mapOrNull(
+          logedOut: (_) {
+            context.read<GoalsBloc>().resetGoals();
           },
-        ),
-      ],
-      child: const _HomeView(),
+          logedIn: (_) {
+            context.read<GoalsBloc>().getGoals();
+          },
+        );
+      },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<HomeBloc>(
+            create: (context) {
+              context.read<GoalsBloc>().getGoals();
+              return HomeBloc(
+                firebaseService: context.read<FirebaseService>(),
+                healthService: context.read<HealthService>(),
+              );
+            },
+          ),
+        ],
+        child: const _HomeView(),
+      ),
     );
   }
 }

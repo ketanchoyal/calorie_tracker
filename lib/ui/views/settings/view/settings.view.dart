@@ -52,20 +52,13 @@ class _SettingsBody extends StatelessWidget {
                 ),
                 state.maybeWhen(
                   orElse: () => SettingsTile(
-                    title:
-                        kReleaseMode ? 'Google Sign In' : 'Log In Anonymously',
+                    title: 'Google Sign In',
                     iosChevron: const Icon(Icons.chevron_right),
                     leading: const Icon(Icons.exit_to_app),
                     onPressed: (context) {
-                      if (kReleaseMode) {
-                        context
-                            .read<AuthBloc>()
-                            .add(const AuthEvent.logInWithGoogle());
-                      } else {
-                        context
-                            .read<AuthBloc>()
-                            .add(const AuthEvent.logInAnonymously());
-                      }
+                      context
+                          .read<AuthBloc>()
+                          .add(const AuthEvent.logInWithGoogle());
                     },
                   ),
                   logedIn: () => SettingsTile(
@@ -77,6 +70,27 @@ class _SettingsBody extends StatelessWidget {
                     },
                   ),
                 ),
+                if (!kReleaseMode)
+                  state.maybeWhen(
+                    orElse: () => SettingsTile(
+                      title: 'Log In Anonymously',
+                      iosChevron: const Icon(Icons.chevron_right),
+                      leading: const Icon(Icons.exit_to_app),
+                      onPressed: (context) {
+                        context
+                            .read<AuthBloc>()
+                            .add(const AuthEvent.logInAnonymously());
+                      },
+                    ),
+                    logedIn: () => SettingsTile(
+                      title: 'Sign out',
+                      iosChevron: const Icon(Icons.chevron_right),
+                      leading: const Icon(Icons.exit_to_app),
+                      onPressed: (context) {
+                        context.read<AuthBloc>().add(const AuthEvent.logOut());
+                      },
+                    ),
+                  ),
                 SettingsTile(
                   title: 'Add Goals',
                   leading: const Icon(Icons.add_task_rounded),
