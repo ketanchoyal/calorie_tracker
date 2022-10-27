@@ -4,13 +4,7 @@ on: [pull_request, push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone Submodules
-        run: git submodule update --init --recursive
-
-      - name: Very Good Workflow
-        uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
-        with:
-          flutter_channel: stable
-          flutter_version: 3.0.0
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_channel: stable
+      flutter_version: 3.0.0
