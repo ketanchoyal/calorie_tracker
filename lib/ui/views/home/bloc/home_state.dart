@@ -11,5 +11,6 @@ class HomeState with _$HomeState {
     @Default(false) bool hadExtraCarbs,
     @Default(false) bool hadExtraFat,
     @Default(false) bool hadExtraProtein,
+    @Default(0.0) num totalBurnedCalories,
   }) = _HomeState;
 }

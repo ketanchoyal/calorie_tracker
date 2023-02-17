@@ -13,4 +13,6 @@ class HomeEvent with _$HomeEvent {
     required bool hadExtraFat,
     required bool hadExtraProtein,
   }) = HomeUpdateNutritionEvent;
+  factory HomeEvent.updateBurnedCaloriesEvent({required num burnedCalories}) =
+      UpdateBurnedCaloriesEvent;
 }

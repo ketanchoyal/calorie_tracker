@@ -24,6 +24,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<TodayHomeEvent>(_mapTodayHomeEvent);
     on<SomeOtherDateHomeEvent>(_mapSomeOtherDateHomeEvent);
     on<HomeUpdateNutritionEvent>(_mapHomeUpdateNutritionEvent);
+    on<UpdateBurnedCaloriesEvent>(_mapUpdateBurnedCaloriesEvent);
+    getCaloresBurned();
   }
 
   final FirebaseService _firebaseService;
@@ -66,6 +68,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         hadExtraFat: event.hadExtraFat,
         hadExtraProtein: event.hadExtraProtein,
       ),
+    );
+  }
+
+  FutureOr<void> _mapUpdateBurnedCaloriesEvent(
+    UpdateBurnedCaloriesEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    emit(
+      state.copyWith(totalBurnedCalories: event.burnedCalories),
     );
   }
 
@@ -140,5 +151,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await _healthService.addNutritionData(foodLog).whenComplete(() {
       print('Added ${foodLog.name} - ${foodLog.id} to health kit');
     });
+  }
+
+  Future<void> getCaloresBurned() async {
+    final burnedCalories = await _healthService.getBurnedCalories();
+    add(UpdateBurnedCaloriesEvent(burnedCalories: burnedCalories));
   }
 }

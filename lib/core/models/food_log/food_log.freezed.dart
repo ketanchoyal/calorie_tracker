@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'food_log.dart';
 
@@ -49,7 +49,8 @@ mixin _$FoodLog {
 /// @nodoc
 abstract class $FoodLogCopyWith<$Res> {
   factory $FoodLogCopyWith(FoodLog value, $Res Function(FoodLog) then) =
-      _$FoodLogCopyWithImpl<$Res>;
+      _$FoodLogCopyWithImpl<$Res, FoodLog>;
+  @useResult
   $Res call(
       {String? id,
       String name,
@@ -74,93 +75,96 @@ abstract class $FoodLogCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FoodLogCopyWithImpl<$Res> implements $FoodLogCopyWith<$Res> {
+class _$FoodLogCopyWithImpl<$Res, $Val extends FoodLog>
+    implements $FoodLogCopyWith<$Res> {
   _$FoodLogCopyWithImpl(this._value, this._then);
 
-  final FoodLog _value;
   // ignore: unused_field
-  final $Res Function(FoodLog) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
-    Object? caloriesPerServing = freezed,
-    Object? foodType = freezed,
+    Object? name = null,
+    Object? caloriesPerServing = null,
+    Object? foodType = null,
     Object? protein = freezed,
     Object? carbs = freezed,
     Object? fat = freezed,
-    Object? date = freezed,
-    Object? foodLogDate = freezed,
-    Object? isCarbsAddedToHealthKit = freezed,
-    Object? isFatAddedToHealthKit = freezed,
-    Object? isProteinAddedToHealthKit = freezed,
-    Object? isCaloriesAddedToHealthKit = freezed,
+    Object? date = null,
+    Object? foodLogDate = null,
+    Object? isCarbsAddedToHealthKit = null,
+    Object? isFatAddedToHealthKit = null,
+    Object? isProteinAddedToHealthKit = null,
+    Object? isCaloriesAddedToHealthKit = null,
     Object? foodReference = freezed,
-    Object? servingEaten = freezed,
+    Object? servingEaten = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      caloriesPerServing: caloriesPerServing == freezed
+      caloriesPerServing: null == caloriesPerServing
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
-      foodType: foodType == freezed
+      foodType: null == foodType
           ? _value.foodType
           : foodType // ignore: cast_nullable_to_non_nullable
               as FoodType,
-      protein: protein == freezed
+      protein: freezed == protein
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as double?,
-      carbs: carbs == freezed
+      carbs: freezed == carbs
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
               as double?,
-      fat: fat == freezed
+      fat: freezed == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
               as double?,
-      date: date == freezed
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      foodLogDate: foodLogDate == freezed
+      foodLogDate: null == foodLogDate
           ? _value.foodLogDate
           : foodLogDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      isCarbsAddedToHealthKit: isCarbsAddedToHealthKit == freezed
+      isCarbsAddedToHealthKit: null == isCarbsAddedToHealthKit
           ? _value.isCarbsAddedToHealthKit
           : isCarbsAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      isFatAddedToHealthKit: isFatAddedToHealthKit == freezed
+      isFatAddedToHealthKit: null == isFatAddedToHealthKit
           ? _value.isFatAddedToHealthKit
           : isFatAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      isProteinAddedToHealthKit: isProteinAddedToHealthKit == freezed
+      isProteinAddedToHealthKit: null == isProteinAddedToHealthKit
           ? _value.isProteinAddedToHealthKit
           : isProteinAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      isCaloriesAddedToHealthKit: isCaloriesAddedToHealthKit == freezed
+      isCaloriesAddedToHealthKit: null == isCaloriesAddedToHealthKit
           ? _value.isCaloriesAddedToHealthKit
           : isCaloriesAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      foodReference: foodReference == freezed
+      foodReference: freezed == foodReference
           ? _value.foodReference
           : foodReference // ignore: cast_nullable_to_non_nullable
               as String?,
-      servingEaten: servingEaten == freezed
+      servingEaten: null == servingEaten
           ? _value.servingEaten
           : servingEaten // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -170,6 +174,7 @@ abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
           _$_FoodLog value, $Res Function(_$_FoodLog) then) =
       __$$_FoodLogCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? id,
       String name,
@@ -194,90 +199,89 @@ abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FoodLogCopyWithImpl<$Res> extends _$FoodLogCopyWithImpl<$Res>
+class __$$_FoodLogCopyWithImpl<$Res>
+    extends _$FoodLogCopyWithImpl<$Res, _$_FoodLog>
     implements _$$_FoodLogCopyWith<$Res> {
   __$$_FoodLogCopyWithImpl(_$_FoodLog _value, $Res Function(_$_FoodLog) _then)
-      : super(_value, (v) => _then(v as _$_FoodLog));
+      : super(_value, _then);
 
-  @override
-  _$_FoodLog get _value => super._value as _$_FoodLog;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
-    Object? caloriesPerServing = freezed,
-    Object? foodType = freezed,
+    Object? name = null,
+    Object? caloriesPerServing = null,
+    Object? foodType = null,
     Object? protein = freezed,
     Object? carbs = freezed,
     Object? fat = freezed,
-    Object? date = freezed,
-    Object? foodLogDate = freezed,
-    Object? isCarbsAddedToHealthKit = freezed,
-    Object? isFatAddedToHealthKit = freezed,
-    Object? isProteinAddedToHealthKit = freezed,
-    Object? isCaloriesAddedToHealthKit = freezed,
+    Object? date = null,
+    Object? foodLogDate = null,
+    Object? isCarbsAddedToHealthKit = null,
+    Object? isFatAddedToHealthKit = null,
+    Object? isProteinAddedToHealthKit = null,
+    Object? isCaloriesAddedToHealthKit = null,
     Object? foodReference = freezed,
-    Object? servingEaten = freezed,
+    Object? servingEaten = null,
   }) {
     return _then(_$_FoodLog(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      caloriesPerServing: caloriesPerServing == freezed
+      caloriesPerServing: null == caloriesPerServing
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
-      foodType: foodType == freezed
+      foodType: null == foodType
           ? _value.foodType
           : foodType // ignore: cast_nullable_to_non_nullable
               as FoodType,
-      protein: protein == freezed
+      protein: freezed == protein
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as double?,
-      carbs: carbs == freezed
+      carbs: freezed == carbs
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
               as double?,
-      fat: fat == freezed
+      fat: freezed == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
               as double?,
-      date: date == freezed
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      foodLogDate: foodLogDate == freezed
+      foodLogDate: null == foodLogDate
           ? _value.foodLogDate
           : foodLogDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      isCarbsAddedToHealthKit: isCarbsAddedToHealthKit == freezed
+      isCarbsAddedToHealthKit: null == isCarbsAddedToHealthKit
           ? _value.isCarbsAddedToHealthKit
           : isCarbsAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      isFatAddedToHealthKit: isFatAddedToHealthKit == freezed
+      isFatAddedToHealthKit: null == isFatAddedToHealthKit
           ? _value.isFatAddedToHealthKit
           : isFatAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      isProteinAddedToHealthKit: isProteinAddedToHealthKit == freezed
+      isProteinAddedToHealthKit: null == isProteinAddedToHealthKit
           ? _value.isProteinAddedToHealthKit
           : isProteinAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      isCaloriesAddedToHealthKit: isCaloriesAddedToHealthKit == freezed
+      isCaloriesAddedToHealthKit: null == isCaloriesAddedToHealthKit
           ? _value.isCaloriesAddedToHealthKit
           : isCaloriesAddedToHealthKit // ignore: cast_nullable_to_non_nullable
               as bool,
-      foodReference: foodReference == freezed
+      foodReference: freezed == foodReference
           ? _value.foodReference
           : foodReference // ignore: cast_nullable_to_non_nullable
               as String?,
-      servingEaten: servingEaten == freezed
+      servingEaten: null == servingEaten
           ? _value.servingEaten
           : servingEaten // ignore: cast_nullable_to_non_nullable
               as double,
@@ -363,52 +367,58 @@ class _$_FoodLog extends _FoodLog {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FoodLog &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.caloriesPerServing, caloriesPerServing) &&
-            const DeepCollectionEquality().equals(other.foodType, foodType) &&
-            const DeepCollectionEquality().equals(other.protein, protein) &&
-            const DeepCollectionEquality().equals(other.carbs, carbs) &&
-            const DeepCollectionEquality().equals(other.fat, fat) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality()
-                .equals(other.foodLogDate, foodLogDate) &&
-            const DeepCollectionEquality().equals(
-                other.isCarbsAddedToHealthKit, isCarbsAddedToHealthKit) &&
-            const DeepCollectionEquality()
-                .equals(other.isFatAddedToHealthKit, isFatAddedToHealthKit) &&
-            const DeepCollectionEquality().equals(
-                other.isProteinAddedToHealthKit, isProteinAddedToHealthKit) &&
-            const DeepCollectionEquality().equals(
-                other.isCaloriesAddedToHealthKit, isCaloriesAddedToHealthKit) &&
-            const DeepCollectionEquality()
-                .equals(other.foodReference, foodReference) &&
-            const DeepCollectionEquality()
-                .equals(other.servingEaten, servingEaten));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.caloriesPerServing, caloriesPerServing) ||
+                other.caloriesPerServing == caloriesPerServing) &&
+            (identical(other.foodType, foodType) ||
+                other.foodType == foodType) &&
+            (identical(other.protein, protein) || other.protein == protein) &&
+            (identical(other.carbs, carbs) || other.carbs == carbs) &&
+            (identical(other.fat, fat) || other.fat == fat) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.foodLogDate, foodLogDate) ||
+                other.foodLogDate == foodLogDate) &&
+            (identical(
+                    other.isCarbsAddedToHealthKit, isCarbsAddedToHealthKit) ||
+                other.isCarbsAddedToHealthKit == isCarbsAddedToHealthKit) &&
+            (identical(other.isFatAddedToHealthKit, isFatAddedToHealthKit) ||
+                other.isFatAddedToHealthKit == isFatAddedToHealthKit) &&
+            (identical(other.isProteinAddedToHealthKit,
+                    isProteinAddedToHealthKit) ||
+                other.isProteinAddedToHealthKit == isProteinAddedToHealthKit) &&
+            (identical(other.isCaloriesAddedToHealthKit,
+                    isCaloriesAddedToHealthKit) ||
+                other.isCaloriesAddedToHealthKit ==
+                    isCaloriesAddedToHealthKit) &&
+            (identical(other.foodReference, foodReference) ||
+                other.foodReference == foodReference) &&
+            (identical(other.servingEaten, servingEaten) ||
+                other.servingEaten == servingEaten));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(caloriesPerServing),
-      const DeepCollectionEquality().hash(foodType),
-      const DeepCollectionEquality().hash(protein),
-      const DeepCollectionEquality().hash(carbs),
-      const DeepCollectionEquality().hash(fat),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(foodLogDate),
-      const DeepCollectionEquality().hash(isCarbsAddedToHealthKit),
-      const DeepCollectionEquality().hash(isFatAddedToHealthKit),
-      const DeepCollectionEquality().hash(isProteinAddedToHealthKit),
-      const DeepCollectionEquality().hash(isCaloriesAddedToHealthKit),
-      const DeepCollectionEquality().hash(foodReference),
-      const DeepCollectionEquality().hash(servingEaten));
+      id,
+      name,
+      caloriesPerServing,
+      foodType,
+      protein,
+      carbs,
+      fat,
+      date,
+      foodLogDate,
+      isCarbsAddedToHealthKit,
+      isFatAddedToHealthKit,
+      isProteinAddedToHealthKit,
+      isCaloriesAddedToHealthKit,
+      foodReference,
+      servingEaten);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FoodLogCopyWith<_$_FoodLog> get copyWith =>
       __$$_FoodLogCopyWithImpl<_$_FoodLog>(this, _$identity);
 }
@@ -438,44 +448,44 @@ abstract class _FoodLog extends FoodLog {
   _FoodLog._() : super._();
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  double get caloriesPerServing => throw _privateConstructorUsedError;
+  double get caloriesPerServing;
   @override
   @JsonEnum()
-  FoodType get foodType => throw _privateConstructorUsedError;
+  FoodType get foodType;
   @override
-  double? get protein => throw _privateConstructorUsedError;
+  double? get protein;
   @override
-  double? get carbs => throw _privateConstructorUsedError;
+  double? get carbs;
   @override
-  double? get fat => throw _privateConstructorUsedError;
+  double? get fat;
   @override
 
   ///The date the food was added to the log.
-  DateTime get date => throw _privateConstructorUsedError;
+  DateTime get date;
   @override
 
   /// This is the date when this food was eaten. It's not the date the foodLog was added.
-  DateTime get foodLogDate => throw _privateConstructorUsedError;
+  DateTime get foodLogDate;
   @override
   @JsonKey(defaultValue: false, nullable: false)
-  bool get isCarbsAddedToHealthKit => throw _privateConstructorUsedError;
+  bool get isCarbsAddedToHealthKit;
   @override
   @JsonKey(defaultValue: false, nullable: false)
-  bool get isFatAddedToHealthKit => throw _privateConstructorUsedError;
+  bool get isFatAddedToHealthKit;
   @override
   @JsonKey(defaultValue: false, nullable: false)
-  bool get isProteinAddedToHealthKit => throw _privateConstructorUsedError;
+  bool get isProteinAddedToHealthKit;
   @override
   @JsonKey(defaultValue: false, nullable: false)
-  bool get isCaloriesAddedToHealthKit => throw _privateConstructorUsedError;
+  bool get isCaloriesAddedToHealthKit;
   @override
-  String? get foodReference => throw _privateConstructorUsedError;
+  String? get foodReference;
   @override //will be the actual serving size eaten,
-  double get servingEaten => throw _privateConstructorUsedError;
+  double get servingEaten;
   @override
   @JsonKey(ignore: true)
   _$$_FoodLogCopyWith<_$_FoodLog> get copyWith =>

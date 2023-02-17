@@ -7,4 +7,6 @@ abstract class HealthService {
   Future<AddDataResult> addNutritionData(FoodLog foodLog);
 
   Future<bool> deleteNutritionData(FoodLog foodLog);
+
+  Future<num> getBurnedCalories();
 }

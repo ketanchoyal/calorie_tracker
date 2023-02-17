@@ -6,7 +6,7 @@ import FlutterMacOS
 import Foundation
 
 import cloud_firestore
-import device_info_plus_macos
+import device_info_plus
 import dynamic_color
 import firebase_auth
 import firebase_core

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'add_colories_bloc.dart';
 
@@ -36,10 +36,10 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? reset,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(
+    TResult? Function()? reset,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function(
             double servings,
             double caloriesPerServing,
             DateTime foodLogDate,
@@ -81,10 +81,10 @@ mixin _$AddColoriesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Reset value)? reset,
-    TResult Function(_SelectFoodEvent value)? selectFood,
-    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
-    TResult Function(_SubmitEvent value)? submit,
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_SelectFoodEvent value)? selectFood,
+    TResult? Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult? Function(_SubmitEvent value)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -102,17 +102,18 @@ mixin _$AddColoriesEvent {
 abstract class $AddColoriesEventCopyWith<$Res> {
   factory $AddColoriesEventCopyWith(
           AddColoriesEvent value, $Res Function(AddColoriesEvent) then) =
-      _$AddColoriesEventCopyWithImpl<$Res>;
+      _$AddColoriesEventCopyWithImpl<$Res, AddColoriesEvent>;
 }
 
 /// @nodoc
-class _$AddColoriesEventCopyWithImpl<$Res>
+class _$AddColoriesEventCopyWithImpl<$Res, $Val extends AddColoriesEvent>
     implements $AddColoriesEventCopyWith<$Res> {
   _$AddColoriesEventCopyWithImpl(this._value, this._then);
 
-  final AddColoriesEvent _value;
   // ignore: unused_field
-  final $Res Function(AddColoriesEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -122,13 +123,11 @@ abstract class _$$_ResetCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ResetCopyWithImpl<$Res> extends _$AddColoriesEventCopyWithImpl<$Res>
+class __$$_ResetCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$_Reset>
     implements _$$_ResetCopyWith<$Res> {
   __$$_ResetCopyWithImpl(_$_Reset _value, $Res Function(_$_Reset) _then)
-      : super(_value, (v) => _then(v as _$_Reset));
-
-  @override
-  _$_Reset get _value => super._value as _$_Reset;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -174,10 +173,10 @@ class _$_Reset implements _Reset {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? reset,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(
+    TResult? Function()? reset,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function(
             double servings,
             double caloriesPerServing,
             DateTime foodLogDate,
@@ -231,10 +230,10 @@ class _$_Reset implements _Reset {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Reset value)? reset,
-    TResult Function(_SelectFoodEvent value)? selectFood,
-    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
-    TResult Function(_SubmitEvent value)? submit,
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_SelectFoodEvent value)? selectFood,
+    TResult? Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult? Function(_SubmitEvent value)? submit,
   }) {
     return reset?.call(this);
   }
@@ -264,6 +263,7 @@ abstract class _$$_SelectFoodEventCopyWith<$Res> {
   factory _$$_SelectFoodEventCopyWith(
           _$_SelectFoodEvent value, $Res Function(_$_SelectFoodEvent) then) =
       __$$_SelectFoodEventCopyWithImpl<$Res>;
+  @useResult
   $Res call({Food food});
 
   $FoodCopyWith<$Res> get food;
@@ -271,21 +271,19 @@ abstract class _$$_SelectFoodEventCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SelectFoodEventCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$_SelectFoodEvent>
     implements _$$_SelectFoodEventCopyWith<$Res> {
   __$$_SelectFoodEventCopyWithImpl(
       _$_SelectFoodEvent _value, $Res Function(_$_SelectFoodEvent) _then)
-      : super(_value, (v) => _then(v as _$_SelectFoodEvent));
+      : super(_value, _then);
 
-  @override
-  _$_SelectFoodEvent get _value => super._value as _$_SelectFoodEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? food = freezed,
+    Object? food = null,
   }) {
     return _then(_$_SelectFoodEvent(
-      food: food == freezed
+      food: null == food
           ? _value.food
           : food // ignore: cast_nullable_to_non_nullable
               as Food,
@@ -293,6 +291,7 @@ class __$$_SelectFoodEventCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FoodCopyWith<$Res> get food {
     return $FoodCopyWith<$Res>(_value.food, (value) {
       return _then(_value.copyWith(food: value));
@@ -318,15 +317,15 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SelectFoodEvent &&
-            const DeepCollectionEquality().equals(other.food, food));
+            (identical(other.food, food) || other.food == food));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(food));
+  int get hashCode => Object.hash(runtimeType, food);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SelectFoodEventCopyWith<_$_SelectFoodEvent> get copyWith =>
       __$$_SelectFoodEventCopyWithImpl<_$_SelectFoodEvent>(this, _$identity);
 
@@ -354,10 +353,10 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? reset,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(
+    TResult? Function()? reset,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function(
             double servings,
             double caloriesPerServing,
             DateTime foodLogDate,
@@ -411,10 +410,10 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Reset value)? reset,
-    TResult Function(_SelectFoodEvent value)? selectFood,
-    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
-    TResult Function(_SubmitEvent value)? submit,
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_SelectFoodEvent value)? selectFood,
+    TResult? Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult? Function(_SubmitEvent value)? submit,
   }) {
     return selectFood?.call(this);
   }
@@ -438,7 +437,7 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
 abstract class _SelectFoodEvent implements AddColoriesEvent {
   factory _SelectFoodEvent({required final Food food}) = _$_SelectFoodEvent;
 
-  Food get food => throw _privateConstructorUsedError;
+  Food get food;
   @JsonKey(ignore: true)
   _$$_SelectFoodEventCopyWith<_$_SelectFoodEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -453,14 +452,11 @@ abstract class _$$_QuickAddFoodEventCopyWith<$Res> {
 
 /// @nodoc
 class __$$_QuickAddFoodEventCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$_QuickAddFoodEvent>
     implements _$$_QuickAddFoodEventCopyWith<$Res> {
   __$$_QuickAddFoodEventCopyWithImpl(
       _$_QuickAddFoodEvent _value, $Res Function(_$_QuickAddFoodEvent) _then)
-      : super(_value, (v) => _then(v as _$_QuickAddFoodEvent));
-
-  @override
-  _$_QuickAddFoodEvent get _value => super._value as _$_QuickAddFoodEvent;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -506,10 +502,10 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? reset,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(
+    TResult? Function()? reset,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function(
             double servings,
             double caloriesPerServing,
             DateTime foodLogDate,
@@ -563,10 +559,10 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Reset value)? reset,
-    TResult Function(_SelectFoodEvent value)? selectFood,
-    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
-    TResult Function(_SubmitEvent value)? submit,
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_SelectFoodEvent value)? selectFood,
+    TResult? Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult? Function(_SubmitEvent value)? submit,
   }) {
     return quickAddFood?.call(this);
   }
@@ -596,6 +592,7 @@ abstract class _$$_SubmitEventCopyWith<$Res> {
   factory _$$_SubmitEventCopyWith(
           _$_SubmitEvent value, $Res Function(_$_SubmitEvent) then) =
       __$$_SubmitEventCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {double servings,
       double caloriesPerServing,
@@ -612,61 +609,59 @@ abstract class _$$_SubmitEventCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SubmitEventCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$_SubmitEvent>
     implements _$$_SubmitEventCopyWith<$Res> {
   __$$_SubmitEventCopyWithImpl(
       _$_SubmitEvent _value, $Res Function(_$_SubmitEvent) _then)
-      : super(_value, (v) => _then(v as _$_SubmitEvent));
+      : super(_value, _then);
 
-  @override
-  _$_SubmitEvent get _value => super._value as _$_SubmitEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? servings = freezed,
-    Object? caloriesPerServing = freezed,
-    Object? foodLogDate = freezed,
+    Object? servings = null,
+    Object? caloriesPerServing = null,
+    Object? foodLogDate = null,
     Object? name = freezed,
     Object? food = freezed,
     Object? fat = freezed,
     Object? carbs = freezed,
     Object? protein = freezed,
-    Object? foodType = freezed,
+    Object? foodType = null,
   }) {
     return _then(_$_SubmitEvent(
-      servings: servings == freezed
+      servings: null == servings
           ? _value.servings
           : servings // ignore: cast_nullable_to_non_nullable
               as double,
-      caloriesPerServing: caloriesPerServing == freezed
+      caloriesPerServing: null == caloriesPerServing
           ? _value.caloriesPerServing
           : caloriesPerServing // ignore: cast_nullable_to_non_nullable
               as double,
-      foodLogDate: foodLogDate == freezed
+      foodLogDate: null == foodLogDate
           ? _value.foodLogDate
           : foodLogDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      food: food == freezed
+      food: freezed == food
           ? _value.food
           : food // ignore: cast_nullable_to_non_nullable
               as Food?,
-      fat: fat == freezed
+      fat: freezed == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
               as double?,
-      carbs: carbs == freezed
+      carbs: freezed == carbs
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
               as double?,
-      protein: protein == freezed
+      protein: freezed == protein
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as double?,
-      foodType: foodType == freezed
+      foodType: null == foodType
           ? _value.foodType
           : foodType // ignore: cast_nullable_to_non_nullable
               as FoodType,
@@ -674,6 +669,7 @@ class __$$_SubmitEventCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FoodCopyWith<$Res>? get food {
     if (_value.food == null) {
       return null;
@@ -728,34 +724,28 @@ class _$_SubmitEvent implements _SubmitEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SubmitEvent &&
-            const DeepCollectionEquality().equals(other.servings, servings) &&
-            const DeepCollectionEquality()
-                .equals(other.caloriesPerServing, caloriesPerServing) &&
-            const DeepCollectionEquality()
-                .equals(other.foodLogDate, foodLogDate) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.food, food) &&
-            const DeepCollectionEquality().equals(other.fat, fat) &&
-            const DeepCollectionEquality().equals(other.carbs, carbs) &&
-            const DeepCollectionEquality().equals(other.protein, protein) &&
-            const DeepCollectionEquality().equals(other.foodType, foodType));
+            (identical(other.servings, servings) ||
+                other.servings == servings) &&
+            (identical(other.caloriesPerServing, caloriesPerServing) ||
+                other.caloriesPerServing == caloriesPerServing) &&
+            (identical(other.foodLogDate, foodLogDate) ||
+                other.foodLogDate == foodLogDate) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.food, food) || other.food == food) &&
+            (identical(other.fat, fat) || other.fat == fat) &&
+            (identical(other.carbs, carbs) || other.carbs == carbs) &&
+            (identical(other.protein, protein) || other.protein == protein) &&
+            (identical(other.foodType, foodType) ||
+                other.foodType == foodType));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(servings),
-      const DeepCollectionEquality().hash(caloriesPerServing),
-      const DeepCollectionEquality().hash(foodLogDate),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(food),
-      const DeepCollectionEquality().hash(fat),
-      const DeepCollectionEquality().hash(carbs),
-      const DeepCollectionEquality().hash(protein),
-      const DeepCollectionEquality().hash(foodType));
+  int get hashCode => Object.hash(runtimeType, servings, caloriesPerServing,
+      foodLogDate, name, food, fat, carbs, protein, foodType);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SubmitEventCopyWith<_$_SubmitEvent> get copyWith =>
       __$$_SubmitEventCopyWithImpl<_$_SubmitEvent>(this, _$identity);
 
@@ -784,10 +774,10 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? reset,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function(
+    TResult? Function()? reset,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function(
             double servings,
             double caloriesPerServing,
             DateTime foodLogDate,
@@ -843,10 +833,10 @@ class _$_SubmitEvent implements _SubmitEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Reset value)? reset,
-    TResult Function(_SelectFoodEvent value)? selectFood,
-    TResult Function(_QuickAddFoodEvent value)? quickAddFood,
-    TResult Function(_SubmitEvent value)? submit,
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_SelectFoodEvent value)? selectFood,
+    TResult? Function(_QuickAddFoodEvent value)? quickAddFood,
+    TResult? Function(_SubmitEvent value)? submit,
   }) {
     return submit?.call(this);
   }
@@ -879,15 +869,15 @@ abstract class _SubmitEvent implements AddColoriesEvent {
       final double? protein,
       required final FoodType foodType}) = _$_SubmitEvent;
 
-  double get servings => throw _privateConstructorUsedError;
-  double get caloriesPerServing => throw _privateConstructorUsedError;
-  DateTime get foodLogDate => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  Food? get food => throw _privateConstructorUsedError;
-  double? get fat => throw _privateConstructorUsedError;
-  double? get carbs => throw _privateConstructorUsedError;
-  double? get protein => throw _privateConstructorUsedError;
-  FoodType get foodType => throw _privateConstructorUsedError;
+  double get servings;
+  double get caloriesPerServing;
+  DateTime get foodLogDate;
+  String? get name;
+  Food? get food;
+  double? get fat;
+  double? get carbs;
+  double? get protein;
+  FoodType get foodType;
   @JsonKey(ignore: true)
   _$$_SubmitEventCopyWith<_$_SubmitEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -906,11 +896,11 @@ mixin _$AddColoriesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
+    TResult? Function()? initial,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function()? adding,
+    TResult? Function()? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -934,11 +924,11 @@ mixin _$AddColoriesState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(SelectFoodState value)? selectFood,
+    TResult? Function(QuickAddFoodState value)? quickAddFood,
+    TResult? Function(_AddingState value)? adding,
+    TResult? Function(_SuccessState value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -957,17 +947,18 @@ mixin _$AddColoriesState {
 abstract class $AddColoriesStateCopyWith<$Res> {
   factory $AddColoriesStateCopyWith(
           AddColoriesState value, $Res Function(AddColoriesState) then) =
-      _$AddColoriesStateCopyWithImpl<$Res>;
+      _$AddColoriesStateCopyWithImpl<$Res, AddColoriesState>;
 }
 
 /// @nodoc
-class _$AddColoriesStateCopyWithImpl<$Res>
+class _$AddColoriesStateCopyWithImpl<$Res, $Val extends AddColoriesState>
     implements $AddColoriesStateCopyWith<$Res> {
   _$AddColoriesStateCopyWithImpl(this._value, this._then);
 
-  final AddColoriesState _value;
   // ignore: unused_field
-  final $Res Function(AddColoriesState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -979,14 +970,11 @@ abstract class _$$InitialStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$InitialState>
     implements _$$InitialStateCopyWith<$Res> {
   __$$InitialStateCopyWithImpl(
       _$InitialState _value, $Res Function(_$InitialState) _then)
-      : super(_value, (v) => _then(v as _$InitialState));
-
-  @override
-  _$InitialState get _value => super._value as _$InitialState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1023,11 +1011,11 @@ class _$InitialState implements InitialState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
+    TResult? Function()? initial,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function()? adding,
+    TResult? Function()? success,
   }) {
     return initial?.call();
   }
@@ -1063,11 +1051,11 @@ class _$InitialState implements InitialState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(SelectFoodState value)? selectFood,
+    TResult? Function(QuickAddFoodState value)? quickAddFood,
+    TResult? Function(_AddingState value)? adding,
+    TResult? Function(_SuccessState value)? success,
   }) {
     return initial?.call(this);
   }
@@ -1098,6 +1086,7 @@ abstract class _$$SelectFoodStateCopyWith<$Res> {
   factory _$$SelectFoodStateCopyWith(
           _$SelectFoodState value, $Res Function(_$SelectFoodState) then) =
       __$$SelectFoodStateCopyWithImpl<$Res>;
+  @useResult
   $Res call({Food food});
 
   $FoodCopyWith<$Res> get food;
@@ -1105,21 +1094,19 @@ abstract class _$$SelectFoodStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$SelectFoodStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$SelectFoodState>
     implements _$$SelectFoodStateCopyWith<$Res> {
   __$$SelectFoodStateCopyWithImpl(
       _$SelectFoodState _value, $Res Function(_$SelectFoodState) _then)
-      : super(_value, (v) => _then(v as _$SelectFoodState));
+      : super(_value, _then);
 
-  @override
-  _$SelectFoodState get _value => super._value as _$SelectFoodState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? food = freezed,
+    Object? food = null,
   }) {
     return _then(_$SelectFoodState(
-      food: food == freezed
+      food: null == food
           ? _value.food
           : food // ignore: cast_nullable_to_non_nullable
               as Food,
@@ -1127,6 +1114,7 @@ class __$$SelectFoodStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FoodCopyWith<$Res> get food {
     return $FoodCopyWith<$Res>(_value.food, (value) {
       return _then(_value.copyWith(food: value));
@@ -1152,15 +1140,15 @@ class _$SelectFoodState implements SelectFoodState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectFoodState &&
-            const DeepCollectionEquality().equals(other.food, food));
+            (identical(other.food, food) || other.food == food));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(food));
+  int get hashCode => Object.hash(runtimeType, food);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$SelectFoodStateCopyWith<_$SelectFoodState> get copyWith =>
       __$$SelectFoodStateCopyWithImpl<_$SelectFoodState>(this, _$identity);
 
@@ -1179,11 +1167,11 @@ class _$SelectFoodState implements SelectFoodState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
+    TResult? Function()? initial,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function()? adding,
+    TResult? Function()? success,
   }) {
     return selectFood?.call(food);
   }
@@ -1219,11 +1207,11 @@ class _$SelectFoodState implements SelectFoodState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(SelectFoodState value)? selectFood,
+    TResult? Function(QuickAddFoodState value)? quickAddFood,
+    TResult? Function(_AddingState value)? adding,
+    TResult? Function(_SuccessState value)? success,
   }) {
     return selectFood?.call(this);
   }
@@ -1248,7 +1236,7 @@ class _$SelectFoodState implements SelectFoodState {
 abstract class SelectFoodState implements AddColoriesState {
   const factory SelectFoodState({required final Food food}) = _$SelectFoodState;
 
-  Food get food => throw _privateConstructorUsedError;
+  Food get food;
   @JsonKey(ignore: true)
   _$$SelectFoodStateCopyWith<_$SelectFoodState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1263,14 +1251,11 @@ abstract class _$$QuickAddFoodStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$QuickAddFoodStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$QuickAddFoodState>
     implements _$$QuickAddFoodStateCopyWith<$Res> {
   __$$QuickAddFoodStateCopyWithImpl(
       _$QuickAddFoodState _value, $Res Function(_$QuickAddFoodState) _then)
-      : super(_value, (v) => _then(v as _$QuickAddFoodState));
-
-  @override
-  _$QuickAddFoodState get _value => super._value as _$QuickAddFoodState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1307,11 +1292,11 @@ class _$QuickAddFoodState implements QuickAddFoodState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
+    TResult? Function()? initial,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function()? adding,
+    TResult? Function()? success,
   }) {
     return quickAddFood?.call();
   }
@@ -1347,11 +1332,11 @@ class _$QuickAddFoodState implements QuickAddFoodState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(SelectFoodState value)? selectFood,
+    TResult? Function(QuickAddFoodState value)? quickAddFood,
+    TResult? Function(_AddingState value)? adding,
+    TResult? Function(_SuccessState value)? success,
   }) {
     return quickAddFood?.call(this);
   }
@@ -1386,14 +1371,11 @@ abstract class _$$_AddingStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AddingStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$_AddingState>
     implements _$$_AddingStateCopyWith<$Res> {
   __$$_AddingStateCopyWithImpl(
       _$_AddingState _value, $Res Function(_$_AddingState) _then)
-      : super(_value, (v) => _then(v as _$_AddingState));
-
-  @override
-  _$_AddingState get _value => super._value as _$_AddingState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1430,11 +1412,11 @@ class _$_AddingState implements _AddingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
+    TResult? Function()? initial,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function()? adding,
+    TResult? Function()? success,
   }) {
     return adding?.call();
   }
@@ -1470,11 +1452,11 @@ class _$_AddingState implements _AddingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(SelectFoodState value)? selectFood,
+    TResult? Function(QuickAddFoodState value)? quickAddFood,
+    TResult? Function(_AddingState value)? adding,
+    TResult? Function(_SuccessState value)? success,
   }) {
     return adding?.call(this);
   }
@@ -1509,14 +1491,11 @@ abstract class _$$_SuccessStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SuccessStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$_SuccessState>
     implements _$$_SuccessStateCopyWith<$Res> {
   __$$_SuccessStateCopyWithImpl(
       _$_SuccessState _value, $Res Function(_$_SuccessState) _then)
-      : super(_value, (v) => _then(v as _$_SuccessState));
-
-  @override
-  _$_SuccessState get _value => super._value as _$_SuccessState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1553,11 +1532,11 @@ class _$_SuccessState implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Food food)? selectFood,
-    TResult Function()? quickAddFood,
-    TResult Function()? adding,
-    TResult Function()? success,
+    TResult? Function()? initial,
+    TResult? Function(Food food)? selectFood,
+    TResult? Function()? quickAddFood,
+    TResult? Function()? adding,
+    TResult? Function()? success,
   }) {
     return success?.call();
   }
@@ -1593,11 +1572,11 @@ class _$_SuccessState implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialState value)? initial,
-    TResult Function(SelectFoodState value)? selectFood,
-    TResult Function(QuickAddFoodState value)? quickAddFood,
-    TResult Function(_AddingState value)? adding,
-    TResult Function(_SuccessState value)? success,
+    TResult? Function(InitialState value)? initial,
+    TResult? Function(SelectFoodState value)? selectFood,
+    TResult? Function(QuickAddFoodState value)? quickAddFood,
+    TResult? Function(_AddingState value)? adding,
+    TResult? Function(_SuccessState value)? success,
   }) {
     return success?.call(this);
   }

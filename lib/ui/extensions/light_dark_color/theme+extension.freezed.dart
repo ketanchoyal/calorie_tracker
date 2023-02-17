@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'theme+extension.dart';
 
@@ -24,8 +24,8 @@ mixin _$_ThemeColor {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? light,
-    TResult Function()? dark,
+    TResult? Function()? light,
+    TResult? Function()? dark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$_ThemeColor {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Light value)? light,
-    TResult Function(_Dark value)? dark,
+    TResult? Function(_Light value)? light,
+    TResult? Function(_Dark value)? dark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,16 +60,18 @@ mixin _$_ThemeColor {
 abstract class _$ThemeColorCopyWith<$Res> {
   factory _$ThemeColorCopyWith(
           _ThemeColor value, $Res Function(_ThemeColor) then) =
-      __$ThemeColorCopyWithImpl<$Res>;
+      __$ThemeColorCopyWithImpl<$Res, _ThemeColor>;
 }
 
 /// @nodoc
-class __$ThemeColorCopyWithImpl<$Res> implements _$ThemeColorCopyWith<$Res> {
+class __$ThemeColorCopyWithImpl<$Res, $Val extends _ThemeColor>
+    implements _$ThemeColorCopyWith<$Res> {
   __$ThemeColorCopyWithImpl(this._value, this._then);
 
-  final _ThemeColor _value;
   // ignore: unused_field
-  final $Res Function(_ThemeColor) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -79,13 +81,11 @@ abstract class _$$_LightCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LightCopyWithImpl<$Res> extends __$ThemeColorCopyWithImpl<$Res>
+class __$$_LightCopyWithImpl<$Res>
+    extends __$ThemeColorCopyWithImpl<$Res, _$_Light>
     implements _$$_LightCopyWith<$Res> {
   __$$_LightCopyWithImpl(_$_Light _value, $Res Function(_$_Light) _then)
-      : super(_value, (v) => _then(v as _$_Light));
-
-  @override
-  _$_Light get _value => super._value as _$_Light;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -119,8 +119,8 @@ class _$_Light implements _Light {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? light,
-    TResult Function()? dark,
+    TResult? Function()? light,
+    TResult? Function()? dark,
   }) {
     return light?.call();
   }
@@ -150,8 +150,8 @@ class _$_Light implements _Light {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Light value)? light,
-    TResult Function(_Dark value)? dark,
+    TResult? Function(_Light value)? light,
+    TResult? Function(_Dark value)? dark,
   }) {
     return light?.call(this);
   }
@@ -181,13 +181,11 @@ abstract class _$$_DarkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DarkCopyWithImpl<$Res> extends __$ThemeColorCopyWithImpl<$Res>
+class __$$_DarkCopyWithImpl<$Res>
+    extends __$ThemeColorCopyWithImpl<$Res, _$_Dark>
     implements _$$_DarkCopyWith<$Res> {
   __$$_DarkCopyWithImpl(_$_Dark _value, $Res Function(_$_Dark) _then)
-      : super(_value, (v) => _then(v as _$_Dark));
-
-  @override
-  _$_Dark get _value => super._value as _$_Dark;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -221,8 +219,8 @@ class _$_Dark implements _Dark {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? light,
-    TResult Function()? dark,
+    TResult? Function()? light,
+    TResult? Function()? dark,
   }) {
     return dark?.call();
   }
@@ -252,8 +250,8 @@ class _$_Dark implements _Dark {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Light value)? light,
-    TResult Function(_Dark value)? dark,
+    TResult? Function(_Light value)? light,
+    TResult? Function(_Dark value)? dark,
   }) {
     return dark?.call(this);
   }

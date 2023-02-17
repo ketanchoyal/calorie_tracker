@@ -1,3 +1,4 @@
 {
-    "dart.flutterSdkPath": "/Users/ketanchoyal/fvm/versions/stable"
+    "dart.flutterSdkPath": "/Users/ketanchoyal/.puro/envs/stable/flutter",
+    "dart.sdkPath": "/Users/ketanchoyal/.puro/envs/stable/flutter/bin/cache/dart-sdk"
 }

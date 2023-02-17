@@ -51,20 +51,25 @@ class _HomeView extends StatelessWidget {
         },
         fullCalendar: true,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            CupertinoPageRoute<void>(
-              builder: (_) =>
-                  AddCaloriesView(date: context.read<HomeBloc>().state.date),
-            ),
-          );
+      floatingActionButton: GestureDetector(
+        onLongPress: () {
+          context.read<HomeBloc>().getCaloresBurned();
         },
-        backgroundColor: primaryColor,
-        child: const Icon(
-          FontAwesomeIcons.qrcode,
-          color: Colors.white,
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute<void>(
+                builder: (_) =>
+                    AddCaloriesView(date: context.read<HomeBloc>().state.date),
+              ),
+            );
+          },
+          backgroundColor: primaryColor,
+          child: const Icon(
+            FontAwesomeIcons.qrcode,
+            color: Colors.white,
+          ),
         ),
       ),
       body: SwipeDetector(
@@ -95,6 +100,8 @@ class _HomeView extends StatelessWidget {
               builder: (context) {
                 final state = context.watch<HomeBloc>().state;
                 final goals = context.watch<GoalsBloc>().state;
+
+                final burnedCalories = state.totalBurnedCalories;
 
                 final totalCalories = state.totalCalories;
                 final caloriesGoal = goals.caloriesGoal;
@@ -143,7 +150,8 @@ class _HomeView extends StatelessWidget {
                         ),
                         Expanded(
                           child: CalorieWidget(
-                            calories: '....',
+                            calories:
+                                '${burnedCalories.toDouble().toDoubleAsFixed(2)}',
                             icon: FontAwesomeIcons.fireFlameCurved,
                             iconColor: primaryColor,
                             subtitle: 'BURNED',

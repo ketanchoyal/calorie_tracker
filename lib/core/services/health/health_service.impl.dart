@@ -139,4 +139,30 @@ class HealthServiceImpl implements HealthService {
 
   void _throwThisIfNotUsingTestAccont() =>
       (_firebaseService as FirebaseServiceImpl).throwThisIfNotUsingTestAccont();
+
+  @override
+  Future<num> getBurnedCalories() async {
+    final data = await _healthFactory.getHealthDataFromTypes(
+      DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      ),
+      DateTime.now(),
+      [HealthDataType.ACTIVE_ENERGY_BURNED],
+    );
+    final totalBurnedcalories = await compute(_calculateBurnedCalories, data);
+    print('Total Burned Calories: $totalBurnedcalories');
+    return totalBurnedcalories;
+  }
+}
+
+num _calculateBurnedCalories(List<HealthDataPoint> data) {
+  num totalBurnedcalories = 0.0;
+  for (final element in data) {
+    if (element.value is NumericHealthValue) {
+      totalBurnedcalories += (element.value as NumericHealthValue).numericValue;
+    }
+  }
+  return totalBurnedcalories;
 }

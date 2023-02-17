@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_bloc.dart';
 
@@ -25,9 +25,9 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logedOut,
-    TResult Function()? logedIn,
-    TResult Function()? loading,
+    TResult? Function()? logedOut,
+    TResult? Function()? logedIn,
+    TResult? Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogedOutAuthState value)? logedOut,
-    TResult Function(LogedInAuthState value)? logedIn,
-    TResult Function(LoadingAuthState value)? loading,
+    TResult? Function(LogedOutAuthState value)? logedOut,
+    TResult? Function(LogedInAuthState value)? logedIn,
+    TResult? Function(LoadingAuthState value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,16 +65,18 @@ mixin _$AuthState {
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res>;
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _value;
   // ignore: unused_field
-  final $Res Function(AuthState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -86,14 +88,11 @@ abstract class _$$LogedOutAuthStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$LogedOutAuthStateCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LogedOutAuthState>
     implements _$$LogedOutAuthStateCopyWith<$Res> {
   __$$LogedOutAuthStateCopyWithImpl(
       _$LogedOutAuthState _value, $Res Function(_$LogedOutAuthState) _then)
-      : super(_value, (v) => _then(v as _$LogedOutAuthState));
-
-  @override
-  _$LogedOutAuthState get _value => super._value as _$LogedOutAuthState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -128,9 +127,9 @@ class _$LogedOutAuthState implements LogedOutAuthState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logedOut,
-    TResult Function()? logedIn,
-    TResult Function()? loading,
+    TResult? Function()? logedOut,
+    TResult? Function()? logedIn,
+    TResult? Function()? loading,
   }) {
     return logedOut?.call();
   }
@@ -162,9 +161,9 @@ class _$LogedOutAuthState implements LogedOutAuthState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogedOutAuthState value)? logedOut,
-    TResult Function(LogedInAuthState value)? logedIn,
-    TResult Function(LoadingAuthState value)? loading,
+    TResult? Function(LogedOutAuthState value)? logedOut,
+    TResult? Function(LogedInAuthState value)? logedIn,
+    TResult? Function(LoadingAuthState value)? loading,
   }) {
     return logedOut?.call(this);
   }
@@ -197,14 +196,11 @@ abstract class _$$LogedInAuthStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$LogedInAuthStateCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LogedInAuthState>
     implements _$$LogedInAuthStateCopyWith<$Res> {
   __$$LogedInAuthStateCopyWithImpl(
       _$LogedInAuthState _value, $Res Function(_$LogedInAuthState) _then)
-      : super(_value, (v) => _then(v as _$LogedInAuthState));
-
-  @override
-  _$LogedInAuthState get _value => super._value as _$LogedInAuthState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -239,9 +235,9 @@ class _$LogedInAuthState implements LogedInAuthState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logedOut,
-    TResult Function()? logedIn,
-    TResult Function()? loading,
+    TResult? Function()? logedOut,
+    TResult? Function()? logedIn,
+    TResult? Function()? loading,
   }) {
     return logedIn?.call();
   }
@@ -273,9 +269,9 @@ class _$LogedInAuthState implements LogedInAuthState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogedOutAuthState value)? logedOut,
-    TResult Function(LogedInAuthState value)? logedIn,
-    TResult Function(LoadingAuthState value)? loading,
+    TResult? Function(LogedOutAuthState value)? logedOut,
+    TResult? Function(LogedInAuthState value)? logedIn,
+    TResult? Function(LoadingAuthState value)? loading,
   }) {
     return logedIn?.call(this);
   }
@@ -308,14 +304,11 @@ abstract class _$$LoadingAuthStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingAuthStateCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoadingAuthState>
     implements _$$LoadingAuthStateCopyWith<$Res> {
   __$$LoadingAuthStateCopyWithImpl(
       _$LoadingAuthState _value, $Res Function(_$LoadingAuthState) _then)
-      : super(_value, (v) => _then(v as _$LoadingAuthState));
-
-  @override
-  _$LoadingAuthState get _value => super._value as _$LoadingAuthState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -350,9 +343,9 @@ class _$LoadingAuthState implements LoadingAuthState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logedOut,
-    TResult Function()? logedIn,
-    TResult Function()? loading,
+    TResult? Function()? logedOut,
+    TResult? Function()? logedIn,
+    TResult? Function()? loading,
   }) {
     return loading?.call();
   }
@@ -384,9 +377,9 @@ class _$LoadingAuthState implements LoadingAuthState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogedOutAuthState value)? logedOut,
-    TResult Function(LogedInAuthState value)? logedIn,
-    TResult Function(LoadingAuthState value)? loading,
+    TResult? Function(LogedOutAuthState value)? logedOut,
+    TResult? Function(LogedInAuthState value)? logedIn,
+    TResult? Function(LoadingAuthState value)? loading,
   }) {
     return loading?.call(this);
   }
@@ -422,10 +415,10 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logInAnonymously,
-    TResult Function()? logInWithGoogle,
-    TResult Function(User? user)? updateUser,
-    TResult Function()? logOut,
+    TResult? Function()? logInAnonymously,
+    TResult? Function()? logInWithGoogle,
+    TResult? Function(User? user)? updateUser,
+    TResult? Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -447,10 +440,10 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogInAnonymouslyEven value)? logInAnonymously,
-    TResult Function(LogInWithGoogleEvent value)? logInWithGoogle,
-    TResult Function(UpdateUserEvent value)? updateUser,
-    TResult Function(LogOutEvent value)? logOut,
+    TResult? Function(LogInAnonymouslyEven value)? logInAnonymously,
+    TResult? Function(LogInWithGoogleEvent value)? logInWithGoogle,
+    TResult? Function(UpdateUserEvent value)? updateUser,
+    TResult? Function(LogOutEvent value)? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -467,16 +460,18 @@ mixin _$AuthEvent {
 /// @nodoc
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
-      _$AuthEventCopyWithImpl<$Res>;
+      _$AuthEventCopyWithImpl<$Res, AuthEvent>;
 }
 
 /// @nodoc
-class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
+class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
+    implements $AuthEventCopyWith<$Res> {
   _$AuthEventCopyWithImpl(this._value, this._then);
 
-  final AuthEvent _value;
   // ignore: unused_field
-  final $Res Function(AuthEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -488,14 +483,11 @@ abstract class _$$LogInAnonymouslyEvenCopyWith<$Res> {
 
 /// @nodoc
 class __$$LogInAnonymouslyEvenCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$LogInAnonymouslyEven>
     implements _$$LogInAnonymouslyEvenCopyWith<$Res> {
   __$$LogInAnonymouslyEvenCopyWithImpl(_$LogInAnonymouslyEven _value,
       $Res Function(_$LogInAnonymouslyEven) _then)
-      : super(_value, (v) => _then(v as _$LogInAnonymouslyEven));
-
-  @override
-  _$LogInAnonymouslyEven get _value => super._value as _$LogInAnonymouslyEven;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -531,10 +523,10 @@ class _$LogInAnonymouslyEven implements LogInAnonymouslyEven {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logInAnonymously,
-    TResult Function()? logInWithGoogle,
-    TResult Function(User? user)? updateUser,
-    TResult Function()? logOut,
+    TResult? Function()? logInAnonymously,
+    TResult? Function()? logInWithGoogle,
+    TResult? Function(User? user)? updateUser,
+    TResult? Function()? logOut,
   }) {
     return logInAnonymously?.call();
   }
@@ -568,10 +560,10 @@ class _$LogInAnonymouslyEven implements LogInAnonymouslyEven {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogInAnonymouslyEven value)? logInAnonymously,
-    TResult Function(LogInWithGoogleEvent value)? logInWithGoogle,
-    TResult Function(UpdateUserEvent value)? updateUser,
-    TResult Function(LogOutEvent value)? logOut,
+    TResult? Function(LogInAnonymouslyEven value)? logInAnonymously,
+    TResult? Function(LogInWithGoogleEvent value)? logInWithGoogle,
+    TResult? Function(UpdateUserEvent value)? updateUser,
+    TResult? Function(LogOutEvent value)? logOut,
   }) {
     return logInAnonymously?.call(this);
   }
@@ -605,14 +597,11 @@ abstract class _$$LogInWithGoogleEventCopyWith<$Res> {
 
 /// @nodoc
 class __$$LogInWithGoogleEventCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$LogInWithGoogleEvent>
     implements _$$LogInWithGoogleEventCopyWith<$Res> {
   __$$LogInWithGoogleEventCopyWithImpl(_$LogInWithGoogleEvent _value,
       $Res Function(_$LogInWithGoogleEvent) _then)
-      : super(_value, (v) => _then(v as _$LogInWithGoogleEvent));
-
-  @override
-  _$LogInWithGoogleEvent get _value => super._value as _$LogInWithGoogleEvent;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -648,10 +637,10 @@ class _$LogInWithGoogleEvent implements LogInWithGoogleEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logInAnonymously,
-    TResult Function()? logInWithGoogle,
-    TResult Function(User? user)? updateUser,
-    TResult Function()? logOut,
+    TResult? Function()? logInAnonymously,
+    TResult? Function()? logInWithGoogle,
+    TResult? Function(User? user)? updateUser,
+    TResult? Function()? logOut,
   }) {
     return logInWithGoogle?.call();
   }
@@ -685,10 +674,10 @@ class _$LogInWithGoogleEvent implements LogInWithGoogleEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogInAnonymouslyEven value)? logInAnonymously,
-    TResult Function(LogInWithGoogleEvent value)? logInWithGoogle,
-    TResult Function(UpdateUserEvent value)? updateUser,
-    TResult Function(LogOutEvent value)? logOut,
+    TResult? Function(LogInAnonymouslyEven value)? logInAnonymously,
+    TResult? Function(LogInWithGoogleEvent value)? logInWithGoogle,
+    TResult? Function(UpdateUserEvent value)? updateUser,
+    TResult? Function(LogOutEvent value)? logOut,
   }) {
     return logInWithGoogle?.call(this);
   }
@@ -718,26 +707,25 @@ abstract class _$$UpdateUserEventCopyWith<$Res> {
   factory _$$UpdateUserEventCopyWith(
           _$UpdateUserEvent value, $Res Function(_$UpdateUserEvent) then) =
       __$$UpdateUserEventCopyWithImpl<$Res>;
+  @useResult
   $Res call({User? user});
 }
 
 /// @nodoc
 class __$$UpdateUserEventCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UpdateUserEvent>
     implements _$$UpdateUserEventCopyWith<$Res> {
   __$$UpdateUserEventCopyWithImpl(
       _$UpdateUserEvent _value, $Res Function(_$UpdateUserEvent) _then)
-      : super(_value, (v) => _then(v as _$UpdateUserEvent));
+      : super(_value, _then);
 
-  @override
-  _$UpdateUserEvent get _value => super._value as _$UpdateUserEvent;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? user = freezed,
   }) {
     return _then(_$UpdateUserEvent(
-      user == freezed
+      freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
@@ -763,15 +751,15 @@ class _$UpdateUserEvent implements UpdateUserEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateUserEvent &&
-            const DeepCollectionEquality().equals(other.user, user));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$UpdateUserEventCopyWith<_$UpdateUserEvent> get copyWith =>
       __$$UpdateUserEventCopyWithImpl<_$UpdateUserEvent>(this, _$identity);
 
@@ -789,10 +777,10 @@ class _$UpdateUserEvent implements UpdateUserEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logInAnonymously,
-    TResult Function()? logInWithGoogle,
-    TResult Function(User? user)? updateUser,
-    TResult Function()? logOut,
+    TResult? Function()? logInAnonymously,
+    TResult? Function()? logInWithGoogle,
+    TResult? Function(User? user)? updateUser,
+    TResult? Function()? logOut,
   }) {
     return updateUser?.call(user);
   }
@@ -826,10 +814,10 @@ class _$UpdateUserEvent implements UpdateUserEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogInAnonymouslyEven value)? logInAnonymously,
-    TResult Function(LogInWithGoogleEvent value)? logInWithGoogle,
-    TResult Function(UpdateUserEvent value)? updateUser,
-    TResult Function(LogOutEvent value)? logOut,
+    TResult? Function(LogInAnonymouslyEven value)? logInAnonymously,
+    TResult? Function(LogInWithGoogleEvent value)? logInWithGoogle,
+    TResult? Function(UpdateUserEvent value)? updateUser,
+    TResult? Function(LogOutEvent value)? logOut,
   }) {
     return updateUser?.call(this);
   }
@@ -853,7 +841,7 @@ class _$UpdateUserEvent implements UpdateUserEvent {
 abstract class UpdateUserEvent implements AuthEvent {
   const factory UpdateUserEvent(final User? user) = _$UpdateUserEvent;
 
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
   @JsonKey(ignore: true)
   _$$UpdateUserEventCopyWith<_$UpdateUserEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -867,14 +855,12 @@ abstract class _$$LogOutEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LogOutEventCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+class __$$LogOutEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$LogOutEvent>
     implements _$$LogOutEventCopyWith<$Res> {
   __$$LogOutEventCopyWithImpl(
       _$LogOutEvent _value, $Res Function(_$LogOutEvent) _then)
-      : super(_value, (v) => _then(v as _$LogOutEvent));
-
-  @override
-  _$LogOutEvent get _value => super._value as _$LogOutEvent;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -910,10 +896,10 @@ class _$LogOutEvent implements LogOutEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? logInAnonymously,
-    TResult Function()? logInWithGoogle,
-    TResult Function(User? user)? updateUser,
-    TResult Function()? logOut,
+    TResult? Function()? logInAnonymously,
+    TResult? Function()? logInWithGoogle,
+    TResult? Function(User? user)? updateUser,
+    TResult? Function()? logOut,
   }) {
     return logOut?.call();
   }
@@ -947,10 +933,10 @@ class _$LogOutEvent implements LogOutEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LogInAnonymouslyEven value)? logInAnonymously,
-    TResult Function(LogInWithGoogleEvent value)? logInWithGoogle,
-    TResult Function(UpdateUserEvent value)? updateUser,
-    TResult Function(LogOutEvent value)? logOut,
+    TResult? Function(LogInAnonymouslyEven value)? logInAnonymously,
+    TResult? Function(LogInWithGoogleEvent value)? logInWithGoogle,
+    TResult? Function(UpdateUserEvent value)? updateUser,
+    TResult? Function(LogOutEvent value)? logOut,
   }) {
     return logOut?.call(this);
   }

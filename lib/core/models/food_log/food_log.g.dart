@@ -31,7 +31,7 @@ Map<String, dynamic> _$FoodLogToJson(FoodLog instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'caloriesPerServing': instance.caloriesPerServing,
-      'foodType': _$FoodTypeEnumMap[instance.foodType],
+      'foodType': _$FoodTypeEnumMap[instance.foodType]!,
       'protein': instance.protein,
       'carbs': instance.carbs,
       'fat': instance.fat,

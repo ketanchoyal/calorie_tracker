@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'profile.dart';
 
@@ -25,40 +25,45 @@ mixin _$Profile {
 /// @nodoc
 abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
-      _$ProfileCopyWithImpl<$Res>;
+      _$ProfileCopyWithImpl<$Res, Profile>;
+  @useResult
   $Res call({Goals? goals});
 
   $GoalsCopyWith<$Res>? get goals;
 }
 
 /// @nodoc
-class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
+class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
+    implements $ProfileCopyWith<$Res> {
   _$ProfileCopyWithImpl(this._value, this._then);
 
-  final Profile _value;
   // ignore: unused_field
-  final $Res Function(Profile) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? goals = freezed,
   }) {
     return _then(_value.copyWith(
-      goals: goals == freezed
+      goals: freezed == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as Goals?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $GoalsCopyWith<$Res>? get goals {
     if (_value.goals == null) {
       return null;
     }
 
     return $GoalsCopyWith<$Res>(_value.goals!, (value) {
-      return _then(_value.copyWith(goals: value));
+      return _then(_value.copyWith(goals: value) as $Val);
     });
   }
 }
@@ -69,6 +74,7 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
           _$_Profile value, $Res Function(_$_Profile) then) =
       __$$_ProfileCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Goals? goals});
 
   @override
@@ -76,20 +82,19 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
+class __$$_ProfileCopyWithImpl<$Res>
+    extends _$ProfileCopyWithImpl<$Res, _$_Profile>
     implements _$$_ProfileCopyWith<$Res> {
   __$$_ProfileCopyWithImpl(_$_Profile _value, $Res Function(_$_Profile) _then)
-      : super(_value, (v) => _then(v as _$_Profile));
+      : super(_value, _then);
 
-  @override
-  _$_Profile get _value => super._value as _$_Profile;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? goals = freezed,
   }) {
     return _then(_$_Profile(
-      goals: goals == freezed
+      goals: freezed == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as Goals?,
@@ -115,15 +120,15 @@ class _$_Profile extends _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Profile &&
-            const DeepCollectionEquality().equals(other.goals, goals));
+            (identical(other.goals, goals) || other.goals == goals));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(goals));
+  int get hashCode => Object.hash(runtimeType, goals);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>
       __$$_ProfileCopyWithImpl<_$_Profile>(this, _$identity);
 }
@@ -133,7 +138,7 @@ abstract class _Profile extends Profile {
   _Profile._() : super._();
 
   @override
-  Goals? get goals => throw _privateConstructorUsedError;
+  Goals? get goals;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>
@@ -154,43 +159,47 @@ mixin _$Goals {
 /// @nodoc
 abstract class $GoalsCopyWith<$Res> {
   factory $GoalsCopyWith(Goals value, $Res Function(Goals) then) =
-      _$GoalsCopyWithImpl<$Res>;
+      _$GoalsCopyWithImpl<$Res, Goals>;
+  @useResult
   $Res call({double calories, double protein, double fat, double carbs});
 }
 
 /// @nodoc
-class _$GoalsCopyWithImpl<$Res> implements $GoalsCopyWith<$Res> {
+class _$GoalsCopyWithImpl<$Res, $Val extends Goals>
+    implements $GoalsCopyWith<$Res> {
   _$GoalsCopyWithImpl(this._value, this._then);
 
-  final Goals _value;
   // ignore: unused_field
-  final $Res Function(Goals) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? calories = freezed,
-    Object? protein = freezed,
-    Object? fat = freezed,
-    Object? carbs = freezed,
+    Object? calories = null,
+    Object? protein = null,
+    Object? fat = null,
+    Object? carbs = null,
   }) {
     return _then(_value.copyWith(
-      calories: calories == freezed
+      calories: null == calories
           ? _value.calories
           : calories // ignore: cast_nullable_to_non_nullable
               as double,
-      protein: protein == freezed
+      protein: null == protein
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as double,
-      fat: fat == freezed
+      fat: null == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
               as double,
-      carbs: carbs == freezed
+      carbs: null == carbs
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -199,39 +208,38 @@ abstract class _$$_GoalsCopyWith<$Res> implements $GoalsCopyWith<$Res> {
   factory _$$_GoalsCopyWith(_$_Goals value, $Res Function(_$_Goals) then) =
       __$$_GoalsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({double calories, double protein, double fat, double carbs});
 }
 
 /// @nodoc
-class __$$_GoalsCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res>
+class __$$_GoalsCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res, _$_Goals>
     implements _$$_GoalsCopyWith<$Res> {
   __$$_GoalsCopyWithImpl(_$_Goals _value, $Res Function(_$_Goals) _then)
-      : super(_value, (v) => _then(v as _$_Goals));
+      : super(_value, _then);
 
-  @override
-  _$_Goals get _value => super._value as _$_Goals;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? calories = freezed,
-    Object? protein = freezed,
-    Object? fat = freezed,
-    Object? carbs = freezed,
+    Object? calories = null,
+    Object? protein = null,
+    Object? fat = null,
+    Object? carbs = null,
   }) {
     return _then(_$_Goals(
-      calories: calories == freezed
+      calories: null == calories
           ? _value.calories
           : calories // ignore: cast_nullable_to_non_nullable
               as double,
-      protein: protein == freezed
+      protein: null == protein
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
               as double,
-      fat: fat == freezed
+      fat: null == fat
           ? _value.fat
           : fat // ignore: cast_nullable_to_non_nullable
               as double,
-      carbs: carbs == freezed
+      carbs: null == carbs
           ? _value.carbs
           : carbs // ignore: cast_nullable_to_non_nullable
               as double,
@@ -268,22 +276,19 @@ class _$_Goals extends _Goals {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Goals &&
-            const DeepCollectionEquality().equals(other.calories, calories) &&
-            const DeepCollectionEquality().equals(other.protein, protein) &&
-            const DeepCollectionEquality().equals(other.fat, fat) &&
-            const DeepCollectionEquality().equals(other.carbs, carbs));
+            (identical(other.calories, calories) ||
+                other.calories == calories) &&
+            (identical(other.protein, protein) || other.protein == protein) &&
+            (identical(other.fat, fat) || other.fat == fat) &&
+            (identical(other.carbs, carbs) || other.carbs == carbs));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(calories),
-      const DeepCollectionEquality().hash(protein),
-      const DeepCollectionEquality().hash(fat),
-      const DeepCollectionEquality().hash(carbs));
+  int get hashCode => Object.hash(runtimeType, calories, protein, fat, carbs);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GoalsCopyWith<_$_Goals> get copyWith =>
       __$$_GoalsCopyWithImpl<_$_Goals>(this, _$identity);
 }
@@ -297,13 +302,13 @@ abstract class _Goals extends Goals {
   _Goals._() : super._();
 
   @override
-  double get calories => throw _privateConstructorUsedError;
+  double get calories;
   @override
-  double get protein => throw _privateConstructorUsedError;
+  double get protein;
   @override
-  double get fat => throw _privateConstructorUsedError;
+  double get fat;
   @override
-  double get carbs => throw _privateConstructorUsedError;
+  double get carbs;
   @override
   @JsonKey(ignore: true)
   _$$_GoalsCopyWith<_$_Goals> get copyWith =>
