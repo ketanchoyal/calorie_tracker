@@ -1,7 +1,7 @@
 part of 'home.page.dart';
 
 class _HomeView extends StatelessWidget {
-  const _HomeView({super.key});
+  const _HomeView();
 
   Future<Product?> getProduct() async {
     const barcode = '064420000774';
@@ -12,10 +12,13 @@ class _HomeView extends StatelessWidget {
       country: OpenFoodFactsCountry.CANADA,
       fields: [ProductField.ALL],
     );
-    final result = await OpenFoodAPIClient.getProduct(configuration);
+    final result = await OpenFoodAPIClient.getProductV3(configuration);
 
     if (result.status == 1) {
-      print(result.product?.nutriments?.proteins);
+      print(
+        result.product?.nutriments
+            ?.getValue(Nutrient.proteins, PerSize.oneHundredGrams),
+      );
       return result.product;
     } else {
       throw Exception('product not found, please insert data for $barcode');
@@ -29,222 +32,253 @@ class _HomeView extends StatelessWidget {
       dark: () => Theme.of(context).primaryColorDark,
     );
 
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: CalendarAppBar(
-        onDateChanged: (date) {
-          context.read<HomeBloc>().add(
-                SomeOtherDateHomeEvent(date),
-              );
-        },
-        accent: primaryColor,
-        backButton: false,
-        firstDate: DateTime.now().subtract(const Duration(days: 140)),
-        lastDate: DateTime.now(),
-        onSettingsTap: () async {
-          await Navigator.push(
-            context,
-            CupertinoPageRoute<void>(
-              builder: (context) => const SettingsView(),
-            ),
-          );
-        },
-        fullCalendar: true,
-      ),
-      floatingActionButton: GestureDetector(
-        onLongPress: () {
-          context.read<HomeBloc>().getCaloresBurned();
-        },
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
+    return CupertinoPageScaffold(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: CalendarAppBar(
+          onDateChanged: (date) {
+            context.read<HomeBloc>().add(
+                  SomeOtherDateHomeEvent(date),
+                );
+          },
+          accent: primaryColor,
+          backButton: false,
+          firstDate: DateTime.now().subtract(const Duration(days: 140)),
+          lastDate: DateTime.now(),
+          onSettingsTap: () async {
+            await Navigator.push(
               context,
               CupertinoPageRoute<void>(
-                builder: (_) =>
-                    AddCaloriesView(date: context.read<HomeBloc>().state.date),
+                builder: (context) => const SettingsView(),
               ),
             );
           },
-          backgroundColor: primaryColor,
-          child: const Icon(
-            FontAwesomeIcons.qrcode,
-            color: Colors.white,
-          ),
+          fullCalendar: true,
         ),
-      ),
-      body: SwipeDetector(
-        onSwipeRight: () {
-          context.read<HomeBloc>().changeDate(
-                context.read<HomeBloc>().state.date.subtract(
-                      const Duration(
-                        days: 1,
+        floatingActionButton: Builder(
+          builder: (context) {
+            final bloc = context.watch<HomeBloc>();
+            return Padding(
+              padding: bloc.state.copiedData != null
+                  ? const EdgeInsets.only(left: 30)
+                  : EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: bloc.state.copiedData != null
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
+                children: [
+                  if (bloc.state.copiedData != null)
+                    FloatingActionButton(
+                      onPressed: () {
+                        context.read<HomeBloc>().addFoodLog();
+                      },
+                      backgroundColor: primaryColor,
+                      child: const Icon(
+                        FontAwesomeIcons.paste,
+                        color: Colors.white,
                       ),
                     ),
-              );
-        },
-        onSwipeLeft: () {
-          context.read<HomeBloc>().changeDate(
-                context.read<HomeBloc>().state.date.add(
-                      const Duration(
-                        days: 1,
+                  GestureDetector(
+                    onLongPress: () {
+                      context.read<HomeBloc>().getCaloresBurned();
+                    },
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute<void>(
+                            builder: (_) => AddCaloriesView(
+                              date: context.read<HomeBloc>().state.date,
+                            ),
+                          ),
+                        );
+                      },
+                      backgroundColor: primaryColor,
+                      child: const Icon(
+                        FontAwesomeIcons.qrcode,
+                        color: Colors.white,
                       ),
                     ),
-              );
-        },
-        child: ListView(
-          padding: EdgeInsets.symmetric(
-            vertical: 130 + MediaQuery.of(context).viewPadding.top,
-          ),
-          children: [
-            Builder(
-              builder: (context) {
-                final state = context.watch<HomeBloc>().state;
-                final goals = context.watch<GoalsBloc>().state;
-
-                final burnedCalories = state.totalBurnedCalories;
-
-                final totalCalories = state.totalCalories;
-                final caloriesGoal = goals.caloriesGoal;
-                final caloriesLeft = caloriesGoal - totalCalories;
-                final caloriesLeftPercent = caloriesLeft / caloriesGoal;
-
-                final totalProtein = state.totalProtein;
-                final proteinGoal = goals.proteinGoal;
-                final proteinEatenPercent = totalProtein / proteinGoal;
-
-                final totalCarbs = state.totalCarbs;
-                final carbsGoal = goals.carbsGoal;
-                final carbsEatenPercent = totalCarbs / carbsGoal;
-
-                final totalFat = state.totalFat;
-                final fatGoal = goals.fatGoal;
-                final fatEatenPercent = totalFat / fatGoal;
-
-                return Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: CalorieWidget(
-                            calories: '${totalCalories.toDoubleAsFixed(2)}',
-                            icon: FontAwesomeIcons.bowlRice,
-                            iconColor: primaryColor,
-                            subtitle: 'EATEN',
-                          ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        body: SwipeDetector(
+          onSwipeRight: () {
+            context.read<HomeBloc>().changeDate(
+                  context.read<HomeBloc>().state.date.subtract(
+                        const Duration(
+                          days: 1,
                         ),
-                        AnimatedRing(
-                          centerWidget: CalorieWidget(
-                            calories: '${caloriesLeft.toDoubleAsFixed(2)}',
-                            icon: FontAwesomeIcons.boltLightning,
-                            subtitle: 'CAL LEFT',
-                          ),
-                          height: 150,
-                          percent: min<double>(
-                            1,
-                            caloriesLeftPercent.convertToUseableDouble
-                                .toDoubleAsFixed(2),
-                          ),
-                          strokeWidth: 16,
-                          color: primaryColor,
+                      ),
+                );
+          },
+          onSwipeLeft: () {
+            context.read<HomeBloc>().changeDate(
+                  context.read<HomeBloc>().state.date.add(
+                        const Duration(
+                          days: 1,
                         ),
-                        Expanded(
-                          child: CalorieWidget(
-                            calories:
-                                '${burnedCalories.toDouble().toDoubleAsFixed(2)}',
-                            icon: FontAwesomeIcons.fireFlameCurved,
-                            iconColor: primaryColor,
-                            subtitle: 'BURNED',
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
+                      ),
+                );
+          },
+          child: ListView(
+            padding: EdgeInsets.symmetric(
+              vertical: 130 + MediaQuery.of(context).viewPadding.top,
+            ),
+            children: [
+              Builder(
+                builder: (context) {
+                  final state = context.watch<HomeBloc>().state;
+                  final goals = context.watch<GoalsBloc>().state;
+
+                  final burnedCalories = state.totalBurnedCalories;
+
+                  final totalCalories = state.totalCalories;
+                  final caloriesGoal = goals.caloriesGoal;
+                  final caloriesLeft = caloriesGoal - totalCalories;
+                  final caloriesLeftPercent = caloriesLeft / caloriesGoal;
+
+                  final totalProtein = state.totalProtein;
+                  final proteinGoal = goals.proteinGoal;
+                  final proteinEatenPercent = totalProtein / proteinGoal;
+
+                  final totalCarbs = state.totalCarbs;
+                  final carbsGoal = goals.carbsGoal;
+                  final carbsEatenPercent = totalCarbs / carbsGoal;
+
+                  final totalFat = state.totalFat;
+                  final fatGoal = goals.fatGoal;
+                  final fatEatenPercent = totalFat / fatGoal;
+
+                  return Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildSingleNutrition(
-                            context,
-                            amount: state.totalProtein.toStringAsFixed(2),
-                            color: Colors.purple,
-                            nutrition: 'Protein',
-                            isLeftAmount: false,
-                            hadExtra: state.hadExtraProtein,
-                            percent: min<double>(
-                              1,
-                              proteinEatenPercent.convertToUseableDouble,
-                            ).toDoubleAsFixed(2),
+                          Expanded(
+                            child: CalorieWidget(
+                              calories: '${totalCalories.toDoubleAsFixed(2)}',
+                              icon: FontAwesomeIcons.bowlRice,
+                              iconColor: primaryColor,
+                              subtitle: 'EATEN',
+                            ),
                           ),
-                          _buildSingleNutrition(
-                            context,
-                            amount: state.totalCarbs.toStringAsFixed(2),
-                            color: Colors.greenAccent,
-                            nutrition: 'Carbs',
-                            isLeftAmount: false,
-                            hadExtra: state.hadExtraCarbs,
+                          AnimatedRing(
+                            centerWidget: CalorieWidget(
+                              calories: '${caloriesLeft.toDoubleAsFixed(2)}',
+                              icon: FontAwesomeIcons.boltLightning,
+                              subtitle: 'CAL LEFT',
+                            ),
+                            height: 150,
                             percent: min<double>(
                               1,
-                              carbsEatenPercent.convertToUseableDouble,
-                            ).toDoubleAsFixed(2),
+                              caloriesLeftPercent.convertToUseableDouble
+                                  .toDoubleAsFixed(2),
+                            ),
+                            strokeWidth: 16,
+                            color: primaryColor,
                           ),
-                          _buildSingleNutrition(
-                            context,
-                            amount: state.totalFat.toStringAsFixed(2),
-                            color: Colors.blueAccent,
-                            nutrition: 'FAT',
-                            hadExtra: state.hadExtraFat,
-                            isLeftAmount: false,
-                            percent: min<double>(
-                              1,
-                              fatEatenPercent.convertToUseableDouble,
-                            ).toDoubleAsFixed(2),
+                          Expanded(
+                            child: CalorieWidget(
+                              calories:
+                                  '${burnedCalories.toDouble().toDoubleAsFixed(2)}',
+                              icon: FontAwesomeIcons.fireFlameCurved,
+                              iconColor: primaryColor,
+                              subtitle: 'BURNED',
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                );
-              },
-            ),
-            // if (!kIsWeb &&
-            //     context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
-            //   const Divider(),
-            // if (!kIsWeb &&
-            //     context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
-            //   Container(
-            //     height: 50,
-            //     margin: const EdgeInsets.all(8),
-            //     width: double.infinity,
-            //     decoration: BoxDecoration(
-            //       border: Border.all(
-            //         color: Colors.transparent,
-            //       ),
-            //       borderRadius: BorderRadius.circular(10),
-            //       color: Theme.of(context).cardColor,
-            //     ),
-            //     child: InkWell(
-            //       radius: 20,
-            //       borderRadius: BorderRadius.circular(10),
-            //       overlayColor: MaterialStateProperty.all(
-            //         Theme.of(context).primaryColor.withOpacity(0.5),
-            //       ),
-            //       onTap: () {},
-            //       child: Center(
-            //         child: Text(
-            //           'Sync with HealthKit',
-            //           style: Theme.of(context).textTheme.bodyText1?.copyWith(
-            //                 fontWeight: FontWeight.bold,
-            //               ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            const Divider(),
-            const _DailyFoodLog()
-          ],
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Row(
+                          children: [
+                            _buildSingleNutrition(
+                              context,
+                              amount: state.totalProtein.toStringAsFixed(2),
+                              color: Colors.purple,
+                              nutrition: 'Protein',
+                              isLeftAmount: false,
+                              hadExtra: state.hadExtraProtein,
+                              percent: min<double>(
+                                1,
+                                proteinEatenPercent.convertToUseableDouble,
+                              ).toDoubleAsFixed(2),
+                            ),
+                            _buildSingleNutrition(
+                              context,
+                              amount: state.totalCarbs.toStringAsFixed(2),
+                              color: Colors.greenAccent,
+                              nutrition: 'Carbs',
+                              isLeftAmount: false,
+                              hadExtra: state.hadExtraCarbs,
+                              percent: min<double>(
+                                1,
+                                carbsEatenPercent.convertToUseableDouble,
+                              ).toDoubleAsFixed(2),
+                            ),
+                            _buildSingleNutrition(
+                              context,
+                              amount: state.totalFat.toStringAsFixed(2),
+                              color: Colors.blueAccent,
+                              nutrition: 'FAT',
+                              hadExtra: state.hadExtraFat,
+                              isLeftAmount: false,
+                              percent: min<double>(
+                                1,
+                                fatEatenPercent.convertToUseableDouble,
+                              ).toDoubleAsFixed(2),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+              // if (!kIsWeb &&
+              //     context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
+              //   const Divider(),
+              // if (!kIsWeb &&
+              //     context.watch<HomeBloc>().state.date.isBefore(DateTime.now()))
+              //   Container(
+              //     height: 50,
+              //     margin: const EdgeInsets.all(8),
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       border: Border.all(
+              //         color: Colors.transparent,
+              //       ),
+              //       borderRadius: BorderRadius.circular(10),
+              //       color: Theme.of(context).cardColor,
+              //     ),
+              //     child: InkWell(
+              //       radius: 20,
+              //       borderRadius: BorderRadius.circular(10),
+              //       overlayColor: MaterialStateProperty.all(
+              //         Theme.of(context).primaryColor.withOpacity(0.5),
+              //       ),
+              //       onTap: () {},
+              //       child: Center(
+              //         child: Text(
+              //           'Sync with HealthKit',
+              //           style: Theme.of(context).textTheme.bodyText1?.copyWith(
+              //                 fontWeight: FontWeight.bold,
+              //               ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              const Divider(),
+              const _DailyFoodLog()
+            ],
+          ),
         ),
       ),
     );
@@ -288,7 +322,7 @@ class _HomeView extends StatelessWidget {
           ),
           Text(
             nutrition.toUpperCase(),
-            style: Theme.of(context).textTheme.caption?.copyWith(
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0,
                 ),
@@ -299,7 +333,7 @@ class _HomeView extends StatelessWidget {
           Text(
             '${amount}g ${isLeftAmount ? 'left' : ''}',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: hadExtra ? Theme.of(context).primaryColor : null,
                 ),
@@ -311,7 +345,7 @@ class _HomeView extends StatelessWidget {
 }
 
 class _DailyFoodLog extends StatelessWidget {
-  const _DailyFoodLog({super.key});
+  const _DailyFoodLog();
 
   @override
   Widget build(BuildContext context) {
@@ -338,7 +372,6 @@ class _DailyFoodLog extends StatelessWidget {
 
 class _FoodLogView extends StatelessWidget {
   _FoodLogView({
-    super.key,
     required this.foodType,
     required List<FoodLog> foodLogList,
   }) : foodLogList = foodLogList
@@ -346,6 +379,33 @@ class _FoodLogView extends StatelessWidget {
             .toList();
   final FoodType foodType;
   final List<FoodLog> foodLogList;
+
+  static final DecorationTween _tween = DecorationTween(
+    begin: BoxDecoration(
+      color: Colors.transparent,
+      boxShadow: const <BoxShadow>[],
+      borderRadius: BorderRadius.circular(20),
+    ),
+    end: BoxDecoration(
+      color: AppColors.primaryDark,
+      boxShadow: CupertinoContextMenu.kEndBoxShadow,
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
+
+  static Animation<Decoration> _boxDecorationAnimation(
+    Animation<double> animation,
+  ) {
+    return _tween.animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: Interval(
+          0,
+          CupertinoContextMenu.animationOpensAt,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -363,13 +423,13 @@ class _FoodLogView extends StatelessWidget {
             children: [
               Text(
                 foodType.displayName,
-                style: Theme.of(context).textTheme.headline6?.copyWith(
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
               Text(
                 '${totalCalories.toDoubleAsFixed(2)} Cal',
-                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -392,296 +452,352 @@ class _FoodLogView extends StatelessWidget {
 
 class _SingleFoodLogItem extends HookWidget {
   const _SingleFoodLogItem({
-    super.key,
     required this.foodLog,
   });
   final FoodLog foodLog;
 
   @override
   Widget build(BuildContext context) {
-    final isExpanded = useState(false);
-    return SwipeableTile.card(
-      swipeThreshold: 0.2,
-      borderRadius: 10,
-      shadow: BoxShadow(
-        color: Colors.black.withOpacity(0.1),
-      ),
-      horizontalPadding: 8,
-      verticalPadding: 8,
-      color: Theme.of(context).canvasColor,
-      direction: SwipeDirection.horizontal,
-      confirmSwipe: (direction) async {
-        if (direction == SwipeDirection.endToStart) {
-          return showConfirmationDialog<bool>(
-            context: context,
-            title:
-                'Are you sure you want to delete ${foodLog.name} from food log?',
-            okLabel: 'Delete',
-            actions: [const AlertDialogAction(key: true, label: 'Delete')],
-          );
-        }
-        return null;
-      },
-      onSwiped: (direction) {
-        if (direction == SwipeDirection.endToStart) {
-          //Delete Here
-          context.read<HomeBloc>().deleteLog(foodLog);
-        }
-      },
-      backgroundBuilder: (context, direction, progress) {
-        if (direction == SwipeDirection.endToStart) {
-          return Row(
-            children: const [
-              Spacer(),
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.delete_forever_rounded,
-                  color: Colors.red,
-                  size: 30,
-                ),
-              ),
-            ],
-          );
-        } else if (direction == SwipeDirection.startToEnd) {
-          // return your widget
-        }
-        return Container();
-      },
-      key: Key(foodLog.id!),
-      child: StatefulBuilder(
-        builder: (BuildContext context, setState) {
-          return Container(
-            // margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: foodLog.allAdded
-                    ? Theme.of(context).primaryColor
-                    : Theme.of(context).dividerColor,
-              ),
-              borderRadius: BorderRadius.circular(10),
+    final isExpanded = useState<bool>(false);
+    return CupertinoContextMenu.builder(
+      actions: <Widget>[
+        CupertinoContextMenuAction(
+          onPressed: () {
+            context
+                .read<HomeBloc>()
+                .updateCopiedData(FoodLog.senetizeForFirestore(foodLog));
+            Navigator.pop(context);
+          },
+          trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
+          isDefaultAction: true,
+          child: const Text('Copy'),
+        ),
+        CupertinoContextMenuAction(
+          onPressed: () async {
+            Navigator.pop(context);
+            final result = await showConfirmationDialog<bool>(
+              context: context,
+              title:
+                  'Are you sure you want to delete ${foodLog.name} from food log?',
+              okLabel: 'Delete',
+              actions: [const AlertDialogAction(key: true, label: 'Delete')],
+            );
+            if (result ?? false) {
+              await context.read<HomeBloc>().deleteLog(foodLog);
+            }
+          },
+          isDestructiveAction: true,
+          trailingIcon: CupertinoIcons.delete,
+          child: const Text('Delete'),
+        ),
+      ],
+      builder: (context, animation) {
+        return SizedBox(
+          // height: animation.value > 0 ? animation.value * 150 : null,
+          child: SwipeableTile.card(
+            swipeThreshold: 0.2,
+            borderRadius: 10,
+            shadow: BoxShadow(
+              color: Colors.black.withOpacity(0.1),
             ),
-            width: double.infinity,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                radius: 10,
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {
-                  isExpanded.value = !isExpanded.value;
-                },
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: AnimatedPadding(
-                            duration: const Duration(milliseconds: 300),
-                            padding: EdgeInsets.only(
-                              top: 12,
-                              left: 12,
-                              bottom: isExpanded.value ? 8 : 12,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  foodLog.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: Row(
-                            children: [
-                              Text(
-                                '${foodLog.caloriesPerServing} Cal',
-                                // textAlign: TextAlign.right,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                ' x ${foodLog.servingEaten}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    AnimatedCrossFade(
-                      duration: const Duration(milliseconds: 300),
-                      crossFadeState: isExpanded.value
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                      firstChild: Container(),
-                      secondChild: Padding(
-                        padding: const EdgeInsets.only(left: 12, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Protein : '.toUpperCase(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      '${foodLog.protein} g',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      ' x ${foodLog.servingEaten}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .caption
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Carbs : '.toUpperCase(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      '${foodLog.carbs} g',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      ' x ${foodLog.servingEaten}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .caption
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Fat : '.toUpperCase(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      '${foodLog.fat} g',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      ' x ${foodLog.servingEaten}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .caption
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            if (!foodLog.allAdded && !kIsWeb)
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: InkWell(
-                                  radius: 10,
-                                  borderRadius: BorderRadius.circular(10),
-                                  onTap: () async {
-                                    await context
-                                        .read<HomeBloc>()
-                                        .addDataToHealthKit(foodLog);
-                                    // ignore: use_build_context_synchronously
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        duration: Duration(milliseconds: 300),
-                                        content: Text('Added To HealthKit'),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: const Icon(
-                                      Icons.add_box_outlined,
-                                      color: Colors.red,
-                                      size: 30,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
+            horizontalPadding: 8,
+            verticalPadding: 8,
+            color: Theme.of(context).canvasColor,
+            direction: SwipeDirection.horizontal,
+            confirmSwipe: (direction) async {
+              if (direction == SwipeDirection.endToStart) {
+                return showConfirmationDialog<bool>(
+                  context: context,
+                  title:
+                      'Are you sure you want to delete ${foodLog.name} from food log?',
+                  okLabel: 'Delete',
+                  actions: [
+                    const AlertDialogAction(key: true, label: 'Delete')
+                  ],
+                );
+              }
+              return null;
+            },
+            onSwiped: (direction) {
+              if (direction == SwipeDirection.endToStart) {
+                //Delete Here
+                context.read<HomeBloc>().deleteLog(foodLog);
+              }
+            },
+            backgroundBuilder: (context, direction, progress) {
+              if (direction == SwipeDirection.endToStart) {
+                return Row(
+                  children: const [
+                    Spacer(),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Icon(
+                        Icons.delete_forever_rounded,
+                        color: Colors.red,
+                        size: 30,
                       ),
                     ),
                   ],
-                ),
-              ),
+                );
+              } else if (direction == SwipeDirection.startToEnd) {
+                // return your widget
+              }
+              return Container();
+            },
+            key: Key(foodLog.id!),
+            child: StatefulBuilder(
+              builder: (BuildContext context, setState) {
+                return Container(
+                  // margin: const EdgeInsets.all(8),
+                  height: animation.value > 0.2
+                      ? max(53, animation.value * 130)
+                      : null,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: foodLog.allAdded
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).dividerColor,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  width: double.infinity,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      radius: 10,
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: animation.value > 0
+                          ? null
+                          : () {
+                              isExpanded.value = !isExpanded.value;
+                            },
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: AnimatedPadding(
+                                  duration: const Duration(milliseconds: 300),
+                                  padding: EdgeInsets.only(
+                                    top: 12,
+                                    left: 12,
+                                    bottom: (isExpanded.value ||
+                                            animation.value > 0.8)
+                                        ? animation.value * 8
+                                        : 12,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        foodLog.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      '${foodLog.caloriesPerServing} Cal',
+                                      // textAlign: TextAlign.right,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    Text(
+                                      ' x ${foodLog.servingEaten}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          AnimatedCrossFade(
+                            duration: const Duration(milliseconds: 50),
+                            crossFadeState:
+                                (isExpanded.value || animation.value > 0.8)
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
+                            firstChild: Container(),
+                            secondChild: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 12, bottom: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Protein : '.toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            '${foodLog.protein} g',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            ' x ${foodLog.servingEaten}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 2,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Carbs : '.toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            '${foodLog.carbs} g',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            ' x ${foodLog.servingEaten}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 2,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Fat : '.toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            '${foodLog.fat} g',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            ' x ${foodLog.servingEaten}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  if ((!foodLog.allAdded && !kIsWeb) &&
+                                      animation.value == 0)
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: InkWell(
+                                        radius: 10,
+                                        borderRadius: BorderRadius.circular(10),
+                                        onTap: () async {
+                                          await context
+                                              .read<HomeBloc>()
+                                              .addDataToHealthKit(foodLog);
+                                          // ignore: use_build_context_synchronously
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              content:
+                                                  Text('Added To HealthKit'),
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          child: const Icon(
+                                            Icons.add_box_outlined,
+                                            color: Colors.red,
+                                            size: 30,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -892,14 +1008,14 @@ class CalorieWidget extends StatelessWidget {
         const SizedBox(height: 5),
         Text(
           calories,
-          style: Theme.of(context).textTheme.headline5?.copyWith(
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
         ),
         Text(
           subtitle,
-          style: Theme.of(context).textTheme.caption?.copyWith(
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0,
               ),

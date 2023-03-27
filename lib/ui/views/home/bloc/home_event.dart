@@ -15,4 +15,5 @@ class HomeEvent with _$HomeEvent {
   }) = HomeUpdateNutritionEvent;
   factory HomeEvent.updateBurnedCaloriesEvent({required num burnedCalories}) =
       UpdateBurnedCaloriesEvent;
+  factory HomeEvent.copyData(FoodLog? log) = CopyDataEvent;
 }

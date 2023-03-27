@@ -48,6 +48,21 @@ class FoodLog with _$FoodLog {
 
   FoodLog._();
 
+  factory FoodLog.senetizeForFirestore(FoodLog foodLog) {
+    return foodLog.copyWith(
+      id: null,
+      isCaloriesAddedToHealthKit: false,
+      isCarbsAddedToHealthKit: false,
+      isFatAddedToHealthKit: false,
+      isProteinAddedToHealthKit: false,
+      date: DateTime(
+        foodLog.date.year,
+        foodLog.date.month,
+        foodLog.date.day,
+      ),
+    );
+  }
+
   factory FoodLog.fromJson(Map<String, dynamic> json) =>
       _$FoodLogFromJson(json);
 

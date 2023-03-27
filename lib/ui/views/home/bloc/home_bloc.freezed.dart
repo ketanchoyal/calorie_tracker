@@ -30,6 +30,7 @@ mixin _$HomeEvent {
             bool hadExtraProtein)
         updateNutrition,
     required TResult Function(num burnedCalories) updateBurnedCaloriesEvent,
+    required TResult Function(FoodLog? log) copyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +47,7 @@ mixin _$HomeEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult? Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult? Function(FoodLog? log)? copyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +64,7 @@ mixin _$HomeEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult Function(FoodLog? log)? copyData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +75,7 @@ mixin _$HomeEvent {
     required TResult Function(HomeUpdateNutritionEvent value) updateNutrition,
     required TResult Function(UpdateBurnedCaloriesEvent value)
         updateBurnedCaloriesEvent,
+    required TResult Function(CopyDataEvent value) copyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +85,7 @@ mixin _$HomeEvent {
     TResult? Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult? Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult? Function(CopyDataEvent value)? copyData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +95,7 @@ mixin _$HomeEvent {
     TResult Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult Function(CopyDataEvent value)? copyData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -162,6 +168,7 @@ class _$TodayHomeEvent implements TodayHomeEvent {
             bool hadExtraProtein)
         updateNutrition,
     required TResult Function(num burnedCalories) updateBurnedCaloriesEvent,
+    required TResult Function(FoodLog? log) copyData,
   }) {
     return today();
   }
@@ -181,6 +188,7 @@ class _$TodayHomeEvent implements TodayHomeEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult? Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult? Function(FoodLog? log)? copyData,
   }) {
     return today?.call();
   }
@@ -200,6 +208,7 @@ class _$TodayHomeEvent implements TodayHomeEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult Function(FoodLog? log)? copyData,
     required TResult orElse(),
   }) {
     if (today != null) {
@@ -216,6 +225,7 @@ class _$TodayHomeEvent implements TodayHomeEvent {
     required TResult Function(HomeUpdateNutritionEvent value) updateNutrition,
     required TResult Function(UpdateBurnedCaloriesEvent value)
         updateBurnedCaloriesEvent,
+    required TResult Function(CopyDataEvent value) copyData,
   }) {
     return today(this);
   }
@@ -228,6 +238,7 @@ class _$TodayHomeEvent implements TodayHomeEvent {
     TResult? Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult? Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult? Function(CopyDataEvent value)? copyData,
   }) {
     return today?.call(this);
   }
@@ -240,6 +251,7 @@ class _$TodayHomeEvent implements TodayHomeEvent {
     TResult Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult Function(CopyDataEvent value)? copyData,
     required TResult orElse(),
   }) {
     if (today != null) {
@@ -330,6 +342,7 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
             bool hadExtraProtein)
         updateNutrition,
     required TResult Function(num burnedCalories) updateBurnedCaloriesEvent,
+    required TResult Function(FoodLog? log) copyData,
   }) {
     return of(date);
   }
@@ -349,6 +362,7 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult? Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult? Function(FoodLog? log)? copyData,
   }) {
     return of?.call(date);
   }
@@ -368,6 +382,7 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult Function(FoodLog? log)? copyData,
     required TResult orElse(),
   }) {
     if (of != null) {
@@ -384,6 +399,7 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
     required TResult Function(HomeUpdateNutritionEvent value) updateNutrition,
     required TResult Function(UpdateBurnedCaloriesEvent value)
         updateBurnedCaloriesEvent,
+    required TResult Function(CopyDataEvent value) copyData,
   }) {
     return of(this);
   }
@@ -396,6 +412,7 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
     TResult? Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult? Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult? Function(CopyDataEvent value)? copyData,
   }) {
     return of?.call(this);
   }
@@ -408,6 +425,7 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
     TResult Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult Function(CopyDataEvent value)? copyData,
     required TResult orElse(),
   }) {
     if (of != null) {
@@ -575,6 +593,7 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
             bool hadExtraProtein)
         updateNutrition,
     required TResult Function(num burnedCalories) updateBurnedCaloriesEvent,
+    required TResult Function(FoodLog? log) copyData,
   }) {
     return updateNutrition(totalCarbs, totalFat, totalProtein, totalCalories,
         hadExtraCarbs, hadExtraFat, hadExtraProtein);
@@ -595,6 +614,7 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult? Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult? Function(FoodLog? log)? copyData,
   }) {
     return updateNutrition?.call(totalCarbs, totalFat, totalProtein,
         totalCalories, hadExtraCarbs, hadExtraFat, hadExtraProtein);
@@ -615,6 +635,7 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult Function(FoodLog? log)? copyData,
     required TResult orElse(),
   }) {
     if (updateNutrition != null) {
@@ -632,6 +653,7 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
     required TResult Function(HomeUpdateNutritionEvent value) updateNutrition,
     required TResult Function(UpdateBurnedCaloriesEvent value)
         updateBurnedCaloriesEvent,
+    required TResult Function(CopyDataEvent value) copyData,
   }) {
     return updateNutrition(this);
   }
@@ -644,6 +666,7 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
     TResult? Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult? Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult? Function(CopyDataEvent value)? copyData,
   }) {
     return updateNutrition?.call(this);
   }
@@ -656,6 +679,7 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
     TResult Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult Function(CopyDataEvent value)? copyData,
     required TResult orElse(),
   }) {
     if (updateNutrition != null) {
@@ -766,6 +790,7 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
             bool hadExtraProtein)
         updateNutrition,
     required TResult Function(num burnedCalories) updateBurnedCaloriesEvent,
+    required TResult Function(FoodLog? log) copyData,
   }) {
     return updateBurnedCaloriesEvent(burnedCalories);
   }
@@ -785,6 +810,7 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult? Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult? Function(FoodLog? log)? copyData,
   }) {
     return updateBurnedCaloriesEvent?.call(burnedCalories);
   }
@@ -804,6 +830,7 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
             bool hadExtraProtein)?
         updateNutrition,
     TResult Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult Function(FoodLog? log)? copyData,
     required TResult orElse(),
   }) {
     if (updateBurnedCaloriesEvent != null) {
@@ -820,6 +847,7 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
     required TResult Function(HomeUpdateNutritionEvent value) updateNutrition,
     required TResult Function(UpdateBurnedCaloriesEvent value)
         updateBurnedCaloriesEvent,
+    required TResult Function(CopyDataEvent value) copyData,
   }) {
     return updateBurnedCaloriesEvent(this);
   }
@@ -832,6 +860,7 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
     TResult? Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult? Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult? Function(CopyDataEvent value)? copyData,
   }) {
     return updateBurnedCaloriesEvent?.call(this);
   }
@@ -844,6 +873,7 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
     TResult Function(HomeUpdateNutritionEvent value)? updateNutrition,
     TResult Function(UpdateBurnedCaloriesEvent value)?
         updateBurnedCaloriesEvent,
+    TResult Function(CopyDataEvent value)? copyData,
     required TResult orElse(),
   }) {
     if (updateBurnedCaloriesEvent != null) {
@@ -864,6 +894,198 @@ abstract class UpdateBurnedCaloriesEvent implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$CopyDataEventCopyWith<$Res> {
+  factory _$$CopyDataEventCopyWith(
+          _$CopyDataEvent value, $Res Function(_$CopyDataEvent) then) =
+      __$$CopyDataEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({FoodLog? log});
+
+  $FoodLogCopyWith<$Res>? get log;
+}
+
+/// @nodoc
+class __$$CopyDataEventCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$CopyDataEvent>
+    implements _$$CopyDataEventCopyWith<$Res> {
+  __$$CopyDataEventCopyWithImpl(
+      _$CopyDataEvent _value, $Res Function(_$CopyDataEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? log = freezed,
+  }) {
+    return _then(_$CopyDataEvent(
+      freezed == log
+          ? _value.log
+          : log // ignore: cast_nullable_to_non_nullable
+              as FoodLog?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FoodLogCopyWith<$Res>? get log {
+    if (_value.log == null) {
+      return null;
+    }
+
+    return $FoodLogCopyWith<$Res>(_value.log!, (value) {
+      return _then(_value.copyWith(log: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CopyDataEvent implements CopyDataEvent {
+  _$CopyDataEvent(this.log);
+
+  @override
+  final FoodLog? log;
+
+  @override
+  String toString() {
+    return 'HomeEvent.copyData(log: $log)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CopyDataEvent &&
+            (identical(other.log, log) || other.log == log));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, log);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CopyDataEventCopyWith<_$CopyDataEvent> get copyWith =>
+      __$$CopyDataEventCopyWithImpl<_$CopyDataEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() today,
+    required TResult Function(DateTime date) of,
+    required TResult Function(
+            double totalCarbs,
+            double totalFat,
+            double totalProtein,
+            double totalCalories,
+            bool hadExtraCarbs,
+            bool hadExtraFat,
+            bool hadExtraProtein)
+        updateNutrition,
+    required TResult Function(num burnedCalories) updateBurnedCaloriesEvent,
+    required TResult Function(FoodLog? log) copyData,
+  }) {
+    return copyData(log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? today,
+    TResult? Function(DateTime date)? of,
+    TResult? Function(
+            double totalCarbs,
+            double totalFat,
+            double totalProtein,
+            double totalCalories,
+            bool hadExtraCarbs,
+            bool hadExtraFat,
+            bool hadExtraProtein)?
+        updateNutrition,
+    TResult? Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult? Function(FoodLog? log)? copyData,
+  }) {
+    return copyData?.call(log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? today,
+    TResult Function(DateTime date)? of,
+    TResult Function(
+            double totalCarbs,
+            double totalFat,
+            double totalProtein,
+            double totalCalories,
+            bool hadExtraCarbs,
+            bool hadExtraFat,
+            bool hadExtraProtein)?
+        updateNutrition,
+    TResult Function(num burnedCalories)? updateBurnedCaloriesEvent,
+    TResult Function(FoodLog? log)? copyData,
+    required TResult orElse(),
+  }) {
+    if (copyData != null) {
+      return copyData(log);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TodayHomeEvent value) today,
+    required TResult Function(SomeOtherDateHomeEvent value) of,
+    required TResult Function(HomeUpdateNutritionEvent value) updateNutrition,
+    required TResult Function(UpdateBurnedCaloriesEvent value)
+        updateBurnedCaloriesEvent,
+    required TResult Function(CopyDataEvent value) copyData,
+  }) {
+    return copyData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TodayHomeEvent value)? today,
+    TResult? Function(SomeOtherDateHomeEvent value)? of,
+    TResult? Function(HomeUpdateNutritionEvent value)? updateNutrition,
+    TResult? Function(UpdateBurnedCaloriesEvent value)?
+        updateBurnedCaloriesEvent,
+    TResult? Function(CopyDataEvent value)? copyData,
+  }) {
+    return copyData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TodayHomeEvent value)? today,
+    TResult Function(SomeOtherDateHomeEvent value)? of,
+    TResult Function(HomeUpdateNutritionEvent value)? updateNutrition,
+    TResult Function(UpdateBurnedCaloriesEvent value)?
+        updateBurnedCaloriesEvent,
+    TResult Function(CopyDataEvent value)? copyData,
+    required TResult orElse(),
+  }) {
+    if (copyData != null) {
+      return copyData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CopyDataEvent implements HomeEvent {
+  factory CopyDataEvent(final FoodLog? log) = _$CopyDataEvent;
+
+  FoodLog? get log;
+  @JsonKey(ignore: true)
+  _$$CopyDataEventCopyWith<_$CopyDataEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   DateTime get date => throw _privateConstructorUsedError;
   double get totalCalories => throw _privateConstructorUsedError;
@@ -874,6 +1096,7 @@ mixin _$HomeState {
   bool get hadExtraFat => throw _privateConstructorUsedError;
   bool get hadExtraProtein => throw _privateConstructorUsedError;
   num get totalBurnedCalories => throw _privateConstructorUsedError;
+  FoodLog? get copiedData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -894,7 +1117,10 @@ abstract class $HomeStateCopyWith<$Res> {
       bool hadExtraCarbs,
       bool hadExtraFat,
       bool hadExtraProtein,
-      num totalBurnedCalories});
+      num totalBurnedCalories,
+      FoodLog? copiedData});
+
+  $FoodLogCopyWith<$Res>? get copiedData;
 }
 
 /// @nodoc
@@ -919,6 +1145,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? hadExtraFat = null,
     Object? hadExtraProtein = null,
     Object? totalBurnedCalories = null,
+    Object? copiedData = freezed,
   }) {
     return _then(_value.copyWith(
       date: null == date
@@ -957,7 +1184,23 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.totalBurnedCalories
           : totalBurnedCalories // ignore: cast_nullable_to_non_nullable
               as num,
+      copiedData: freezed == copiedData
+          ? _value.copiedData
+          : copiedData // ignore: cast_nullable_to_non_nullable
+              as FoodLog?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FoodLogCopyWith<$Res>? get copiedData {
+    if (_value.copiedData == null) {
+      return null;
+    }
+
+    return $FoodLogCopyWith<$Res>(_value.copiedData!, (value) {
+      return _then(_value.copyWith(copiedData: value) as $Val);
+    });
   }
 }
 
@@ -977,7 +1220,11 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       bool hadExtraCarbs,
       bool hadExtraFat,
       bool hadExtraProtein,
-      num totalBurnedCalories});
+      num totalBurnedCalories,
+      FoodLog? copiedData});
+
+  @override
+  $FoodLogCopyWith<$Res>? get copiedData;
 }
 
 /// @nodoc
@@ -1000,6 +1247,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? hadExtraFat = null,
     Object? hadExtraProtein = null,
     Object? totalBurnedCalories = null,
+    Object? copiedData = freezed,
   }) {
     return _then(_$_HomeState(
       date: null == date
@@ -1038,6 +1286,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.totalBurnedCalories
           : totalBurnedCalories // ignore: cast_nullable_to_non_nullable
               as num,
+      copiedData: freezed == copiedData
+          ? _value.copiedData
+          : copiedData // ignore: cast_nullable_to_non_nullable
+              as FoodLog?,
     ));
   }
 }
@@ -1054,7 +1306,8 @@ class _$_HomeState implements _HomeState {
       this.hadExtraCarbs = false,
       this.hadExtraFat = false,
       this.hadExtraProtein = false,
-      this.totalBurnedCalories = 0.0});
+      this.totalBurnedCalories = 0.0,
+      this.copiedData = null});
 
   @override
   final DateTime date;
@@ -1082,10 +1335,13 @@ class _$_HomeState implements _HomeState {
   @override
   @JsonKey()
   final num totalBurnedCalories;
+  @override
+  @JsonKey()
+  final FoodLog? copiedData;
 
   @override
   String toString() {
-    return 'HomeState(date: $date, totalCalories: $totalCalories, totalProtein: $totalProtein, totalCarbs: $totalCarbs, totalFat: $totalFat, hadExtraCarbs: $hadExtraCarbs, hadExtraFat: $hadExtraFat, hadExtraProtein: $hadExtraProtein, totalBurnedCalories: $totalBurnedCalories)';
+    return 'HomeState(date: $date, totalCalories: $totalCalories, totalProtein: $totalProtein, totalCarbs: $totalCarbs, totalFat: $totalFat, hadExtraCarbs: $hadExtraCarbs, hadExtraFat: $hadExtraFat, hadExtraProtein: $hadExtraProtein, totalBurnedCalories: $totalBurnedCalories, copiedData: $copiedData)';
   }
 
   @override
@@ -1109,7 +1365,9 @@ class _$_HomeState implements _HomeState {
             (identical(other.hadExtraProtein, hadExtraProtein) ||
                 other.hadExtraProtein == hadExtraProtein) &&
             (identical(other.totalBurnedCalories, totalBurnedCalories) ||
-                other.totalBurnedCalories == totalBurnedCalories));
+                other.totalBurnedCalories == totalBurnedCalories) &&
+            (identical(other.copiedData, copiedData) ||
+                other.copiedData == copiedData));
   }
 
   @override
@@ -1123,7 +1381,8 @@ class _$_HomeState implements _HomeState {
       hadExtraCarbs,
       hadExtraFat,
       hadExtraProtein,
-      totalBurnedCalories);
+      totalBurnedCalories,
+      copiedData);
 
   @JsonKey(ignore: true)
   @override
@@ -1142,7 +1401,8 @@ abstract class _HomeState implements HomeState {
       final bool hadExtraCarbs,
       final bool hadExtraFat,
       final bool hadExtraProtein,
-      final num totalBurnedCalories}) = _$_HomeState;
+      final num totalBurnedCalories,
+      final FoodLog? copiedData}) = _$_HomeState;
 
   @override
   DateTime get date;
@@ -1162,6 +1422,8 @@ abstract class _HomeState implements HomeState {
   bool get hadExtraProtein;
   @override
   num get totalBurnedCalories;
+  @override
+  FoodLog? get copiedData;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>

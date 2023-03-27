@@ -25,6 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SomeOtherDateHomeEvent>(_mapSomeOtherDateHomeEvent);
     on<HomeUpdateNutritionEvent>(_mapHomeUpdateNutritionEvent);
     on<UpdateBurnedCaloriesEvent>(_mapUpdateBurnedCaloriesEvent);
+    on<CopyDataEvent>(_mapCopyDataEvent);
     getCaloresBurned();
   }
 
@@ -39,6 +40,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<List<FoodLog>> get foodLogStream =>
       _firebaseService.getFoodLog(state.date).asBroadcastStream()
         ..listen(_streamListener);
+
+  Future<void> _mapCopyDataEvent(
+    CopyDataEvent event,
+    Emitter emit,
+  ) async {
+    emit(state.copyWith(copiedData: event.log));
+  }
 
   Future<void> _mapTodayHomeEvent(
     TodayHomeEvent event,
@@ -89,6 +97,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (date.isBefore(DateTime.now())) {
       add(SomeOtherDateHomeEvent(date));
     }
+  }
+
+  void updateCopiedData(FoodLog? value) {
+    add(CopyDataEvent(value));
   }
 
   void _streamListener(List<FoodLog> event) {
@@ -156,5 +168,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> getCaloresBurned() async {
     final burnedCalories = await _healthService.getBurnedCalories();
     add(UpdateBurnedCaloriesEvent(burnedCalories: burnedCalories));
+  }
+
+  Future<void> addFoodLog() async {
+    final foodLog = state.copiedData;
+    updateCopiedData(null);
+    if (foodLog == null) {
+      return;
+    }
+
+    await _firebaseService.addCalories(
+      foodLog: foodLog.copyWith(
+        foodLogDate: state.date,
+      ),
+      foodLogDate: state.date,
+    );
   }
 }

@@ -25,7 +25,7 @@ class FoodTypeSelector extends StatelessWidget {
           dark: () => Colors.white,
         ),
         unSelectedColor: context.color.when(
-          light: () => Colors.white,
+          light: () => Colors.black,
           dark: () => Colors.white,
         ),
       ),
