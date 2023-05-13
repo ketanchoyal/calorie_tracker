@@ -750,7 +750,8 @@ class _SingleFoodLogItem extends HookWidget {
                                       ),
                                     ],
                                   ),
-                                  if ((!foodLog.allAdded && !kIsWeb) &&
+                                  if ((!foodLog.allAdded &&
+                                          !(kIsWeb || Platform.isMacOS)) &&
                                       animation.value == 0)
                                     Padding(
                                       padding: const EdgeInsets.all(10),

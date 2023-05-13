@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:calorie_tracker/core/models/add_health_data_result.dart';
 import 'package:calorie_tracker/core/models/food_log/food_log.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
@@ -13,7 +15,7 @@ class HealthServiceImpl implements HealthService {
   final _healthFactory = HealthFactory();
   @override
   Future<AddDataResult> addNutritionData(FoodLog foodLog) async {
-    if (kIsWeb) return AddDataResult.web();
+    if (kIsWeb || Platform.isMacOS) return AddDataResult.web();
     _throwThisIfNotUsingTestAccont();
     var carbsAdded = foodLog.isCarbsAddedToHealthKit;
     var fatAdded = foodLog.isFatAddedToHealthKit;
@@ -81,11 +83,11 @@ class HealthServiceImpl implements HealthService {
     var proteinAdded = foodLog.isProteinAddedToHealthKit;
     var caloriesAdded = foodLog.isCaloriesAddedToHealthKit;
 
-    if (kIsWeb && foodLog.anyThingAdded) {
+    if ((kIsWeb || Platform.isMacOS) && foodLog.anyThingAdded) {
       return false;
     }
 
-    if (!kIsWeb) {
+    if (!(kIsWeb || Platform.isMacOS)) {
       if (caloriesAdded) {
         caloriesAdded = await _healthFactory.deleteHealthData(
           HealthDataType.DIETARY_ENERGY_CONSUMED,
@@ -120,7 +122,7 @@ class HealthServiceImpl implements HealthService {
 
   @override
   Future<bool> requestAuthorization() async {
-    if (kIsWeb) return false;
+    if (kIsWeb || Platform.isMacOS) return false;
     return _healthFactory.requestAuthorization(
       [
         HealthDataType.DIETARY_CARBS_CONSUMED,
@@ -142,6 +144,7 @@ class HealthServiceImpl implements HealthService {
 
   @override
   Future<num> getBurnedCalories() async {
+    if (kIsWeb || Platform.isMacOS) return 0;
     final data = await _healthFactory.getHealthDataFromTypes(
       DateTime(
         DateTime.now().year,

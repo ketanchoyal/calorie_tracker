@@ -39,13 +39,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await runZonedGuarded(
-    () async {
-      await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
-        blocObserver: AppBlocObserver(),
-      );
-    },
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
-  );
+  Bloc.observer = AppBlocObserver();
+  runApp(await builder());
+
+  // await runZonedGuarded(
+  //   (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  // );
 }
