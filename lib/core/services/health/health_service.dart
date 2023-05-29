@@ -8,5 +8,5 @@ abstract class HealthService {
 
   Future<bool> deleteNutritionData(FoodLog foodLog);
 
-  Future<num> getBurnedCalories();
+  Future<num> getBurnedCalories(DateTime date);
 }

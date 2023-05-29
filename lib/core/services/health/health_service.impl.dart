@@ -143,15 +143,13 @@ class HealthServiceImpl implements HealthService {
       (_firebaseService as FirebaseServiceImpl).throwThisIfNotUsingTestAccont();
 
   @override
-  Future<num> getBurnedCalories() async {
+  Future<num> getBurnedCalories(DateTime date) async {
     if (kIsWeb || Platform.isMacOS) return 0;
+    final startTime = DateTime(date.year, date.month, date.day);
+    final endTime = DateTime(date.year, date.month, date.day, 23, 59, 59);
     final data = await _healthFactory.getHealthDataFromTypes(
-      DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
-      ),
-      DateTime.now(),
+      startTime,
+      endTime,
       [HealthDataType.ACTIVE_ENERGY_BURNED],
     );
     final totalBurnedcalories = await compute(_calculateBurnedCalories, data);

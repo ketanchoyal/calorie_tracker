@@ -12,6 +12,8 @@ import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.impl.dart';
 import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:calorie_tracker/core/services/health/health_service.impl.dart';
+import 'package:calorie_tracker/core/services/openfood_api/openfood_api_service.dart';
+import 'package:calorie_tracker/core/services/openfood_api/openfood_api_service.impl.dart';
 import 'package:calorie_tracker/l10n/l10n.dart';
 import 'package:calorie_tracker/ui/blocs/auth/auth_bloc.dart';
 import 'package:calorie_tracker/ui/blocs/goals/goals_bloc.dart';
@@ -30,6 +32,9 @@ class App extends StatelessWidget {
       create: (context) => FirebaseServiceImpl(),
       child: MultiRepositoryProvider(
         providers: [
+          RepositoryProvider<OpenFoodAPIService>(
+            create: (context) => OpenFoodAPIServiceImpl(),
+          ),
           RepositoryProvider<FirebaseAuthService>(
             create: (context) => FirebaseAuthServiceImpl(),
           ),

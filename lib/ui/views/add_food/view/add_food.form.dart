@@ -1,7 +1,7 @@
 part of 'add_food.view.dart';
 
 class _AddFoodForm extends StatelessWidget {
-  const _AddFoodForm({super.key});
+  const _AddFoodForm();
 
   @override
   Widget build(BuildContext context) {

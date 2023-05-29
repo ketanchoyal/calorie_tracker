@@ -25,6 +25,8 @@ class AddFoodFormBloc extends FormBloc<String, String> {
   final imageUrl = TextFieldBloc<String?>();
   final caloriesPerServing = TextFieldBloc<double>();
 
+  String? _barcode;
+
   final fat = TextFieldBloc<double?>();
   final carbs = TextFieldBloc<double?>();
   final protein = TextFieldBloc<double?>();
@@ -43,6 +45,18 @@ class AddFoodFormBloc extends FormBloc<String, String> {
     );
   }
 
+  void autoFillFoodData(Food food) {
+    _barcode = food.barcode;
+    name.updateValue(food.name);
+    description.updateValue(food.description ?? '');
+    caloriesPerServing.updateValue((food.nutrition.calories).toString());
+    fat.updateValue((food.nutrition.fat).toString());
+    carbs.updateValue((food.nutrition.carbs).toString());
+    protein.updateValue((food.nutrition.protein).toString());
+    notes.updateValue(food.notes ?? '');
+    imageUrl.updateValue(food.imageUrl ?? '');
+  }
+
   @override
   FutureOr<void> onSubmitting() {
     _firebaseService.addFood(
@@ -50,6 +64,7 @@ class AddFoodFormBloc extends FormBloc<String, String> {
         name: name.value,
         dateTime: DateTime.now(),
         notes: notes.value,
+        barcode: _barcode,
         description: description.value,
         nutrition: Nutrition(
           calories: caloriesPerServing.valueToDouble!,

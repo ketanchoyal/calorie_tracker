@@ -1,3 +1,4 @@
+import 'package:drop_down_list/drop_down_list.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'food.freezed.dart';
@@ -11,7 +12,7 @@ part 'food.g.dart';
   fromJson: false,
   toJson: false,
 )
-class Food with _$Food {
+class Food with _$Food implements SearchableItem {
   factory Food({
     String? id,
     required String name,
@@ -70,6 +71,10 @@ class Food with _$Food {
       );
 
   Map<String, dynamic> toJson() => _$FoodToJson(this);
+
+  @override
+  List<String> get searchableStrings =>
+      [name, description ?? '', notes ?? '', barcode ?? '', id ?? ''];
 
   // bool get isOpenFoodProduct => barcode != null;
 

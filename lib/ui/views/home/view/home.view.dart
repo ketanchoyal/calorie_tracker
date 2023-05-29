@@ -3,28 +3,6 @@ part of 'home.page.dart';
 class _HomeView extends StatelessWidget {
   const _HomeView();
 
-  Future<Product?> getProduct() async {
-    const barcode = '064420000774';
-
-    final configuration = ProductQueryConfiguration(
-      barcode,
-      language: OpenFoodFactsLanguage.ENGLISH,
-      country: OpenFoodFactsCountry.CANADA,
-      fields: [ProductField.ALL],
-    );
-    final result = await OpenFoodAPIClient.getProductV3(configuration);
-
-    if (result.status == 1) {
-      print(
-        result.product?.nutriments
-            ?.getValue(Nutrient.proteins, PerSize.oneHundredGrams),
-      );
-      return result.product;
-    } else {
-      throw Exception('product not found, please insert data for $barcode');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final primaryColor = context.color.when(
@@ -37,13 +15,11 @@ class _HomeView extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: CalendarAppBar(
           onDateChanged: (date) {
-            context.read<HomeBloc>().add(
-                  SomeOtherDateHomeEvent(date),
-                );
+            context.read<HomeBloc>().changeDate(date);
           },
           accent: primaryColor,
           backButton: false,
-          firstDate: DateTime.now().subtract(const Duration(days: 140)),
+          firstDate: DateTime.now().subtract(const Duration(days: 365)),
           lastDate: DateTime.now(),
           onSettingsTap: () async {
             await Navigator.push(
@@ -80,7 +56,9 @@ class _HomeView extends StatelessWidget {
                     ),
                   GestureDetector(
                     onLongPress: () {
-                      context.read<HomeBloc>().getCaloresBurned();
+                      context
+                          .read<HomeBloc>()
+                          .getCaloresBurned(bloc.state.date);
                     },
                     child: FloatingActionButton(
                       onPressed: () {
