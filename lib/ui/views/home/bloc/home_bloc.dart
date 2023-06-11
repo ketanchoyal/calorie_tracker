@@ -14,8 +14,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required FirebaseService firebaseService,
     required HealthService healthService,
+    // required Goals goals,
   })  : _firebaseService = firebaseService,
         _healthService = healthService,
+        // _goals = goals,
         super(
           HomeState(
             date: DateTime.now(),
@@ -32,10 +34,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FirebaseService _firebaseService;
   final HealthService _healthService;
 
-  final caloriesGoal = 2300.0;
-  final proteinGoal = 173.0;
-  final carbsGoal = 265.0;
-  final fatGoals = 77.0;
+  // final Goals _goals;
+
+  // final caloriesGoal = 2300.0;
+  // double get caloriesGoal => _goals.calories;
+  // // final proteinGoal = 173.0;
+  // double get proteinGoal => _goals.protein;
+  // // final carbsGoal = 265.0;
+  // double get carbsGoal => _goals.carbs;
+  // // final fatGoals = 77.0;
+  // double get fatGoals => _goals.fat;
 
   Stream<List<FoodLog>> get foodLogStream =>
       _firebaseService.getFoodLog(state.date).asBroadcastStream()
@@ -72,9 +80,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         totalProtein: event.totalProtein,
         totalCarbs: event.totalCarbs,
         totalFat: event.totalFat,
-        hadExtraCarbs: event.hadExtraCarbs,
-        hadExtraFat: event.hadExtraFat,
-        hadExtraProtein: event.hadExtraProtein,
+        // hadExtraCarbs: event.hadExtraCarbs,
+        // hadExtraFat: event.hadExtraFat,
+        // hadExtraProtein: event.hadExtraProtein,
       ),
     );
   }
@@ -113,9 +121,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           totalProtein: 0,
           totalCarbs: 0,
           totalFat: 0,
-          hadExtraCarbs: false,
-          hadExtraFat: false,
-          hadExtraProtein: false,
+          // hadExtraCarbs: false,
+          // hadExtraFat: false,
+          // hadExtraProtein: false,
         ),
       );
     }
@@ -152,9 +160,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           totalProtein: proteinEaten,
           totalCarbs: carbsEaten,
           totalFat: fatEaten,
-          hadExtraCarbs: carbsEaten > carbsGoal,
-          hadExtraFat: fatEaten > fatGoals,
-          hadExtraProtein: proteinEaten > proteinGoal,
+          // hadExtraCarbs: carbsEaten > carbsGoal,
+          // hadExtraFat: fatEaten > fatGoals,
+          // hadExtraProtein: proteinEaten > proteinGoal,
         ),
       );
     }

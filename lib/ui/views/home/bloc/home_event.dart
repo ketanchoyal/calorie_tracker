@@ -9,9 +9,9 @@ class HomeEvent with _$HomeEvent {
     required double totalFat,
     required double totalProtein,
     required double totalCalories,
-    required bool hadExtraCarbs,
-    required bool hadExtraFat,
-    required bool hadExtraProtein,
+    // required bool hadExtraCarbs,
+    // required bool hadExtraFat,
+    // required bool hadExtraProtein,
   }) = HomeUpdateNutritionEvent;
   factory HomeEvent.updateBurnedCaloriesEvent({required num burnedCalories}) =
       UpdateBurnedCaloriesEvent;

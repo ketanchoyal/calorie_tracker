@@ -7,17 +7,17 @@ environment:
   sdk: ">=3.0.0"
 
 dependencies:
-  bloc: ^8.0.3
+  bloc: ^8.1.2
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.2
+  flutter_bloc: ^8.1.3
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
-  firebase_core: ^2.12.0
-  cloud_firestore: ^4.7.0
-  firebase_auth: ^4.6.0
-  google_sign_in: ^6.1.0
+  firebase_core: ^2.13.1
+  cloud_firestore: ^4.8.0
+  firebase_auth: ^4.6.2
+  google_sign_in: ^6.1.4
   openfoodfacts:
     git:
       url: https://github.com/ketanchoyal/openfoodfacts-dart.git
@@ -43,14 +43,14 @@ dependency_overrides:
   intl: ^0.18.1
 
 dev_dependencies:
-  bloc_test: ^9.0.3
+  bloc_test: ^9.1.3
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
-  very_good_analysis: ^4.0.0+1
-  freezed: ^2.3.4
-  build_runner: ^2.4.4
-  json_serializable: ^6.6.2
+  very_good_analysis: ^5.0.0+1
+  freezed: ^2.3.5
+  build_runner: ^2.4.5
+  json_serializable: ^6.7.0
 
 flutter:
   uses-material-design: true

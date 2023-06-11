@@ -115,21 +115,24 @@ class _HomeView extends StatelessWidget {
                   final burnedCalories = state.totalBurnedCalories;
 
                   final totalCalories = state.totalCalories;
-                  final caloriesGoal = goals.caloriesGoal;
-                  final caloriesLeft = caloriesGoal - totalCalories;
-                  final caloriesLeftPercent = caloriesLeft / caloriesGoal;
+                  // final caloriesGoal = goals.caloriesGoal;
+                  // final caloriesEatenPercent = totalCalories / caloriesGoal;
+                  // final hadExtraCalories = totalCalories > caloriesGoal;
 
                   final totalProtein = state.totalProtein;
                   final proteinGoal = goals.proteinGoal;
                   final proteinEatenPercent = totalProtein / proteinGoal;
+                  final hadExtraProtein = totalProtein > proteinGoal;
 
                   final totalCarbs = state.totalCarbs;
                   final carbsGoal = goals.carbsGoal;
                   final carbsEatenPercent = totalCarbs / carbsGoal;
+                  final hadExtraCarbs = totalCarbs > carbsGoal;
 
                   final totalFat = state.totalFat;
                   final fatGoal = goals.fatGoal;
                   final fatEatenPercent = totalFat / fatGoal;
+                  final hadExtraFat = totalFat > fatGoal;
 
                   return Column(
                     children: [
@@ -144,20 +147,51 @@ class _HomeView extends StatelessWidget {
                               subtitle: 'EATEN',
                             ),
                           ),
-                          AnimatedRing(
-                            centerWidget: CalorieWidget(
-                              calories: '${caloriesLeft.toDoubleAsFixed(2)}',
-                              icon: FontAwesomeIcons.boltLightning,
-                              subtitle: 'CAL LEFT',
-                            ),
-                            height: 150,
-                            percent: min<double>(
-                              1,
-                              caloriesLeftPercent.convertToUseableDouble
+                          // Rings(
+                          //   calories: state.totalCalories,
+                          //   protein: state.totalProtein,
+                          //   carbs: state.totalCarbs,
+                          //   fat: state.totalFat,
+                          //   totalCalories: state.totalCalories,
+                          //   totalProtein: state.totalProtein,
+                          //   totalCarbs: state.totalCarbs,
+                          //   totalFat: state.totalFat,
+                          //   goals: (
+                          //     calories: caloriesGoal,
+                          //     protein: proteinGoal,
+                          //     carbs: carbsGoal,
+                          //     fat: fatGoal
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 145,
+                            width: 145,
+                            child: AnimatedRing(
+                              height: 145,
+                              centerWidget: AnimatedRing(
+                                height: 116,
+                                centerWidget: AnimatedRing(
+                                  height: 90,
+                                  centerWidget: SizedBox(),
+                                  // percent: 1.4,
+                                  percent: fatEatenPercent
+                                      .convertToUseableDouble
+                                      .toDoubleAsFixed(2),
+
+                                  strokeWidth: 14,
+                                  color: Colors.blueAccent,
+                                ),
+                                percent: proteinEatenPercent
+                                    .convertToUseableDouble
+                                    .toDoubleAsFixed(2),
+                                strokeWidth: 14,
+                                color: Colors.purple,
+                              ),
+                              percent: carbsEatenPercent.convertToUseableDouble
                                   .toDoubleAsFixed(2),
+                              strokeWidth: 14,
+                              color: Colors.greenAccent,
                             ),
-                            strokeWidth: 16,
-                            color: primaryColor,
                           ),
                           Expanded(
                             child: CalorieWidget(
@@ -174,7 +208,7 @@ class _HomeView extends StatelessWidget {
                         height: 10,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(10),
                         child: Row(
                           children: [
                             _buildSingleNutrition(
@@ -183,11 +217,12 @@ class _HomeView extends StatelessWidget {
                               color: Colors.purple,
                               nutrition: 'Protein',
                               isLeftAmount: false,
-                              hadExtra: state.hadExtraProtein,
+                              hadExtra: hadExtraProtein,
                               percent: min<double>(
                                 1,
                                 proteinEatenPercent.convertToUseableDouble,
                               ).toDoubleAsFixed(2),
+                              goalAmount: proteinGoal.toStringAsFixed(2),
                             ),
                             _buildSingleNutrition(
                               context,
@@ -195,23 +230,25 @@ class _HomeView extends StatelessWidget {
                               color: Colors.greenAccent,
                               nutrition: 'Carbs',
                               isLeftAmount: false,
-                              hadExtra: state.hadExtraCarbs,
+                              hadExtra: hadExtraCarbs,
                               percent: min<double>(
                                 1,
                                 carbsEatenPercent.convertToUseableDouble,
                               ).toDoubleAsFixed(2),
+                              goalAmount: carbsGoal.toStringAsFixed(2),
                             ),
                             _buildSingleNutrition(
                               context,
                               amount: state.totalFat.toStringAsFixed(2),
                               color: Colors.blueAccent,
                               nutrition: 'FAT',
-                              hadExtra: state.hadExtraFat,
+                              hadExtra: hadExtraFat,
                               isLeftAmount: false,
                               percent: min<double>(
                                 1,
                                 fatEatenPercent.convertToUseableDouble,
                               ).toDoubleAsFixed(2),
+                              goalAmount: fatGoal.toStringAsFixed(2),
                             ),
                           ],
                         ),
@@ -269,6 +306,7 @@ class _HomeView extends StatelessWidget {
     required String nutrition,
     required String amount,
     required bool hadExtra,
+    required String goalAmount,
 
     /// is amount provided is amount of left for this nutrition or not
     required bool isLeftAmount,
@@ -276,32 +314,11 @@ class _HomeView extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: SizedBox(
-                height: 8,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return AnimatedLine(
-                      percent: percent,
-                      color: color,
-                      height: constraints.maxHeight,
-                      width: constraints.maxWidth,
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
           Text(
             nutrition.toUpperCase(),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: color,
                   letterSpacing: 0,
                 ),
           ),
@@ -314,6 +331,19 @@ class _HomeView extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: hadExtra ? Theme.of(context).primaryColor : null,
+                ),
+          ),
+          Divider(
+            endIndent: 30,
+            indent: 30,
+            height: 5,
+          ),
+          Text(
+            '${goalAmount}g',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodySmall?.color,
                 ),
           ),
         ],
@@ -357,33 +387,6 @@ class _FoodLogView extends StatelessWidget {
             .toList();
   final FoodType foodType;
   final List<FoodLog> foodLogList;
-
-  static final DecorationTween _tween = DecorationTween(
-    begin: BoxDecoration(
-      color: Colors.transparent,
-      boxShadow: const <BoxShadow>[],
-      borderRadius: BorderRadius.circular(20),
-    ),
-    end: BoxDecoration(
-      color: AppColors.primaryDark,
-      boxShadow: CupertinoContextMenu.kEndBoxShadow,
-      borderRadius: BorderRadius.circular(20),
-    ),
-  );
-
-  static Animation<Decoration> _boxDecorationAnimation(
-    Animation<double> animation,
-  ) {
-    return _tween.animate(
-      CurvedAnimation(
-        parent: animation,
-        curve: Interval(
-          0,
-          CupertinoContextMenu.animationOpensAt,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -781,185 +784,6 @@ class _SingleFoodLogItem extends HookWidget {
   }
 }
 
-class AnimatedLine extends StatefulWidget {
-  const AnimatedLine({
-    super.key,
-    required this.percent,
-    required this.color,
-    required this.height,
-    required this.width,
-  });
-  final double percent;
-
-  final Color color;
-
-  final double height;
-  final double width;
-
-  @override
-  State createState() => _AnimatedLineState();
-}
-
-class _AnimatedLineState extends State<AnimatedLine>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2000),
-    );
-
-    _controller
-      ..addListener(() {
-        setState(() {});
-      })
-      ..animateTo(widget.percent);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(AnimatedLine oldWidget) {
-    if (oldWidget.percent != widget.percent) {
-      _controller.animateTo(widget.percent);
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Stack(
-          children: [
-            Container(
-              height: widget.height,
-              width: widget.width * _controller.value,
-              decoration: BoxDecoration(
-                color: widget.color,
-                borderRadius: BorderRadius.circular(5),
-              ),
-            ),
-            Container(
-              height: widget.height,
-              width: widget.width,
-              color: widget.color.withOpacity(0.2),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class AnimatedRing extends StatefulWidget {
-  const AnimatedRing({
-    required this.centerWidget,
-    this.percent,
-    this.color = Colors.white,
-    this.height = 50,
-    this.strokeWidth = 5,
-    super.key,
-  });
-  final Widget centerWidget;
-
-  final double? percent;
-  final Color color;
-  final double height;
-  final double strokeWidth;
-
-  @override
-  State createState() => _AnimatedRingState();
-}
-
-class _AnimatedRingState extends State<AnimatedRing>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    );
-
-    _controller
-      ..addListener(() {
-        setState(() {});
-      })
-      ..animateTo(widget.percent ?? 1.0);
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(AnimatedRing oldWidget) {
-    if (widget.percent == null) {
-      _controller.animateTo(1);
-    }
-    if (oldWidget.percent != widget.percent) {
-      _controller.animateTo(widget.percent ?? 1.0);
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.height,
-      height: widget.height,
-      child: Card(
-        margin: EdgeInsets.zero,
-        elevation: 0,
-        shape: kRoundedCardBorder(radius: widget.height),
-        child: Padding(
-          padding: const EdgeInsets.all(6),
-          child: Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.rotationY(pi),
-            child: CustomPaint(
-              painter: _RingPanter(
-                _controller.value,
-                widget.strokeWidth,
-                widget.color,
-              ),
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(pi),
-                child: Center(
-                  child: SizedBox(
-                    width: widget.height - widget.strokeWidth - 1,
-                    height: widget.height - widget.strokeWidth - 1,
-                    child: Card(
-                      elevation: 30,
-                      shape: kRoundedCardBorder(radius: widget.height),
-                      child: widget.centerWidget,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class CalorieWidget extends StatelessWidget {
   const CalorieWidget({
     super.key,
@@ -1001,46 +825,5 @@ class CalorieWidget extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class _RingPanter extends CustomPainter {
-  _RingPanter(
-    this.percent,
-    this.strokeWidth,
-    this.color,
-  );
-  final double percent;
-  final Color color;
-  final double strokeWidth;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color.withOpacity(0.1)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round;
-
-    canvas.drawArc(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      0,
-      pi * 2,
-      false,
-      paint,
-    );
-    paint.color = color;
-    canvas.drawArc(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      -pi / 2,
-      -2 * pi * percent,
-      false,
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_RingPanter oldCategory) {
-    return percent != oldCategory.percent || color != oldCategory.color;
   }
 }

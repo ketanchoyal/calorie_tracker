@@ -3,8 +3,6 @@
 library calendar_appbar;
 
 import 'package:calorie_tracker/ui/views/home/bloc/home_bloc.dart';
-import 'package:calorie_tracker/ui/views/settings/settings.dart';
-import 'package:flutter/cupertino.dart';
 
 ///adding necesarry packages
 import 'package:flutter/material.dart';
@@ -592,7 +590,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
                     child: Text(
                       'Calorie Tracker',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: white,
                             fontWeight: FontWeight.bold,
                           ),
