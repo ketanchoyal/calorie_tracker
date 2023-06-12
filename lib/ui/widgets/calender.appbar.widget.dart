@@ -2,6 +2,8 @@
 
 library calendar_appbar;
 
+import 'dart:async';
+
 import 'package:calorie_tracker/ui/views/home/bloc/home_bloc.dart';
 
 ///adding necesarry packages
@@ -53,6 +55,8 @@ class CalendarAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   final void Function()? onSettingsTap;
 
+  final void Function(DateTime) onNewMonthWidgetCreate;
+
   ///initialization of [CalendarAppBar]
   CalendarAppBar({
     super.key,
@@ -69,6 +73,7 @@ class CalendarAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.backButton,
     this.locale,
     this.onSettingsTap,
+    required this.onNewMonthWidgetCreate,
   }) {
     firstDate ?? DateTime(1950);
   }
@@ -169,18 +174,26 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
     super.initState();
   }
 
-  // @override
-  // void didUpdateWidget(covariant CalendarAppBar oldWidget) {
-  //   if (oldWidget.selectedDate != widget.selectedDate) {
-  //     if (widget.selectedDate != null) {
-  //       setState(() {
-  //         selectedDate = widget.selectedDate!;
-  //         referenceDate = selectedDate;
-  //       });
-  //     }
-  //   }
-  //   super.didUpdateWidget(oldWidget);
-  // }
+  @override
+  void didUpdateWidget(covariant CalendarAppBar oldWidget) {
+    if (oldWidget.selectedDate != widget.selectedDate) {
+      if (widget.selectedDate != null) {
+        setState(() {
+          selectedDate = widget.selectedDate!;
+          referenceDate = selectedDate;
+        });
+      }
+    }
+    if (oldWidget.events != widget.events) {
+      if (widget.events != null) {
+        ///for each item from event list, add just date String without time
+        for (final element in widget.events!) {
+          datesWithEnteries.add(element.toString().split(' ').first);
+        }
+      }
+    }
+    super.didUpdateWidget(oldWidget);
+  }
 
   ///definition of scroll controller
   ScrollController scrollController = ScrollController();
@@ -477,6 +490,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
               events: datesWithEnteries,
               selectedDate: referenceDate,
               locale: locale,
+              onNewMonthWidgetCreate: widget.onNewMonthWidgetCreate,
               onDateChange: (date) =>
                   selectDateAndScroll(date, fromCalender: true),
             ),
@@ -486,130 +500,142 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
     }
 
     ///UI of the whole appbar
-    return BlocListener<HomeBloc, HomeState>(
+    return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state.date.isBefore(DateTime.now())) {
           selectDateAndScroll(state.date);
         }
       },
-      child: Stack(
-        clipBehavior: Clip.antiAlias,
-        fit: StackFit.passthrough,
-        children: [
-          Positioned(
-            top: 0,
-            bottom: 12,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              color: accent,
+      builder: (context, state) {
+        // final x = context.watch<HomeBloc>().stream.transform(
+        //   StreamTransformer<HomeState, String>.fromHandlers(
+        //     handleData: (state, sink) {
+        //       state.datesWithLogs.forEach((element) {
+        //         final date = element.toString().split(' ').first;
+        //         sink.add(date);
+        //       });
+        //     },
+        //   ),
+        // );
+        return Stack(
+          clipBehavior: Clip.antiAlias,
+          fit: StackFit.passthrough,
+          children: [
+            Positioned(
+              top: 0,
+              bottom: 12,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                color: accent,
+              ),
             ),
-          ),
 
-          // Positioned(
-          //   top: 59,
-          //   child: Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: padding),
-          //     child: Container(
-          //       width: MediaQuery.of(context).size.width - (padding * 2),
-          //       child: backButton
-          //           ? Row(
-          //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //               children: [
-          //                 GestureDetector(
-          //                   child: Icon(
-          //                     Icons.arrow_back_ios_rounded,
-          //                     color: white,
-          //                   ),
-          //                   onTap: () => Navigator.pop(context),
-          //                 ),
-          //                 GestureDetector(
-          //                   onTap: () =>
-          //                       fullCalendar ? showFullCalendar(_locale) : null,
-          //                   child: Text(
-          //                     DateFormat.yMMMM(Locale(_locale).toString())
-          //                         .format(selectedDate),
-          //                     style: TextStyle(
-          //                       fontSize: 20,
-          //                       color: white,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ],
-          //             )
-          //           : Row(
-          //               mainAxisAlignment: MainAxisAlignment.center,
-          //               children: [
-          //                 GestureDetector(
-          //                   onTap: () =>
-          //                       fullCalendar ? showFullCalendar(_locale) : null,
-          //                   child: Text(
-          //                     DateFormat.yMMMM(Locale(_locale).toString())
-          //                         .format(selectedDate),
-          //                     style: TextStyle(
-          //                       fontSize: 20,
-          //                       color: white,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //     ),
-          //   ),
-          // ),
-          Positioned(
-            top: MediaQuery.of(context).viewPadding.top,
-            bottom: -10,
-            // top: 0 + MediaQuery.of(context).viewPadding.top,
+            // Positioned(
+            //   top: 59,
+            //   child: Padding(
+            //     padding: EdgeInsets.symmetric(horizontal: padding),
+            //     child: Container(
+            //       width: MediaQuery.of(context).size.width - (padding * 2),
+            //       child: backButton
+            //           ? Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 GestureDetector(
+            //                   child: Icon(
+            //                     Icons.arrow_back_ios_rounded,
+            //                     color: white,
+            //                   ),
+            //                   onTap: () => Navigator.pop(context),
+            //                 ),
+            //                 GestureDetector(
+            //                   onTap: () =>
+            //                       fullCalendar ? showFullCalendar(_locale) : null,
+            //                   child: Text(
+            //                     DateFormat.yMMMM(Locale(_locale).toString())
+            //                         .format(selectedDate),
+            //                     style: TextStyle(
+            //                       fontSize: 20,
+            //                       color: white,
+            //                       fontWeight: FontWeight.w400,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             )
+            //           : Row(
+            //               mainAxisAlignment: MainAxisAlignment.center,
+            //               children: [
+            //                 GestureDetector(
+            //                   onTap: () =>
+            //                       fullCalendar ? showFullCalendar(_locale) : null,
+            //                   child: Text(
+            //                     DateFormat.yMMMM(Locale(_locale).toString())
+            //                         .format(selectedDate),
+            //                     style: TextStyle(
+            //                       fontSize: 20,
+            //                       color: white,
+            //                       fontWeight: FontWeight.w400,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //     ),
+            //   ),
+            // ),
+            Positioned(
+              top: MediaQuery.of(context).viewPadding.top,
+              bottom: -10,
+              // top: 0 + MediaQuery.of(context).viewPadding.top,
 
-            /// call calendarView function from above
-            child: calendarView(),
-          ),
-          Positioned(
-            top: 0 + MediaQuery.of(context).viewPadding.top,
-            left: 15,
-            right: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () => showFullCalendar(_locale),
-                  radius: 10,
-                  child: const Icon(
-                    FontAwesomeIcons.calendarDays,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      selectDateAndScroll(DateTime.now());
-                    },
-                    child: Text(
-                      'Calorie Tracker',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: white,
-                            fontWeight: FontWeight.bold,
-                          ),
+              /// call calendarView function from above
+              child: calendarView(),
+            ),
+            Positioned(
+              top: 0 + MediaQuery.of(context).viewPadding.top,
+              left: 15,
+              right: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () => showFullCalendar(_locale),
+                    radius: 10,
+                    child: const Icon(
+                      FontAwesomeIcons.calendarDays,
+                      color: Colors.white,
+                      size: 20,
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: widget.onSettingsTap,
-                  child: const Icon(
-                    FontAwesomeIcons.gear,
-                    color: Colors.white,
-                    size: 20,
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        selectDateAndScroll(DateTime.now());
+                      },
+                      child: Text(
+                        'Calorie Tracker',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              color: white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ),
                   ),
-                )
-              ],
+                  InkWell(
+                    onTap: widget.onSettingsTap,
+                    child: const Icon(
+                      FontAwesomeIcons.gear,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      },
     );
   }
 
@@ -730,6 +756,8 @@ class FullCalendar extends StatefulWidget {
   ///function which returns currently selected date
   final Function(DateTime) onDateChange;
 
+  final void Function(DateTime) onNewMonthWidgetCreate;
+
   FullCalendar({
     Key? key,
     this.accent,
@@ -743,6 +771,7 @@ class FullCalendar extends StatefulWidget {
     this.locale,
     this.selectedDate,
     required this.onDateChange,
+    required this.onNewMonthWidgetCreate,
   }) : super(key: key);
   @override
   _FullCalendarState createState() => _FullCalendarState();
@@ -987,17 +1016,32 @@ class _FullCalendarState extends State<FullCalendar> {
         ..sort();
     }
 
+    widget.onNewMonthWidgetCreate(DateTime(first.year, first.month, 1));
+
     ///logically show all the dates in the month
     return Container(
       child: Column(
         children: [
           ///name of the month
-          Text(
-            DateFormat.MMMM(Locale(locale!).toString()).format(first),
-            style: const TextStyle(
-              fontSize: 18,
-              // color: widget.black,
-              fontWeight: FontWeight.w400,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  DateFormat.MMMM(Locale(locale!).toString()).format(first),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                ),
+                Text(
+                  DateFormat.y(Locale(locale).toString()).format(first),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).textTheme.bodySmall?.color,
+                      ),
+                ),
+              ],
             ),
           ),
           Padding(

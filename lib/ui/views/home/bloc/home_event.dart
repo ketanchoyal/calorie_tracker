@@ -16,4 +16,5 @@ class HomeEvent with _$HomeEvent {
   factory HomeEvent.updateBurnedCaloriesEvent({required num burnedCalories}) =
       UpdateBurnedCaloriesEvent;
   factory HomeEvent.copyData(FoodLog? log) = CopyDataEvent;
+  factory HomeEvent.datesWithLogs(List<DateTime> dates) = _DatesWithLogsEvent;
 }

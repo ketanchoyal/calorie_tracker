@@ -174,9 +174,9 @@ class _RingPanter extends CustomPainter {
           ..strokeCap = StrokeCap.round
           ..style = PaintingStyle.stroke;
         sweepAngle = _degreeToRadian((360 / noOfLoop) - 4);
-        print(
-          'startAngle: $startAngle , radianToWhichCircleIsDrawn: $radianToWhichCircleIsDrawn, additionalLoops: $additionalLoops',
-        );
+        // print(
+        //   'startAngle: $startAngle , radianToWhichCircleIsDrawn: $radianToWhichCircleIsDrawn, additionalLoops: $additionalLoops',
+        // );
       } else {
         final newColor = isOverflown || (wasOverflown == true)
             ? color

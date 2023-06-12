@@ -47,7 +47,19 @@ class FirebaseServiceImpl implements FirebaseService {
               date.day,
             ),
           ),
-          toFirestore: (foodLog, _) => foodLog.toJson(),
+          toFirestore: (foodLog, _) {
+            //Add an Field of type list called dates to doc which have all the dates for which foodLog is added
+            try {
+              _currentUserRef.collection('foodLog').doc(doc).update({
+                'dates': FieldValue.arrayUnion([date.day])
+              });
+            } catch (e) {
+              _currentUserRef.collection('foodLog').doc(doc).set({
+                'dates': [date.day]
+              });
+            }
+            return foodLog.toJson();
+          },
         );
   }
 
@@ -160,4 +172,95 @@ class FirebaseServiceImpl implements FirebaseService {
       throw 'You are using the real account. Please use a test account.';
     }
   }
+
+  @override
+  Future<List<DateTime>> getFoodLoggedDates(DateTime month) async {
+    // await _populateFoodLogDates(month);
+    if (_firebaseAuth.currentUser == null) {
+      return [];
+    }
+    // return [];
+    final dates = await _currentUserRef
+        .collection('foodLog')
+        .doc('${month.year}-${month.month}')
+        .get()
+        .then((value) {
+      if (value.exists) {
+        return (value.data()?['dates'] ?? []) as List<dynamic>;
+      } else {
+        return [];
+      }
+    });
+
+    return dates.map((e) {
+      final date = int.parse(e.toString());
+      return DateTime(
+        month.year,
+        month.month,
+        date,
+      );
+    }).toList();
+  }
+
+  // Future<void> _populateFoodLogDates(DateTime month) async {
+  //   if (_firebaseAuth.currentUser == null) {
+  //     return;
+  //   }
+  //   //Hardcoded todays date in string format
+  //   final dateToConsider = '2023-06-11';
+  //   final todaysDate = DateTime.now();
+  //   //Only run this function for next few months from todays date
+  //   final difference = DateTime(
+  //     todaysDate.year,
+  //     todaysDate.month,
+  //     todaysDate.day,
+  //   ).difference(DateTime.parse(dateToConsider));
+  //   if (difference.inDays > 90) {
+  //     return;
+  //   }
+  //   final datesToAdd = <int>[];
+  //   for (final date in _dates(month)) {
+  //     try {
+  //       final foodLog = await _currentUserRef
+  //           .collection('foodLog')
+  //           .doc('${month.year}-${month.month}')
+  //           .collection(date.toString())
+  //           .get();
+  //       // Check if collection exists
+  //       if (foodLog.docs.isNotEmpty) {
+  //         datesToAdd.add(date);
+  //       }
+  //     } catch (e) {
+  //       print(e);
+  //     }
+  //   }
+  //   if (datesToAdd.isEmpty) {
+  //     return;
+  //   }
+  //   await _currentUserRef
+  //       .collection('foodLog')
+  //       .doc('${month.year}-${month.month}')
+  //       .set(
+  //     {
+  //       'dates': datesToAdd,
+  //     },
+  //     SetOptions(merge: true),
+  //   );
+  //   return;
+  // }
+
+  // //Function to get all the dates for a specific month
+  // List<int> _dates(DateTime month) {
+  //   final dates = <int>[];
+  //   //get the last day of the month
+  //   final lastDay = DateTime(
+  //     month.year,
+  //     month.month + 1,
+  //     0,
+  //   ).day;
+  //   for (var i = 1; i <= lastDay; i++) {
+  //     dates.add(i);
+  //   }
+  //   return dates;
+  // }
 }

@@ -27,4 +27,6 @@ abstract class FirebaseService {
   Future<void> setProfile({required Profile profile});
 
   Future<Profile?> getProfileData();
+
+  Future<List<DateTime>> getFoodLoggedDates(DateTime month);
 }

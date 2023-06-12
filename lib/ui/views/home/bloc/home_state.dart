@@ -13,6 +13,7 @@ class HomeState with _$HomeState {
     // @Default(false) bool hadExtraProtein,
     @Default(0.0) num totalBurnedCalories,
     @Default(null) FoodLog? copiedData,
+    @Default([]) List<DateTime> datesWithLogs,
     // @Default(null) Goals? goals,
   }) = _HomeState;
 }

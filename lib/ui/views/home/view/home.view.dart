@@ -17,9 +17,11 @@ class _HomeView extends StatelessWidget {
           onDateChanged: (date) {
             context.read<HomeBloc>().changeDate(date);
           },
+          onNewMonthWidgetCreate: context.read<HomeBloc>().monthChange,
+          events: context.watch<HomeBloc>().state.datesWithLogs,
           accent: primaryColor,
           backButton: false,
-          firstDate: DateTime.now().subtract(const Duration(days: 365)),
+          firstDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
           lastDate: DateTime.now(),
           onSettingsTap: () async {
             await Navigator.push(

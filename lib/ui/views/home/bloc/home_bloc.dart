@@ -28,6 +28,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeUpdateNutritionEvent>(_mapHomeUpdateNutritionEvent);
     on<UpdateBurnedCaloriesEvent>(_mapUpdateBurnedCaloriesEvent);
     on<CopyDataEvent>(_mapCopyDataEvent);
+    on<_DatesWithLogsEvent>(_mapDatesWithLogsEvent);
     getCaloresBurned(state.date);
   }
 
@@ -94,6 +95,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(
       state.copyWith(totalBurnedCalories: event.burnedCalories),
     );
+  }
+
+  FutureOr<void> _mapDatesWithLogsEvent(
+      _DatesWithLogsEvent event, Emitter<HomeState> emit) {
+    emit(state
+        .copyWith(datesWithLogs: [...state.datesWithLogs, ...event.dates]));
   }
 
   Future<void> deleteLog(FoodLog foodLog) async {
@@ -195,5 +202,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
       foodLogDate: state.date,
     );
+  }
+
+  final List<DateTime> _datesWithLogs = [];
+
+  Future<void> monthChange(DateTime month) async {
+    if (_datesWithLogs.contains(month)) {
+      return;
+    }
+    _datesWithLogs.add(month);
+    final dates = await _firebaseService.getFoodLoggedDates(month);
+    add(_DatesWithLogsEvent(dates));
   }
 }
