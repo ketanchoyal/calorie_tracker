@@ -17,6 +17,11 @@ Food _$FoodFromJson(Map<String, dynamic> json) => Food(
       dateTime: json['dateTime'] == null
           ? null
           : DateTime.parse(json['dateTime'] as String),
+      quantity: (json['quantity'] as num?)?.toDouble(),
+      incredients: (json['incredients'] as List<dynamic>?)
+          ?.map((e) => Food.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isRecipe: json['isRecipe'] as bool?,
     );
 
 Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
@@ -28,6 +33,9 @@ Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
       'barcode': instance.barcode,
       'notes': instance.notes,
       'dateTime': instance.dateTime?.toIso8601String(),
+      'quantity': instance.quantity,
+      'incredients': instance.incredients?.map((e) => e.toJson()).toList(),
+      'isRecipe': instance.isRecipe,
     };
 
 Nutrition _$NutritionFromJson(Map<String, dynamic> json) => Nutrition(

@@ -5,6 +5,7 @@ import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.dart';
 import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
+import 'package:calorie_tracker/ui/views/add_recipe/view/add_recipe.page.dart';
 import 'package:calorie_tracker/ui/widgets/foodTypeSelector.widget.dart';
 import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
 import 'package:drop_down_list/drop_down_list.dart';
@@ -166,7 +167,7 @@ class AddCaloriesView extends StatelessWidget {
 }
 
 class _AddCaloriesBody extends StatelessWidget {
-  const _AddCaloriesBody({super.key});
+  const _AddCaloriesBody();
 
   @override
   Widget build(BuildContext context) {
@@ -198,13 +199,16 @@ class _AddCaloriesBody extends StatelessWidget {
 }
 
 class _EmptyStateBody extends StatelessWidget {
-  const _EmptyStateBody({super.key});
+  const _EmptyStateBody();
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        alignment: WrapAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Two buttons
           // 1. Select Food
@@ -262,7 +266,7 @@ class _EmptyStateBody extends StatelessWidget {
               ).showModal(context);
             },
           ),
-          const SizedBox(height: 16),
+          // const SizedBox(height: 16),
           TextButton(
             style: TextButton.styleFrom(
               minimumSize: const Size.square(180),
@@ -283,6 +287,31 @@ class _EmptyStateBody extends StatelessWidget {
               context.read<AddColoriesBloc>().add(
                     AddColoriesEvent.quickAddFood(),
                   );
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              minimumSize: const Size.square(180),
+              // padding: const EdgeInsets.all(16),
+              backgroundColor: Colors.white10,
+            ),
+            child: Column(
+              children: const [
+                Icon(
+                  FontAwesomeIcons.boltLightning,
+                  size: 70,
+                ),
+                SizedBox(height: 10),
+                Text('Add Recipe'),
+              ],
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute<void>(
+                  builder: (context) => const AddRecipePage(),
+                ),
+              );
             },
           ),
         ],

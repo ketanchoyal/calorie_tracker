@@ -1,7 +1,7 @@
 part of 'add_calories.view.dart';
 
 class _QuickAddCaloriesForm extends StatelessWidget {
-  const _QuickAddCaloriesForm({super.key});
+  const _QuickAddCaloriesForm();
 
   @override
   Widget build(BuildContext context) {

@@ -24,6 +24,9 @@ mixin _$Food {
   String? get barcode => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   DateTime? get dateTime => throw _privateConstructorUsedError;
+  double? get quantity => throw _privateConstructorUsedError;
+  List<Food>? get incredients => throw _privateConstructorUsedError;
+  bool? get isRecipe => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FoodCopyWith<Food> get copyWith => throw _privateConstructorUsedError;
@@ -42,7 +45,10 @@ abstract class $FoodCopyWith<$Res> {
       Nutrition nutrition,
       String? barcode,
       String? notes,
-      DateTime? dateTime});
+      DateTime? dateTime,
+      double? quantity,
+      List<Food>? incredients,
+      bool? isRecipe});
 
   $NutritionCopyWith<$Res> get nutrition;
 }
@@ -68,6 +74,9 @@ class _$FoodCopyWithImpl<$Res, $Val extends Food>
     Object? barcode = freezed,
     Object? notes = freezed,
     Object? dateTime = freezed,
+    Object? quantity = freezed,
+    Object? incredients = freezed,
+    Object? isRecipe = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -102,6 +111,18 @@ class _$FoodCopyWithImpl<$Res, $Val extends Food>
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      incredients: freezed == incredients
+          ? _value.incredients
+          : incredients // ignore: cast_nullable_to_non_nullable
+              as List<Food>?,
+      isRecipe: freezed == isRecipe
+          ? _value.isRecipe
+          : isRecipe // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -128,7 +149,10 @@ abstract class _$$_FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
       Nutrition nutrition,
       String? barcode,
       String? notes,
-      DateTime? dateTime});
+      DateTime? dateTime,
+      double? quantity,
+      List<Food>? incredients,
+      bool? isRecipe});
 
   @override
   $NutritionCopyWith<$Res> get nutrition;
@@ -151,6 +175,9 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res, _$_Food>
     Object? barcode = freezed,
     Object? notes = freezed,
     Object? dateTime = freezed,
+    Object? quantity = freezed,
+    Object? incredients = freezed,
+    Object? isRecipe = freezed,
   }) {
     return _then(_$_Food(
       id: freezed == id
@@ -185,6 +212,18 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res, _$_Food>
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      incredients: freezed == incredients
+          ? _value._incredients
+          : incredients // ignore: cast_nullable_to_non_nullable
+              as List<Food>?,
+      isRecipe: freezed == isRecipe
+          ? _value.isRecipe
+          : isRecipe // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -200,8 +239,12 @@ class _$_Food extends _Food {
       required this.nutrition,
       this.barcode,
       this.notes,
-      this.dateTime})
-      : super._();
+      this.dateTime,
+      this.quantity,
+      final List<Food>? incredients,
+      this.isRecipe = false})
+      : _incredients = incredients,
+        super._();
 
   @override
   final String? id;
@@ -219,10 +262,25 @@ class _$_Food extends _Food {
   final String? notes;
   @override
   final DateTime? dateTime;
+  @override
+  final double? quantity;
+  final List<Food>? _incredients;
+  @override
+  List<Food>? get incredients {
+    final value = _incredients;
+    if (value == null) return null;
+    if (_incredients is EqualUnmodifiableListView) return _incredients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final bool? isRecipe;
 
   @override
   String toString() {
-    return 'Food(id: $id, name: $name, description: $description, imageUrl: $imageUrl, nutrition: $nutrition, barcode: $barcode, notes: $notes, dateTime: $dateTime)';
+    return 'Food(id: $id, name: $name, description: $description, imageUrl: $imageUrl, nutrition: $nutrition, barcode: $barcode, notes: $notes, dateTime: $dateTime, quantity: $quantity, incredients: $incredients, isRecipe: $isRecipe)';
   }
 
   @override
@@ -241,12 +299,29 @@ class _$_Food extends _Food {
             (identical(other.barcode, barcode) || other.barcode == barcode) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime));
+                other.dateTime == dateTime) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            const DeepCollectionEquality()
+                .equals(other._incredients, _incredients) &&
+            (identical(other.isRecipe, isRecipe) ||
+                other.isRecipe == isRecipe));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, imageUrl,
-      nutrition, barcode, notes, dateTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      description,
+      imageUrl,
+      nutrition,
+      barcode,
+      notes,
+      dateTime,
+      quantity,
+      const DeepCollectionEquality().hash(_incredients),
+      isRecipe);
 
   @JsonKey(ignore: true)
   @override
@@ -264,7 +339,10 @@ abstract class _Food extends Food {
       required final Nutrition nutrition,
       final String? barcode,
       final String? notes,
-      final DateTime? dateTime}) = _$_Food;
+      final DateTime? dateTime,
+      final double? quantity,
+      final List<Food>? incredients,
+      final bool? isRecipe}) = _$_Food;
   _Food._() : super._();
 
   @override
@@ -283,6 +361,12 @@ abstract class _Food extends Food {
   String? get notes;
   @override
   DateTime? get dateTime;
+  @override
+  double? get quantity;
+  @override
+  List<Food>? get incredients;
+  @override
+  bool? get isRecipe;
   @override
   @JsonKey(ignore: true)
   _$$_FoodCopyWith<_$_Food> get copyWith => throw _privateConstructorUsedError;

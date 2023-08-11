@@ -1,7 +1,7 @@
 part of 'add_calories.view.dart';
 
 class _AddCaloriesForm extends StatelessWidget {
-  const _AddCaloriesForm({super.key});
+  const _AddCaloriesForm();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _AddCaloriesForm extends StatelessWidget {
                   Text(
                     'This will modify values for just this instance \n Nutrition per Serving',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 5),
                 ],
@@ -108,7 +108,7 @@ class _AddCaloriesForm extends StatelessWidget {
 }
 
 class _FoodDetails extends StatelessWidget {
-  const _FoodDetails({super.key});
+  const _FoodDetails();
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class _FoodDetails extends StatelessWidget {
                 maxLines: 2,
                 // overflow: TextOverflow.ellipsis,
                 semanticsLabel: 'Some very tasty food name',
-                style: Theme.of(context).textTheme.headline4?.copyWith(
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -138,14 +138,14 @@ class _FoodDetails extends StatelessWidget {
                 children: [
                   Text(
                     food.nutrition.calories.toString(),
-                    style: Theme.of(context).textTheme.headline5?.copyWith(
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.5,
                         ),
                   ),
                   Text(
                     'CALORIES',
-                    style: Theme.of(context).textTheme.caption?.copyWith(
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0,
                         ),
@@ -159,7 +159,7 @@ class _FoodDetails extends StatelessWidget {
         const SizedBox(height: 0),
         Text(
           'Nutrition in every Serving',
-          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
         ),
@@ -172,7 +172,7 @@ class _FoodDetails extends StatelessWidget {
                 children: [
                   Text(
                     'FAT',
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0,
                         ),
@@ -183,7 +183,7 @@ class _FoodDetails extends StatelessWidget {
                   Text(
                     '${food.nutrition.fat}g',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -195,7 +195,7 @@ class _FoodDetails extends StatelessWidget {
                 children: [
                   Text(
                     'CARBS',
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0,
                         ),
@@ -206,7 +206,7 @@ class _FoodDetails extends StatelessWidget {
                   Text(
                     '${food.nutrition.carbs}g',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -218,7 +218,7 @@ class _FoodDetails extends StatelessWidget {
                 children: [
                   Text(
                     'PROTEIN',
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0,
                         ),
@@ -229,7 +229,7 @@ class _FoodDetails extends StatelessWidget {
                   Text(
                     '${food.nutrition.protein}g',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -246,7 +246,7 @@ class _FoodDetails extends StatelessWidget {
 }
 
 class _FoodServings extends StatelessWidget {
-  const _FoodServings({super.key});
+  const _FoodServings();
 
   @override
   Widget build(BuildContext context) {

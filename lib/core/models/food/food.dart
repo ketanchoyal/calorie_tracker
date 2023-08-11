@@ -22,7 +22,21 @@ class Food with _$Food implements SearchableItem {
     String? barcode,
     String? notes,
     DateTime? dateTime,
+    double? quantity,
+    List<Food>? incredients,
+    @Default(false) bool? isRecipe,
   }) = _Food;
+
+  factory Food.emptyRecipe() => Food(
+        name: '',
+        nutrition: Nutrition(
+          calories: 0,
+          fat: 0,
+          carbs: 0,
+          protein: 0,
+        ),
+        isRecipe: true,
+      );
 
   Food._();
 
