@@ -39,7 +39,9 @@ class App extends StatelessWidget {
             create: (context) => OpenFoodAPIServiceImpl(),
           ),
           RepositoryProvider<OpenAIService>(
-            create: (context) => OpenAIServiceImpl()..init(),
+            create: (context) => OpenAIServiceImpl(
+              RepositoryProvider.of<FirebaseService>(context),
+            )..init(),
           ),
           RepositoryProvider<FirebaseAuthService>(
             create: (context) => FirebaseAuthServiceImpl(),

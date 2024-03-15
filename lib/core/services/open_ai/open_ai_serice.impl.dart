@@ -2,18 +2,23 @@ import 'dart:convert';
 
 import 'package:calorie_tracker/core/enums/serving_type.enum.dart';
 import 'package:calorie_tracker/core/models/food/food.dart';
+import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/core/services/open_ai/open_ai_service.dart';
-import 'package:calorie_tracker/keys.dart';
 import 'package:dart_openai/dart_openai.dart';
 
 class OpenAIServiceImpl extends OpenAIService {
-  OpenAIServiceImpl();
+  final FirebaseService _firebaseService;
+  OpenAIServiceImpl(this._firebaseService);
 
   init() {
+    _firebaseService.getProfileData().then((profile) {
+      if (profile != null && profile.keys != null) {
+        OpenAI.organization = profile.keys!.orgId;
+        OpenAI.apiKey = profile.keys!.openAiToken;
+      }
+    });
     OpenAI.showLogs = true;
     OpenAI.showResponsesLogs = true;
-    OpenAI.organization = orogId;
-    OpenAI.apiKey = openAiToken;
   }
 
   // the system message that will be sent to the request.
