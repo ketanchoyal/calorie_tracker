@@ -50,6 +50,7 @@ class _AddRecipeView extends StatelessWidget {
                     context
                         .read<AddRecipeBloc>()
                         .add(const AddRecipeEvent.addRecipe());
+                    Navigator.of(context).pop();
                   }
                 : null,
             height: 50 + MediaQuery.of(context).padding.bottom,

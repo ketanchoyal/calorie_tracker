@@ -7,6 +7,7 @@ import 'package:calorie_tracker/core/models/food/food.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:swipeable_tile/swipeable_tile.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 part 'add_recipe.view.dart';

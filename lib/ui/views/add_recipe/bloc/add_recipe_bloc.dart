@@ -97,6 +97,7 @@ class AddRecipeBloc extends Bloc<AddRecipeEvent, AddRecipeState> {
               .where((element) => element.id != event.food.id),
         ],
       )));
+      _updateNutrient();
     }
   }
 

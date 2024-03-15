@@ -119,9 +119,11 @@ class AddRecipeForm extends StatelessWidget {
 
 class IngredientWidget extends StatefulWidget {
   final Food incredient;
+  final bool allowEdit;
   const IngredientWidget({
     super.key,
     required this.incredient,
+    this.allowEdit = true,
   });
   @override
   State<IngredientWidget> createState() => _IngredientWidgetState();
@@ -132,236 +134,284 @@ class _IngredientWidgetState extends State<IngredientWidget> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    return SwipeableTile.card(
+      swipeThreshold: 0.2,
+      borderRadius: 10,
+      shadow: BoxShadow(
+        color: Colors.black.withOpacity(0.1),
       ),
-      child: InkWell(
-        onTap: () {
-          setState(() {
-            isExpanded = !isExpanded;
-          });
-        },
-        borderRadius: BorderRadius.circular(10),
-        child: AnimatedContainer(
-          padding: const EdgeInsets.symmetric(
-            vertical: 15,
-            horizontal: 15,
-          ),
-          duration: const Duration(milliseconds: 300),
-          // height: isExpanded ? 50 : 60,
-          width: double.infinity,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    incredient.name,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        '${incredient.nutrition.calories.toStringAsFixed(2)} Cal',
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.grey,
-                                ),
-                      ),
-                      if (!isExpanded)
+      horizontalPadding: 0,
+      verticalPadding: 0,
+      color: Theme.of(context).canvasColor,
+      direction:
+          widget.allowEdit ? SwipeDirection.horizontal : SwipeDirection.none,
+      onSwiped: (direction) {
+        if (direction == SwipeDirection.endToStart) {
+          //Delete Here
+          context
+              .read<AddRecipeBloc?>()
+              ?.add(AddRecipeEvent.removeIngredient(incredient));
+        }
+      },
+      backgroundBuilder: (context, direction, progress) {
+        if (direction == SwipeDirection.endToStart) {
+          return Row(
+            children: const [
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(
+                  Icons.delete_forever_rounded,
+                  color: Colors.red,
+                  size: 30,
+                ),
+              ),
+            ],
+          );
+        } else if (direction == SwipeDirection.startToEnd) {
+          // return your widget
+        }
+        return Container();
+      },
+      key: Key(incredient.id!),
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              isExpanded = !isExpanded;
+            });
+          },
+          borderRadius: BorderRadius.circular(10),
+          child: AnimatedContainer(
+            padding: const EdgeInsets.symmetric(
+              vertical: 15,
+              horizontal: 15,
+            ),
+            duration: const Duration(milliseconds: 300),
+            // height: isExpanded ? 50 : 60,
+            width: double.infinity,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      incredient.name,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    Row(
+                      children: [
                         Text(
-                          ' x ${incredient.quantity}',
+                          '${incredient.nutrition.calories.toStringAsFixed(2)} Cal',
                           style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
                                     fontWeight: FontWeight.w700,
                                     color: Colors.grey,
                                   ),
                         ),
-                    ],
-                  ),
-                ],
-              ),
-              AnimatedCrossFade(
-                firstChild: SizedBox(),
-                secondChild: Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (incredient.nutrition.protein != null)
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Protein : ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 0,
-                                        ),
-                                  ),
-                                  Text(
-                                    '${incredient.nutrition.protein?.toStringAsFixed(2)}g',
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            if (incredient.nutrition.carbs != null)
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Carbs : ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 0,
-                                        ),
-                                  ),
-                                  Text(
-                                    '${incredient.nutrition.carbs?.toStringAsFixed(2)}g',
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            if (incredient.nutrition.fat != null)
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Fat : ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 0,
-                                        ),
-                                  ),
-                                  Text(
-                                    '${incredient.nutrition.fat?.toStringAsFixed(2)}g',
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
+                        if (!isExpanded)
                           Text(
-                            "Quantity",
+                            ' x ${incredient.quantity}',
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium
+                                .titleSmall
                                 ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.grey,
                                 ),
                           ),
-                          // This will be replaced by textfield
-                          // Text(
-                          //   "1",
-                          //   style: Theme.of(context)
-                          //       .textTheme
-                          //       .titleLarge
-                          //       ?.copyWith(
-                          //         fontWeight: FontWeight.bold,
-                          //         letterSpacing: 0,
-                          //       ),
-                          // ),
-                          SizedBox(
-                            width: 50,
-                            height: 40,
-                            child: TextField(
-                              inputFormatters: [
-                                // Reg Expression allows only numbers with 1 decimal point
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'^\d+\.?\d{0,1}')),
-                              ],
-                              controller: TextEditingController(
-                                  text: incredient.quantity.toString()),
-                              textAlign: TextAlign.center,
-                              onChanged: (value) {
-                                double? valueDouble = double.tryParse(value);
-                                if (valueDouble == null) {
-                                  return;
-                                }
-                                context.read<AddRecipeBloc>().add(
-                                    AddRecipeEvent.updateIngredient(
-                                        incredient, valueDouble));
-                              },
+                      ],
+                    ),
+                  ],
+                ),
+                AnimatedCrossFade(
+                  firstChild: SizedBox(),
+                  secondChild: Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (incredient.nutrition.protein != null)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Protein : ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 0,
+                                          ),
+                                    ),
+                                    Text(
+                                      '${incredient.nutrition.protein?.toStringAsFixed(2)}g',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              if (incredient.nutrition.carbs != null)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Carbs : ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 0,
+                                          ),
+                                    ),
+                                    Text(
+                                      '${incredient.nutrition.carbs?.toStringAsFixed(2)}g',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              if (incredient.nutrition.fat != null)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Fat : ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 0,
+                                          ),
+                                    ),
+                                    Text(
+                                      '${incredient.nutrition.fat?.toStringAsFixed(2)}g',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "Quantity",
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleLarge
+                                  .bodyMedium
                                   ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 0,
                                   ),
-                              maxLines: 1,
-                              maxLength: 3,
-                              keyboardType: TextInputType.numberWithOptions(
-                                  signed: true, decimal: true),
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                counter: SizedBox.shrink(),
-                                hintText: '1',
-                                hintStyle: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 0,
-                                      color: Colors.grey,
-                                    ),
-                                border: InputBorder.none,
-                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
+                            // This will be replaced by textfield
+                            // Text(
+                            //   "1",
+                            //   style: Theme.of(context)
+                            //       .textTheme
+                            //       .titleLarge
+                            //       ?.copyWith(
+                            //         fontWeight: FontWeight.bold,
+                            //         letterSpacing: 0,
+                            //       ),
+                            // ),
+                            SizedBox(
+                              width: 50,
+                              height: 40,
+                              child: HookBuilder(builder: (context) {
+                                final controller = useTextEditingController(
+                                    text: incredient.quantity.toString());
+                                return TextField(
+                                  enabled: widget.allowEdit,
+                                  inputFormatters: [
+                                    // Reg Expression allows only numbers with 1 decimal point
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'^\d+\.?\d{0,1}')),
+                                  ],
+                                  controller: controller,
+                                  textAlign: TextAlign.center,
+                                  onChanged: (value) {
+                                    double? valueDouble =
+                                        double.tryParse(value);
+                                    if (valueDouble == null) {
+                                      return;
+                                    }
+                                    context.read<AddRecipeBloc>().add(
+                                        AddRecipeEvent.updateIngredient(
+                                            incredient, valueDouble));
+                                  },
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 0,
+                                      ),
+                                  maxLines: 1,
+                                  maxLength: 3,
+                                  keyboardType: TextInputType.numberWithOptions(
+                                      signed: true, decimal: true),
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    counter: SizedBox.shrink(),
+                                    hintText: '1',
+                                    hintStyle: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 0,
+                                          color: Colors.grey,
+                                        ),
+                                    border: InputBorder.none,
+                                  ),
+                                );
+                              }),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
+                  crossFadeState: isExpanded
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: const Duration(milliseconds: 300),
                 ),
-                crossFadeState: isExpanded
-                    ? CrossFadeState.showSecond
-                    : CrossFadeState.showFirst,
-                duration: const Duration(milliseconds: 300),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -422,16 +472,16 @@ class MainRecipeNutrient extends StatelessWidget {
               // height: 40,
               child: AutoSizeTextField(
                 controller: controller,
-                onSubmitted: (value) {
-                  context
-                      .read<AddRecipeBloc>()
-                      .add(AddRecipeEvent.updateName(value));
-                },
-                // onChanged: (value) {
+                // onSubmitted: (value) {
                 //   context
                 //       .read<AddRecipeBloc>()
                 //       .add(AddRecipeEvent.updateName(value));
                 // },
+                onChanged: (value) {
+                  context
+                      .read<AddRecipeBloc>()
+                      .add(AddRecipeEvent.updateName(value));
+                },
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

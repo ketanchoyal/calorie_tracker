@@ -100,6 +100,33 @@ class _AddCaloriesForm extends StatelessWidget {
                   ? const Text('Unmodify Nutrition Values')
                   : const Text('Modify Nutrition Values'),
             ),
+            // ListView.builder(
+            //   shrinkWrap: true,
+            //   itemCount: food.incredients?.length ?? 0,
+            //   itemBuilder: (BuildContext context, int index) {
+            //     return IngredientWidget(
+            //       incredient: food.incredients![index],
+            //     );
+            //   },
+            // ),
+            if (food.incredients != null && food.incredients!.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              const Text(
+                'Incredients',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ...food.incredients!
+                  .map((e) => IngredientWidget(
+                        incredient: e,
+                        allowEdit: false,
+                      ))
+                  .toList()
+            ],
             if (food.notes != null && food.notes!.isNotEmpty) ...[
               const SizedBox(height: 16),
               Text(

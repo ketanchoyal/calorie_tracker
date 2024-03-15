@@ -117,9 +117,6 @@ class _HomeView extends StatelessWidget {
                   final burnedCalories = state.totalBurnedCalories;
 
                   final totalCalories = state.totalCalories;
-                  // final caloriesGoal = goals.caloriesGoal;
-                  // final caloriesEatenPercent = totalCalories / caloriesGoal;
-                  // final hadExtraCalories = totalCalories > caloriesGoal;
 
                   final totalProtein = state.totalProtein;
                   final proteinGoal = goals.proteinGoal;
@@ -149,22 +146,6 @@ class _HomeView extends StatelessWidget {
                               subtitle: 'EATEN',
                             ),
                           ),
-                          // Rings(
-                          //   calories: state.totalCalories,
-                          //   protein: state.totalProtein,
-                          //   carbs: state.totalCarbs,
-                          //   fat: state.totalFat,
-                          //   totalCalories: state.totalCalories,
-                          //   totalProtein: state.totalProtein,
-                          //   totalCarbs: state.totalCarbs,
-                          //   totalFat: state.totalFat,
-                          //   goals: (
-                          //     calories: caloriesGoal,
-                          //     protein: proteinGoal,
-                          //     carbs: carbsGoal,
-                          //     fat: fatGoal
-                          //   ),
-                          // ),
                           SizedBox(
                             height: 145,
                             width: 145,
