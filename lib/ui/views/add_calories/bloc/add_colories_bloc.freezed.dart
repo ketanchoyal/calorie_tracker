@@ -12,7 +12,7 @@ part of 'add_colories_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AddColoriesEvent {
@@ -117,23 +117,25 @@ class _$AddColoriesEventCopyWithImpl<$Res, $Val extends AddColoriesEvent>
 }
 
 /// @nodoc
-abstract class _$$_ResetCopyWith<$Res> {
-  factory _$$_ResetCopyWith(_$_Reset value, $Res Function(_$_Reset) then) =
-      __$$_ResetCopyWithImpl<$Res>;
+abstract class _$$ResetImplCopyWith<$Res> {
+  factory _$$ResetImplCopyWith(
+          _$ResetImpl value, $Res Function(_$ResetImpl) then) =
+      __$$ResetImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ResetCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res, _$_Reset>
-    implements _$$_ResetCopyWith<$Res> {
-  __$$_ResetCopyWithImpl(_$_Reset _value, $Res Function(_$_Reset) _then)
+class __$$ResetImplCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$ResetImpl>
+    implements _$$ResetImplCopyWith<$Res> {
+  __$$ResetImplCopyWithImpl(
+      _$ResetImpl _value, $Res Function(_$ResetImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Reset implements _Reset {
-  _$_Reset();
+class _$ResetImpl implements _Reset {
+  _$ResetImpl();
 
   @override
   String toString() {
@@ -141,9 +143,9 @@ class _$_Reset implements _Reset {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Reset);
+        (other.runtimeType == runtimeType && other is _$ResetImpl);
   }
 
   @override
@@ -255,14 +257,14 @@ class _$_Reset implements _Reset {
 }
 
 abstract class _Reset implements AddColoriesEvent {
-  factory _Reset() = _$_Reset;
+  factory _Reset() = _$ResetImpl;
 }
 
 /// @nodoc
-abstract class _$$_SelectFoodEventCopyWith<$Res> {
-  factory _$$_SelectFoodEventCopyWith(
-          _$_SelectFoodEvent value, $Res Function(_$_SelectFoodEvent) then) =
-      __$$_SelectFoodEventCopyWithImpl<$Res>;
+abstract class _$$SelectFoodEventImplCopyWith<$Res> {
+  factory _$$SelectFoodEventImplCopyWith(_$SelectFoodEventImpl value,
+          $Res Function(_$SelectFoodEventImpl) then) =
+      __$$SelectFoodEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Food food});
 
@@ -270,11 +272,11 @@ abstract class _$$_SelectFoodEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SelectFoodEventCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res, _$_SelectFoodEvent>
-    implements _$$_SelectFoodEventCopyWith<$Res> {
-  __$$_SelectFoodEventCopyWithImpl(
-      _$_SelectFoodEvent _value, $Res Function(_$_SelectFoodEvent) _then)
+class __$$SelectFoodEventImplCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$SelectFoodEventImpl>
+    implements _$$SelectFoodEventImplCopyWith<$Res> {
+  __$$SelectFoodEventImplCopyWithImpl(
+      _$SelectFoodEventImpl _value, $Res Function(_$SelectFoodEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -282,7 +284,7 @@ class __$$_SelectFoodEventCopyWithImpl<$Res>
   $Res call({
     Object? food = null,
   }) {
-    return _then(_$_SelectFoodEvent(
+    return _then(_$SelectFoodEventImpl(
       food: null == food
           ? _value.food
           : food // ignore: cast_nullable_to_non_nullable
@@ -301,8 +303,8 @@ class __$$_SelectFoodEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SelectFoodEvent implements _SelectFoodEvent {
-  _$_SelectFoodEvent({required this.food});
+class _$SelectFoodEventImpl implements _SelectFoodEvent {
+  _$SelectFoodEventImpl({required this.food});
 
   @override
   final Food food;
@@ -313,10 +315,10 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SelectFoodEvent &&
+            other is _$SelectFoodEventImpl &&
             (identical(other.food, food) || other.food == food));
   }
 
@@ -326,8 +328,9 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SelectFoodEventCopyWith<_$_SelectFoodEvent> get copyWith =>
-      __$$_SelectFoodEventCopyWithImpl<_$_SelectFoodEvent>(this, _$identity);
+  _$$SelectFoodEventImplCopyWith<_$SelectFoodEventImpl> get copyWith =>
+      __$$SelectFoodEventImplCopyWithImpl<_$SelectFoodEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -435,34 +438,34 @@ class _$_SelectFoodEvent implements _SelectFoodEvent {
 }
 
 abstract class _SelectFoodEvent implements AddColoriesEvent {
-  factory _SelectFoodEvent({required final Food food}) = _$_SelectFoodEvent;
+  factory _SelectFoodEvent({required final Food food}) = _$SelectFoodEventImpl;
 
   Food get food;
   @JsonKey(ignore: true)
-  _$$_SelectFoodEventCopyWith<_$_SelectFoodEvent> get copyWith =>
+  _$$SelectFoodEventImplCopyWith<_$SelectFoodEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_QuickAddFoodEventCopyWith<$Res> {
-  factory _$$_QuickAddFoodEventCopyWith(_$_QuickAddFoodEvent value,
-          $Res Function(_$_QuickAddFoodEvent) then) =
-      __$$_QuickAddFoodEventCopyWithImpl<$Res>;
+abstract class _$$QuickAddFoodEventImplCopyWith<$Res> {
+  factory _$$QuickAddFoodEventImplCopyWith(_$QuickAddFoodEventImpl value,
+          $Res Function(_$QuickAddFoodEventImpl) then) =
+      __$$QuickAddFoodEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_QuickAddFoodEventCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res, _$_QuickAddFoodEvent>
-    implements _$$_QuickAddFoodEventCopyWith<$Res> {
-  __$$_QuickAddFoodEventCopyWithImpl(
-      _$_QuickAddFoodEvent _value, $Res Function(_$_QuickAddFoodEvent) _then)
+class __$$QuickAddFoodEventImplCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$QuickAddFoodEventImpl>
+    implements _$$QuickAddFoodEventImplCopyWith<$Res> {
+  __$$QuickAddFoodEventImplCopyWithImpl(_$QuickAddFoodEventImpl _value,
+      $Res Function(_$QuickAddFoodEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
-  _$_QuickAddFoodEvent();
+class _$QuickAddFoodEventImpl implements _QuickAddFoodEvent {
+  _$QuickAddFoodEventImpl();
 
   @override
   String toString() {
@@ -470,9 +473,9 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_QuickAddFoodEvent);
+        (other.runtimeType == runtimeType && other is _$QuickAddFoodEventImpl);
   }
 
   @override
@@ -584,14 +587,14 @@ class _$_QuickAddFoodEvent implements _QuickAddFoodEvent {
 }
 
 abstract class _QuickAddFoodEvent implements AddColoriesEvent {
-  factory _QuickAddFoodEvent() = _$_QuickAddFoodEvent;
+  factory _QuickAddFoodEvent() = _$QuickAddFoodEventImpl;
 }
 
 /// @nodoc
-abstract class _$$_SubmitEventCopyWith<$Res> {
-  factory _$$_SubmitEventCopyWith(
-          _$_SubmitEvent value, $Res Function(_$_SubmitEvent) then) =
-      __$$_SubmitEventCopyWithImpl<$Res>;
+abstract class _$$SubmitEventImplCopyWith<$Res> {
+  factory _$$SubmitEventImplCopyWith(
+          _$SubmitEventImpl value, $Res Function(_$SubmitEventImpl) then) =
+      __$$SubmitEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {double servings,
@@ -608,11 +611,11 @@ abstract class _$$_SubmitEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SubmitEventCopyWithImpl<$Res>
-    extends _$AddColoriesEventCopyWithImpl<$Res, _$_SubmitEvent>
-    implements _$$_SubmitEventCopyWith<$Res> {
-  __$$_SubmitEventCopyWithImpl(
-      _$_SubmitEvent _value, $Res Function(_$_SubmitEvent) _then)
+class __$$SubmitEventImplCopyWithImpl<$Res>
+    extends _$AddColoriesEventCopyWithImpl<$Res, _$SubmitEventImpl>
+    implements _$$SubmitEventImplCopyWith<$Res> {
+  __$$SubmitEventImplCopyWithImpl(
+      _$SubmitEventImpl _value, $Res Function(_$SubmitEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -628,7 +631,7 @@ class __$$_SubmitEventCopyWithImpl<$Res>
     Object? protein = freezed,
     Object? foodType = null,
   }) {
-    return _then(_$_SubmitEvent(
+    return _then(_$SubmitEventImpl(
       servings: null == servings
           ? _value.servings
           : servings // ignore: cast_nullable_to_non_nullable
@@ -683,8 +686,8 @@ class __$$_SubmitEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SubmitEvent implements _SubmitEvent {
-  _$_SubmitEvent(
+class _$SubmitEventImpl implements _SubmitEvent {
+  _$SubmitEventImpl(
       {required this.servings,
       required this.caloriesPerServing,
       required this.foodLogDate,
@@ -720,10 +723,10 @@ class _$_SubmitEvent implements _SubmitEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SubmitEvent &&
+            other is _$SubmitEventImpl &&
             (identical(other.servings, servings) ||
                 other.servings == servings) &&
             (identical(other.caloriesPerServing, caloriesPerServing) ||
@@ -746,8 +749,8 @@ class _$_SubmitEvent implements _SubmitEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SubmitEventCopyWith<_$_SubmitEvent> get copyWith =>
-      __$$_SubmitEventCopyWithImpl<_$_SubmitEvent>(this, _$identity);
+  _$$SubmitEventImplCopyWith<_$SubmitEventImpl> get copyWith =>
+      __$$SubmitEventImplCopyWithImpl<_$SubmitEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -867,7 +870,7 @@ abstract class _SubmitEvent implements AddColoriesEvent {
       final double? fat,
       final double? carbs,
       final double? protein,
-      required final FoodType foodType}) = _$_SubmitEvent;
+      required final FoodType foodType}) = _$SubmitEventImpl;
 
   double get servings;
   double get caloriesPerServing;
@@ -879,7 +882,7 @@ abstract class _SubmitEvent implements AddColoriesEvent {
   double? get protein;
   FoodType get foodType;
   @JsonKey(ignore: true)
-  _$$_SubmitEventCopyWith<_$_SubmitEvent> get copyWith =>
+  _$$SubmitEventImplCopyWith<_$SubmitEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -962,25 +965,25 @@ class _$AddColoriesStateCopyWithImpl<$Res, $Val extends AddColoriesState>
 }
 
 /// @nodoc
-abstract class _$$InitialStateCopyWith<$Res> {
-  factory _$$InitialStateCopyWith(
-          _$InitialState value, $Res Function(_$InitialState) then) =
-      __$$InitialStateCopyWithImpl<$Res>;
+abstract class _$$InitialStateImplCopyWith<$Res> {
+  factory _$$InitialStateImplCopyWith(
+          _$InitialStateImpl value, $Res Function(_$InitialStateImpl) then) =
+      __$$InitialStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res, _$InitialState>
-    implements _$$InitialStateCopyWith<$Res> {
-  __$$InitialStateCopyWithImpl(
-      _$InitialState _value, $Res Function(_$InitialState) _then)
+class __$$InitialStateImplCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$InitialStateImpl>
+    implements _$$InitialStateImplCopyWith<$Res> {
+  __$$InitialStateImplCopyWithImpl(
+      _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InitialState implements InitialState {
-  const _$InitialState();
+class _$InitialStateImpl implements InitialState {
+  const _$InitialStateImpl();
 
   @override
   String toString() {
@@ -988,9 +991,9 @@ class _$InitialState implements InitialState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialState);
+        (other.runtimeType == runtimeType && other is _$InitialStateImpl);
   }
 
   @override
@@ -1078,14 +1081,14 @@ class _$InitialState implements InitialState {
 }
 
 abstract class InitialState implements AddColoriesState {
-  const factory InitialState() = _$InitialState;
+  const factory InitialState() = _$InitialStateImpl;
 }
 
 /// @nodoc
-abstract class _$$SelectFoodStateCopyWith<$Res> {
-  factory _$$SelectFoodStateCopyWith(
-          _$SelectFoodState value, $Res Function(_$SelectFoodState) then) =
-      __$$SelectFoodStateCopyWithImpl<$Res>;
+abstract class _$$SelectFoodStateImplCopyWith<$Res> {
+  factory _$$SelectFoodStateImplCopyWith(_$SelectFoodStateImpl value,
+          $Res Function(_$SelectFoodStateImpl) then) =
+      __$$SelectFoodStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Food food});
 
@@ -1093,11 +1096,11 @@ abstract class _$$SelectFoodStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SelectFoodStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res, _$SelectFoodState>
-    implements _$$SelectFoodStateCopyWith<$Res> {
-  __$$SelectFoodStateCopyWithImpl(
-      _$SelectFoodState _value, $Res Function(_$SelectFoodState) _then)
+class __$$SelectFoodStateImplCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$SelectFoodStateImpl>
+    implements _$$SelectFoodStateImplCopyWith<$Res> {
+  __$$SelectFoodStateImplCopyWithImpl(
+      _$SelectFoodStateImpl _value, $Res Function(_$SelectFoodStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1105,7 +1108,7 @@ class __$$SelectFoodStateCopyWithImpl<$Res>
   $Res call({
     Object? food = null,
   }) {
-    return _then(_$SelectFoodState(
+    return _then(_$SelectFoodStateImpl(
       food: null == food
           ? _value.food
           : food // ignore: cast_nullable_to_non_nullable
@@ -1124,8 +1127,8 @@ class __$$SelectFoodStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectFoodState implements SelectFoodState {
-  const _$SelectFoodState({required this.food});
+class _$SelectFoodStateImpl implements SelectFoodState {
+  const _$SelectFoodStateImpl({required this.food});
 
   @override
   final Food food;
@@ -1136,10 +1139,10 @@ class _$SelectFoodState implements SelectFoodState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectFoodState &&
+            other is _$SelectFoodStateImpl &&
             (identical(other.food, food) || other.food == food));
   }
 
@@ -1149,8 +1152,9 @@ class _$SelectFoodState implements SelectFoodState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectFoodStateCopyWith<_$SelectFoodState> get copyWith =>
-      __$$SelectFoodStateCopyWithImpl<_$SelectFoodState>(this, _$identity);
+  _$$SelectFoodStateImplCopyWith<_$SelectFoodStateImpl> get copyWith =>
+      __$$SelectFoodStateImplCopyWithImpl<_$SelectFoodStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1234,34 +1238,35 @@ class _$SelectFoodState implements SelectFoodState {
 }
 
 abstract class SelectFoodState implements AddColoriesState {
-  const factory SelectFoodState({required final Food food}) = _$SelectFoodState;
+  const factory SelectFoodState({required final Food food}) =
+      _$SelectFoodStateImpl;
 
   Food get food;
   @JsonKey(ignore: true)
-  _$$SelectFoodStateCopyWith<_$SelectFoodState> get copyWith =>
+  _$$SelectFoodStateImplCopyWith<_$SelectFoodStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$QuickAddFoodStateCopyWith<$Res> {
-  factory _$$QuickAddFoodStateCopyWith(
-          _$QuickAddFoodState value, $Res Function(_$QuickAddFoodState) then) =
-      __$$QuickAddFoodStateCopyWithImpl<$Res>;
+abstract class _$$QuickAddFoodStateImplCopyWith<$Res> {
+  factory _$$QuickAddFoodStateImplCopyWith(_$QuickAddFoodStateImpl value,
+          $Res Function(_$QuickAddFoodStateImpl) then) =
+      __$$QuickAddFoodStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$QuickAddFoodStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res, _$QuickAddFoodState>
-    implements _$$QuickAddFoodStateCopyWith<$Res> {
-  __$$QuickAddFoodStateCopyWithImpl(
-      _$QuickAddFoodState _value, $Res Function(_$QuickAddFoodState) _then)
+class __$$QuickAddFoodStateImplCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$QuickAddFoodStateImpl>
+    implements _$$QuickAddFoodStateImplCopyWith<$Res> {
+  __$$QuickAddFoodStateImplCopyWithImpl(_$QuickAddFoodStateImpl _value,
+      $Res Function(_$QuickAddFoodStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$QuickAddFoodState implements QuickAddFoodState {
-  const _$QuickAddFoodState();
+class _$QuickAddFoodStateImpl implements QuickAddFoodState {
+  const _$QuickAddFoodStateImpl();
 
   @override
   String toString() {
@@ -1269,9 +1274,9 @@ class _$QuickAddFoodState implements QuickAddFoodState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$QuickAddFoodState);
+        (other.runtimeType == runtimeType && other is _$QuickAddFoodStateImpl);
   }
 
   @override
@@ -1359,29 +1364,29 @@ class _$QuickAddFoodState implements QuickAddFoodState {
 }
 
 abstract class QuickAddFoodState implements AddColoriesState {
-  const factory QuickAddFoodState() = _$QuickAddFoodState;
+  const factory QuickAddFoodState() = _$QuickAddFoodStateImpl;
 }
 
 /// @nodoc
-abstract class _$$_AddingStateCopyWith<$Res> {
-  factory _$$_AddingStateCopyWith(
-          _$_AddingState value, $Res Function(_$_AddingState) then) =
-      __$$_AddingStateCopyWithImpl<$Res>;
+abstract class _$$AddingStateImplCopyWith<$Res> {
+  factory _$$AddingStateImplCopyWith(
+          _$AddingStateImpl value, $Res Function(_$AddingStateImpl) then) =
+      __$$AddingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AddingStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res, _$_AddingState>
-    implements _$$_AddingStateCopyWith<$Res> {
-  __$$_AddingStateCopyWithImpl(
-      _$_AddingState _value, $Res Function(_$_AddingState) _then)
+class __$$AddingStateImplCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$AddingStateImpl>
+    implements _$$AddingStateImplCopyWith<$Res> {
+  __$$AddingStateImplCopyWithImpl(
+      _$AddingStateImpl _value, $Res Function(_$AddingStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AddingState implements _AddingState {
-  const _$_AddingState();
+class _$AddingStateImpl implements _AddingState {
+  const _$AddingStateImpl();
 
   @override
   String toString() {
@@ -1389,9 +1394,9 @@ class _$_AddingState implements _AddingState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AddingState);
+        (other.runtimeType == runtimeType && other is _$AddingStateImpl);
   }
 
   @override
@@ -1479,29 +1484,29 @@ class _$_AddingState implements _AddingState {
 }
 
 abstract class _AddingState implements AddColoriesState {
-  const factory _AddingState() = _$_AddingState;
+  const factory _AddingState() = _$AddingStateImpl;
 }
 
 /// @nodoc
-abstract class _$$_SuccessStateCopyWith<$Res> {
-  factory _$$_SuccessStateCopyWith(
-          _$_SuccessState value, $Res Function(_$_SuccessState) then) =
-      __$$_SuccessStateCopyWithImpl<$Res>;
+abstract class _$$SuccessStateImplCopyWith<$Res> {
+  factory _$$SuccessStateImplCopyWith(
+          _$SuccessStateImpl value, $Res Function(_$SuccessStateImpl) then) =
+      __$$SuccessStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SuccessStateCopyWithImpl<$Res>
-    extends _$AddColoriesStateCopyWithImpl<$Res, _$_SuccessState>
-    implements _$$_SuccessStateCopyWith<$Res> {
-  __$$_SuccessStateCopyWithImpl(
-      _$_SuccessState _value, $Res Function(_$_SuccessState) _then)
+class __$$SuccessStateImplCopyWithImpl<$Res>
+    extends _$AddColoriesStateCopyWithImpl<$Res, _$SuccessStateImpl>
+    implements _$$SuccessStateImplCopyWith<$Res> {
+  __$$SuccessStateImplCopyWithImpl(
+      _$SuccessStateImpl _value, $Res Function(_$SuccessStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SuccessState implements _SuccessState {
-  const _$_SuccessState();
+class _$SuccessStateImpl implements _SuccessState {
+  const _$SuccessStateImpl();
 
   @override
   String toString() {
@@ -1509,9 +1514,9 @@ class _$_SuccessState implements _SuccessState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SuccessState);
+        (other.runtimeType == runtimeType && other is _$SuccessStateImpl);
   }
 
   @override
@@ -1599,5 +1604,5 @@ class _$_SuccessState implements _SuccessState {
 }
 
 abstract class _SuccessState implements AddColoriesState {
-  const factory _SuccessState() = _$_SuccessState;
+  const factory _SuccessState() = _$SuccessStateImpl;
 }

@@ -100,6 +100,22 @@ class _AddCaloriesForm extends StatelessWidget {
                   ? const Text('Unmodify Nutrition Values')
                   : const Text('Modify Nutrition Values'),
             ),
+            if (food.notes != null && food.notes!.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                'Notes: ${food.notes}',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+            if (food.description != null && food.description!.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                'Description: ${food.description}',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
           ],
         ),
       ),

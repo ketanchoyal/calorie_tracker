@@ -12,7 +12,7 @@ part of 'goals_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GoalsState {
@@ -117,10 +117,11 @@ class _$GoalsStateCopyWithImpl<$Res, $Val extends GoalsState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> implements $GoalsStateCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $GoalsStateCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,10 +132,11 @@ abstract class _$$_InitialCopyWith<$Res> implements $GoalsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$GoalsStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$GoalsStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,7 +147,7 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? carbsGoal = null,
     Object? fatGoal = null,
   }) {
-    return _then(_$_Initial(
+    return _then(_$InitialImpl(
       caloriesGoal: null == caloriesGoal
           ? _value.caloriesGoal
           : caloriesGoal // ignore: cast_nullable_to_non_nullable
@@ -168,8 +170,8 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial(
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl(
       {this.caloriesGoal = 0,
       this.proteinGoal = 0,
       this.carbsGoal = 0,
@@ -194,10 +196,10 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$InitialImpl &&
             (identical(other.caloriesGoal, caloriesGoal) ||
                 other.caloriesGoal == caloriesGoal) &&
             (identical(other.proteinGoal, proteinGoal) ||
@@ -214,8 +216,8 @@ class _$_Initial implements _Initial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -285,7 +287,7 @@ abstract class _Initial implements GoalsState {
       {final double caloriesGoal,
       final double proteinGoal,
       final double carbsGoal,
-      final double fatGoal}) = _$_Initial;
+      final double fatGoal}) = _$InitialImpl;
 
   @override
   double get caloriesGoal;
@@ -297,7 +299,7 @@ abstract class _Initial implements GoalsState {
   double get fatGoal;
   @override
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -386,11 +388,11 @@ class _$GoalsEventCopyWithImpl<$Res, $Val extends GoalsEvent>
 }
 
 /// @nodoc
-abstract class _$$UpdateGoalsEventCopyWith<$Res>
+abstract class _$$UpdateGoalsEventImplCopyWith<$Res>
     implements $GoalsEventCopyWith<$Res> {
-  factory _$$UpdateGoalsEventCopyWith(
-          _$UpdateGoalsEvent value, $Res Function(_$UpdateGoalsEvent) then) =
-      __$$UpdateGoalsEventCopyWithImpl<$Res>;
+  factory _$$UpdateGoalsEventImplCopyWith(_$UpdateGoalsEventImpl value,
+          $Res Function(_$UpdateGoalsEventImpl) then) =
+      __$$UpdateGoalsEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Goals goals});
@@ -400,11 +402,11 @@ abstract class _$$UpdateGoalsEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UpdateGoalsEventCopyWithImpl<$Res>
-    extends _$GoalsEventCopyWithImpl<$Res, _$UpdateGoalsEvent>
-    implements _$$UpdateGoalsEventCopyWith<$Res> {
-  __$$UpdateGoalsEventCopyWithImpl(
-      _$UpdateGoalsEvent _value, $Res Function(_$UpdateGoalsEvent) _then)
+class __$$UpdateGoalsEventImplCopyWithImpl<$Res>
+    extends _$GoalsEventCopyWithImpl<$Res, _$UpdateGoalsEventImpl>
+    implements _$$UpdateGoalsEventImplCopyWith<$Res> {
+  __$$UpdateGoalsEventImplCopyWithImpl(_$UpdateGoalsEventImpl _value,
+      $Res Function(_$UpdateGoalsEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -412,7 +414,7 @@ class __$$UpdateGoalsEventCopyWithImpl<$Res>
   $Res call({
     Object? goals = null,
   }) {
-    return _then(_$UpdateGoalsEvent(
+    return _then(_$UpdateGoalsEventImpl(
       goals: null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
@@ -423,8 +425,8 @@ class __$$UpdateGoalsEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateGoalsEvent extends UpdateGoalsEvent {
-  const _$UpdateGoalsEvent({required this.goals}) : super._();
+class _$UpdateGoalsEventImpl extends UpdateGoalsEvent {
+  const _$UpdateGoalsEventImpl({required this.goals}) : super._();
 
   @override
   final Goals goals;
@@ -435,10 +437,10 @@ class _$UpdateGoalsEvent extends UpdateGoalsEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateGoalsEvent &&
+            other is _$UpdateGoalsEventImpl &&
             (identical(other.goals, goals) || other.goals == goals));
   }
 
@@ -448,8 +450,9 @@ class _$UpdateGoalsEvent extends UpdateGoalsEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateGoalsEventCopyWith<_$UpdateGoalsEvent> get copyWith =>
-      __$$UpdateGoalsEventCopyWithImpl<_$UpdateGoalsEvent>(this, _$identity);
+  _$$UpdateGoalsEventImplCopyWith<_$UpdateGoalsEventImpl> get copyWith =>
+      __$$UpdateGoalsEventImplCopyWithImpl<_$UpdateGoalsEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -510,13 +513,13 @@ class _$UpdateGoalsEvent extends UpdateGoalsEvent {
 
 abstract class UpdateGoalsEvent extends GoalsEvent {
   const factory UpdateGoalsEvent({required final Goals goals}) =
-      _$UpdateGoalsEvent;
+      _$UpdateGoalsEventImpl;
   const UpdateGoalsEvent._() : super._();
 
   @override
   Goals get goals;
   @override
   @JsonKey(ignore: true)
-  _$$UpdateGoalsEventCopyWith<_$UpdateGoalsEvent> get copyWith =>
+  _$$UpdateGoalsEventImplCopyWith<_$UpdateGoalsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

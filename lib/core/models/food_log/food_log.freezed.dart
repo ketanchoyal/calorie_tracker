@@ -12,7 +12,7 @@ part of 'food_log.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$FoodLog {
@@ -55,21 +55,19 @@ abstract class $FoodLogCopyWith<$Res> {
       {String? id,
       String name,
       double caloriesPerServing,
-      @JsonEnum()
-          FoodType foodType,
+      @JsonEnum() FoodType foodType,
       double? protein,
       double? carbs,
       double? fat,
       DateTime date,
       DateTime foodLogDate,
       @JsonKey(defaultValue: false, nullable: false)
-          bool isCarbsAddedToHealthKit,
+      bool isCarbsAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false) bool isFatAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          bool isFatAddedToHealthKit,
+      bool isProteinAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          bool isProteinAddedToHealthKit,
-      @JsonKey(defaultValue: false, nullable: false)
-          bool isCaloriesAddedToHealthKit,
+      bool isCaloriesAddedToHealthKit,
       String? foodReference,
       double servingEaten});
 }
@@ -169,40 +167,39 @@ class _$FoodLogCopyWithImpl<$Res, $Val extends FoodLog>
 }
 
 /// @nodoc
-abstract class _$$_FoodLogCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
-  factory _$$_FoodLogCopyWith(
-          _$_FoodLog value, $Res Function(_$_FoodLog) then) =
-      __$$_FoodLogCopyWithImpl<$Res>;
+abstract class _$$FoodLogImplCopyWith<$Res> implements $FoodLogCopyWith<$Res> {
+  factory _$$FoodLogImplCopyWith(
+          _$FoodLogImpl value, $Res Function(_$FoodLogImpl) then) =
+      __$$FoodLogImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
       String name,
       double caloriesPerServing,
-      @JsonEnum()
-          FoodType foodType,
+      @JsonEnum() FoodType foodType,
       double? protein,
       double? carbs,
       double? fat,
       DateTime date,
       DateTime foodLogDate,
       @JsonKey(defaultValue: false, nullable: false)
-          bool isCarbsAddedToHealthKit,
+      bool isCarbsAddedToHealthKit,
+      @JsonKey(defaultValue: false, nullable: false) bool isFatAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          bool isFatAddedToHealthKit,
+      bool isProteinAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          bool isProteinAddedToHealthKit,
-      @JsonKey(defaultValue: false, nullable: false)
-          bool isCaloriesAddedToHealthKit,
+      bool isCaloriesAddedToHealthKit,
       String? foodReference,
       double servingEaten});
 }
 
 /// @nodoc
-class __$$_FoodLogCopyWithImpl<$Res>
-    extends _$FoodLogCopyWithImpl<$Res, _$_FoodLog>
-    implements _$$_FoodLogCopyWith<$Res> {
-  __$$_FoodLogCopyWithImpl(_$_FoodLog _value, $Res Function(_$_FoodLog) _then)
+class __$$FoodLogImplCopyWithImpl<$Res>
+    extends _$FoodLogCopyWithImpl<$Res, _$FoodLogImpl>
+    implements _$$FoodLogImplCopyWith<$Res> {
+  __$$FoodLogImplCopyWithImpl(
+      _$FoodLogImpl _value, $Res Function(_$FoodLogImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -224,7 +221,7 @@ class __$$_FoodLogCopyWithImpl<$Res>
     Object? foodReference = freezed,
     Object? servingEaten = null,
   }) {
-    return _then(_$_FoodLog(
+    return _then(_$FoodLogImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -291,26 +288,25 @@ class __$$_FoodLogCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FoodLog extends _FoodLog {
-  _$_FoodLog(
+class _$FoodLogImpl extends _FoodLog {
+  _$FoodLogImpl(
       {this.id,
       required this.name,
       required this.caloriesPerServing,
-      @JsonEnum()
-          this.foodType = FoodType.other,
+      @JsonEnum() this.foodType = FoodType.other,
       this.protein,
       this.carbs,
       this.fat,
       required this.date,
       required this.foodLogDate,
       @JsonKey(defaultValue: false, nullable: false)
-          this.isCarbsAddedToHealthKit = false,
+      this.isCarbsAddedToHealthKit = false,
       @JsonKey(defaultValue: false, nullable: false)
-          this.isFatAddedToHealthKit = false,
+      this.isFatAddedToHealthKit = false,
       @JsonKey(defaultValue: false, nullable: false)
-          this.isProteinAddedToHealthKit = false,
+      this.isProteinAddedToHealthKit = false,
       @JsonKey(defaultValue: false, nullable: false)
-          this.isCaloriesAddedToHealthKit = false,
+      this.isCaloriesAddedToHealthKit = false,
       this.foodReference,
       required this.servingEaten})
       : super._();
@@ -363,10 +359,10 @@ class _$_FoodLog extends _FoodLog {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FoodLog &&
+            other is _$FoodLogImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.caloriesPerServing, caloriesPerServing) ||
@@ -419,8 +415,8 @@ class _$_FoodLog extends _FoodLog {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FoodLogCopyWith<_$_FoodLog> get copyWith =>
-      __$$_FoodLogCopyWithImpl<_$_FoodLog>(this, _$identity);
+  _$$FoodLogImplCopyWith<_$FoodLogImpl> get copyWith =>
+      __$$FoodLogImplCopyWithImpl<_$FoodLogImpl>(this, _$identity);
 }
 
 abstract class _FoodLog extends FoodLog {
@@ -428,23 +424,22 @@ abstract class _FoodLog extends FoodLog {
       {final String? id,
       required final String name,
       required final double caloriesPerServing,
-      @JsonEnum()
-          final FoodType foodType,
+      @JsonEnum() final FoodType foodType,
       final double? protein,
       final double? carbs,
       final double? fat,
       required final DateTime date,
       required final DateTime foodLogDate,
       @JsonKey(defaultValue: false, nullable: false)
-          final bool isCarbsAddedToHealthKit,
+      final bool isCarbsAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          final bool isFatAddedToHealthKit,
+      final bool isFatAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          final bool isProteinAddedToHealthKit,
+      final bool isProteinAddedToHealthKit,
       @JsonKey(defaultValue: false, nullable: false)
-          final bool isCaloriesAddedToHealthKit,
+      final bool isCaloriesAddedToHealthKit,
       final String? foodReference,
-      required final double servingEaten}) = _$_FoodLog;
+      required final double servingEaten}) = _$FoodLogImpl;
   _FoodLog._() : super._();
 
   @override
@@ -488,6 +483,6 @@ abstract class _FoodLog extends FoodLog {
   double get servingEaten;
   @override
   @JsonKey(ignore: true)
-  _$$_FoodLogCopyWith<_$_FoodLog> get copyWith =>
+  _$$FoodLogImplCopyWith<_$FoodLogImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

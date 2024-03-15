@@ -6,6 +6,8 @@ import 'package:calorie_tracker/ui/extensions/light_dark_color/theme+extension.d
 import 'package:calorie_tracker/ui/views/add_calories/bloc/add_colories_bloc.dart';
 import 'package:calorie_tracker/ui/views/add_food/add_food.dart';
 import 'package:calorie_tracker/ui/views/add_recipe/view/add_recipe.page.dart';
+import 'package:calorie_tracker/ui/views/search_food_macro/bloc/search_food_macro.cubit.dart';
+import 'package:calorie_tracker/ui/views/search_food_macro/view/search_food_macro.view.dart';
 import 'package:calorie_tracker/ui/widgets/foodTypeSelector.widget.dart';
 import 'package:calorie_tracker/ui/widgets/textfield.widget.dart';
 import 'package:drop_down_list/drop_down_list.dart';
@@ -13,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 part 'add_calories.form.dart';
 part 'quick_add_calories.form.dart';
@@ -298,7 +301,7 @@ class _EmptyStateBody extends StatelessWidget {
             child: Column(
               children: const [
                 Icon(
-                  FontAwesomeIcons.boltLightning,
+                  FontAwesomeIcons.bowlFood,
                   size: 70,
                 ),
                 SizedBox(height: 10),
@@ -312,6 +315,39 @@ class _EmptyStateBody extends StatelessWidget {
                   builder: (context) => const AddRecipePage(),
                 ),
               );
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              minimumSize: const Size.square(180),
+              // padding: const EdgeInsets.all(16),
+              backgroundColor: Colors.white10,
+            ),
+            child: Column(
+              children: const [
+                Icon(
+                  FontAwesomeIcons.searchengin,
+                  size: 70,
+                ),
+                SizedBox(height: 10),
+                Text('Search Nutrition'),
+              ],
+            ),
+            onPressed: () async {
+              await WoltModalSheet.show<Food?>(
+                context: context,
+                useSafeArea: true,
+                routeSettings: const RouteSettings(name: 'SearchNutrition'),
+                useRootNavigator: true,
+                modalTypeBuilder: (context) {
+                  return WoltModalType.bottomSheet;
+                },
+                pageListBuilder: (context) {
+                  return [ModalSheetForSearchNutrition.build(context)];
+                },
+                enableDragForBottomSheet: true,
+              );
+              context.read<SearchMacroCubit>().clear();
             },
           ),
         ],

@@ -12,10 +12,10 @@ part of 'theme+extension.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$_ThemeColor {
+mixin _$ThemeColor {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() light,
@@ -75,23 +75,25 @@ class __$ThemeColorCopyWithImpl<$Res, $Val extends _ThemeColor>
 }
 
 /// @nodoc
-abstract class _$$_LightCopyWith<$Res> {
-  factory _$$_LightCopyWith(_$_Light value, $Res Function(_$_Light) then) =
-      __$$_LightCopyWithImpl<$Res>;
+abstract class _$$LightImplCopyWith<$Res> {
+  factory _$$LightImplCopyWith(
+          _$LightImpl value, $Res Function(_$LightImpl) then) =
+      __$$LightImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LightCopyWithImpl<$Res>
-    extends __$ThemeColorCopyWithImpl<$Res, _$_Light>
-    implements _$$_LightCopyWith<$Res> {
-  __$$_LightCopyWithImpl(_$_Light _value, $Res Function(_$_Light) _then)
+class __$$LightImplCopyWithImpl<$Res>
+    extends __$ThemeColorCopyWithImpl<$Res, _$LightImpl>
+    implements _$$LightImplCopyWith<$Res> {
+  __$$LightImplCopyWithImpl(
+      _$LightImpl _value, $Res Function(_$LightImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Light implements _Light {
-  const _$_Light();
+class _$LightImpl implements _Light {
+  const _$LightImpl();
 
   @override
   String toString() {
@@ -99,9 +101,9 @@ class _$_Light implements _Light {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Light);
+        (other.runtimeType == runtimeType && other is _$LightImpl);
   }
 
   @override
@@ -171,27 +173,28 @@ class _$_Light implements _Light {
 }
 
 abstract class _Light implements _ThemeColor {
-  const factory _Light() = _$_Light;
+  const factory _Light() = _$LightImpl;
 }
 
 /// @nodoc
-abstract class _$$_DarkCopyWith<$Res> {
-  factory _$$_DarkCopyWith(_$_Dark value, $Res Function(_$_Dark) then) =
-      __$$_DarkCopyWithImpl<$Res>;
+abstract class _$$DarkImplCopyWith<$Res> {
+  factory _$$DarkImplCopyWith(
+          _$DarkImpl value, $Res Function(_$DarkImpl) then) =
+      __$$DarkImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_DarkCopyWithImpl<$Res>
-    extends __$ThemeColorCopyWithImpl<$Res, _$_Dark>
-    implements _$$_DarkCopyWith<$Res> {
-  __$$_DarkCopyWithImpl(_$_Dark _value, $Res Function(_$_Dark) _then)
+class __$$DarkImplCopyWithImpl<$Res>
+    extends __$ThemeColorCopyWithImpl<$Res, _$DarkImpl>
+    implements _$$DarkImplCopyWith<$Res> {
+  __$$DarkImplCopyWithImpl(_$DarkImpl _value, $Res Function(_$DarkImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Dark implements _Dark {
-  const _$_Dark();
+class _$DarkImpl implements _Dark {
+  const _$DarkImpl();
 
   @override
   String toString() {
@@ -199,9 +202,9 @@ class _$_Dark implements _Dark {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Dark);
+        (other.runtimeType == runtimeType && other is _$DarkImpl);
   }
 
   @override
@@ -271,5 +274,5 @@ class _$_Dark implements _Dark {
 }
 
 abstract class _Dark implements _ThemeColor {
-  const factory _Dark() = _$_Dark;
+  const factory _Dark() = _$DarkImpl;
 }

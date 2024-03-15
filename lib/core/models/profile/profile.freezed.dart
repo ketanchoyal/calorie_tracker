@@ -12,7 +12,7 @@ part of 'profile.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Profile {
@@ -69,10 +69,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
 }
 
 /// @nodoc
-abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
-  factory _$$_ProfileCopyWith(
-          _$_Profile value, $Res Function(_$_Profile) then) =
-      __$$_ProfileCopyWithImpl<$Res>;
+abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
+  factory _$$ProfileImplCopyWith(
+          _$ProfileImpl value, $Res Function(_$ProfileImpl) then) =
+      __$$ProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Goals? goals});
@@ -82,10 +82,11 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProfileCopyWithImpl<$Res>
-    extends _$ProfileCopyWithImpl<$Res, _$_Profile>
-    implements _$$_ProfileCopyWith<$Res> {
-  __$$_ProfileCopyWithImpl(_$_Profile _value, $Res Function(_$_Profile) _then)
+class __$$ProfileImplCopyWithImpl<$Res>
+    extends _$ProfileCopyWithImpl<$Res, _$ProfileImpl>
+    implements _$$ProfileImplCopyWith<$Res> {
+  __$$ProfileImplCopyWithImpl(
+      _$ProfileImpl _value, $Res Function(_$ProfileImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +94,7 @@ class __$$_ProfileCopyWithImpl<$Res>
   $Res call({
     Object? goals = freezed,
   }) {
-    return _then(_$_Profile(
+    return _then(_$ProfileImpl(
       goals: freezed == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
@@ -104,8 +105,8 @@ class __$$_ProfileCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Profile extends _Profile {
-  _$_Profile({this.goals}) : super._();
+class _$ProfileImpl extends _Profile {
+  _$ProfileImpl({this.goals}) : super._();
 
   @override
   final Goals? goals;
@@ -116,10 +117,10 @@ class _$_Profile extends _Profile {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Profile &&
+            other is _$ProfileImpl &&
             (identical(other.goals, goals) || other.goals == goals));
   }
 
@@ -129,19 +130,19 @@ class _$_Profile extends _Profile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileCopyWith<_$_Profile> get copyWith =>
-      __$$_ProfileCopyWithImpl<_$_Profile>(this, _$identity);
+  _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
+      __$$ProfileImplCopyWithImpl<_$ProfileImpl>(this, _$identity);
 }
 
 abstract class _Profile extends Profile {
-  factory _Profile({final Goals? goals}) = _$_Profile;
+  factory _Profile({final Goals? goals}) = _$ProfileImpl;
   _Profile._() : super._();
 
   @override
   Goals? get goals;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileCopyWith<_$_Profile> get copyWith =>
+  _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -204,18 +205,21 @@ class _$GoalsCopyWithImpl<$Res, $Val extends Goals>
 }
 
 /// @nodoc
-abstract class _$$_GoalsCopyWith<$Res> implements $GoalsCopyWith<$Res> {
-  factory _$$_GoalsCopyWith(_$_Goals value, $Res Function(_$_Goals) then) =
-      __$$_GoalsCopyWithImpl<$Res>;
+abstract class _$$GoalsImplCopyWith<$Res> implements $GoalsCopyWith<$Res> {
+  factory _$$GoalsImplCopyWith(
+          _$GoalsImpl value, $Res Function(_$GoalsImpl) then) =
+      __$$GoalsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double calories, double protein, double fat, double carbs});
 }
 
 /// @nodoc
-class __$$_GoalsCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res, _$_Goals>
-    implements _$$_GoalsCopyWith<$Res> {
-  __$$_GoalsCopyWithImpl(_$_Goals _value, $Res Function(_$_Goals) _then)
+class __$$GoalsImplCopyWithImpl<$Res>
+    extends _$GoalsCopyWithImpl<$Res, _$GoalsImpl>
+    implements _$$GoalsImplCopyWith<$Res> {
+  __$$GoalsImplCopyWithImpl(
+      _$GoalsImpl _value, $Res Function(_$GoalsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -226,7 +230,7 @@ class __$$_GoalsCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res, _$_Goals>
     Object? fat = null,
     Object? carbs = null,
   }) {
-    return _then(_$_Goals(
+    return _then(_$GoalsImpl(
       calories: null == calories
           ? _value.calories
           : calories // ignore: cast_nullable_to_non_nullable
@@ -249,8 +253,8 @@ class __$$_GoalsCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res, _$_Goals>
 
 /// @nodoc
 
-class _$_Goals extends _Goals {
-  _$_Goals(
+class _$GoalsImpl extends _Goals {
+  _$GoalsImpl(
       {required this.calories,
       required this.protein,
       required this.fat,
@@ -272,10 +276,10 @@ class _$_Goals extends _Goals {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Goals &&
+            other is _$GoalsImpl &&
             (identical(other.calories, calories) ||
                 other.calories == calories) &&
             (identical(other.protein, protein) || other.protein == protein) &&
@@ -289,8 +293,8 @@ class _$_Goals extends _Goals {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GoalsCopyWith<_$_Goals> get copyWith =>
-      __$$_GoalsCopyWithImpl<_$_Goals>(this, _$identity);
+  _$$GoalsImplCopyWith<_$GoalsImpl> get copyWith =>
+      __$$GoalsImplCopyWithImpl<_$GoalsImpl>(this, _$identity);
 }
 
 abstract class _Goals extends Goals {
@@ -298,7 +302,7 @@ abstract class _Goals extends Goals {
       {required final double calories,
       required final double protein,
       required final double fat,
-      required final double carbs}) = _$_Goals;
+      required final double carbs}) = _$GoalsImpl;
   _Goals._() : super._();
 
   @override
@@ -311,6 +315,6 @@ abstract class _Goals extends Goals {
   double get carbs;
   @override
   @JsonKey(ignore: true)
-  _$$_GoalsCopyWith<_$_Goals> get copyWith =>
+  _$$GoalsImplCopyWith<_$GoalsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

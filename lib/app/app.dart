@@ -12,12 +12,15 @@ import 'package:calorie_tracker/core/services/firebase/firebase_service.dart';
 import 'package:calorie_tracker/core/services/firebase/firebase_service.impl.dart';
 import 'package:calorie_tracker/core/services/health/health_service.dart';
 import 'package:calorie_tracker/core/services/health/health_service.impl.dart';
+import 'package:calorie_tracker/core/services/open_ai/open_ai_serice.impl.dart';
+import 'package:calorie_tracker/core/services/open_ai/open_ai_service.dart';
 import 'package:calorie_tracker/core/services/openfood_api/openfood_api_service.dart';
 import 'package:calorie_tracker/core/services/openfood_api/openfood_api_service.impl.dart';
 import 'package:calorie_tracker/l10n/l10n.dart';
 import 'package:calorie_tracker/ui/blocs/auth/auth_bloc.dart';
 import 'package:calorie_tracker/ui/blocs/goals/goals_bloc.dart';
 import 'package:calorie_tracker/ui/views/home/home.dart';
+import 'package:calorie_tracker/ui/views/search_food_macro/bloc/search_food_macro.cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,6 +37,9 @@ class App extends StatelessWidget {
         providers: [
           RepositoryProvider<OpenFoodAPIService>(
             create: (context) => OpenFoodAPIServiceImpl(),
+          ),
+          RepositoryProvider<OpenAIService>(
+            create: (context) => OpenAIServiceImpl()..init(),
           ),
           RepositoryProvider<FirebaseAuthService>(
             create: (context) => FirebaseAuthServiceImpl(),
@@ -57,6 +63,13 @@ class App extends StatelessWidget {
                     RepositoryProvider.of<FirebaseService>(context),
               )..getGoals(),
             ),
+            BlocProvider<SearchMacroCubit>(
+              create: (context) => SearchMacroCubit(
+                openAIService: RepositoryProvider.of<OpenAIService>(context),
+                firebaseService:
+                    RepositoryProvider.of<FirebaseService>(context),
+              ),
+            )
           ],
           child: const AppView(),
         ),

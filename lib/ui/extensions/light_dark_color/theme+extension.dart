@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'theme+extension.freezed.dart';
 
 @freezed
-class _ThemeColor with _$_ThemeColor {
+class _ThemeColor with _$ThemeColor {
   const factory _ThemeColor.light() = _Light;
   const factory _ThemeColor.dark() = _Dark;
 }

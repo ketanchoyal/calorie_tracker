@@ -12,7 +12,7 @@ part of 'home_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HomeEvent {
@@ -107,25 +107,25 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$TodayHomeEventCopyWith<$Res> {
-  factory _$$TodayHomeEventCopyWith(
-          _$TodayHomeEvent value, $Res Function(_$TodayHomeEvent) then) =
-      __$$TodayHomeEventCopyWithImpl<$Res>;
+abstract class _$$TodayHomeEventImplCopyWith<$Res> {
+  factory _$$TodayHomeEventImplCopyWith(_$TodayHomeEventImpl value,
+          $Res Function(_$TodayHomeEventImpl) then) =
+      __$$TodayHomeEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$TodayHomeEventCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$TodayHomeEvent>
-    implements _$$TodayHomeEventCopyWith<$Res> {
-  __$$TodayHomeEventCopyWithImpl(
-      _$TodayHomeEvent _value, $Res Function(_$TodayHomeEvent) _then)
+class __$$TodayHomeEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$TodayHomeEventImpl>
+    implements _$$TodayHomeEventImplCopyWith<$Res> {
+  __$$TodayHomeEventImplCopyWithImpl(
+      _$TodayHomeEventImpl _value, $Res Function(_$TodayHomeEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$TodayHomeEvent implements TodayHomeEvent {
-  _$TodayHomeEvent();
+class _$TodayHomeEventImpl implements TodayHomeEvent {
+  _$TodayHomeEventImpl();
 
   @override
   String toString() {
@@ -133,9 +133,9 @@ class _$TodayHomeEvent implements TodayHomeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TodayHomeEvent);
+        (other.runtimeType == runtimeType && other is _$TodayHomeEventImpl);
   }
 
   @override
@@ -238,24 +238,26 @@ class _$TodayHomeEvent implements TodayHomeEvent {
 }
 
 abstract class TodayHomeEvent implements HomeEvent {
-  factory TodayHomeEvent() = _$TodayHomeEvent;
+  factory TodayHomeEvent() = _$TodayHomeEventImpl;
 }
 
 /// @nodoc
-abstract class _$$SomeOtherDateHomeEventCopyWith<$Res> {
-  factory _$$SomeOtherDateHomeEventCopyWith(_$SomeOtherDateHomeEvent value,
-          $Res Function(_$SomeOtherDateHomeEvent) then) =
-      __$$SomeOtherDateHomeEventCopyWithImpl<$Res>;
+abstract class _$$SomeOtherDateHomeEventImplCopyWith<$Res> {
+  factory _$$SomeOtherDateHomeEventImplCopyWith(
+          _$SomeOtherDateHomeEventImpl value,
+          $Res Function(_$SomeOtherDateHomeEventImpl) then) =
+      __$$SomeOtherDateHomeEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime date});
 }
 
 /// @nodoc
-class __$$SomeOtherDateHomeEventCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$SomeOtherDateHomeEvent>
-    implements _$$SomeOtherDateHomeEventCopyWith<$Res> {
-  __$$SomeOtherDateHomeEventCopyWithImpl(_$SomeOtherDateHomeEvent _value,
-      $Res Function(_$SomeOtherDateHomeEvent) _then)
+class __$$SomeOtherDateHomeEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SomeOtherDateHomeEventImpl>
+    implements _$$SomeOtherDateHomeEventImplCopyWith<$Res> {
+  __$$SomeOtherDateHomeEventImplCopyWithImpl(
+      _$SomeOtherDateHomeEventImpl _value,
+      $Res Function(_$SomeOtherDateHomeEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -263,7 +265,7 @@ class __$$SomeOtherDateHomeEventCopyWithImpl<$Res>
   $Res call({
     Object? date = null,
   }) {
-    return _then(_$SomeOtherDateHomeEvent(
+    return _then(_$SomeOtherDateHomeEventImpl(
       null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -274,8 +276,8 @@ class __$$SomeOtherDateHomeEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
-  _$SomeOtherDateHomeEvent(this.date);
+class _$SomeOtherDateHomeEventImpl implements SomeOtherDateHomeEvent {
+  _$SomeOtherDateHomeEventImpl(this.date);
 
   @override
   final DateTime date;
@@ -286,10 +288,10 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SomeOtherDateHomeEvent &&
+            other is _$SomeOtherDateHomeEventImpl &&
             (identical(other.date, date) || other.date == date));
   }
 
@@ -299,9 +301,9 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SomeOtherDateHomeEventCopyWith<_$SomeOtherDateHomeEvent> get copyWith =>
-      __$$SomeOtherDateHomeEventCopyWithImpl<_$SomeOtherDateHomeEvent>(
-          this, _$identity);
+  _$$SomeOtherDateHomeEventImplCopyWith<_$SomeOtherDateHomeEventImpl>
+      get copyWith => __$$SomeOtherDateHomeEventImplCopyWithImpl<
+          _$SomeOtherDateHomeEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -401,19 +403,20 @@ class _$SomeOtherDateHomeEvent implements SomeOtherDateHomeEvent {
 
 abstract class SomeOtherDateHomeEvent implements HomeEvent {
   factory SomeOtherDateHomeEvent(final DateTime date) =
-      _$SomeOtherDateHomeEvent;
+      _$SomeOtherDateHomeEventImpl;
 
   DateTime get date;
   @JsonKey(ignore: true)
-  _$$SomeOtherDateHomeEventCopyWith<_$SomeOtherDateHomeEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SomeOtherDateHomeEventImplCopyWith<_$SomeOtherDateHomeEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeUpdateNutritionEventCopyWith<$Res> {
-  factory _$$HomeUpdateNutritionEventCopyWith(_$HomeUpdateNutritionEvent value,
-          $Res Function(_$HomeUpdateNutritionEvent) then) =
-      __$$HomeUpdateNutritionEventCopyWithImpl<$Res>;
+abstract class _$$HomeUpdateNutritionEventImplCopyWith<$Res> {
+  factory _$$HomeUpdateNutritionEventImplCopyWith(
+          _$HomeUpdateNutritionEventImpl value,
+          $Res Function(_$HomeUpdateNutritionEventImpl) then) =
+      __$$HomeUpdateNutritionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {double totalCarbs,
@@ -423,11 +426,12 @@ abstract class _$$HomeUpdateNutritionEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$HomeUpdateNutritionEventCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$HomeUpdateNutritionEvent>
-    implements _$$HomeUpdateNutritionEventCopyWith<$Res> {
-  __$$HomeUpdateNutritionEventCopyWithImpl(_$HomeUpdateNutritionEvent _value,
-      $Res Function(_$HomeUpdateNutritionEvent) _then)
+class __$$HomeUpdateNutritionEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$HomeUpdateNutritionEventImpl>
+    implements _$$HomeUpdateNutritionEventImplCopyWith<$Res> {
+  __$$HomeUpdateNutritionEventImplCopyWithImpl(
+      _$HomeUpdateNutritionEventImpl _value,
+      $Res Function(_$HomeUpdateNutritionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -438,7 +442,7 @@ class __$$HomeUpdateNutritionEventCopyWithImpl<$Res>
     Object? totalProtein = null,
     Object? totalCalories = null,
   }) {
-    return _then(_$HomeUpdateNutritionEvent(
+    return _then(_$HomeUpdateNutritionEventImpl(
       totalCarbs: null == totalCarbs
           ? _value.totalCarbs
           : totalCarbs // ignore: cast_nullable_to_non_nullable
@@ -461,8 +465,8 @@ class __$$HomeUpdateNutritionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
-  _$HomeUpdateNutritionEvent(
+class _$HomeUpdateNutritionEventImpl implements HomeUpdateNutritionEvent {
+  _$HomeUpdateNutritionEventImpl(
       {required this.totalCarbs,
       required this.totalFat,
       required this.totalProtein,
@@ -483,10 +487,10 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeUpdateNutritionEvent &&
+            other is _$HomeUpdateNutritionEventImpl &&
             (identical(other.totalCarbs, totalCarbs) ||
                 other.totalCarbs == totalCarbs) &&
             (identical(other.totalFat, totalFat) ||
@@ -504,10 +508,9 @@ class _$HomeUpdateNutritionEvent implements HomeUpdateNutritionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeUpdateNutritionEventCopyWith<_$HomeUpdateNutritionEvent>
-      get copyWith =>
-          __$$HomeUpdateNutritionEventCopyWithImpl<_$HomeUpdateNutritionEvent>(
-              this, _$identity);
+  _$$HomeUpdateNutritionEventImplCopyWith<_$HomeUpdateNutritionEventImpl>
+      get copyWith => __$$HomeUpdateNutritionEventImplCopyWithImpl<
+          _$HomeUpdateNutritionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -611,33 +614,34 @@ abstract class HomeUpdateNutritionEvent implements HomeEvent {
       {required final double totalCarbs,
       required final double totalFat,
       required final double totalProtein,
-      required final double totalCalories}) = _$HomeUpdateNutritionEvent;
+      required final double totalCalories}) = _$HomeUpdateNutritionEventImpl;
 
   double get totalCarbs;
   double get totalFat;
   double get totalProtein;
   double get totalCalories;
   @JsonKey(ignore: true)
-  _$$HomeUpdateNutritionEventCopyWith<_$HomeUpdateNutritionEvent>
+  _$$HomeUpdateNutritionEventImplCopyWith<_$HomeUpdateNutritionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateBurnedCaloriesEventCopyWith<$Res> {
-  factory _$$UpdateBurnedCaloriesEventCopyWith(
-          _$UpdateBurnedCaloriesEvent value,
-          $Res Function(_$UpdateBurnedCaloriesEvent) then) =
-      __$$UpdateBurnedCaloriesEventCopyWithImpl<$Res>;
+abstract class _$$UpdateBurnedCaloriesEventImplCopyWith<$Res> {
+  factory _$$UpdateBurnedCaloriesEventImplCopyWith(
+          _$UpdateBurnedCaloriesEventImpl value,
+          $Res Function(_$UpdateBurnedCaloriesEventImpl) then) =
+      __$$UpdateBurnedCaloriesEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({num burnedCalories});
 }
 
 /// @nodoc
-class __$$UpdateBurnedCaloriesEventCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$UpdateBurnedCaloriesEvent>
-    implements _$$UpdateBurnedCaloriesEventCopyWith<$Res> {
-  __$$UpdateBurnedCaloriesEventCopyWithImpl(_$UpdateBurnedCaloriesEvent _value,
-      $Res Function(_$UpdateBurnedCaloriesEvent) _then)
+class __$$UpdateBurnedCaloriesEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$UpdateBurnedCaloriesEventImpl>
+    implements _$$UpdateBurnedCaloriesEventImplCopyWith<$Res> {
+  __$$UpdateBurnedCaloriesEventImplCopyWithImpl(
+      _$UpdateBurnedCaloriesEventImpl _value,
+      $Res Function(_$UpdateBurnedCaloriesEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -645,7 +649,7 @@ class __$$UpdateBurnedCaloriesEventCopyWithImpl<$Res>
   $Res call({
     Object? burnedCalories = null,
   }) {
-    return _then(_$UpdateBurnedCaloriesEvent(
+    return _then(_$UpdateBurnedCaloriesEventImpl(
       burnedCalories: null == burnedCalories
           ? _value.burnedCalories
           : burnedCalories // ignore: cast_nullable_to_non_nullable
@@ -656,8 +660,8 @@ class __$$UpdateBurnedCaloriesEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
-  _$UpdateBurnedCaloriesEvent({required this.burnedCalories});
+class _$UpdateBurnedCaloriesEventImpl implements UpdateBurnedCaloriesEvent {
+  _$UpdateBurnedCaloriesEventImpl({required this.burnedCalories});
 
   @override
   final num burnedCalories;
@@ -668,10 +672,10 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateBurnedCaloriesEvent &&
+            other is _$UpdateBurnedCaloriesEventImpl &&
             (identical(other.burnedCalories, burnedCalories) ||
                 other.burnedCalories == burnedCalories));
   }
@@ -682,9 +686,9 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateBurnedCaloriesEventCopyWith<_$UpdateBurnedCaloriesEvent>
-      get copyWith => __$$UpdateBurnedCaloriesEventCopyWithImpl<
-          _$UpdateBurnedCaloriesEvent>(this, _$identity);
+  _$$UpdateBurnedCaloriesEventImplCopyWith<_$UpdateBurnedCaloriesEventImpl>
+      get copyWith => __$$UpdateBurnedCaloriesEventImplCopyWithImpl<
+          _$UpdateBurnedCaloriesEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -784,19 +788,19 @@ class _$UpdateBurnedCaloriesEvent implements UpdateBurnedCaloriesEvent {
 
 abstract class UpdateBurnedCaloriesEvent implements HomeEvent {
   factory UpdateBurnedCaloriesEvent({required final num burnedCalories}) =
-      _$UpdateBurnedCaloriesEvent;
+      _$UpdateBurnedCaloriesEventImpl;
 
   num get burnedCalories;
   @JsonKey(ignore: true)
-  _$$UpdateBurnedCaloriesEventCopyWith<_$UpdateBurnedCaloriesEvent>
+  _$$UpdateBurnedCaloriesEventImplCopyWith<_$UpdateBurnedCaloriesEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CopyDataEventCopyWith<$Res> {
-  factory _$$CopyDataEventCopyWith(
-          _$CopyDataEvent value, $Res Function(_$CopyDataEvent) then) =
-      __$$CopyDataEventCopyWithImpl<$Res>;
+abstract class _$$CopyDataEventImplCopyWith<$Res> {
+  factory _$$CopyDataEventImplCopyWith(
+          _$CopyDataEventImpl value, $Res Function(_$CopyDataEventImpl) then) =
+      __$$CopyDataEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({FoodLog? log});
 
@@ -804,11 +808,11 @@ abstract class _$$CopyDataEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CopyDataEventCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$CopyDataEvent>
-    implements _$$CopyDataEventCopyWith<$Res> {
-  __$$CopyDataEventCopyWithImpl(
-      _$CopyDataEvent _value, $Res Function(_$CopyDataEvent) _then)
+class __$$CopyDataEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$CopyDataEventImpl>
+    implements _$$CopyDataEventImplCopyWith<$Res> {
+  __$$CopyDataEventImplCopyWithImpl(
+      _$CopyDataEventImpl _value, $Res Function(_$CopyDataEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -816,7 +820,7 @@ class __$$CopyDataEventCopyWithImpl<$Res>
   $Res call({
     Object? log = freezed,
   }) {
-    return _then(_$CopyDataEvent(
+    return _then(_$CopyDataEventImpl(
       freezed == log
           ? _value.log
           : log // ignore: cast_nullable_to_non_nullable
@@ -839,8 +843,8 @@ class __$$CopyDataEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CopyDataEvent implements CopyDataEvent {
-  _$CopyDataEvent(this.log);
+class _$CopyDataEventImpl implements CopyDataEvent {
+  _$CopyDataEventImpl(this.log);
 
   @override
   final FoodLog? log;
@@ -851,10 +855,10 @@ class _$CopyDataEvent implements CopyDataEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CopyDataEvent &&
+            other is _$CopyDataEventImpl &&
             (identical(other.log, log) || other.log == log));
   }
 
@@ -864,8 +868,8 @@ class _$CopyDataEvent implements CopyDataEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CopyDataEventCopyWith<_$CopyDataEvent> get copyWith =>
-      __$$CopyDataEventCopyWithImpl<_$CopyDataEvent>(this, _$identity);
+  _$$CopyDataEventImplCopyWith<_$CopyDataEventImpl> get copyWith =>
+      __$$CopyDataEventImplCopyWithImpl<_$CopyDataEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -964,29 +968,29 @@ class _$CopyDataEvent implements CopyDataEvent {
 }
 
 abstract class CopyDataEvent implements HomeEvent {
-  factory CopyDataEvent(final FoodLog? log) = _$CopyDataEvent;
+  factory CopyDataEvent(final FoodLog? log) = _$CopyDataEventImpl;
 
   FoodLog? get log;
   @JsonKey(ignore: true)
-  _$$CopyDataEventCopyWith<_$CopyDataEvent> get copyWith =>
+  _$$CopyDataEventImplCopyWith<_$CopyDataEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DatesWithLogsEventCopyWith<$Res> {
-  factory _$$_DatesWithLogsEventCopyWith(_$_DatesWithLogsEvent value,
-          $Res Function(_$_DatesWithLogsEvent) then) =
-      __$$_DatesWithLogsEventCopyWithImpl<$Res>;
+abstract class _$$DatesWithLogsEventImplCopyWith<$Res> {
+  factory _$$DatesWithLogsEventImplCopyWith(_$DatesWithLogsEventImpl value,
+          $Res Function(_$DatesWithLogsEventImpl) then) =
+      __$$DatesWithLogsEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<DateTime> dates});
 }
 
 /// @nodoc
-class __$$_DatesWithLogsEventCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$_DatesWithLogsEvent>
-    implements _$$_DatesWithLogsEventCopyWith<$Res> {
-  __$$_DatesWithLogsEventCopyWithImpl(
-      _$_DatesWithLogsEvent _value, $Res Function(_$_DatesWithLogsEvent) _then)
+class __$$DatesWithLogsEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$DatesWithLogsEventImpl>
+    implements _$$DatesWithLogsEventImplCopyWith<$Res> {
+  __$$DatesWithLogsEventImplCopyWithImpl(_$DatesWithLogsEventImpl _value,
+      $Res Function(_$DatesWithLogsEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -994,7 +998,7 @@ class __$$_DatesWithLogsEventCopyWithImpl<$Res>
   $Res call({
     Object? dates = null,
   }) {
-    return _then(_$_DatesWithLogsEvent(
+    return _then(_$DatesWithLogsEventImpl(
       null == dates
           ? _value._dates
           : dates // ignore: cast_nullable_to_non_nullable
@@ -1005,8 +1009,8 @@ class __$$_DatesWithLogsEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DatesWithLogsEvent implements _DatesWithLogsEvent {
-  _$_DatesWithLogsEvent(final List<DateTime> dates) : _dates = dates;
+class _$DatesWithLogsEventImpl implements _DatesWithLogsEvent {
+  _$DatesWithLogsEventImpl(final List<DateTime> dates) : _dates = dates;
 
   final List<DateTime> _dates;
   @override
@@ -1022,10 +1026,10 @@ class _$_DatesWithLogsEvent implements _DatesWithLogsEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DatesWithLogsEvent &&
+            other is _$DatesWithLogsEventImpl &&
             const DeepCollectionEquality().equals(other._dates, _dates));
   }
 
@@ -1036,8 +1040,8 @@ class _$_DatesWithLogsEvent implements _DatesWithLogsEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DatesWithLogsEventCopyWith<_$_DatesWithLogsEvent> get copyWith =>
-      __$$_DatesWithLogsEventCopyWithImpl<_$_DatesWithLogsEvent>(
+  _$$DatesWithLogsEventImplCopyWith<_$DatesWithLogsEventImpl> get copyWith =>
+      __$$DatesWithLogsEventImplCopyWithImpl<_$DatesWithLogsEventImpl>(
           this, _$identity);
 
   @override
@@ -1138,11 +1142,11 @@ class _$_DatesWithLogsEvent implements _DatesWithLogsEvent {
 
 abstract class _DatesWithLogsEvent implements HomeEvent {
   factory _DatesWithLogsEvent(final List<DateTime> dates) =
-      _$_DatesWithLogsEvent;
+      _$DatesWithLogsEventImpl;
 
   List<DateTime> get dates;
   @JsonKey(ignore: true)
-  _$$_DatesWithLogsEventCopyWith<_$_DatesWithLogsEvent> get copyWith =>
+  _$$DatesWithLogsEventImplCopyWith<_$DatesWithLogsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1255,10 +1259,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 }
 
 /// @nodoc
-abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$$_HomeStateCopyWith(
-          _$_HomeState value, $Res Function(_$_HomeState) then) =
-      __$$_HomeStateCopyWithImpl<$Res>;
+abstract class _$$HomeStateImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateImplCopyWith(
+          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
+      __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1276,11 +1281,11 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_HomeStateCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_HomeState>
-    implements _$$_HomeStateCopyWith<$Res> {
-  __$$_HomeStateCopyWithImpl(
-      _$_HomeState _value, $Res Function(_$_HomeState) _then)
+class __$$HomeStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
+    implements _$$HomeStateImplCopyWith<$Res> {
+  __$$HomeStateImplCopyWithImpl(
+      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1295,7 +1300,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? copiedData = freezed,
     Object? datesWithLogs = null,
   }) {
-    return _then(_$_HomeState(
+    return _then(_$HomeStateImpl(
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -1334,8 +1339,8 @@ class __$$_HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeState implements _HomeState {
-  _$_HomeState(
+class _$HomeStateImpl implements _HomeState {
+  _$HomeStateImpl(
       {required this.date,
       this.totalCalories = 0,
       this.totalProtein = 0,
@@ -1384,10 +1389,10 @@ class _$_HomeState implements _HomeState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeState &&
+            other is _$HomeStateImpl &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.totalCalories, totalCalories) ||
                 other.totalCalories == totalCalories) &&
@@ -1420,8 +1425,8 @@ class _$_HomeState implements _HomeState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
-      __$$_HomeStateCopyWithImpl<_$_HomeState>(this, _$identity);
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
 }
 
 abstract class _HomeState implements HomeState {
@@ -1433,7 +1438,7 @@ abstract class _HomeState implements HomeState {
       final double totalFat,
       final num totalBurnedCalories,
       final FoodLog? copiedData,
-      final List<DateTime> datesWithLogs}) = _$_HomeState;
+      final List<DateTime> datesWithLogs}) = _$HomeStateImpl;
 
   @override
   DateTime get date;
@@ -1455,6 +1460,6 @@ abstract class _HomeState implements HomeState {
   List<DateTime> get datesWithLogs;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

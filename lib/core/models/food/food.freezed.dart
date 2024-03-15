@@ -12,7 +12,7 @@ part of 'food.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Food {
@@ -136,9 +136,10 @@ class _$FoodCopyWithImpl<$Res, $Val extends Food>
 }
 
 /// @nodoc
-abstract class _$$_FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
-  factory _$$_FoodCopyWith(_$_Food value, $Res Function(_$_Food) then) =
-      __$$_FoodCopyWithImpl<$Res>;
+abstract class _$$FoodImplCopyWith<$Res> implements $FoodCopyWith<$Res> {
+  factory _$$FoodImplCopyWith(
+          _$FoodImpl value, $Res Function(_$FoodImpl) then) =
+      __$$FoodImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -159,9 +160,10 @@ abstract class _$$_FoodCopyWith<$Res> implements $FoodCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res, _$_Food>
-    implements _$$_FoodCopyWith<$Res> {
-  __$$_FoodCopyWithImpl(_$_Food _value, $Res Function(_$_Food) _then)
+class __$$FoodImplCopyWithImpl<$Res>
+    extends _$FoodCopyWithImpl<$Res, _$FoodImpl>
+    implements _$$FoodImplCopyWith<$Res> {
+  __$$FoodImplCopyWithImpl(_$FoodImpl _value, $Res Function(_$FoodImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -179,7 +181,7 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res, _$_Food>
     Object? incredients = freezed,
     Object? isRecipe = freezed,
   }) {
-    return _then(_$_Food(
+    return _then(_$FoodImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -230,8 +232,8 @@ class __$$_FoodCopyWithImpl<$Res> extends _$FoodCopyWithImpl<$Res, _$_Food>
 
 /// @nodoc
 
-class _$_Food extends _Food {
-  _$_Food(
+class _$FoodImpl extends _Food {
+  _$FoodImpl(
       {this.id,
       required this.name,
       this.description,
@@ -284,10 +286,10 @@ class _$_Food extends _Food {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Food &&
+            other is _$FoodImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -326,8 +328,8 @@ class _$_Food extends _Food {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FoodCopyWith<_$_Food> get copyWith =>
-      __$$_FoodCopyWithImpl<_$_Food>(this, _$identity);
+  _$$FoodImplCopyWith<_$FoodImpl> get copyWith =>
+      __$$FoodImplCopyWithImpl<_$FoodImpl>(this, _$identity);
 }
 
 abstract class _Food extends Food {
@@ -342,7 +344,7 @@ abstract class _Food extends Food {
       final DateTime? dateTime,
       final double? quantity,
       final List<Food>? incredients,
-      final bool? isRecipe}) = _$_Food;
+      final bool? isRecipe}) = _$FoodImpl;
   _Food._() : super._();
 
   @override
@@ -369,7 +371,8 @@ abstract class _Food extends Food {
   bool? get isRecipe;
   @override
   @JsonKey(ignore: true)
-  _$$_FoodCopyWith<_$_Food> get copyWith => throw _privateConstructorUsedError;
+  _$$FoodImplCopyWith<_$FoodImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -432,21 +435,22 @@ class _$NutritionCopyWithImpl<$Res, $Val extends Nutrition>
 }
 
 /// @nodoc
-abstract class _$$_NutritionCopyWith<$Res> implements $NutritionCopyWith<$Res> {
-  factory _$$_NutritionCopyWith(
-          _$_Nutrition value, $Res Function(_$_Nutrition) then) =
-      __$$_NutritionCopyWithImpl<$Res>;
+abstract class _$$NutritionImplCopyWith<$Res>
+    implements $NutritionCopyWith<$Res> {
+  factory _$$NutritionImplCopyWith(
+          _$NutritionImpl value, $Res Function(_$NutritionImpl) then) =
+      __$$NutritionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double calories, double? fat, double? carbs, double? protein});
 }
 
 /// @nodoc
-class __$$_NutritionCopyWithImpl<$Res>
-    extends _$NutritionCopyWithImpl<$Res, _$_Nutrition>
-    implements _$$_NutritionCopyWith<$Res> {
-  __$$_NutritionCopyWithImpl(
-      _$_Nutrition _value, $Res Function(_$_Nutrition) _then)
+class __$$NutritionImplCopyWithImpl<$Res>
+    extends _$NutritionCopyWithImpl<$Res, _$NutritionImpl>
+    implements _$$NutritionImplCopyWith<$Res> {
+  __$$NutritionImplCopyWithImpl(
+      _$NutritionImpl _value, $Res Function(_$NutritionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -457,7 +461,7 @@ class __$$_NutritionCopyWithImpl<$Res>
     Object? carbs = freezed,
     Object? protein = freezed,
   }) {
-    return _then(_$_Nutrition(
+    return _then(_$NutritionImpl(
       calories: null == calories
           ? _value.calories
           : calories // ignore: cast_nullable_to_non_nullable
@@ -480,8 +484,8 @@ class __$$_NutritionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Nutrition extends _Nutrition {
-  _$_Nutrition(
+class _$NutritionImpl extends _Nutrition {
+  _$NutritionImpl(
       {required this.calories,
       required this.fat,
       required this.carbs,
@@ -503,10 +507,10 @@ class _$_Nutrition extends _Nutrition {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Nutrition &&
+            other is _$NutritionImpl &&
             (identical(other.calories, calories) ||
                 other.calories == calories) &&
             (identical(other.fat, fat) || other.fat == fat) &&
@@ -520,8 +524,8 @@ class _$_Nutrition extends _Nutrition {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NutritionCopyWith<_$_Nutrition> get copyWith =>
-      __$$_NutritionCopyWithImpl<_$_Nutrition>(this, _$identity);
+  _$$NutritionImplCopyWith<_$NutritionImpl> get copyWith =>
+      __$$NutritionImplCopyWithImpl<_$NutritionImpl>(this, _$identity);
 }
 
 abstract class _Nutrition extends Nutrition {
@@ -529,7 +533,7 @@ abstract class _Nutrition extends Nutrition {
       {required final double calories,
       required final double? fat,
       required final double? carbs,
-      required final double? protein}) = _$_Nutrition;
+      required final double? protein}) = _$NutritionImpl;
   _Nutrition._() : super._();
 
   @override
@@ -542,6 +546,6 @@ abstract class _Nutrition extends Nutrition {
   double? get protein;
   @override
   @JsonKey(ignore: true)
-  _$$_NutritionCopyWith<_$_Nutrition> get copyWith =>
+  _$$NutritionImplCopyWith<_$NutritionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
