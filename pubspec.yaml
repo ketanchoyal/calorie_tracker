@@ -14,20 +14,20 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
-  firebase_core: ^2.13.1
-  cloud_firestore: ^4.8.0
-  firebase_auth: ^4.6.2
-  google_sign_in: ^6.1.4
+  firebase_core: ^3.3.0
+  cloud_firestore: ^5.2.1
+  firebase_auth: ^5.1.4
+  google_sign_in: ^6.2.1
   openfoodfacts:
     git:
       url: https://github.com/ketanchoyal/openfoodfacts-dart.git
       ref: product-status-enum
   dart_openai: ^5.1.0
-  json_theme: ^4.0.3
+  json_theme: ^6.5.0
   font_awesome_flutter: ^10.4.0
   cupertino_icons: ^1.0.5
-  ai_barcode_scanner: ^0.0.6
-  flutter_form_bloc: ^0.30.1
+  ai_barcode_scanner: ^5.1.1
+  flutter_form_bloc: ^0.31.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   flutter_settings_ui: ^2.0.1

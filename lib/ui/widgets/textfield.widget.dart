@@ -39,7 +39,7 @@ class FormTextField extends StatelessWidget {
         suffixIcon: isOptional
             ? Text(
                 'Optional     ',
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               )
             : null,
         border: const OutlineInputBorder(

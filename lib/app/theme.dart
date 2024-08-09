@@ -73,7 +73,7 @@ class AppColors {
       (dynamic value) => 'Nunito',
       ifAbsent: () => 'Nunito',
     );
-    _theme = ThemeDecoder.decodeThemeData(themeJson)!;
-    _darkTheme = ThemeDecoder.decodeThemeData(themeDarkJson)!;
+    _theme = ThemeDecoder.decodeThemeData(themeJson, validate: false)!;
+    _darkTheme = ThemeDecoder.decodeThemeData(themeDarkJson, validate: false)!;
   }
 }

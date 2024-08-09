@@ -9,10 +9,10 @@ class AddFoodBarcodeScanner extends StatelessWidget {
       controller: MobileScannerController(
         detectionSpeed: DetectionSpeed.noDuplicates,
       ),
-      canPop: false,
-      onScan: (String value) {
-        debugPrint(value);
-      },
+      // canPop: false,
+      // onScan: (String value) {
+      //   debugPrint(value);
+      // },
       onDetect: (BarcodeCapture barcodeCapture) {
         debugPrint(barcodeCapture.barcodes.toString());
         Navigator.pop(context, barcodeCapture.barcodes.first.rawValue);

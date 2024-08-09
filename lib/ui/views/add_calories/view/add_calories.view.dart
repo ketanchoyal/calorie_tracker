@@ -213,9 +213,6 @@ class _EmptyStateBody extends StatelessWidget {
         alignment: WrapAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Two buttons
-          // 1. Select Food
-          // 2. Quick Add Food
           TextButton(
             style: TextButton.styleFrom(
               minimumSize: const Size.square(180),

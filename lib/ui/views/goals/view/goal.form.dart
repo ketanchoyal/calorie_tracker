@@ -34,12 +34,12 @@ class _GoalForm extends StatelessWidget {
                       textAlign: TextAlign.center,
                       textInputAction: TextInputAction.next,
                       textAlignVertical: TextAlignVertical.center,
-                      textStyle: Theme.of(context).textTheme.headline3,
+                      textStyle: Theme.of(context).textTheme.displaySmall,
                       decoration: InputDecoration(
                         labelText: 'Calories',
                         alignLabelWithHint: true,
                         floatingLabelStyle:
-                            Theme.of(context).textTheme.headline5,
+                            Theme.of(context).textTheme.headlineSmall,
                         constraints: const BoxConstraints(
                           maxWidth: 250,
                         ),
@@ -57,11 +57,11 @@ class _GoalForm extends StatelessWidget {
                         decimal: true,
                       ),
                       textInputAction: TextInputAction.next,
-                      textStyle: Theme.of(context).textTheme.headline4,
+                      textStyle: Theme.of(context).textTheme.headlineMedium,
                       decoration: InputDecoration(
                         labelText: 'Protien',
                         floatingLabelStyle:
-                            Theme.of(context).textTheme.headline5,
+                            Theme.of(context).textTheme.headlineSmall,
                         constraints: const BoxConstraints(
                           maxWidth: 250,
                         ),
@@ -80,11 +80,11 @@ class _GoalForm extends StatelessWidget {
                         decimal: true,
                       ),
                       textInputAction: TextInputAction.next,
-                      textStyle: Theme.of(context).textTheme.headline4,
+                      textStyle: Theme.of(context).textTheme.headlineMedium,
                       decoration: InputDecoration(
                         labelText: 'Carbs',
                         floatingLabelStyle:
-                            Theme.of(context).textTheme.headline5,
+                            Theme.of(context).textTheme.headlineSmall,
                         constraints: const BoxConstraints(
                           maxWidth: 250,
                         ),
@@ -103,11 +103,11 @@ class _GoalForm extends StatelessWidget {
                         decimal: true,
                       ),
                       textInputAction: TextInputAction.next,
-                      textStyle: Theme.of(context).textTheme.headline4,
+                      textStyle: Theme.of(context).textTheme.headlineMedium,
                       decoration: InputDecoration(
                         labelText: 'Fat',
                         floatingLabelStyle:
-                            Theme.of(context).textTheme.headline5,
+                            Theme.of(context).textTheme.headlineSmall,
                         constraints: const BoxConstraints(
                           maxWidth: 250,
                         ),

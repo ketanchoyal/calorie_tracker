@@ -35,7 +35,7 @@ class _SettingsBody extends StatelessWidget {
           sections: [
             SettingsSection(
               title: 'Account',
-              titleTextStyle: Theme.of(context).textTheme.subtitle1,
+              titleTextStyle: Theme.of(context).textTheme.titleMedium,
               tiles: [
                 SettingsTile(
                   title: 'Add Food',
@@ -108,7 +108,7 @@ class _SettingsBody extends StatelessWidget {
             ),
             SettingsSection(
               title: 'General',
-              titleTextStyle: Theme.of(context).textTheme.subtitle1,
+              titleTextStyle: Theme.of(context).textTheme.titleMedium,
               tiles: [
                 SettingsTile(
                   title: 'Request HealthKit Access',
@@ -132,7 +132,7 @@ class _SettingsBody extends StatelessWidget {
             ),
             SettingsSection(
               title: 'Developer Section',
-              titleTextStyle: Theme.of(context).textTheme.subtitle1,
+              titleTextStyle: Theme.of(context).textTheme.titleMedium,
               tiles: [
                 SettingsTile(
                   title: 'App Mode',
